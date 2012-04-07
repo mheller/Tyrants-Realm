@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" compiles="true" parentProject="a2b25fe4-4273-474f-88f0-ee50025e5fb9" projectUUID="a2b25fe4-4273-474f-88f0-ee50025e5fb9" pureCatalystProject="false" sdkVersion="4.5.1" uuid="54caeaed-79bf-44f6-b137-794c7446210a" version="15">
+  <projects/>
+  <src/>
+  <swc>
+    <linked location="${FLEXUNIT_LIB_LOCATION}/version4libs/Common" path="${FLEXUNIT_LIB_LOCATION}/version4libs/Common" position="2" uuid="e1e95286-1f0f-45da-bfec-28e08c653e4e"/>
+    <linked location="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject" path="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject" position="3" uuid="e1e95286-1f0f-45da-bfec-28e08c653e4e"/>
+    <linked location="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject_Extended" path="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject_Extended" position="4" uuid="e1e95286-1f0f-45da-bfec-28e08c653e4e"/>
+    <linked location="${FLEXUNIT_LOCALE_LOCATION}/version4locale/" path="${FLEXUNIT_LOCALE_LOCATION}/version4locale/" position="5" uuid="e1e95286-1f0f-45da-bfec-28e08c653e4e"/>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="54caeaed-79bf-44f6-b137-794c7446210a"/>
+    <linked location="/libs" path="/libs" position="1" uuid="e1e95286-1f0f-45da-bfec-28e08c653e4e"/>
+    <linked location="J:/Dropbox/flash/3dProjects/Away3d_5.swc" path="/linked-swc/Away3d_5.swc" position="2" uuid="17a70137-95c9-4d62-bb26-fbcab44b7e97"/>
+  </swc>
+  <misc/>
+  <theme/>
+  <mxmlFormattingPrefs groupAttributesByState="true" maxLineWidth="100" mxmlAlignAttributes="true" mxmlAttributeOrder="id,userLabel,includeIn,excludeFrom,visible,x,y,z,left,right,top,bottom,width,height,minWidth,minHeight,maxWidth,maxHeight,label" mxmlKeepAttributeValuesOrganized="true"/>
+</fxpProperties>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  label="Chat"
+		  emphasized="{chat_view.visible}"
+		  click="showChatView();">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		
+		<![CDATA[			
+			import mx.managers.PopUpManager;		
+			import spark.components.TitleWindow;
+			import views.ChatView;
+			
+			[Bindable]
+			private var chat_view:ChatView;
+			
+			private function showChatView():void{
+				if (chat_view == null)
+					chat_view = PopUpManager.createPopUp(this, ChatView,false) as ChatView;
+				else {
+					if (chat_view.visible == true)
+						chat_view.visible = false;
+					else
+						chat_view.visible = true;
+				}
+					
+	
+			}	
+		]]>
+	</fx:Script>	
+</s:Button>
