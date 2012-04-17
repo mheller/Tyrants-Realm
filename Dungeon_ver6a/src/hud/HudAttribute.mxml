@@ -22,6 +22,7 @@
 			import resizableTitleWindow.*;
 			
 			import views.CharacterView;
+			import views.PartyView;
 			
 			[Bindable]
 			public var char:Character;
@@ -30,20 +31,20 @@
 			public var party:Party;
 			
 			[Bindable]
-			private var character_view:CharacterView;
-			
+			public var character_view:CharacterView;
+				
 			private function clickHander(e:Event):void{		
 				if (character_view == null){							
 					character_view= PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
 					character_view.char = char;	
 					character_view.party = this.party;
-					
 				}
 				else{					
-					if (character_view.visible == false)
+					if (character_view.visible == false){
 						character_view.visible = true;
+					}
 					else{
-						character_view.visible = false;											
+						character_view.visible = false;
 //						character_view = null;
 					}
 				}

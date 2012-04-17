@@ -24,6 +24,7 @@ package character
 		public var iStack8:ItemStack;
 		public var iStack9:ItemStack;
 		public var iStack10:ItemStack;
+		public var iStack11:ItemStack;
 		
 		
 /*		public function Inventory(maxSize: int, list_itemGroup:ArrayList){

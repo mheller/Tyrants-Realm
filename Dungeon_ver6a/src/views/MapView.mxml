@@ -4,10 +4,10 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
 			   title="Map"
-			   height="400" width="400"
+			   height="200" width="200"
 			   close="handleCloseEvent();"
 			   creationComplete="creationCompleteHandler(event)"
-			   x="400">
+			   x="924">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>

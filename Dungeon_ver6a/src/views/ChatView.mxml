@@ -3,9 +3,9 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   title="Chat"
-			   width="100%"  height="100%"
+			   width="500"  height="100%"
 			   close="handleCloseEvent();"
-			   y="400">
+			   x="0" y="543">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>

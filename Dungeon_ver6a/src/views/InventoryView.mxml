@@ -32,7 +32,7 @@
 			public var char:Character;
 						
 			
-			/* @Hoang: this function initial the view for inventory
+			/* @Hoang: this function initializes the view for inventory
 				= create number of item groups based on current size of inventory
 				each item group view is a navigation container which is added to the inventory window
 			*/

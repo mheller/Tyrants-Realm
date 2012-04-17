@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		  xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
-		  label="Party"
-		  emphasized="{party_view.visible}"
-		  click="showPartyView();"
-		  >
+		  label="Party" click="showPartyView();" emphasized="{party_view.visible}" enabled="true">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -27,6 +24,7 @@
 			[Bindable]
 			public var party_view:PartyView;
 			
+
 			[Bindable]
 			public var aParty:Party;
 			
@@ -37,7 +35,7 @@
 					this.party_view.aParty = this.aParty;
 				}
 				else{
-					if (party_view.visible == false)
+					if (party_view.visible == false) 
 						party_view.visible = true;
 					else{
 						party_view.visible = false;

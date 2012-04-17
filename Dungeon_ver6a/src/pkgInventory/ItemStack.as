@@ -1,5 +1,7 @@
 package pkgInventory
 {
+	import character.Character;
+	
 	import mx.controls.Alert;
 
 	[Bindable]
@@ -11,6 +13,7 @@ package pkgInventory
 		public var maxSize: int;
 		public var displayPath:String;
 		public var itemType:int;
+		public var owner:Character;
 		
 		
 		// constructor : empty Stack
@@ -20,6 +23,7 @@ package pkgInventory
 			this.maxSize = maxSize;
 			this.displayPath = null;
 			this.itemType = -1;
+			
 		}
 		
 		// @HOANG: swap item stack, only in the case that both stacks have the same max size
@@ -56,7 +60,7 @@ package pkgInventory
 			// if added Item is the same type, then add it = update size of stack
 			if((this.itemType == newItem.itemType) && (this.currSize < this.maxSize)){
 				if(this.item.isStackable == false){
-					Alert.show("This item: "+this.item.itemName +" is not stackable");
+					Alert.show("This item: "+this.item.itemShortName +" is not stackable");
 					return false;
 				}
 				this.currSize += 1;

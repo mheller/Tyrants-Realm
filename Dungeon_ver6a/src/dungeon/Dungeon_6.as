@@ -102,8 +102,8 @@
 						
 			_initScene();	
 			
-			var stat: AwayStats = new AwayStats(_view);
-			addChild(stat);
+//			var stat: AwayStats = new AwayStats(_view);
+//			addChild(stat);
 			
 					
 			this.addEventListener(Event.ENTER_FRAME, _start3D);

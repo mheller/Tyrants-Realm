@@ -65,11 +65,11 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.health.text}"/>
+			<s:Label text="{char.health_current.text}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.health.value}"/>
+				<s:Label text="{char.health_current.value}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.health.max_value}"/>
+				<s:Label text="{char.health_max.value}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -97,17 +97,17 @@
 			<s:Label text="{char.level.text}"/>
 			<s:HGroup  right="0" >
 				<s:Label text="{char.level.value}"/>
-				<s:Label text="/"/>
-				<s:Label text="{char.level.max_value}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.spirae.text}"/>
+			<s:Label text="{char.spirae_current.text}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.spirae.value}"/>	
+				<s:Label text="{char.spirae_current.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.spirae_max.value}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -223,9 +223,18 @@
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.damage.text}"/>
+			<s:Label text="Min. {char.phys_dmg.text}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.damage.value}"/>
+				<s:Label text="{char.phys_dmg.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+	
+		<s:Group width="100%">			
+			<s:Label text="Max. {char.phys_dmg.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.phys_dmg.max_value}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -235,6 +244,24 @@
 			<s:Label text="{char.damage_type.text}"/>
 			<s:HGroup  right="0" >
 				<s:Label text="{char.damage_type.value}"/>
+			</s:HGroup>				
+		</s:Group>
+
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="Min. {char.magic_dmg.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.magic_dmg.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="Max. {char.magic_dmg.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.magic_dmg.max_value}"/>
 			</s:HGroup>				
 		</s:Group>
 		

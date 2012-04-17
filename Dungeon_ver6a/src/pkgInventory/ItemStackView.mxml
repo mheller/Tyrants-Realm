@@ -4,14 +4,13 @@
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:pkgInventory="pkgInventory.*"
 		 xmlns:resizableTitleWindow="resizableTitleWindow.*"
-		 width="70" height="70" 
+		 width="72" height="72" 
 		 
 		 dragDrop="doDragDrop(event,'itemStackFormat')"
 		 dragComplete="skinnablecontainer1_dragCompleteHandler(event,'itemStackFormat')"
 		 dragEnter="doDragEnter(event,'itemStackFormat')"
 		 mouseDown="dragIt(this,event,'itemStackFormat')"
 		 dragOver="skinnablecontainer1_dragOverHandler(event)"
-		 
 		 backgroundColor="#666666"
 		 creationComplete="skinnablecontainer1_creationCompleteHandler(event)">
 
@@ -25,6 +24,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import character.Character;
+			
 			import events.DragDropEvent;
 			
 			import mx.containers.Canvas;
@@ -37,12 +38,26 @@
 			import mx.managers.DragManager;
 			import mx.skins.halo.DefaultDragImage;
 			
+			import pkgInventory.Item;
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			
 			import spark.filters.DropShadowFilter;
 			import spark.primitives.BitmapImage;
 			import spark.primitives.Graphic;
 			
 			[Bindable]
 			public var itemStack:ItemStack;
+			
+			[Bindable]
+			public var char:Character;	
+			
+			[Bindable]
+			public var party:Party;	
+
 			
 			public function getUIComponentBitmapData( target :UIComponent ) : BitmapData
 			{ 
@@ -67,9 +82,9 @@
 					var target:ItemStackView = (event.target as ItemStackView);
 					var transferedItem: ItemStack = (event.dragSource.dataForFormat(format) as ItemStack);
 					
-					//@huy : 2 main cases
+					//@huy : 2 main cases 
+					
 					//1st: move between character and inventory
-				
 					if ((target.itemStack.maxSize==1 && source.itemStack.maxSize !=1)
 						|| (target.itemStack.maxSize!=1 && source.itemStack.maxSize ==1))
 					{
@@ -80,8 +95,8 @@
 						}
 						//@huy : if move from inventory to character
 						if (target.itemStack.maxSize==1) {//only itemstacks in the current list items of char can send event to char
-							var eventObject:DragDropEvent = new DragDropEvent(DragDropEvent.DRAG_FROM_INVENTORY,source.itemStack,target.itemStack);
-							target.dispatchEvent(eventObject);	
+							var eventObject2:DragDropEvent = new DragDropEvent(DragDropEvent.DRAG_FROM_INVENTORY,source.itemStack,target.itemStack);
+							target.dispatchEvent(eventObject2);	
 							//target.dispatchEvent(eventObject);
 						}
 						
@@ -89,6 +104,9 @@
 					
 					//@huy : 2nd : if move insides inventory or character
 					else{
+						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) return;   // TODO: Hack so inv 2 inv isn't done. Will need to change as dual item slots are available.
+																								   // This solution may also need redesign as stacked items are properly implemented
+						
 						// 1st case: 2 groups of the same items
 						if(target.itemStack.itemType == source.itemStack.itemType)
 							target.itemStack.pushItemFromSimilarStack(source.itemStack);
@@ -102,9 +120,9 @@
 								// this will enable swapping itemstack in the same group such as : char items or inventory's group
 								// with the assumption that item stack in the same group should have the same size.
 								if(target.itemStack.maxSize == source.itemStack.maxSize){
-									var tempStack:ItemStack = target.itemStack;
+									var tempStack3:ItemStack = target.itemStack;
 									target.itemStack = source.itemStack;
-									source.itemStack = tempStack;
+									source.itemStack = tempStack3;
 								}
 							}
 						}
@@ -119,6 +137,13 @@
 				if(this.itemStack.currSize >0){
 					var ds:DragSource = new DragSource();
 					ds.addData(this.itemStack,format);
+					
+//					var ds_target:DragSource = new DragSource();
+
+//					ds_target.addData(char.current_items.list_itemStacks.getItemAt(slot_index),format);
+
+					
+					
 					//ds.addData(this.itemStack.item,format);
 					
 					//var dragSrc:Image = ((ItemStackView)(event.currentTarget)).img as Image;
@@ -142,10 +167,10 @@
 //					proxy.filters = [new spark.filters.DropShadowFilter()];
 					
 					//var dragedImage:DefaultDragImage = new DefaultDragImage();
-					var img:Image = new Image();
-					img.source = new Bitmap(getUIComponentBitmapData(this.img as UIComponent));
-					img.width = 50;
-					img.height = 50;
+					var imgBeingDragged:Image = new Image();
+					imgBeingDragged.source = new Bitmap(getUIComponentBitmapData(this.imgOrig as UIComponent));
+					imgBeingDragged.width = 65;
+					imgBeingDragged.height = 65;
 					
 					
 					// @HOANG: highlight the moved source item
@@ -158,17 +183,23 @@
 					filter.color = 0xFFFF0000;
 					filter.distance = 6;
 					filter.inner = false;
-					this.img.filters = [ filter ];           
-
-					DragManager.doDrag(initiator,ds,event,img);
+					this.imgOrig.filters = [ filter ];    
+					
+					var slot_index:int = initiator.itemStack.item.itemSlot;
+					if (slot_index == 14) slot_index = 0;
+					
+					var targetStack:ItemStack=ItemStack(initiator.itemStack.owner.current_items.list_itemStacks.getItemAt(slot_index));
+					//targetStack.item.
+					
+					DragManager.doDrag(initiator,ds,event,imgBeingDragged);
 					
 				}
 			}
 			
 			// when dragging complete, remove highlight on image		
-			protected function skinnablecontainer1_dragCompleteHandler(event,format:String):void
+			protected function skinnablecontainer1_dragCompleteHandler(event:DragEvent,format:String):void
 			{
-				this.img.filters=[];
+				this.imgOrig.filters=[];
 			}
 			
 			protected function skinnablecontainer1_creationCompleteHandler(event:FlexEvent):void
@@ -190,10 +221,10 @@
 		<s:BasicLayout/>
 	</s:layout>
 	
-	<s:Image id="img" x="0" y="0" width="80%" height="80%" source="{itemStack.displayPath}"
+	<s:Image id="imgOrig" x="3" y="3" width="90%" height="90%" source="{itemStack.displayPath}"
 			 visible="{itemStack.maxSize > 1/*huy : not display number in current list*/}"/>
 	
-	<s:Image x="0" y="0" width="100%" height="100%" source="{itemStack.displayPath}"
+	<s:Image x="3" y="3" width="90%" height="90%" source="{itemStack.displayPath}"
 			 visible="{itemStack.maxSize == 1/*huy : not display number in current list*/}"/>
 	
 	<s:Label id="lblCurrSize" text="{itemStack.currSize}" x="60" y="55"

@@ -3,9 +3,9 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   title="Party"
-			   width="250"  height="300"
+			   width="125"  height="644"
 			   close="handleCloseEvent();"
-			   x="600" y="100"
+			   x="0" y="0"
 			   creationComplete="titlewindow1_creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -94,9 +94,8 @@
 	
 	
 	<s:layout>
-		<s:TileLayout>
-			<s:requestedColumnCount>4</s:requestedColumnCount>
-		</s:TileLayout>
+		<s:VerticalLayout horizontalAlign="center"
+						  gap="24"/>
 	</s:layout>
 
 	

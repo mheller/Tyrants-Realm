@@ -41,8 +41,8 @@
 					trace("current list max size:"+current_items.maxSize);
 					var iStackView:ItemStackView = new ItemStackView();	// each groupView is a nav content
 					iStackView.itemStack = current_items.list_itemStacks.getItemAt(i) as ItemStack;
-					iStackView.width = 55;
-					iStackView.height = 55;
+					iStackView.width = 72;
+					iStackView.height = 72;
 					//iStackView.lblCurrSize.visible = false;
 					this.addElement(iStackView);
 				}	
