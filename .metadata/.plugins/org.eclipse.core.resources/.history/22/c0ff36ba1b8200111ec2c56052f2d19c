@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="creationCompleteHandler(event)" xmlns:pkgInventory="pkgInventory.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import mx.events.FlexEvent;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemGroup;
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			
+			[Bindable]
+			public var current_items:ItemGroup;
+			
+
+			
+			[Bindable]
+			public var start_index:int;
+			
+			[Bindable]
+			public var char:Character;
+			
+			public function creationCompleteHandler(event:FlexEvent):void
+			{
+				createListView();	
+
+			}
+			public function createListView():void{
+				this.removeAllElements();
+				
+				for(var i:int =start_index; i<start_index+current_items.maxSize/2;i++){//2 is number of current list view 
+					trace("current list max size:"+current_items.maxSize);
+					var iStackView:ItemStackView = new ItemStackView();	// each groupView is a nav content
+					iStackView.itemStack = current_items.list_itemStacks.getItemAt(i) as ItemStack;
+					iStackView.width = 75;
+					iStackView.height = 75;
+					//iStackView.lblCurrSize.visible = false;
+					this.addElement(iStackView);
+				}	
+			}
+
+			
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:HorizontalLayout gap="1"/>
+	</s:layout>
+
+</s:Group>

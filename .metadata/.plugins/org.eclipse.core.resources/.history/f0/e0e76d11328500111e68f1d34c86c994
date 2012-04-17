@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  emphasized="{character_view.visible}"
+		  label="Attribute"
+		  click="clickHander(event);"
+		  >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[			
+			import character.Character;
+			
+			import mx.collections.ArrayList;
+			import mx.managers.PopUpManager;
+			
+			import pkgParty.Party;
+			
+			import resizableTitleWindow.*;
+			
+			import views.CharacterView;
+			import views.PartyView;
+			
+			[Bindable]
+			public var char:Character;
+			
+			[Bindable]
+			public var party:Party;
+			
+			[Bindable]
+			private var character_view:CharacterView;
+			
+			[Bindable]
+			public var party_view:PartyView;
+
+			
+			private function clickHander(e:Event):void{		
+				if (party_view == null){
+					party_view= PopUpManager.createPopUp(this, PartyView,false) as PartyView;
+					this.party_view.Party = this.Party;
+				}
+				if (character_view == null){							
+					character_view= PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
+					character_view.char = char;	
+					character_view.party = this.party;
+					
+					
+				}
+				else{					
+					if (character_view.visible == false)
+						character_view.visible = true;
+					else{
+						character_view.visible = false;											
+//						character_view = null;
+					}
+				}
+			}
+		]]>
+	</fx:Script>	
+	
+</s:Button>

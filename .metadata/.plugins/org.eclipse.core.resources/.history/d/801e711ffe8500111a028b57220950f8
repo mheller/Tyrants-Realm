@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:TitleWindow
+			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   xmlns:pkgInventory="pkgInventory.*"
+			   width="100%"  height="604"
+			   minWidth="650" minHeight="600"
+			   x="126"
+			   title="Character View"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   creationComplete="creationCompleteHandler(event)"
+			   close="handleCloseEvent();"
+			   >
+			   
+	<s:layout>
+		<s:HorizontalLayout paddingLeft="0" paddingRight="0" gap="1"/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import events.DragDropEvent;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.core.BitmapAsset;
+			import mx.core.IUIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.DragManager;
+			import mx.managers.PopUpManager;
+			import mx.utils.OnDemandEventDispatcher;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+
+			
+			[Bindable]
+			public var char:Character;	
+			
+			[Bindable]
+			public var party:Party;	
+
+			
+			public var item:Item;
+			
+			private function handleCloseEvent():void{
+				visible = false;
+				
+			}		
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{		
+					addEventListener(DragDropEvent.DRAG_FROM_CHARACTER,handleDragFromCharacter);	
+					addEventListener(DragDropEvent.DRAG_FROM_INVENTORY,handleDragFromInventory);
+					character_apperance_container.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					character_apperance_container.addEventListener(DragEvent.DRAG_DROP, handleDrop);
+					
+					// capture the event pop up by party window
+					this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
+			}
+			
+			
+			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
+				//Alert.show("Event change character");
+				this.char = party.currChar;
+				//recreate the 2 list view when different character is selected
+				current_list_view1.createListView();
+				current_list_view2.createListView();
+			}
+
+
+			public function handleDragFromCharacter(event:DragDropEvent):void{
+				trace("drag from character");
+				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
+				var target:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
+				target.pushItemFromSimilarStack(source);
+				char.appearance_weapon = null;
+				for(var i:int=0; i<target.item.item_benefit.length;i++){
+					if (target.item.item_benefit.getItemAt(i).text == "Min Phys Dmg") {
+						char.damage_min.value = char.damage_min.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Max Phys Dmg") {
+						char.damage_max.value = char.damage_max.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Fitness") {
+						char.fitness.value = char.fitness.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Mental") {
+						char.mental_prowess.value = char.mental_prowess.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					} 
+					if (target.item.item_benefit.getItemAt(i).text == "Spirit") {
+						char.spirituality.value = char.spirituality.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue; 
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Eloquence") {
+						char.eloquence.value = char.eloquence.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Coordination") {
+						char.coordination.value = char.coordination.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Health") {
+						char.health.value = char.health.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+					if (target.item.item_benefit.getItemAt(i).text == "Spirae") {
+						char.spirae.value = char.spirae.value - (int)(target.item.item_benefit.getItemAt(i).value);
+						continue;
+					}
+
+				}
+			}
+/*
+			*** Benefit Types: Fitness, Mental, Spirit, Eloquence, Coordination, Health, Spirae, 
+			Experience Bonus, Gold Bonus, Avoidance, Hit, Dmg Res, Cold Res, Heat Res, Magic Res, 
+			Max Phys Dmg, Min Phys Dmg, Max Magic Dmg, Min Magic Dmg, Wander, Construction Cost, 
+			increased monster freq and decreased monster freq.
+*/
+			
+			public function handleDragFromInventory(event:DragDropEvent):void{
+				trace("drag from inventory");
+				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
+				var target:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
+				
+				var same_category:Boolean = false;
+				var itemS:ItemStack=ItemStack(char.current_items.list_itemStacks.getItemAt(0));
+				for(var i:int=0;i<char.current_items.maxSize;i++){
+					itemS = ItemStack(char.current_items.list_itemStacks.getItemAt(i));
+					if (itemS.currSize>0 && itemS.item.itemID == source.item.itemID){
+						same_category = true;
+						break;
+					}	
+				}
+				if (same_category == false){
+					target.pushItemFromSimilarStack(source);
+					char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					for(var j:int=0; j<target.item.item_benefit.length;j++){
+						if (target.item.item_benefit.getItemAt(j).text == "Min Phys Dmg") {
+							char.damage_min.value = char.damage_min.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Max Phys Dmg") {
+							char.damage_max.value = char.damage_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						
+					}
+				}			
+			}
+			
+			private function acceptDrop(dragEvent:DragEvent):void{
+				trace("accept Drop");
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				DragManager.acceptDragDrop(dropTarget);
+			}
+			
+			private function handleDrop(dragEvent:DragEvent):void{
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				//handle dropping
+				var same_category:Boolean = false;
+				for(var i:int=0;i<char.current_items.maxSize;i++){
+					var itemS:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(i));					
+					if (itemS.currSize>0 && itemS.item.itemID == ItemStackView(dragInitiator).itemStack.item.itemID){
+						same_category =  true;
+						break;
+					}
+				}
+				if (same_category == false){
+					for(var j:int=0;j<char.current_items.maxSize;j++){
+						var itemS2:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(j));		
+						if (itemS2.currSize == 0){
+							itemS2.pushItemFromSimilarStack(ItemStackView(dragInitiator).itemStack);
+							char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							break;
+						}
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<views:AttributeView 	char="{char}"
+							  height="100%"
+							  width="180"/>
+	
+	<s:BitmapImage id="invdev1" width="5" height="571" 
+				   source="assets/InventoryDivider.png"
+				   />	
+
+	<s:Group width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout gap="1" paddingLeft="0"/>			
+		</s:layout>
+		
+		<views:CurrentItemListView id="current_list_view1" current_items="{char.current_items}"
+								   start_index="0"/>
+		
+		<s:Group id="character_apperance_container"
+				 width="100%" height="100%">
+			<s:layout>
+				<s:BasicLayout/>
+			</s:layout>
+			<s:BitmapImage id="character_appearance" x="45" width="425" height="425" 
+						   source="{char.appearance_basebody}"
+						   />	
+			<s:BitmapImage id="character_appearance2" x="45" width="425" height="425"
+						   source="{char.appearance_basehead}"
+						   />	
+			<s:BitmapImage id="character_appearance3" x="45" width="425" height="425"
+						   source="{char.appearance_torso}"
+						   />	
+			<s:BitmapImage id="character_appearance4" x="45" width="425" height="425"
+						   source="{char.appearance_head}"
+						   />	
+			<s:BitmapImage id="character_appearance5" x="45" width="425" height="425"
+						   source="{char.appearance_legs}"
+						   />	
+			<s:BitmapImage id="character_appearance6" x="45" width="425" height="425"
+						   source="{char.appearance_feet}"
+						   />	
+			<s:BitmapImage id="character_appearance7" x="45" width="425" height="425"
+						   source="{char.appearance_shoulders}"
+						   />	
+			<s:BitmapImage id="character_appearance8" x="45" width="425" height="425"
+						   source="{char.appearance_hands}"
+						   />	
+			<s:BitmapImage id="character_appearance9" x="45" width="425" height="425"
+						   source="{char.appearance_weapon}"
+						   />	
+			<s:BitmapImage id="character_appearance10" x="45" width="425" height="425"
+						   source="{char.appearance_offhand}"
+						   />	
+		</s:Group>
+		
+
+	
+		<views:CurrentItemListView id="current_list_view2" current_items="{char.current_items}"
+								   start_index="7"/>
+	
+	</s:Group>
+	
+	<s:BitmapImage id="invdev2" width="5" height="571" 
+				   source="assets/InventoryDivider.png"
+				   />	
+	
+	<views:InventoryView char="{char}" inventory="{char.inventory}"/>
+	
+</s:TitleWindow>

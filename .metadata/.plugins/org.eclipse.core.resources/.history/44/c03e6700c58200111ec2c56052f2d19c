@@ -1,0 +1,323 @@
+package character
+{
+	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
+	import mx.collections.Sort;
+	import mx.collections.SortField;
+	
+	import pkgInventory.Item;
+	import pkgInventory.ItemGroup;
+	import pkgInventory.ItemStack;
+
+	//character's base class for all charaters
+	[Bindable]
+	public class Character
+	{
+		//overview
+		public var name:Attribute = null;
+		public var gender:Attribute = null;
+		public var character_class:Attribute = null;
+		//key metrics
+		public var health:Attribute = null;
+		public var total_experience:Attribute = null;
+		public var experience_to_level:Attribute = null;//
+		public var level:Attribute = null;
+		public var spirae:Attribute = null;
+		public var denarii:Attribute = null;
+		public var stater:Attribute = null;
+		//abilities
+		public var fitness:Attribute = null;
+		public var mental_prowess:Attribute = null;
+		public var spirituality:Attribute = null;
+		public var eloquence:Attribute = null;
+		public var coordination:Attribute = null;
+		//combat
+		public var hit:Attribute = null;
+		public var avoidance:Attribute = null;
+		public var damage:Attribute = null;//min/max damage
+		public var damage_type:Attribute = null;
+		//resistances
+		public var damage_resistance:Attribute = null;
+		public var cold_resistance:Attribute = null;
+		public var heat_resistance:Attribute = null;
+		public var magic_resistance:Attribute = null;
+		//others
+		public var carrer_changes:Attribute = null;
+		public var party_position:Attribute = null;
+		
+		//@Hoang <<
+		public static const MAX_NUMBER_ITEMGROUP:int = 5;
+		public static const MAX_ITEM_STACK_SIZE:int = 5;
+		public var inventory:Inventory;
+		// >>Hoang
+		
+		public var current_items:ItemGroup = new ItemGroup("current_items",14);
+		public var appearance:String = null;//file name to character's default image
+		public var appearance_basebody:String = null;//file name to character's default image
+		public var appearance_basehead:String = null;//file name to character's default image
+		public var appearance_weapon:String = null;//file name to character's default image
+		public var appearance_offhand:String = null;//file name to character's default image
+		public var appearance_torso:String = null;//file name to character's default image
+		public var appearance_head:String = null;//file name to character's default image
+		public var appearance_legs:String = null;//file name to character's default image
+		public var appearance_feet:String = null;//file name to character's default image
+		public var appearance_shoulders:String = null;//file name to character's default image
+		public var appearance_hands:String = null;//file name to character's default image
+
+		
+		public var attribute_list:ArrayCollection = new ArrayCollection();//data provider for data grid of attributes component
+
+
+		public function Character(name:String,gender:String, character_class:String="N/A",
+								  health:int=100, total_experience:int=0,experience_to_level:int=0,level:int=0, spirae:int=0, denarii:int=0, stater:int=0,
+								  fitness:int=0,mental_prowess:int=0, spirituality:int=0, eloquence:int=0, coordination:int=0,
+								  hit:int=0, avoidance:int=0, damage:int=0, damage_type:String="N/A",
+								  damage_resistance:int=0,cold_resistance:int=0, heat_resistance:int=0, magic_resistance:int=0, 
+								  party_position:int=0, carrer_changes:int=0)
+		{
+			
+			this.name = new Attribute("Name",name);
+			this.gender = new Attribute("Gender",gender);
+			this.character_class = new Attribute("Character_class", character_class);
+			
+			this.health = new Attribute("Health",health,100);
+			this.total_experience = new Attribute("Total Experiences",total_experience,0);
+			this.experience_to_level = new Attribute("Experience to Level",experience_to_level);
+			this.level = new Attribute("Level", level,0);
+			this.spirae = new Attribute("Spirae", spirae);
+			this.denarii = new Attribute("Denarii", denarii);
+			this.stater = new Attribute("Stater", stater);
+			
+			this.fitness = new Attribute("Fitness", fitness, 100);
+			this.mental_prowess = new Attribute("Mental Prowess", mental_prowess,100);
+			this.spirituality = new Attribute("Spirituality", spirituality,100);
+			this.eloquence = new Attribute("Eloquence", eloquence,100);
+			this.coordination = new Attribute("Coordination", coordination,100);
+			
+			this.hit = new Attribute("Hit", hit);
+			this.avoidance = new Attribute("Avoidance", avoidance);		
+			this.damage = new Attribute("Damage", damage);
+			this.damage_type = new Attribute("Damage type",damage_type);
+			
+			this.damage_resistance = new Attribute("Damage Resistance", damage_resistance);
+			this.cold_resistance = new Attribute("Cold Resistance", cold_resistance);
+			this.heat_resistance = new Attribute("Heat Resistance", heat_resistance);
+			this.magic_resistance = new Attribute("Magic Resistance", magic_resistance);
+			
+			this.party_position = new Attribute("Party position",party_position);
+			this.carrer_changes = new Attribute("Carrer Changes", carrer_changes);
+			
+			
+/*			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+			this.appearance = "assets/"+this.name.value+".jpg";
+*/
+//			this.appearance = "assets/"+ this.gender.value+"/"+"Body.jpg";
+			this.appearance_basebody = "assets/"+ this.gender.value+"/"+"Body.jpg";
+			if (this.party_position == 0) {
+  				this.appearance_basehead = "assets/"+this.gender.value+"/"+"Head - Black.png";
+			}	
+			if (this.party_position == 1) {
+				this.appearance_basehead = "assets/"+this.gender.value+"/"+"Head - Blonde.png";		
+			}
+			else {
+				this.appearance_basehead = "assets/"+this.gender.value+"/"+"Head - Red.png";		
+			}
+			trace("init apperance" + appearance_basebody);
+			
+			_createAttributeLists();
+			
+			
+			
+			//*** HUY create current_items
+			var itemS1:ItemStack = new ItemStack(1);
+			var itemS2:ItemStack = new ItemStack(1);
+			var itemS3:ItemStack = new ItemStack(1);
+			var itemS4:ItemStack = new ItemStack(1);
+			var itemS5:ItemStack = new ItemStack(1);
+			var itemS6:ItemStack = new ItemStack(1);
+			var itemS7:ItemStack = new ItemStack(1);
+			var itemS8:ItemStack = new ItemStack(1);
+			var itemS9:ItemStack = new ItemStack(1);
+			var itemS10:ItemStack = new ItemStack(1);
+			var itemS11:ItemStack = new ItemStack(1);
+			var itemS12:ItemStack = new ItemStack(1);
+			var itemS13:ItemStack = new ItemStack(1);
+			var itemS14:ItemStack = new ItemStack(1);
+			
+			
+			current_items.addOneStack(itemS1);
+			current_items.addOneStack(itemS2);
+			current_items.addOneStack(itemS3);
+			current_items.addOneStack(itemS4);
+			current_items.addOneStack(itemS5);
+			current_items.addOneStack(itemS6);
+			current_items.addOneStack(itemS7);
+			current_items.addOneStack(itemS8);
+			current_items.addOneStack(itemS9);
+			current_items.addOneStack(itemS10);
+			current_items.addOneStack(itemS11);
+			current_items.addOneStack(itemS12);
+			current_items.addOneStack(itemS13);
+			current_items.addOneStack(itemS14);
+			
+			
+			//@Hoang 	<<
+			this.inventory = new Inventory(MAX_NUMBER_ITEMGROUP);
+			//this.inventory.initialInventory();
+			// create item groups : 
+			
+			// Groups:
+			//var iGroup1:ItemGroup = new ItemGroup("group_1",10);
+			//var iGroup2:ItemGroup = new ItemGroup("group_2",5);
+
+			// add groups to inventory
+			//this.inventory.addGroup(iGroup1);
+			//this.inventory.addGroup(iGroup2);
+
+			// Stacks:
+			var iStack1:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack2:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack3:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack4:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack5:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack6:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack7:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack8:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack9:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack10:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack11:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack12:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack13:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack14:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack15:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack16:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack17:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack18:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack19:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack20:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack21:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+
+			
+			// Items:
+/*			var newItem1:Item = new Item(1,"item1","assets/1.jpg",1,true);
+			var newItem2:Item = new Item(2,"item2","assets/2.jpg",1,false);
+			var newItem3:Item = new Item(3,"item3","assets/3.jpg");
+			var newItem4:Item = new Item(4,"item4","assets/4.jpg");
+			var newItem5:Item = new Item(5,"item5","assets/5.jpg");
+			var newItem6:Item = new Item(1,"item1","assets/1.jpg",1,true);
+			var newItem7:Item = new Item(2,"item2","assets/2.jpg",1,false);
+			var newItem8:Item = new Item(3,"item3","assets/3.jpg");
+			var newItem9:Item = new Item(4,"item4","assets/4.jpg");
+			var newItem10:Item = new Item(5,"item5","assets/5.jpg");
+			var newItem11:Item = new Item(1,"item1","assets/1.jpg",1,true);
+			var newItem12:Item = new Item(2,"item2","assets/2.jpg",1,false);
+			var newItem13:Item = new Item(3,"item3","assets/3.jpg");
+			var newItem14:Item = new Item(4,"item4","assets/4.jpg");
+			var newItem15:Item = new Item(5,"item5","assets/5.jpg");
+*/
+			// Todo: Icons are too crude in this detail level. Need to adjust the icon sizes.
+			// Todo: Should not be created here, just passed into the Character and assigned to inv here.
+			var newItem1:Item = new Item(1,"Dagger01","a notched dagger","notched daggers", 1, 6, 0, 14, "This notched and dull iron dagger has seen better days.", false, true, false, true, true, true, false, "assets/InvIcons/Dagger_Icon_Rank_01.jpg");
+			var newItem2:Item = new Item(13,"Broadsword02","an ornate broadsword", "ornate broadswords", 2, 35, 0, 14, "This wickedly curved blade is a common weapon used by mercenaries in close combat situations. It can be founda t almost any shop, but this one is of particularly good quality.", false, true, false, true, true, true, false,"assets/InvIcons/Broadsword_Icon_Rank_02.jpg");
+			var newItem3:Item = new Item(16,"Greatsword01","a worn iron greatsword", "worn iron greatswords", 1, 18, 0, 14, "This huge weapon is a symbol of power, strength and death. Without a doubt, no warrior would be afraid with one of these on his or her hip.", false, true, false, true, true, true, false, "assets/InvIcons/Greatsword_Icon_Rank_01.jpg");
+			var newItem4:Item = new Item(15,"Longsword02","an ornate longsword", "ornate longswords", 2, 35, 0, 14, "This blade can be seen at the hip of many leaders in military and civilian authority. It has the keen edge of a weapon able to perform well in combat but it also has the look many would be proud to have at their side when making a good impression on others.", false, true, false, true, true, true, false, "assets/InvIcons/Longsword_Icon_Rank_02.jpg");
+			var newItem5:Item = new Item(4,"Mace01","a bronze mace", "bronze maces", 1, 15, 0, 14, "This utilitarian mace will bash heads with the best of them. However, the relatively soft nature of bronze makes it constantly have a battered look to it.", false, true, false, true, true, true, false, "assets/InvIcons/Mace_Icon_Rank_01.jpg");
+			var newItem6:Item = new Item(5,"Mace02","a crowned spike mace", "crowned spiked maces", 2, 33, 0, 14, "This functional iron mace has spikes on the end to allow for a limited form of thrust damage when the unfortunate recipient leaves an opening.", false, true, false, true, true, true, false, "assets/InvIcons/Mace_Icon_Rank_02.jpg");
+			var newItem7:Item = new Item(26,"Rapier01","a basic cross-hilt rapier", "cross-hilt rapiers", 1, 12, 0, 14, "This rapier looks fancier than it is. The thin blade makes for good quick movements, but its poor construction makes it vulternatble to heavier blows.", false, true, false, true, true, true, false, "assets/InvIcons/Rapier_Icon_Rank_01.jpg");
+			var newItem8:Item = new Item(22,"Recurvebow01", "a hunter's recurve bow", "hunter's recurve bows", 1, 17, 1, 14, "This basic curved bow allows for more punch when it hits and, as such, is a favorite of most hunteres as it is rare for game to run far after taken with an arrow from this weapon.", false, true, false, true, true, true, false, "assets/InvIcons/RecurveBow_Icon_Rank_01.jpg");
+			var newItem9:Item = new Item(18,"Shortbow01","an oaken shortbow", "oaken shortbows", 1, 11, 1, 14, "This smoothly carved shortbow has limited range but can certainly get the job done. Each end is curved adding a touch of style and strength that only human hunters with elfish training would know how to create.", false, true, false, true, true, true, false, "assets/InvIcons/Shortbow_Icon_Rank_01.jpg");
+			var newItem10:Item = new Item(19,"Shortbow02","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/InvIcons/Shortbow_Icon_Rank_02.jpg");
+			var newItem11:Item = new Item(28,"Staff01","a crystal-topped staff", "crystal-topped staves", 1, 14, 0, 14, "This staff is of very simple design considering the power it holds. A master of the staff can generally beat any sword wielder, even when the staff is as basic as this one.", false, true, false, true, true, true, false, "assets/InvIcons/Staff_Icon_Rank_01.jpg");
+			var newItem12:Item = new Item(29,"Staff02"," an enchanted staff", "enchanted staves", 2, 34, 0, 14, "This staff has been infused with power of some kind. The knarled limb looks like it would be more fail than it actually is.", false, true, false, true, true, true, false, "assets/InvIcons/Staff_Icon_Rank_02.jpg");
+			var newItem13:Item = new Item(27,"ThrowingKnife01","a training throwing knife", "training throwing knives", 1, 8, 1, 14, "This blade is balanced for throwing. However, it is of poor craftsmanship and has been around the block a few times.", false, true, false, true, true, true, false, "assets/InvIcons/ThrowingKnife_Icon_Rank_01.jpg");
+			var newItem14:Item = new Item(25,"ThrowingAxe02","a hooked throwing axe", "hooked throwing axes", 2, 34, 1, 14, "One glance at this axe reminds you of the old saying: never bring a sword to a ranged fight. Without a doubt, you would want this on your side if you faced someone with a sword.", false, true, false, true, true, true, false, "assets/InvIcons/ThrowingAxe_Icon_Rank_02.jpg");
+			var newItem15:Item = new Item(7,"Wand02","a bloody yew wand", "blood yew wands", 2, 35, 0, 14, "This wand was obviously put together by someone of skill years ago. You can sense the power contained within it by the merest of touches.", false, true, false, true, true, true, false, "assets/InvIcons/Wand_Icon_Rank_02.jpg");
+
+			
+			// push items to stacks
+			iStack1.pushItem(newItem1);
+			iStack2.pushItem(newItem2);
+			iStack3.pushItem(newItem3);
+			iStack4.pushItem(newItem6);
+			iStack5.pushItem(newItem7);
+			//iStack1.pushItem(newItem9);
+			
+			iStack6.pushItem(newItem9);
+			iStack7.pushItem(newItem10);
+			iStack8.pushItem(newItem11);
+			iStack9.pushItem(newItem12);
+			iStack10.pushItem(newItem13);
+			//iStack6.pushItem(newItem14);
+			//iStack7.pushItem(newItem15);
+
+			
+			inventory.iStack1 = iStack1;
+			inventory.iStack2 = iStack2;
+			inventory.iStack3 = iStack3;
+			inventory.iStack4 = iStack4;
+			inventory.iStack5 = iStack5;
+			inventory.iStack6 = iStack6;
+			inventory.iStack7 = iStack7;
+			inventory.iStack8 = iStack8;
+			inventory.iStack9 = iStack9;
+			inventory.iStack10 = iStack10;
+						
+			// push stacks to groups
+//			iGroup1.addOneStack(iStack1);
+//			iGroup1.addOneStack(iStack2);
+//			iGroup1.addOneStack(iStack3);
+//			iGroup1.addOneStack(iStack4);
+//			iGroup1.addOneStack(iStack5);
+//			iGroup1.addOneStack(iStack6);
+//			iGroup1.addOneStack(iStack7);
+//			iGroup1.addOneStack(iStack8);
+//			iGroup1.addOneStack(iStack9);
+//			iGroup1.addOneStack(iStack10);
+			//	>> Hoang
+
+		}
+		
+		private function _createAttributeLists():void{
+			attribute_list.addItem(name);
+			attribute_list.addItem(gender);
+			attribute_list.addItem(character_class);
+			
+			attribute_list.addItem(health);
+			attribute_list.addItem(total_experience);
+			attribute_list.addItem(experience_to_level);
+			attribute_list.addItem(level);	
+			attribute_list.addItem(spirae);
+			attribute_list.addItem(denarii);
+			attribute_list.addItem(stater);				
+			
+			attribute_list.addItem(fitness);
+			attribute_list.addItem(mental_prowess);
+			attribute_list.addItem(spirituality);
+			attribute_list.addItem(eloquence);
+			attribute_list.addItem(coordination);
+			
+			attribute_list.addItem(hit);
+			attribute_list.addItem(avoidance);			
+			attribute_list.addItem(damage);
+			attribute_list.addItem(damage_type);
+			
+			attribute_list.addItem(damage_resistance);
+			attribute_list.addItem(cold_resistance);
+			attribute_list.addItem(heat_resistance);
+			attribute_list.addItem(magic_resistance);
+			
+			attribute_list.addItem(party_position);
+			attribute_list.addItem(carrer_changes);
+			
+//			attribute_list.sort= new Sort();
+//			attribute_list.sort.fields = [new SortField("text",true)]
+//			attribute_list.refresh();
+		}
+		
+	}
+}

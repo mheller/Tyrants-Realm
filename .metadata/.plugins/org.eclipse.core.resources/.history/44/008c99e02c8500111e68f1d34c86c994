@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Scroller xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:mx="library://ns.adobe.com/flex/mx"
+			  width="100%" height="100%">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			[Bindable]
+			public var char:Character;
+			
+		]]>
+	</fx:Script>
+	
+	<!-- Overview -->
+	<s:VGroup gap="3">
+		<s:Group width="100%" height="20" fontSize="14">
+			<s:Rect width = "100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0x666666" />
+				</s:fill>
+			</s:Rect>
+			<s:Label width="100%" height="100%" text="Overview" textAlign="center" verticalAlign="middle"/>
+		</s:Group>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.name.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.name.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.gender.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.gender.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.character_class.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.character_class.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<!-- key metric-->
+		
+		<s:Group width="100%" height="20" fontSize="14">
+			<s:Rect width = "100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0x666666" />
+				</s:fill>
+			</s:Rect>
+			<s:Label width="100%" height="100%" text="Key Metrics" textAlign="center" verticalAlign="middle"/>
+		</s:Group>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.health.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.health.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.health.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.total_experience.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.total_experience.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.experience_to_level.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.experience_to_level.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.level.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.level.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.level.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.spirae.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.spirae.value}"/>	
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">		
+			<s:Label text="{char.denarii.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.denarii.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">		
+			<s:Label text="{char.stater.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.stater.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<!-- Abilities-->
+		
+		<s:Group width="100%" height="20" fontSize="14">
+			<s:Rect width = "100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0x666666" />
+				</s:fill>
+			</s:Rect>
+			<s:Label width="100%" height="100%" text="Abilities" textAlign="center" verticalAlign="middle"/>
+		</s:Group>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.fitness.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.fitness.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.fitness.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.mental_prowess.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.mental_prowess.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.mental_prowess.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.spirituality.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.spirituality.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.spirituality.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.eloquence.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.eloquence.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.eloquence.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.coordination.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.coordination.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.coordination.max_value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<!-- Combat-->
+		
+		<s:Group width="100%" height="20" fontSize="14">
+			<s:Rect width = "100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0x666666" />
+				</s:fill>
+			</s:Rect>
+			<s:Label width="100%" height="100%" text="Combat" textAlign="center" verticalAlign="middle"/>
+		</s:Group>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.hit.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.hit.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.avoidance.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.avoidance.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.damage.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.damage.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.damage_type.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.damage_type.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<!-- resistances-->
+		
+		<s:Group width="100%" height="20" fontSize="14">
+			<s:Rect width = "100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0x666666" />
+				</s:fill>
+			</s:Rect>
+			<s:Label width="100%" height="100%" text="Resistances" textAlign="center" verticalAlign="middle"/>
+		</s:Group>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.damage_resistance.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.damage_resistance.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.cold_resistance.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.cold_resistance.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.heat_resistance.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.heat_resistance.value}"/>
+			</s:HGroup>				
+		</s:Group>
+		
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
+			<s:Label text="{char.magic_resistance.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.magic_resistance.value}"/>
+			</s:HGroup>				
+		</s:Group>
+	</s:VGroup>
+	
+	
+</s:Scroller>

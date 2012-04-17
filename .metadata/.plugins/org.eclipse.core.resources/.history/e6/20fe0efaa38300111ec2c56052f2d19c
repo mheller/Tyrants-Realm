@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   title="Party"
+			   width="125"  height="700"
+			   close="handleCloseEvent();"
+			   x="10" y="50"
+			   creationComplete="titlewindow1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			import pkgParty.ViewEachCharInParty;
+			
+			import spark.filters.DropShadowFilter;
+			
+			[Bindable]
+			public var aParty: Party;
+			
+
+			private function handleCloseEvent():void{
+				visible =false;
+			}
+			
+			private function updateSelectedView(oldIndex:int, newIndex:int):void{
+				aParty.currCharIndex = newIndex;
+				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex) as ViewEachCharInParty;
+				
+				var filter : DropShadowFilter = new DropShadowFilter();
+				filter.blurX = 4;
+				filter.blurY = 4;
+				filter.quality = 2;
+				filter.alpha = 0.5;
+				filter.angle = 45;
+				filter.color = 0x00FFFF;
+				filter.distance = 6;
+				filter.inner = false;
+				
+				newSelectedElement.filters= [filter];
+				
+				if(oldIndex != -1){
+					var oldSelectedElement:ViewEachCharInParty = this.getElementAt(oldIndex) as ViewEachCharInParty;
+					oldSelectedElement.filters= [];
+				}
+
+			}
+			
+			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
+				//Alert.show(event.char.name.value as String);
+				aParty.currChar = event.char;
+				
+				var old_index:int= aParty.currCharIndex;
+				//aParty.currCharIndex = event.indexCharInParty;
+				//Alert.show(aParty.currChar.name.value as String);
+				
+				updateSelectedView(old_index,event.indexCharInParty);
+			}
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var currPop:int = aParty.currPopulation;
+				var i:int;
+				
+				addEventListener("CharacterIsSelected",handleCharacterSelected);		
+				
+				for(i=0; i<currPop; i++){
+					var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
+					viewAChar.char = aParty.arr_chars.getItemAt(i) as Character;
+					viewAChar.updateStatusBar();
+										
+					viewAChar.index_in_partyview = i;
+										
+					this.addElement(viewAChar);
+				}
+				
+				updateSelectedView(-1,0);
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center"
+						  gap="24"/>
+	</s:layout>
+
+	
+</s:TitleWindow>

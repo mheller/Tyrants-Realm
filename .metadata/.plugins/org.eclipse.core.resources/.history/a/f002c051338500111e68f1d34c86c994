@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  label="Party"
+		  emphasized="{party_view.visible}"
+		  click="showPartyView();"
+		  >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		
+		<![CDATA[			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			
+			import spark.components.TitleWindow;
+			
+			import views.PartyView;
+			import views.CharacterView;
+			
+			[Bindable]
+			public var party_view:PartyView;
+			
+			[Bindable]
+			public var character_view:CharacterView;
+
+			[Bindable]
+			public var aParty:Party;
+			
+			
+			private function showPartyView():void{
+				if (party_view == null){
+					party_view= PopUpManager.createPopUp(this, PartyView,false) as PartyView;
+					this.party_view.aParty = this.aParty;
+				}
+				else{
+					if (party_view.visible == false) 
+						party_view.visible = true;
+					else{
+						party_view.visible = false;
+						character_view.visible = false;
+						//party_view = null;
+					}
+											
+				}
+			}	
+						
+			
+			
+		]]>
+	</fx:Script>	
+</s:Button>

@@ -1,0 +1,85 @@
+package pkgInventory
+{
+	import mx.collections.ArrayList;
+
+	public class Item
+	{
+		public var numAtributes:int;
+		public var list_attributes:ArrayList;
+		public var displayPath: String;
+		public var itemType: int;
+		public var itemName: String;
+		public var category: int;
+		public var isStackable: Boolean;
+		
+		// Types: 0 = Melee
+		//        1 = Ranged
+		//        2 = Robe
+		//        3 = Tunic
+		//        4 = Chain
+		//        5 = Plate
+		//        6 = Speedup
+		//        7 = Benefit
+		//        8 = Material
+		//        9 = Quest
+		// Slot:  0 = None
+		//        1 = Head
+		//        2 = Torso
+		//        3 = Legs
+		//        4 = Feet
+		//        5 = Hands
+		//        6 = Shoulders
+		//        7 = Cloak
+		//        8 = Offhand
+		//        9 = Ring
+		//        10 = Neck
+	    //        11 = Belt
+		//        12 = Attachment (Belt)
+		//        13 = Trailing
+		//        14 = Weapon
+		// Benefit Types: 	0 = None
+		// 					1 = Fitness
+		//					2 = Mental
+		//					3 = Spirit
+		//					4 = Eloquence
+		//					5 = Coordination
+		//					6 = Health
+		//					7 = Spirae
+		//					8 = Experience Bonus
+		//					9 = Gold Bonus
+		//					10 = Avoidance
+		//					11 = Hit
+		//					12 = Damage Resistance
+		//					13 = Cold Resistance
+		//					14 = Heat Resistance
+		//					15 = Magic Resistance
+		//					16 = Maximum Physical Damage
+		//					17 = Minimum Physical Damage
+		//					18 = Maximum Magic Damage
+		//					19 = Minimum Magic Damage
+		//					20 = Wander
+		//					21 = Construction Cost
+		// 					22 = Increased Monster Frequency
+		//					23 = Decreased Monseter Frequency
+		public function Item(itemType:int, itemName:String, displayPath:String,category:int=1, isStackable:Boolean = false)	{
+			this.itemType = itemType;
+			this.itemName = itemName;
+			this.displayPath = displayPath;
+			this.category = category;
+			this.isStackable = isStackable;
+		}
+
+		
+		
+//		public function Item(itemType:int, itemName:String, displayPath:String, numAtributes:int, list_attributes:ArrayList){			
+//			this.itemType = itemType;
+//			this.itemName = itemName;
+//			this.displayPath = displayPath;
+//			this.numAtributes = numAtributes;
+//			this.list_attributes = list_attributes;
+//		}
+		
+		
+		
+	}
+}
