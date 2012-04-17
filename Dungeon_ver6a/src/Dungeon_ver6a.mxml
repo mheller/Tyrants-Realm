@@ -46,13 +46,13 @@
 					
 			// Hardcoded demo party
 			[Bindable]
-			public var char2:Character = new Character("Jane","Female","Defender",50, 100, 0, 100, 1, 0, 0, 0, 0, 10, 5, 5, 8, 9, 20, 25, 0, 1, "Fists", 0,0, 0,0,0,0, 1,0, "assets/Female/Body.jpg", "assets/Female/Head - Black.png");
+			public var char2:Character = new Character("Jane","Female","Defender",50, 100, 0, 100, 1, 0, 0, 0, 0, 10, 5, 5, 8, 9, 20, 25, 0, 1, "Fists", 0,0, 0,0,0,0, 1,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Black.png");
 			[Bindable]
-			public var char3:Character = new Character("Jill","Female", "Elementalist", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5, 10, 9, 6, 5, 15, 35, 0, 1, "Fists", 1, 2, 0,0,0,0, 2,0, "assets/Female/Body.jpg", "assets/Female/Head - Blonde.png");
+			public var char3:Character = new Character("Jill","Female", "Elementalist", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5, 10, 9, 6, 5, 15, 35, 0, 1, "Fists", 1, 2, 0,0,0,0, 2,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Blonde.png");
 			[Bindable]
-			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/Male/Body.jpg", "assets/Male/Head - Black.png");
+			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head - Black.png");
 			[Bindable]
-			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/Female/Body.jpg", "assets/Female/Head - Red.png");
+			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Red.png");
 	
 /*			public function Character(name:String,gender:String, character_class:String="N/A",  
 											health_current:int=100, health_max:int=100, total_experience:int=0,experience_to_level:int=100,level:int=1, 

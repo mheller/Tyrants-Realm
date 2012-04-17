@@ -589,21 +589,21 @@
 						
 						// Set the picture based on the type of item
 						if (target.item.itemSlot == 14)
-							char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 8)
-							char.appearance_offhand = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 2)
-							char.appearance_torso = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 3)
-							char.appearance_legs = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 4)
-							char.appearance_feet = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 5)
-							char.appearance_hands = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 1)
-							char.appearance_head = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						
 						// Outgoing Item
 						
@@ -821,21 +821,21 @@
 						target.pushItemFromSimilarStack(source);
 						
 						if (target.item.itemSlot == 14)
-							char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 8)
-							char.appearance_offhand = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 2)
-							char.appearance_torso = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 3)
-							char.appearance_legs = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 4)
-							char.appearance_feet = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 5)
-							char.appearance_hands = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						if (target.item.itemSlot == 1)
-							char.appearance_head = "assets/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
 						for(var j:int=0; j<target.item.item_benefit.length;j++){
 							if (target.item.item_benefit.getItemAt(j).text == "Min Phys Dmg") {
 								char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
@@ -1179,21 +1179,21 @@
 						
 						// Set the picture based on the type of item
 						if (itemS2.item.itemSlot == 14)
-							char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 8)
-							char.appearance_offhand = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 2)
-							char.appearance_torso = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 3)
-							char.appearance_legs = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 4)
-							char.appearance_feet = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 5)
-							char.appearance_hands = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 1)
-							char.appearance_head = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 
 						// Outgoing Item
 						
@@ -1409,21 +1409,21 @@
 						itemS2.pushItemFromSimilarStack(ItemStackView(dragInitiator).itemStack);
 						// Set the picture based on the type of item
 						if (itemS2.item.itemSlot == 14)
-							char.appearance_weapon = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 8)
-							char.appearance_offhand = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 2)
-							char.appearance_torso = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 3)
-							char.appearance_legs = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 4)
-							char.appearance_feet = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 5)
-							char.appearance_hands = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						if (itemS2.item.itemSlot == 1)
-							char.appearance_head = "assets/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+".png";
 						
 						for(k=0; k<itemS2.item.item_benefit.length;k++){
 							if (itemS2.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
