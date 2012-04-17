@@ -1,0 +1,597 @@
+-- Confidential Property of Draconis Development LLC
+-- Tyrant's Realm Initial DB Creation Script
+
+create database tyrants_realm;
+
+use tyrants_realm;
+
+CREATE TABLE Server (
+  server_id mediumint unsigned NOT NULL auto_increment,
+  server_name varchar(255) NOT NULL default 'Cerulean Pond',
+  server_ip varchar(15) NOT NULL,
+  server_hostname varchar(255) NOT NULL,
+  next_reboot_date date NOT NULL default '0000-00-00',
+  next_reboot_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (server_id),
+  UNIQUE KEY (server_name)
+);
+CREATE TABLE Account (
+  account_id mediumint(6) unsigned NOT NULL auto_increment,
+  email varchar(255) NOT NULL default '',
+  password varchar(255) NOT NULL default '',
+  permission_level mediumint(6) unsigned NOT NULL default 2,
+  account_status mediumint(6) unsigned NOT NULL default 0,
+  date_time_created TIMESTAMP DEFAULT NOW(),
+  date_last_entered date NOT NULL default '0000-00-00',
+  time_last_entered time NOT NULL default '00:00:00',
+  PRIMARY KEY (account_id),
+  UNIQUE KEY (email)
+);
+CREATE TABLE Player (
+  player_id mediumint(6) unsigned NOT NULL auto_increment,
+  player_name varchar(255) NOT NULL default '',
+  player_server mediumint(6) unsigned NOT NULL default 1,
+  player_account mediumint(6) unsigned NOT NULL,
+  town_coordinate_X mediumint(6)  unsigned NOT NULL default 0,
+  town_coordinate_Y mediumint(6) unsigned NOT NULL default 0,
+  faction mediumint(6) unsigned NOT NULL default 0,
+  denarii bigint NOT NULL default 0,
+  stater bigint NOT NULL default 0,
+  pvp_wins mediumint(6) unsigned NOT NULL default 0,
+  pvp_losses mediumint(6) unsigned NOT NULL default 0,
+  num_of_battles mediumint(6) unsigned NOT NULL default 0,
+  lowest_dungeon_level_entered tinyint unsigned NOT NULL default 0,
+  highest_boss_level_killed tinyint unsigned NOT NULL default 0,
+  highest_boss_killed mediumint(6) unsigned,
+  highest_npc_level_killed tinyint unsigned NOT NULL default 0,
+  highest_npc_killed mediumint(6) unsigned,
+  num_of_quests_completed mediumint(6) unsigned NOT NULL default 0,
+  num_of_dailes_completed mediumint(6) unsigned NOT NULL default 0,
+  num_of_raids_completed mediumint(6) unsigned NOT NULL default 0,
+  most_gold_at_one_time int unsigned NOT NULL default 0,
+  num_of_new_craftings mediumint(6) unsigned NOT NULL default 0,
+  num_of_upgrades_performed mediumint(6) unsigned NOT NULL default 0,
+  highest_upgrade_level tinyint unsigned NOT NULL default 0,
+  PRIMARY KEY (player_id),
+  UNIQUE KEY (player_name),
+  FOREIGN KEY (player_account) references Account(account_id),
+  FOREIGN KEY (player_server) references Server(server_id)	
+);
+CREATE TABLE Skill_Spell_Researched (
+  skill_spell_researched_id mediumint(6) unsigned NOT NULL auto_increment,
+  owning_player mediumint(6) unsigned NOT NULL default 0,
+  skill_spell_type mediumint(6) unsigned NOT NULL,
+  level_known mediumint(6) unsigned NOT NULL default 1,
+  upgrade_start_date date NOT NULL default '0000-00-00',
+  upgrade_start_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (skill_spell_researched_id),
+  FOREIGN KEY (owning_player) references Player(player_id)
+);
+CREATE TABLE Building (
+  building_id mediumint(6) unsigned NOT NULL auto_increment,
+  building_type mediumint(6) unsigned NOT NULL default 0,
+  building_level mediumint(6) unsigned NOT NULL default 0,
+  building_owner mediumint(6) unsigned NOT NULL,
+  upgrade_start_date date NOT NULL default '0000-00-00',
+  upgrade_start_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (building_id),
+  FOREIGN KEY (building_owner) references Player(player_id)
+);
+CREATE TABLE Adventurer (
+  adventurer_id int unsigned NOT NULL auto_increment,
+  owner mediumint(6) unsigned NOT NULL default 0,
+  image_large varchar(1024) default '',
+  image_icon varchar(1024) default '',
+  adventurer_type tinyint unsigned NOT NULL default 0,
+  npc_type mediumint(6),
+  experience bigint unsigned NOT NULL default 0,
+  defender_level mediumint(6) unsigned NOT NULL default 0,
+  berserker_level mediumint(6) unsigned NOT NULL default 0,
+  tempus_level mediumint(6) unsigned NOT NULL default 0,
+  scout_level mediumint(6) unsigned NOT NULL default 0,
+  elementalist_level mediumint(6) unsigned NOT NULL default 0,
+  summoner_level mediumint(6) unsigned NOT NULL default 0,
+  hand_level mediumint(6) unsigned NOT NULL default 0,
+  enhancer_level mediumint(6) unsigned NOT NULL default 0,
+  current_class tinyint unsigned NOT NULL,
+  careers tinyint unsigned NOT NULL default 0,
+  current_fitness tinyint unsigned NOT NULL,
+  max_fitness tinyint unsigned NOT NULL,
+  current_spirit tinyint unsigned NOT NULL,
+  max_spirit tinyint unsigned NOT NULL,
+  current_mental tinyint unsigned NOT NULL,
+  max_mental tinyint unsigned NOT NULL,
+  current_coordination tinyint unsigned NOT NULL,
+  max_coordination tinyint unsigned NOT NULL,
+  current_eloquence tinyint unsigned NOT NULL,
+  max_eloquence tinyint unsigned NOT NULL,
+  current_health int NOT NULL,
+  max_health int NOT NULL,
+  current_spirae int NOT NULL,
+  max_spirae int NOT NULL,
+  gender tinyint unsigned NOT NULL default 0,
+  avoidance tinyint unsigned NOT NULL,
+  hit tinyint unsigned NOT NULL,
+  min_damage mediumint(6) unsigned NOT NULL default 1,
+  max_damage mediumint(6) unsigned NOT NULL default 1,
+  damage_res mediumint(6) unsigned NOT NULL default 0,
+  cold_res mediumint(6) unsigned NOT NULL default 0,
+  heat_res mediumint(6) unsigned NOT NULL default 0,
+  magic_res mediumint(6) unsigned NOT NULL default 0,
+  party_position tinyint unsigned NOT NULL default 0,
+  party_leader tinyint unsigned NOT NULL default 0,
+  activity_start_date date NOT NULL default '0000-00-00',
+  activity_start_time time NOT NULL default '00:00:00',
+  duration mediumint(6) NOT NULL default 0,
+  PRIMARY KEY (adventurer_id),
+  FOREIGN KEY (owner) references Player(player_id)
+);
+CREATE TABLE Art (
+  art_id mediumint(6) unsigned NOT NULL auto_increment,
+  filename varchar(1024) NOT NULL default '',
+  art_type tinyint unsigned NOT NULL,
+  faction tinyint unsigned,
+  gender tinyint unsigned,
+  position tinyint unsigned,
+  art_desc varchar(1024),
+  PRIMARY KEY (art_id)
+);
+CREATE TABLE Quest (
+  quest_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest_title varchar(255) NOT NULL,
+  short_description varchar(1024) NOT NULL,
+  art_id_initial mediumint(6) unsigned NOT NULL,
+  art_id_completion mediumint(6) unsigned NOT NULL,
+  quest_description varchar(4096) NOT NULL,
+  raid tinyint unsigned NOT NULL default 0,
+  daily tinyint unsigned NOT NULL default 0,
+  location int(6) NOT NULL,
+  dungeon_type tinyint,
+  dungeon_level tinyint,
+  completion_msg varchar(4096) NOT NULL,
+  PRIMARY KEY (quest_id),
+  FOREIGN KEY (art_id_initial) references Art(art_id),
+  FOREIGN KEY (art_id_completion) references Art(art_id)
+);
+CREATE TABLE Active_Quests (
+  active_quest_id bigint unsigned NOT NULL auto_increment,
+  player mediumint(6) unsigned NOT NULL,
+  quest mediumint(6) unsigned NOT NULL,
+  quest_start_date date NOT NULL default '0000-00-00',
+  quest_start_time time NOT NULL default '00:00:00',
+  duration mediumint(6) NOT NULL default 0,
+  PRIMARY KEY (active_quest_id),
+  FOREIGN KEY (player) references Player(player_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Completed_Quests (
+  completed_quest_id bigint unsigned NOT NULL auto_increment,
+  player mediumint(6) unsigned NOT NULL,
+  quest mediumint(6) unsigned NOT NULL,
+  quest_end_date date NOT NULL default '0000-00-00',
+  quest_end_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (completed_quest_id),
+  FOREIGN KEY (player) references Player(player_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Daily_Quests (
+  daily_quest_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (daily_quest_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Quest_Prereq (
+  quest_prereq_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  prereq_quest mediumint(6) unsigned NOT NULL,
+  prereq_type tinyint unsigned default 0,
+  prereq_val1 mediumint unsigned default 0,
+  prereq_val2 mediumint unsigned default 0,
+  prereq_val3 varchar(255),
+  PRIMARY KEY (quest_prereq_id),
+  FOREIGN KEY (quest) references Quest(quest_id),
+  FOREIGN KEY (prereq_quest) references Quest(quest_id)
+);
+CREATE TABLE Quest_Goal (
+  quest_goal_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  quest_type tinyint unsigned NOT NULL,
+  goal_need mediumint(6) unsigned NOT NULL,
+  quantity mediumint(6) unsigned NOT NULL default 0,
+  timer mediumint(6) unsigned NOT NULL default 0,
+  location_X mediumint(6) unsigned NOT NULL,
+  location_Y mediumint(6) unsigned NOT NULL,
+  answer varchar(255) NOT NULL default '',
+  PRIMARY KEY (quest_goal_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Quest_Reward (
+  quest_reward_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  reward_type mediumint(6) unsigned NOT NULL,
+  item mediumint(6) unsigned NOT NULL,
+  quantity int unsigned,
+  PRIMARY KEY (quest_reward_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Add_Quest_Flag (
+  add_quest_flag_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  flag_name varchar(128) NOT NULL,
+  flag_type tinyint unsigned NOT NULL default 0,
+  flag_value1 int,
+  flag_value2 int,
+  flag_value3 int,
+  flag_value4 varchar(255),
+  flag_value5 varchar(255),
+  PRIMARY KEY (add_quest_flag_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Remove_Quest_Flag (
+  remove_quest_flag_id mediumint(6) unsigned NOT NULL auto_increment,
+  quest mediumint(6) unsigned NOT NULL,
+  flag_name varchar(128) NOT NULL,
+  flag_type tinyint unsigned NOT NULL default 0,
+  PRIMARY KEY (remove_quest_flag_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Active_Flags (
+  active_flag_id bigint unsigned NOT NULL auto_increment,
+  player mediumint(6) unsigned NOT NULL,
+  quest mediumint(6) unsigned NOT NULL,
+  flag_name varchar(128) NOT NULL,
+  flag_received_date date NOT NULL default '0000-00-00',
+  flag_received_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (active_flag_id),
+  FOREIGN KEY (player) references Player(player_id),
+  FOREIGN KEY (quest) references Quest(quest_id)
+);
+CREATE TABLE Game_Map (
+  game_map_id mediumint(6) unsigned NOT NULL auto_increment,
+  location_X mediumint(6) unsigned NOT NULL,
+  location_Y mediumint(6) unsigned NOT NULL,
+  location_type mediumint(6) unsigned NOT NULL,
+  location_level tinyint unsigned NOT NULL,
+  player_location mediumint(6) unsigned,
+  PRIMARY KEY (game_map_id)
+);
+CREATE TABLE Dungeon_Maps (
+  dungeon_maps_id mediumint(6) unsigned NOT NULL auto_increment,
+  dungeon_type tinyint unsigned NOT NULL,
+  dungeon_level tinyint unsigned NOT NULL,
+  custom tinyint unsigned NOT NULL default 0,
+  map text NOT NULL,
+  PRIMARY KEY (dungeon_maps_id)
+);
+CREATE TABLE Guild (
+  guild_id bigint unsigned NOT NULL auto_increment,
+  guild_level mediumint(6) unsigned NOT NULL default 1,
+  guild_motd varchar(1024) NOT NULL default 'Welcome to the Guild Menu',
+  guild_gold bigint unsigned NOT NULL default 0,
+  guild_experience bigint unsigned NOT NULL default 0,
+  create_date date NOT NULL default '0000-00-00',
+  create_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (guild_id)
+);
+CREATE TABLE Guild_Bonus (
+  guild_bonus_id mediumint(6) unsigned NOT NULL auto_increment,
+  guild mediumint(6) unsigned NOT NULL,
+  bonus_type mediumint(6) unsigned NOT NULL default 0,
+  bonus_amount mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (guild_bonus_id)
+);
+CREATE TABLE Guild_Members (
+  guild_members_id bigint unsigned NOT NULL auto_increment,
+  guild mediumint(6) unsigned NOT NULL,
+  member mediumint(6) unsigned NOT NULL,
+  guild_rank mediumint(6) unsigned NOT NULL default 1,
+  contributed_gold bigint unsigned NOT NULL default 0,
+  contributed_experience bigint unsigned NOT NULL default 0,
+  join_date date NOT NULL default '0000-00-00',
+  join_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (guild_members_id),
+  FOREIGN KEY (member) references Player(player_id)
+);
+CREATE TABLE Party (
+  party_id bigint unsigned NOT NULL auto_increment,
+  party_owner mediumint(6) unsigned NOT NULL,
+  party_leader mediumint(6) unsigned NOT NULL,
+  party_member1 bigint unsigned NOT NULL,
+  party_member2 bigint unsigned,
+  party_member3 bigint unsigned,
+  party_member4 bigint unsigned,
+  party_member5 bigint unsigned,
+  party_member6 bigint unsigned,
+  party_member7 bigint unsigned,
+  party_member8 bigint unsigned,
+  party_member9 bigint unsigned,
+  party_member10 bigint unsigned,
+  party_location_type mediumint(6) unsigned NOT NULL default 0,
+  party_surface_X mediumint(6) unsigned NOT NULL,
+  party_surface_Y mediumint(6) unsigned NOT NULL,
+  party_destination_X mediumint(6) unsigned NOT NULL default 0,
+  party_destination_Y mediumint(6) unsigned NOT NULL default 0,
+  direction_faced mediumint(6) unsigned NOT NULL default 0,
+  map_number mediumint(6) unsigned,
+  party_level mediumint(6) unsigned NOT NULL default 0,
+  party_dungeon_X mediumint(6) unsigned,
+  party_dungeon_Y mediumint(6) unsigned,
+  start_date date NOT NULL default '0000-00-00',
+  start_time time NOT NULL default '00:00:00',
+  duration mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (party_id),
+  FOREIGN KEY (party_owner) references Player(player_id)
+);
+CREATE TABLE Npc (
+  npc_id mediumint(6) unsigned NOT NULL,
+  npc_short_name_single varchar(255) NOT NULL,
+  npc_short_name_plural varchar(255) NOT NULL,
+  npc_description varchar(4096) NOT NULL,
+  image_large varchar(1024) default '',
+  image_icon varchar(1024) default '',
+  fitness mediumint unsigned NOT NULL,
+  mental_prowess mediumint unsigned NOT NULL,
+  spirit mediumint unsigned NOT NULL,
+  eloquence mediumint unsigned NOT NULL,
+  coordination mediumint unsigned NOT NULL,
+  health int NOT NULL,
+  spirae int NOT NULL,
+  experience mediumint unsigned NOT NULL,
+  level mediumint unsigned NOT NULL,
+  gender tinyint unsigned NOT NULL default 0,
+  avoidance tinyint unsigned NOT NULL default 0,
+  hit tinyint unsigned NOT NULL default 50,
+  min_denarri int unsigned NOT NULL,
+  max_denarii int unsigned NOT NULL,
+  boss_id mediumint(6) unsigned NOT NULL,
+  dmg_resist mediumint(6) unsigned NOT NULL default 0,
+  cold_resist mediumint(6) unsigned NOT NULL default 0,
+  heat_resist mediumint(6) unsigned NOT NULL default 0,
+  magic_resist mediumint(6) unsigned NOT NULL default 0,
+  combat1_id mediumint(6) unsigned NOT NULL default 0,
+  combat1_chance tinyint unsigned NOT NULL default 0,
+  combat1_min mediumint(6) unsigned NOT NULL default 0,
+  combat1_max mediumint(6) unsigned NOT NULL default 0,
+  combat2_id mediumint(6) unsigned NOT NULL default 0,
+  combat2_chance tinyint unsigned NOT NULL default 0,
+  combat2_min mediumint(6) unsigned NOT NULL default 0,
+  combat2_max mediumint(6) unsigned NOT NULL default 0,
+  combat3_id mediumint(6) unsigned NOT NULL default 0,
+  combat3_chance tinyint unsigned NOT NULL default 0,
+  combat3_min mediumint(6) unsigned NOT NULL default 0,
+  combat3_max mediumint(6) unsigned NOT NULL default 0,
+  combat4_id mediumint(6) unsigned NOT NULL default 0,
+  combat4_chance tinyint unsigned NOT NULL default 0,
+  combat4_min mediumint(6) unsigned NOT NULL default 0,
+  combat4_max mediumint(6) unsigned NOT NULL default 0,
+  combat5_id mediumint(6) unsigned NOT NULL default 0,
+  combat5_chance tinyint unsigned NOT NULL default 0,
+  combat5_min mediumint(6) unsigned NOT NULL default 0,
+  combat5_max mediumint(6) unsigned NOT NULL default 0,
+  combat6_id mediumint(6) unsigned NOT NULL default 0,
+  combat6_chance tinyint unsigned NOT NULL default 0,
+  combat6_min mediumint(6) unsigned NOT NULL default 0,
+  combat6_max mediumint(6) unsigned NOT NULL default 0,
+  combat7_id mediumint(6) unsigned NOT NULL default 0,
+  combat7_chance tinyint unsigned NOT NULL default 0,
+  combat7_min mediumint(6) unsigned NOT NULL default 0,
+  combat7_max mediumint(6) unsigned NOT NULL default 0,
+  combat8_id mediumint(6) unsigned NOT NULL default 0,
+  combat8_chance tinyint unsigned NOT NULL default 0,
+  combat8_min mediumint(6) unsigned NOT NULL default 0,
+  combat8_max mediumint(6) unsigned NOT NULL default 0,
+  combat9_id mediumint(6) unsigned NOT NULL default 0,
+  combat9_chance tinyint unsigned NOT NULL default 0,
+  combat9_min mediumint(6) unsigned NOT NULL default 0,
+  combat9_max mediumint(6) unsigned NOT NULL default 0,
+  combat10_id mediumint(6) unsigned NOT NULL default 0,
+  combat10_chance tinyint unsigned NOT NULL default 0,
+  combat10_min mediumint(6) unsigned NOT NULL default 0,
+  combat10_max mediumint(6) unsigned NOT NULL default 0,
+  item1_id mediumint(6) unsigned NOT NULL,
+  item1_chance mediumint(6) unsigned NOT NULL,
+  item2_id mediumint(6) unsigned NOT NULL,
+  item2_chance mediumint(6) unsigned NOT NULL,
+  item3_id mediumint(6) unsigned NOT NULL,
+  item3_chance mediumint(6) unsigned NOT NULL,
+  item4_id mediumint(6) unsigned NOT NULL,
+  item4_chance mediumint(6) unsigned NOT NULL,
+  item5_id mediumint(6) unsigned NOT NULL,
+  item5_chance mediumint(6) unsigned NOT NULL,
+  mat_id mediumint(6) unsigned NOT NULL,
+  mat_chance mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (npc_id)
+);
+CREATE TABLE Item (
+  item_id mediumint(6) unsigned NOT NULL,
+  title varchar(255) NOT NULL,
+  short_name_singular varchar(255) NOT NULL,
+  short_name_plural varchar(255) NOT NULL,
+  image_large varchar(1024) default '',
+  image_large_female varchar(1024) default '',
+  image_icon varchar(1024) default '',
+  tier tinyint unsigned NOT NULL default 1,
+  value mediumint(6) unsigned NOT NULL,
+  type tinyint unsigned NOT NULL,
+  slot tinyint unsigned NOT NULL,
+  class_restrict tinyint unsigned NOT NULL default 0,
+  description varchar(4096) NOT NULL,
+  constructed tinyint NOT NULL default 0,
+  enhanceable tinyint NOT NULL default 1,
+  stackable tinyint NOT NULL default 0,
+  sellable tinyint NOT NULL default 1,
+  dropable tinyint NOT NULL default 1,
+  tradeable tinyint NOT NULL default 1,
+  cursed tinyint NOT NULL default 0,
+  PRIMARY KEY (item_id)
+);
+CREATE TABLE Item_Recipes (
+  item_recipes_id mediumint(6) unsigned NOT NULL,
+  item mediumint(6) unsigned NOT NULL,
+  material mediumint(6) unsigned NOT NULL,
+  recipe_quantity mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (item_recipes_id),
+  FOREIGN KEY (item) references Item(item_id),
+  FOREIGN KEY (material) references Item(item_id)
+);
+CREATE TABLE Item_Benefit (
+  item_benefit_id mediumint(6) unsigned NOT NULL,
+  item mediumint(6) unsigned NOT NULL,
+  benefit_type mediumint(6) unsigned NOT NULL,
+  benefit_value mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (item_benefit_id),
+  FOREIGN KEY (item) references Item(item_id)
+);
+CREATE TABLE Inventory (
+  inventory_id bigint unsigned NOT NULL auto_increment,
+  inventory_item mediumint(6) unsigned NOT NULL default 0,
+  player_item mediumint(6) unsigned NOT NULL default 0,
+  item_location mediumint(6) unsigned NOT NULL default 0,
+  equipped_status mediumint(6) unsigned NOT NULL default 0,
+  experience mediumint(6) unsigned NOT NULL default 0,
+  item_level mediumint(6) unsigned NOT NULL default 1,  
+  upgrades_completed mediumint(6) unsigned NOT NULL default 0,  
+  upgrade_start_date date NOT NULL default '0000-00-00',
+  upgrade_start_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (inventory_id),
+  FOREIGN KEY (inventory_item) references Item(item_id),
+  FOREIGN KEY (player_item) references Player(player_id)
+);
+CREATE TABLE Item_Upgrades (
+  upgrade_id bigint unsigned NOT NULL auto_increment,
+  target_item mediumint(6) unsigned NOT NULL,
+  upgrade_type mediumint(6) unsigned NOT NULL default 0,
+  upgrade_amount mediumint(6) unsigned NOT NULL default 0,
+  upgrade_applied_date date NOT NULL default '0000-00-00',
+  upgrade_applied_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (upgrade_id),
+);
+CREATE TABLE Crafting (
+  crafting_id bigint unsigned NOT NULL auto_increment,
+  target_item bigint unsigned NOT NULL,
+  new_item mediumint(6) unsigned NOT NULL,
+  crafting_type tinyint unsigned NOT NULL default 0,
+  upgrade_type mediumint(6) unsigned NOT NULL default 0,
+  upgrade_amount mediumint(6) unsigned NOT NULL default 0,
+  crafter bigint unsigned NOT NULL default 0,
+  crafting_start_date date NOT NULL default '0000-00-00',
+  crafting_start_time time NOT NULL default '00:00:00',
+  crafting_duration mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (crafting_id)
+);
+CREATE TABLE Skills_Spells_Known (
+  skills_spells_known_id mediumint(6) unsigned NOT NULL auto_increment,
+  adventurer mediumint(6) unsigned NOT NULL,
+  skill_spell mediumint(6) unsigned NOT NULL default 0,
+  level_known mediumint(6) unsigned NOT NULL default 1,
+  PRIMARY KEY (skills_spells_known_id)
+);
+CREATE TABLE Combat_Msgs (
+  combat_msgs_id mediumint(6) unsigned NOT NULL,
+  msg varchar(255) NOT NULL,
+  PRIMARY KEY (combat_msgs_id)
+);
+CREATE TABLE Known_Recipes (
+  known_recipes_id int unsigned NOT NULL auto_increment,
+  recipe_owner mediumint(6) unsigned NOT NULL,
+  recipe mediumint(6) unsigned NOT NULL,
+  recipe_experience int unsigned NOT NULL default 0,
+  PRIMARY KEY (known_recipes_id),
+  FOREIGN KEY (recipe) references Item(item_id),
+  FOREIGN KEY (recipe_owner) references Player(player_id)
+);
+CREATE TABLE Player_Effects (
+  player_effects_id bigint unsigned NOT NULL auto_increment,
+  player mediumint(6) unsigned NOT NULL,
+  effect mediumint(6) unsigned NOT NULL,
+  value mediumint(6) unsigned,
+  effect_date date NOT NULL default '0000-00-00',
+  effect_time time NOT NULL default '00:00:00',
+  duration mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (player_effects_id),
+  FOREIGN KEY (player) references Player(player_id)
+);
+CREATE TABLE Party_Effects (
+  party_effects_id bigint unsigned NOT NULL auto_increment,
+  party mediumint(6) unsigned NOT NULL,
+  effect mediumint(6) unsigned NOT NULL,
+  value mediumint(6) unsigned,
+  effect_date date NOT NULL default '0000-00-00',
+  effect_time time NOT NULL default '00:00:00',
+  duration mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (party_effects_id)
+);
+CREATE TABLE Adventurer_Effects (
+  adventurer_effects_id bigint unsigned NOT NULL auto_increment,
+  adventurer mediumint(6) unsigned NOT NULL,
+  effect mediumint(6) unsigned NOT NULL,
+  value mediumint(6) unsigned,
+  effect_date date NOT NULL default '0000-00-00',
+  effect_time time NOT NULL default '00:00:00',
+  duration mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (adventurer_effects_id)
+);
+CREATE TABLE Achievement (
+  achievement_id mediumint(6) unsigned NOT NULL auto_increment,
+  achievement_name varchar(1024) NOT NULL,
+  achievement_type mediumint(6) unsigned NOT NULL default 0,
+  achievement_value mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (achievement_id)
+);
+CREATE TABLE Achievement_Obtained (
+  achievement_obtained_id bigint unsigned NOT NULL auto_increment,
+  achievement_owner mediumint(6) unsigned NOT NULL,
+  achievement mediumint(6) unsigned NOT NULL,
+  PRIMARY KEY (achievement_obtained_id),
+  FOREIGN KEY (achievement_owner) references Player(player_id),
+  FOREIGN KEY (achievement) references Achievement(achievement_id)
+);
+CREATE TABLE Mail (
+  mail_id bigint unsigned NOT NULL auto_increment,
+  owner mediumint(6) unsigned NOT NULL,
+  header varchar(60) NOT NULL,
+  body varchar(4096) NOT NULL,
+  read_mail tinyint unsigned NOT NULL default 0,
+  mail_date date NOT NULL default '0000-00-00',
+  mail_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (mail_id),
+  FOREIGN KEY (owner) references Player(player_id)
+);
+CREATE TABLE Messages (
+  messages_id bigint unsigned NOT NULL auto_increment,
+  owner mediumint(6) unsigned NOT NULL,
+  msg varchar(1024) NOT NULL,
+  msg_type mediumint(6) unsigned NOT NULL default 0,
+  msg_date date NOT NULL default '0000-00-00',
+  msg_time time NOT NULL default '00:00:00',
+  PRIMARY KEY (messages_id),
+  FOREIGN KEY (owner) references Player(player_id)
+);
+CREATE TABLE Auction (
+  auction_id bigint unsigned NOT NULL auto_increment,
+  auctioner mediumint(6) unsigned NOT NULL,
+  auction_item bigint unsigned NOT NULL,
+  post_date date NOT NULL default '0000-00-00',
+  post_time time NOT NULL default '00:00:00',
+  duration mediumint(6) unsigned NOT NULL,
+  start_price mediumint(6) unsigned NOT NULL,
+  buyout_price mediumint(6) unsigned,
+  bidder mediumint(6) unsigned,
+  PRIMARY KEY (auction_id),
+  FOREIGN KEY (auctioner) references Player(player_id),
+  FOREIGN KEY (auction_item) references Inventory(inventory_id)
+);
+CREATE TABLE Raid_Queue (
+  raid_queue_id bigint unsigned NOT NULL auto_increment,
+  raider bigint  unsigned NOT NULL,
+  dungeon_type mediumint(6) unsigned NOT NULL default 0,
+  PRIMARY KEY (raid_queue_id)
+);
+CREATE TABLE Arena_Queue (
+  arena_queue_id bigint unsigned NOT NULL auto_increment,
+  contestant mediumint(6) unsigned NOT NULL,
+  contestant_team bigint unsigned NOT NULL,
+  PRIMARY KEY (arena_queue_id),
+  FOREIGN KEY (contestant) references Player(player_id),
+  FOREIGN KEY (contestant_team) references Party(party_id)
+);
