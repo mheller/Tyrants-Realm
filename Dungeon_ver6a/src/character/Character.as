@@ -49,12 +49,14 @@ package character
 		public var party_position:Attribute = null;
 		
 		//@Hoang <<
-		public static const MAX_NUMBER_ITEMGROUP:int = 5;
-		public static const MAX_ITEM_STACK_SIZE:int = 5;
+		public static const MAX_NUMBER_ITEMGROUP:int = 20;
+		public static const MAX_ITEM_STACK_SIZE:int = 20;
+		public static const MAX_NUMBER_OF_SLOTS_IN_INVENTORY:int = 21;
 		public var inventory:Inventory;
+		
 		// >>Hoang
 		
-		public var current_items:ItemGroup = new ItemGroup("current_items",14);
+		public var current_items:ItemGroup = new ItemGroup("current_items",17);
 		public var appearance_basebody:String = null;//file name to character's default image
 		public var appearance_basehead:String = null;//file name to character's default image
 		public var appearance_weapon:String = null;//file name to character's default image
@@ -147,6 +149,9 @@ package character
 			var itemS12:ItemStack = new ItemStack(1);
 			var itemS13:ItemStack = new ItemStack(1);
 			var itemS14:ItemStack = new ItemStack(1);
+			var itemS15:ItemStack = new ItemStack(1);
+			var itemS16:ItemStack = new ItemStack(1);
+			var itemS17:ItemStack = new ItemStack(1);
 			
 			
 			current_items.addOneStack(itemS1);
@@ -163,10 +168,13 @@ package character
 			current_items.addOneStack(itemS12);
 			current_items.addOneStack(itemS13);
 			current_items.addOneStack(itemS14);
+			current_items.addOneStack(itemS15);
+			current_items.addOneStack(itemS16);
+			current_items.addOneStack(itemS17);
 			
 			
 			//@Hoang 	<<
-			this.inventory = new Inventory(MAX_NUMBER_ITEMGROUP);
+			this.inventory = new Inventory(MAX_NUMBER_OF_SLOTS_IN_INVENTORY);
 			//this.inventory.initialInventory();
 			// create item groups : 
 			
@@ -178,7 +186,7 @@ package character
 			//this.inventory.addGroup(iGroup1);
 			//this.inventory.addGroup(iGroup2);
 
-			// Stacks:
+			// Stacks for Inventory:
 			var iStack1:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			var iStack2:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			var iStack3:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
@@ -189,6 +197,18 @@ package character
 			var iStack8:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			var iStack9:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			var iStack10:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack11:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack12:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack13:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack14:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack15:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack16:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack17:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack18:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack19:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack20:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStack21:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			var iStackBG:ItemStack = new ItemStack(9999);
 
 			
 			// Items:
@@ -338,7 +358,21 @@ package character
 			iStack9.owner = this;
 			iStack10.pushItem(newItem13);
 			iStack10.owner = this;
-
+			iStack11.pushItem(newItem14);
+			iStack11.owner = this;
+			iStack12.pushItem(newItem15);
+			iStack12.owner = this;
+			iStack13.owner = this; // Empty Inv slot
+			iStack14.owner = this; // Empty Inv slot
+			iStack15.owner = this; // Empty Inv slot
+			iStack16.owner = this; // Empty Inv slot
+			iStack17.owner = this; // Empty Inv slot
+			iStack18.owner = this; // Empty Inv slot
+			iStack19.owner = this; // Empty Inv slot
+			iStack20.owner = this; // Empty Inv slot
+			iStack21.owner = this; // Empty Inv slot
+			iStackBG.owner = this; // Background for Inventory panel
+			iStackBG.displayPath = "assets/HUD/Inventory/Blank.png";
 			
 			inventory.iStack1 = iStack1;
 			inventory.iStack2 = iStack2;
@@ -350,7 +384,19 @@ package character
 			inventory.iStack8 = iStack8;
 			inventory.iStack9 = iStack9;
 			inventory.iStack10 = iStack10;
-						
+			inventory.iStack11 = iStack11;
+			inventory.iStack12 = iStack12;
+			inventory.iStack13 = iStack13;
+			inventory.iStack14 = iStack14;
+			inventory.iStack15 = iStack15;
+			inventory.iStack16 = iStack16;
+			inventory.iStack17 = iStack17;
+			inventory.iStack18 = iStack18;
+			inventory.iStack19 = iStack19;
+			inventory.iStack20 = iStack20;
+			inventory.iStack21 = iStack21;
+			inventory.iStackBG = iStackBG;			
+			
 			// push stacks to groups
 //			iGroup1.addOneStack(iStack1);
 //			iGroup1.addOneStack(iStack2);

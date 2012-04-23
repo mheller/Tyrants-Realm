@@ -35,7 +35,7 @@
 			
 			public var dungeon3D:Dungeon_6;
 			
-			private function showMapView():void{
+			public function showMapView():void{
 				if (map_view == null){
 					map_view= PopUpManager.createPopUp(this, MapView,false) as MapView;
 					map_view.map = map;

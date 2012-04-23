@@ -1,7 +1,8 @@
-#Mon Apr 02 21:07:21 PDT 2012
+#Thu Apr 19 23:07:59 PDT 2012
 eclipse.preferences.version=1
 tipsAndTricks=true
 platformState=1333081444356
+org.eclipse.ui.internal.views.markers.CachedMarkerBuilderorg.eclipse.ui.views.ProblemView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<filterGroups andFilters\="false">\r\n<filterGroup IMemento.internal.id\="All Errors" enabled\="true" scope\="0" workingSet\="Aggregate for window 1333316819342">\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.severityAndDescriptionField" containsModifier\="CONTAINS" containsText\="" selectedSeverities\="4"/>\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.markerType"/>\r\n</filterGroup>\r\n<filterGroup IMemento.internal.id\="Warnings on Selection" enabled\="false" scope\="2" workingSet\="Aggregate for window 1333316819342">\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.severityAndDescriptionField" containsModifier\="CONTAINS" containsText\="" selectedSeverities\="2"/>\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.markerType"/>\r\n</filterGroup>\r\n<filterGroup IMemento.internal.id\="Errors/Warnings on Selection" enabled\="false" scope\="2" workingSet\="Aggregate for window 1333316819342">\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.severityAndDescriptionField" containsModifier\="CONTAINS" containsText\="" selectedSeverities\="6"/>\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.markerType"/>\r\n</filterGroup>\r\n<filterGroup IMemento.internal.id\="Errors/Warnings on Project" enabled\="false" scope\="3" workingSet\="Aggregate for window 1333316819342">\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.severityAndDescriptionField" containsModifier\="CONTAINS" containsText\="" selectedSeverities\="6"/>\r\n<fieldFilter IMemento.internal.id\="org.eclipse.ui.ide.markerType"/>\r\n</filterGroup>\r\n</filterGroups>
 EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
 quickStart=false
 PROBLEMS_FILTERS_MIGRATE=true

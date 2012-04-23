@@ -5,9 +5,9 @@
 			   xmlns:hud = "hud.*"
 			   xmlns:pkgInventory="pkgInventory.*"
 			   xmlns:dungeon="dungeon.*"
-			   width="900" height="600"		   
+			   width="1000" height="700"		   
 			   creationComplete="creationCompleteHandler(event)"
-			   backgroundColor="#000000"
+			   backgroundColor="#000000" xmlns:views="views.*"
 			   >
 	<fx:Declarations>
 		
@@ -16,6 +16,7 @@
 	<fx:Script>
 		<![CDATA[
 			import character.*;
+			
 			import dungeon.*;
 			
 			import mx.controls.Alert;
@@ -40,7 +41,7 @@
 						
 			[Bindable]
 			public var map:Map;
-			
+					
 //			[Bindable]
 //			public var dungeon3D:Dungeon_6; 
 					
@@ -54,19 +55,7 @@
 			[Bindable]
 			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Red.png");
 	
-/*			public function Character(name:String,gender:String, character_class:String="N/A",  
-											health_current:int=100, health_max:int=100, total_experience:int=0,experience_to_level:int=100,level:int=1, 
-											spirae_current:int=0, spirae_max:int=0, denarii:int=0, stater:int=0,																						 
-											fitness:int=0,mental_prowess:int=0, spirituality:int=0, eloquence:int=0, coordination:int=0,																											 
-											hit:int=0, avoidance:int=0, damage_min:int=0, damage_max:int=0, damage_type:String="Fists",
-											magic_dmg_min:int=0, magic_dmg_max:int=0,
-											damage_resistance:int=0,cold_resistance:int=0, heat_resistance:int=0, magic_resistance:int=0, 
-											party_position:int=0, career_changes:int=0, appearance_basebody:String, appearance_basehead:String, appearance_weapon:String,
-			                                appearance_offhand:String, appearance_torso:String, appearance_head:String, appearance_legs:String, appearance_feet:String,
-			                                appearance_shoulders:String, appearance_hands:String)
 
-*/
-			
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{				
 				
@@ -81,15 +70,19 @@
 				addEventListener("finishedLoadingMapXML", start3D);//later, will do this one in Preloader
 				map = new Map();	
 				view.addElement(map);
-				
 
 			}		
+			
 			
 			public function start3D(e:Event):void{
 				//trace(map);
 //				dungeon3D =  new Dungeon_6(map);
 //				addElement(dungeon3D);
 				dungeon3D.init();
+				hud_map.showMapView();
+				hud_chat.showChatView();
+				hud_party.showPartyView();
+				
 				//this.setFocus();
 				//this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
 				
@@ -103,31 +96,23 @@
 					
 		]]>
 	</fx:Script>
-	<s:layout>
-		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
-	</s:layout>
-	
+
 	<s:Group id="view" width="900" height="600">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
 		<dungeon:Dungeon_6 id="dungeon3D" width="100%" height = "100%"
-						  
 						   map="{this.map}"/>
-		<s:Group depth="1" bottom="20" left="600">
-			<s:Rect width = "100%" height="100%">
-				<s:fill>
-					<s:SolidColor color="0x666666" />
-				</s:fill>
-			</s:Rect>
-			
+
+		
+		<s:Group x="1160" y="800" >
 			<s:HGroup>
-				<hud:HudAttribute char="{this.currChar}" party="{this.party1}"/>
-				
-				<!--			<hud:HudInventory inventory="{currChar.inventory}" width="100%" height="100%"/>
-				-->
-				<hud:HudChat width="100%" height="100%"/>
-				<hud:HudMap width="100%" height="100%"
+				<hud:HudAttribute id="hud_attribute" icon="assets/HUD/Attribute.png" label="" char="{this.currChar}" party="{this.party1}"/>
+				<hud:HudChat id="hud_chat" width="100%" height="100%" visible="false"/>
+				<hud:HudMap id="hud_map" width="100%" height="100%"
 							map="{map}"
-							dungeon3D="{dungeon3D}"/>
-				<hud:HudParty width="100%" height="100%" aParty="{this.party1}"/>		
+							dungeon3D="{dungeon3D}" visible="false"/>				
+				<hud:HudParty id="hud_party" width="100%" height="100%" visible="false" aParty="{this.party1}"/>		
 			</s:HGroup>
 			
 		</s:Group>	

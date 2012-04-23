@@ -14,9 +14,10 @@
 			   creationComplete="creationCompleteHandler(event)"
 			   close="handleCloseEvent();"
 			   >
-			   
+		
+		   
 	<s:layout>
-		<s:HorizontalLayout paddingLeft="0" paddingRight="0" gap="1"/>
+		<s:HorizontalLayout paddingLeft="0" paddingRight="0" gap="0"/>
 	</s:layout>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -74,9 +75,9 @@
 			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
 				//Alert.show("Event change character");
 				this.char = party.currChar;
-				//recreate the 2 list view when different character is selected
+				
+				//recreate the list view when different character is selected
 				current_list_view1.createListView();
-				current_list_view2.createListView();
 			}
 
 
@@ -84,9 +85,9 @@
 				trace("drag from character");
 				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
 				var target:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
-				
+				trace("Target Max: "+ target.maxSize);
 				if (target.currSize > 0) { // Target has an item already there
-					if (target.item.itemID == source.item.itemID && target.item.isStackable && target.currSize < 20) {   // Same item, is stackable and not a full stack
+					if (target.item.itemID == source.item.itemID && target.item.isStackable && target.currSize < target.maxSize) {   // Same item, is stackable and not a full stack
 						// No action, same flow as empty target
 					}
 					else {    // Item is present and either its a different type, isn't stackable or the stack is full; each case requires app to find another open slot if available.
@@ -102,7 +103,7 @@
 	
 						}
 						else { // Not empty, but maybe stackable?
-							if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -116,7 +117,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -130,7 +131,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -144,7 +145,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -158,7 +159,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -172,7 +173,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -186,7 +187,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -200,7 +201,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -214,7 +215,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 							}						
@@ -227,7 +228,7 @@
 
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 
@@ -240,7 +241,127 @@
 							spotFound = true;
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack12;  // inv slot 12
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack13;  // inv slot 13
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack14;  // inv slot 14
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack15;  // inv slot 15
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack16;  // inv slot 16
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack17;  // inv slot 17
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack18;  // inv slot 18
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack19;  // inv slot 19
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack20;  // inv slot 20
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								target = tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack21;  // inv slot 21
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							target = tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								target = tempItemStack;
 								spotFound = true;
 							}						
@@ -253,10 +374,47 @@
 								
 				// Move item
 				target.pushItemFromSimilarStack(source);  
-				
 				// Clear item from 2D if applicable  
-				char.appearance_weapon = null;   
-				
+				switch (target.item.itemSlot) { 
+					case 0 : 	break; // Can't ever happen as slot type is unequipable
+ 					case 1 : 	char.appearance_head = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+								break;
+					case 2 :	char.appearance_torso = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+								break;
+					case 3 :	char.appearance_legs = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+								break;
+					case 4 :	char.appearance_feet = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+								break;
+					case 5 : 	char.appearance_hands = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+								break;
+					case 6 :	char.appearance_shoulders = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+								break;
+					case 7 : 	source.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+					case 8 :	char.appearance_offhand = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+								break;
+					case 9 :	source.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+								break;
+					case 10 : 	source.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+								break;
+					case 11 : 	source.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+								break;
+					case 12 : 	source.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+								break;
+					case 13 :	source.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+								break;
+					case 14: 	char.appearance_weapon = null;
+								source.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+								break;
+				}
+//				char.appearance_weapon = null;
+
 				// Update benefits   TODO: Adjust for items that are use cases (like potions)
 				for(var i:int=0; i<target.item.item_benefit.length;i++){
 					if (target.item.item_benefit.getItemAt(i).text == "Min Phys Dmg") {
@@ -378,568 +536,700 @@
 				
 				var same_category:Boolean = false;
 				var itemS:ItemStack=ItemStack(char.current_items.list_itemStacks.getItemAt(0));
-				for(var i:int=0;i<char.current_items.maxSize;i++){
-					itemS = ItemStack(char.current_items.list_itemStacks.getItemAt(i));
-					if (itemS.currSize>0 && itemS.item.itemID == source.item.itemID){
-						same_category = true;
-						break;
+				var target:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
+					
+				var temp:int = source.item.itemSlot;   // source item slot type
+				if (temp == 0) return; // Unequipable item
+				if (temp == 14) temp = 0; // Place weapons in the first slot.
+				target = ItemStack(char.current_items.list_itemStacks.getItemAt(temp));		
+				var storage:ItemStack = new ItemStack(target.maxSize);	
+				var benefitStorage:ItemStack;
+				var k:int;
+				
+				// Set the image and benefits
+				if (target.currSize > 0){
+					///////
+					// Switch the weapons
+					storage.pushItemFromSimilarStack(target);						
+					target.pushItemFromSimilarStack(source);
+					
+					// Look for another slot if one exists, otherwise exit
+					var spotFound:Boolean = false;
+					var tempItemStack:ItemStack;
+					tempItemStack = char.inventory.iStack1;   // inv slot 1
+					if (tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
 					}	
+					tempItemStack = char.inventory.iStack2; // inv slot 2
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack3; // inv slot 3
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack4; // inv slot 4
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack5;   // inv slot 5
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack6; // inv slot 6
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack7;  // inv slot 7
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack8; // inv slot 8
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack9;  // inv slot 9
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack10;  // inv slot 10
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+						
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+							
+						}						
+					}	
+					tempItemStack = char.inventory.iStack11;  // inv slot 11
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack12;  // inv slot 12
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack13;  // inv slot 13
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack14;  // inv slot 14
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack15;  // inv slot 15
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack16;  // inv slot 16
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack17;  // inv slot 17
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack18;  // inv slot 18
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack19;  // inv slot 19
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack20;  // inv slot 20
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+					tempItemStack = char.inventory.iStack21;  // inv slot 21
+					if (spotFound == false && tempItemStack.currSize == 0) {
+						// First open spot
+						tempItemStack.pushItemFromSimilarStack(storage);
+						benefitStorage=tempItemStack;
+						spotFound = true;
+					}
+					else { // Not empty, but maybe stackable?
+						if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}						
+					}	
+
+					// No inventory space left  
+					if (spotFound == false) {
+						source.pushItemFromSimilarStack(target);
+						target.pushItemFromSimilarStack(storage);
+						Alert.show("There are no inventory slots available to exchange items.");
+						return;
+					}					
+					
+					// Set the picture based on the type of item
+					if (target.item.itemSlot == 14)
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 8)
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 2)
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 3)
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 4)
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 6)
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 5)
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 1)
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					
+					// Outgoing Item
+					
+					for(k=0; k<benefitStorage.item.item_benefit.length;k++){
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+							char.phys_dmg.value = char.phys_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+							char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Fitness") {
+							char.fitness.value = char.fitness.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.fitness.max_value = char.fitness.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Mental") {
+							char.mental_prowess.value = char.mental_prowess.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						} 
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirit") {
+							char.spirituality.value = char.spirituality.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.spirituality.max_value = char.spirituality.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue; 
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Eloquence") {
+							char.eloquence.value = char.eloquence.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.eloquence.max_value = char.eloquence.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Coordination") {
+							char.coordination.value = char.coordination.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.coordination.max_value = char.coordination.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Health") {
+							char.health_current.value = char.health_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.health_max.value = char.health_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirae") {
+							char.spirae_current.value = char.spirae_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							char.spirae_max.value = char.spirae_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Avoidance") {
+							char.avoidance.value = char.avoidance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Hit") {
+							char.hit.value = char.hit.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Damage") {
+							char.damage_resistance.value = char.damage_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Cold") {
+							char.cold_resistance.value = char.cold_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Heat") {
+							char.heat_resistance.value = char.heat_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Magic") {
+							char.magic_resistance.value = char.magic_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+							char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+							char.magic_dmg.value = char.magic_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Wander") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Const Cost") {
+							// TODO: Add in after create Player-Stats
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						} 
+						
+					}
+					
+					// Incoming Item
+					for(k=0; k<target.item.item_benefit.length;k++){
+						if (target.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+							char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+							char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Fitness") {
+							char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Mental") {
+							char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						} 
+						if (target.item.item_benefit.getItemAt(k).text == "Spirit") {
+							char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue; 
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Eloquence") {
+							char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Coordination") {
+							char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Health") {
+							char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Spirae") {
+							char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Avoidance") {
+							char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Hit") {
+							char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Damage") {
+							char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Cold") {
+							char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Heat") {
+							char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Magic") {
+							char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+							char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+							char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Wander") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Const Cost") {
+							// TODO: Add in after create Player-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						
+					}
+					
 				}
-				if (same_category == false){
+				else {
+				
+				
+					target.pushItemFromSimilarStack(source);
 					
-					var temp:int = source.item.itemSlot;   // source item slot type
-					if (temp == 0) return; // Unequipable item
-					if (temp == 14) temp = 0; // Place weapons in the first slot.
-					var target:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(temp));		
-					var storage:ItemStack = new ItemStack(20);	
-					var benefitStorage:ItemStack;
-					var k:int;
-					
-					// Set the image and benefits
-					if (target.currSize > 0){
-						///////
-						// Switch the weapons
-						storage.pushItemFromSimilarStack(target);						
-						target.pushItemFromSimilarStack(source);
-						
-						// Look for another slot if one exists, otherwise exit
-						var spotFound:Boolean = false;
-						var tempItemStack:ItemStack;
-						tempItemStack = char.inventory.iStack1;   // inv slot 1
-						if (tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+					if (target.item.itemSlot == 14)
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 8)
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 2)
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 3)
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 4)
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 6)
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 5)
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					if (target.item.itemSlot == 1)
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
+					for(var j:int=0; j<target.item.item_benefit.length;j++){
+						if (target.item.item_benefit.getItemAt(j).text == "Min Phys Dmg") {
+							char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack2; // inv slot 2
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Max Phys Dmg") {
+							char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack3; // inv slot 3
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Fitness") {
+							char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack4; // inv slot 4
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Mental") {
+							char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						} 
+						if (target.item.item_benefit.getItemAt(j).text == "Spirit") {
+							char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue; 
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack5;   // inv slot 5
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Eloquence") {
+							char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack6; // inv slot 6
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Coordination") {
+							char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack7;  // inv slot 7
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Health") {
+							char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack8; // inv slot 8
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Spirae") {
+							char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack9;  // inv slot 9
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Exp Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-							}						
-						}	
-						tempItemStack = char.inventory.iStack10;  // inv slot 10
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Gold Bonus") {
+							// TODO: Add in after create Party-Stats
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-								
-							}						
-						}	
-						tempItemStack = char.inventory.iStack11;  // inv slot 11
-						if (spotFound == false && tempItemStack.currSize == 0) {
-							// First open spot
-							tempItemStack.pushItemFromSimilarStack(storage);
-							benefitStorage=tempItemStack;
-							spotFound = true;
+						if (target.item.item_benefit.getItemAt(j).text == "Avoidance") {
+							char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
-								tempItemStack.pushItemFromSimilarStack(storage);
-								benefitStorage=tempItemStack;
-								spotFound = true;
-							}						
-						}	
-						
-						// No inventory space left  
-						if (spotFound == false) {
-							source.pushItemFromSimilarStack(target);
-							target.pushItemFromSimilarStack(storage);
-							Alert.show("There are no inventory slots available to exchange items.");
-							return;
-						}					
-						
-						// Set the picture based on the type of item
-						if (target.item.itemSlot == 14)
-							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 8)
-							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 2)
-							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 3)
-							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 4)
-							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 5)
-							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 1)
-							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						
-						// Outgoing Item
-						
-						for(k=0; k<benefitStorage.item.item_benefit.length;k++){
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Fitness") {
-								char.fitness.value = char.fitness.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.fitness.max_value = char.fitness.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							} 
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.spirituality.max_value = char.spirituality.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue; 
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.eloquence.max_value = char.eloquence.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Coordination") {
-								char.coordination.value = char.coordination.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.coordination.max_value = char.coordination.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Health") {
-								char.health_current.value = char.health_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.health_max.value = char.health_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.spirae_max.value = char.spirae_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Hit") {
-								char.hit.value = char.hit.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							} 
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Hit") {
+							char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						
-						// Incoming Item
-						for(k=0; k<target.item.item_benefit.length;k++){
-							if (target.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Fitness") {
-								char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							} 
-							if (target.item.item_benefit.getItemAt(k).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue; 
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Coordination") {
-								char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Health") {
-								char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Hit") {
-								char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							
+						if (target.item.item_benefit.getItemAt(j).text == "Damage") {
+							char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
 						}
-						
+						if (target.item.item_benefit.getItemAt(j).text == "Cold") {
+							char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Heat") {
+							char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Magic") {
+							char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Max Magic Dmg") {
+							char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Min Magic Dmg") {
+							char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Wander") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Const Cost") {
+							// TODO: Add in after create Player-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Inc Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+						if (target.item.item_benefit.getItemAt(j).text == "Dec Monster") {
+							// TODO: Add in after create Party-Stats
+							continue;
+						}
+
 					}
-					else {
-					
-					
-						target.pushItemFromSimilarStack(source);
-						
-						if (target.item.itemSlot == 14)
-							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 8)
-							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 2)
-							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 3)
-							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 4)
-							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 5)
-							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						if (target.item.itemSlot == 1)
-							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+".png";
-						for(var j:int=0; j<target.item.item_benefit.length;j++){
-							if (target.item.item_benefit.getItemAt(j).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Fitness") {
-								char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							} 
-							if (target.item.item_benefit.getItemAt(j).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue; 
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Coordination") {
-								char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Health") {
-								char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Hit") {
-								char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (target.item.item_benefit.getItemAt(j).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-	
-						}
-					}
-				}			
+				}
 			}
 			
 			private function acceptDrop(dragEvent:DragEvent):void{
@@ -950,6 +1240,7 @@
 			}
 			
 			private function handleDrop(dragEvent:DragEvent):void{
+
 				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
 				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
 				//handle dropping
@@ -983,7 +1274,7 @@
 					if (temp == 0) return; // Unequipable item
 					if (temp == 14) temp = 0; // Place weapons in the first slot.
 					var itemS2:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(temp));		
-					var storage:ItemStack = new ItemStack(20);	
+					var storage:ItemStack = new ItemStack(itemS2.maxSize);	
 					var benefitStorage:ItemStack;
 					var k:int;
 					
@@ -1006,7 +1297,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1022,7 +1313,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1038,7 +1329,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1054,7 +1345,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1070,7 +1361,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1086,7 +1377,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1102,7 +1393,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1118,7 +1409,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1134,7 +1425,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1149,7 +1440,7 @@
 							
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
@@ -1164,13 +1455,153 @@
 							spotFound = true;
 						}
 						else { // Not empty, but maybe stackable?
-							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < 20){
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 								tempItemStack.pushItemFromSimilarStack(storage);
 								benefitStorage=tempItemStack;
 								spotFound = true;
 							}						
 						}	
-						
+						tempItemStack = char.inventory.iStack12;  // inv slot 12
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack13;  // inv slot 13
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack14;  // inv slot 14
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack15;  // inv slot 15
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack16;  // inv slot 16
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack17;  // inv slot 17
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack18;  // inv slot 18
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack19;  // inv slot 19
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack20;  // inv slot 20
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+						tempItemStack = char.inventory.iStack21;  // inv slot 21
+						if (spotFound == false && tempItemStack.currSize == 0) {
+							// First open spot
+							tempItemStack.pushItemFromSimilarStack(storage);
+							benefitStorage=tempItemStack;
+							spotFound = true;
+						}
+						else { // Not empty, but maybe stackable?
+							if (spotFound == false && tempItemStack.item.itemID == storage.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+								tempItemStack.pushItemFromSimilarStack(storage);
+								benefitStorage=tempItemStack;
+								spotFound = true;
+							}						
+						}	
+
 						// No inventory space left  
 						if (spotFound == false) {
 							ItemStackView(dragInitiator).itemStack.pushItemFromSimilarStack(itemS2);
@@ -1543,63 +1974,62 @@
 				   source="assets/InventoryDivider.png"
 				   />	
 
-	<s:Group width="100%" height="100%">
-		
+	<s:Group id="character_appearance_container"
+			 width="100%" height="100%">
 		<s:layout>
-			<s:VerticalLayout gap="1" paddingLeft="0"/>			
+			<s:BasicLayout/>
 		</s:layout>
+		<s:BitmapImage id="character_top" x="0" width="510" height="170" 
+					   source="assets/HUD/Inventory/Top.png"
+					   />	
+		<s:BitmapImage id="character_left" x="0" y="170" width="100" height="340" 
+					   source="assets/HUD/Inventory/Side.png"
+					   />	
+		<s:BitmapImage id="character_right" x="410" y="170" width="100" height="340" 
+					   source="assets/HUD/Inventory/Side.png"
+					   />	
+		<s:BitmapImage id="character_bottom" x="0" y="510" width="510" height="101" 
+					   source="assets/HUD/Inventory/Bottom.png"
+					   />	
+		<s:BitmapImage id="character_appearance" x="100" y="170" width="310" height="340" 
+					   source="{char.appearance_basebody}"
+					   />	
+		<s:BitmapImage id="character_appearance2" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_basehead}"
+					   />	
+		<s:BitmapImage id="character_appearance3" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_torso}"
+					   />	
+		<s:BitmapImage id="character_appearance4" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_head}"
+					   />	
+		<s:BitmapImage id="character_appearance5" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_legs}"
+					   />	
+		<s:BitmapImage id="character_appearance6" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_feet}"
+					   />	
+		<s:BitmapImage id="character_appearance7" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_shoulders}"
+					   />	
+		<s:BitmapImage id="character_appearance8" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_hands}"
+					   />	
+		<s:BitmapImage id="character_appearance9" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_weapon}"
+					   />	
+		<s:BitmapImage id="character_appearance10" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_offhand}"
+					   />
 		
 		<views:CurrentItemListView id="current_list_view1" current_items="{char.current_items}"
 								   start_index="0"/>
-		
-		<s:Group id="character_appearance_container"
-				 width="100%" height="100%">
-			<s:layout>
-				<s:BasicLayout/>
-			</s:layout>
-			<s:BitmapImage id="character_appearance" x="0" width="510" height="465" 
-						   source="{char.appearance_basebody}"
-						   />	
-			<s:BitmapImage id="character_appearance2" x="0" width="510" height="465"
-						   source="{char.appearance_basehead}"
-						   />	
-			<s:BitmapImage id="character_appearance3" x="0" width="510" height="465"
-						   source="{char.appearance_torso}"
-						   />	
-			<s:BitmapImage id="character_appearance4" x="0" width="510" height="465"
-						   source="{char.appearance_head}"
-						   />	
-			<s:BitmapImage id="character_appearance5" x="0" width="510" height="465"
-						   source="{char.appearance_legs}"
-						   />	
-			<s:BitmapImage id="character_appearance6" x="0" width="510" height="465"
-						   source="{char.appearance_feet}"
-						   />	
-			<s:BitmapImage id="character_appearance7" x="0" width="510" height="465"
-						   source="{char.appearance_shoulders}"
-						   />	
-			<s:BitmapImage id="character_appearance8" x="0" width="510" height="465"
-						   source="{char.appearance_hands}"
-						   />	
-			<s:BitmapImage id="character_appearance9" x="0" width="510" height="465"
-						   source="{char.appearance_weapon}"
-						   />	
-			<s:BitmapImage id="character_appearance10" x="0" width="510" height="465"
-						   source="{char.appearance_offhand}"
-						   />	
-		</s:Group>
-		
-
-	
-		<views:CurrentItemListView id="current_list_view2" current_items="{char.current_items}"
-								   start_index="7"/>
-	
+			
+		<s:BitmapImage id="invdev2" x="510" y="0" width="5" height="611" 
+					   source="assets/InventoryDivider.png"
+					   />	
 	</s:Group>
-	
-	<s:BitmapImage id="invdev2" width="5" height="611" 
-				   source="assets/InventoryDivider.png"
-				   />	
-	
+
 	<views:InventoryView char="{char}" inventory="{char.inventory}"/>
 	
 </s:TitleWindow>

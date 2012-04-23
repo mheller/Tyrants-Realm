@@ -29,7 +29,7 @@
 			public var aParty:Party;
 			
 			
-			private function showPartyView():void{
+			public function showPartyView():void{
 				if (party_view == null){
 					party_view= PopUpManager.createPopUp(this, PartyView,false) as PartyView;
 					this.party_view.aParty = this.aParty;

@@ -36,11 +36,133 @@
 			}
 			public function createListView():void{
 				this.removeAllElements();
-				
-				for(var i:int =start_index; i<start_index+current_items.maxSize/2;i++){//2 is number of current list view 
-					trace("current list max size:"+current_items.maxSize);
+
+				trace("current list max size:"+current_items.maxSize);				
+				for(var i:int =start_index; i<17;i++){ 
+					if (i == 17) continue; // Skip the last as there are an odd number of equipped slots.
 					var iStackView:ItemStackView = new ItemStackView();	// each groupView is a nav content
 					iStackView.itemStack = current_items.list_itemStacks.getItemAt(i) as ItemStack;
+					switch (i){
+						case 0:			
+										iStackView.x="15";
+										iStackView.y="220";
+										break;
+						case 1:			
+										iStackView.x="227";
+										iStackView.y="5";
+										break;
+						case 2:			
+										iStackView.x="15";
+										iStackView.y="297";
+										break;
+						case 3:			
+										iStackView.x="423";
+										iStackView.y="451";
+										break;
+						case 4:			
+										iStackView.x="227";
+										iStackView.y="515";
+										break;
+						case 5:			
+										iStackView.x="423";
+										iStackView.y="297";
+										break;
+						case 6:			
+										iStackView.x="15";
+										iStackView.y="143";
+										break;
+						case 7:			
+										iStackView.x="423";
+										iStackView.y="143";
+										break;
+						case 8:			
+										iStackView.x="423";
+										iStackView.y="220";
+										break;
+						case 9:			
+										iStackView.x="15";
+										iStackView.y="374";
+										break;
+						case 10:		
+										iStackView.x="423";
+										iStackView.y="374";
+										break;
+						case 11:		
+										iStackView.x="227";
+										iStackView.y="82";
+										break;
+						case 12:		
+										iStackView.x="15";
+										iStackView.y="451";
+										break;
+						case 13:		
+										iStackView.x="130";
+										iStackView.y="533";
+										break;
+						case 14:		
+										iStackView.x="324";
+										iStackView.y="533";
+										break;
+						case 15:		
+										iStackView.x="130";
+										iStackView.y="44";
+										break;
+						case 16:		
+										iStackView.x="324";
+										iStackView.y="44";
+										break;
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 0) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+					} 
+					if (iStackView.itemStack.currSize == 0 && i == 1) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 2) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 3) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 4) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Feet.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 5) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 6) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 7) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 8) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 9) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 10) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 11) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 12) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 13) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 14) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 15) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+					}
+					if (iStackView.itemStack.currSize == 0 && i == 16) {
+						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+					}
 					iStackView.width = 72;
 					iStackView.height = 72;
 					//iStackView.lblCurrSize.visible = false;
@@ -48,12 +170,11 @@
 				}	
 			}
 
-			
 		]]>
 	</fx:Script>
 
 	<s:layout>
-		<s:HorizontalLayout gap="1"/>
+		<s:BasicLayout/>
 	</s:layout>
 
 </s:Group>

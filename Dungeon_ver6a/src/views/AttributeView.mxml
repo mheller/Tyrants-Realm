@@ -76,6 +76,17 @@
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
+			<s:Label text="{char.spirae_current.text}"/>
+			<s:HGroup  right="0" >
+				<s:Label text="{char.spirae_current.value}"/>
+				<s:Label text="/"/>
+				<s:Label text="{char.spirae_max.value}"/>
+			</s:HGroup>				
+		</s:Group>
+
+		<mx:HRule width="100%"/>
+		
+		<s:Group width="100%">			
 			<s:Label text="{char.total_experience.text}"/>
 			<s:HGroup  right="0" >
 				<s:Label text="{char.total_experience.value}"/>
@@ -99,36 +110,17 @@
 				<s:Label text="{char.level.value}"/>
 			</s:HGroup>				
 		</s:Group>
-		
+	
 		<mx:HRule width="100%"/>
-		
+
 		<s:Group width="100%">			
-			<s:Label text="{char.spirae_current.text}"/>
+			<s:Label text="{char.career_changes.text}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.spirae_current.value}"/>
-				<s:Label text="/"/>
-				<s:Label text="{char.spirae_max.value}"/>
+				<s:Label text="{char.career_changes.value}"/>
 			</s:HGroup>				
 		</s:Group>
 		
-		<mx:HRule width="100%"/>
-		
-		<s:Group width="100%">		
-			<s:Label text="{char.denarii.text}"/>
-			<s:HGroup  right="0" >
-				<s:Label text="{char.denarii.value}"/>
-			</s:HGroup>				
-		</s:Group>
-		
-		<mx:HRule width="100%"/>
-		
-		<s:Group width="100%">		
-			<s:Label text="{char.stater.text}"/>
-			<s:HGroup  right="0" >
-				<s:Label text="{char.stater.value}"/>
-			</s:HGroup>				
-		</s:Group>
-		
+			
 		<!-- Abilities-->
 		
 		<s:Group width="100%" height="20" fontSize="14">
@@ -309,6 +301,9 @@
 				<s:Label text="{char.magic_resistance.value}"/>
 			</s:HGroup>				
 		</s:Group>
+		
+		<mx:HRule width="100%"/>
+
 	</s:VGroup>
 	
 	

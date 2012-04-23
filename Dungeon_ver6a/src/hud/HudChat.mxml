@@ -19,7 +19,7 @@
 			[Bindable]
 			private var chat_view:ChatView;
 			
-			private function showChatView():void{
+			public function showChatView():void{
 				if (chat_view == null)
 					chat_view = PopUpManager.createPopUp(this, ChatView,false) as ChatView;
 				else {
