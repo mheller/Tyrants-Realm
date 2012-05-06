@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  emphasized="{logoutView.visible}"
+		  label="Ranking"
+		  click="showRankingView();"
+		  > 
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>			
+		<![CDATA[			
+			import character.Inventory;
+			
+			import mx.managers.PopUpManager;
+			
+			import resizableTitleWindow.*;
+			
+			import spark.components.TitleWindow;
+			
+			import views.RankingView;
+			
+			[Bindable]
+			private var rankingView:RankingView;
+			
+			
+			//public var inv:pkgInventory.InventoryView_old;
+			
+			public function showRankingView():void{
+				
+				if (rankingView == null){
+					rankingView = PopUpManager.createPopUp(this, rankingView,false) as RankingView;
+					rankingView.setStyle("skinClass", ResizableTitleWindowSkin);
+				}				
+				else{
+					if (rankingView.visible == false)
+						rankingView.visible = true;
+					else
+						rankingView.visible = false;
+				}
+				
+			}	
+			
+			public function clickHander(e:Event):void{	
+				showRankingView();
+			}
+		]]>
+	</fx:Script>	
+	
+	
+</s:Button>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  click="shiftRight(event);"
+		  > 
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>			
+		<![CDATA[			
+			import character.Character;
+			import character.Inventory;
+			
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			
+			import resizableTitleWindow.*;
+			
+			import spark.components.TitleWindow;
+			
+			[Bindable]
+			public var char:Character;	
+			
+			[Bindable]
+			public var party:Party;	
+
+			public function shiftRight(event:MouseEvent):void{
+				this.party = (Party)(super.document.party);
+				var currIndex:int = party.currCharIndex;
+				var currPop:int = party.currPopulation;
+				
+				if (currIndex<currPop) currIndex++; 
+				else currIndex = 0;   // we're at the bottom and going to wrap to the top.
+				
+				Alert.show(String(currIndex));
+			}	
+			
+		]]>
+	</fx:Script>	
+	
+	
+</s:Button>

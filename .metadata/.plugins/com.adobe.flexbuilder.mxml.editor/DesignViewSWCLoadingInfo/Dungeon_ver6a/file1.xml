@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ListDetails label="SWC Loading Details" projectName="Dungeon_ver6a">
+
+
+<LoadedSetList label="LoadedSet List">
+
+
+<LoadingSet label="LoadingSet1:">
+
+
+<item  label="Away3d_5.swc1900586473" path="C:\Users\mheller\Adobe Flash Builder 4.5\.metadata\.plugins\com.adobe.flexbuilder.codemodel\SwcCache\Away3d_5.swc1900586473\library.swf"/>
+
+
+</LoadingSet>
+
+
+</LoadedSetList>
+
+
+<RemovedSetList label="RemovedSet List">
+
+
+<RemovedSet label="RemovedSet1:">
+
+
+<item  label="No Item present in this set"/>
+
+
+</RemovedSet>
+
+
+</RemovedSetList>
+
+
+</ListDetails>
+
+

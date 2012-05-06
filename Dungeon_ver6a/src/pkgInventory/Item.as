@@ -95,6 +95,7 @@ package pkgInventory
 			this.itemValue = itemValue;
 			this.itemType = itemType;
 			this.itemSlot = itemSlot;
+			this.itemTooltip = itemTooltip;
 			this.isConstructed = isConstructed;
 			this.isEnhanceable - isEnhanceable;
 			this.isStackable = isStackable;

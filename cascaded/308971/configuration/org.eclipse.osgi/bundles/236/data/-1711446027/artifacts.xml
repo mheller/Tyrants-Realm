@@ -1,0 +1,2576 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<repository name='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\.eclipseextension' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1.0.0'>
+  <properties size='3'>
+    <property name='p2.timestamp' value='1333316809464'/>
+    <property name='org.eclipse.update.site.policy' value='USER-EXCLUDE'/>
+    <property name='org.eclipse.update.site.list' value=''/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='256'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.core.manipulation.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15058'/>
+        <property name='download.size' value='15058'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.core.manipulation.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.core.manipulation.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.extensionlocation.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9055'/>
+        <property name='download.size' value='9055'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.extensionlocation.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.extensionlocation.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.debug.core.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1935'/>
+        <property name='download.size' value='1935'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.debug.core.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.debug.core.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.databinding.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7531'/>
+        <property name='download.size' value='7531'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.databinding.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.databinding.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.core.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2034'/>
+        <property name='download.size' value='2034'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.core.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.core.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3363'/>
+        <property name='download.size' value='3363'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.debug.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='175716'/>
+        <property name='download.size' value='175716'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.debug.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.debug.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.internet.cache.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9499'/>
+        <property name='download.size' value='9499'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.internet.cache.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.internet.cache.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1906'/>
+        <property name='download.size' value='1906'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.reconciler.dropins.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2330'/>
+        <property name='download.size' value='2330'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.reconciler.dropins.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.reconciler.dropins.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit.core.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2120'/>
+        <property name='download.size' value='2120'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit.core.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit.core.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.examples.filesystem.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='11328'/>
+        <property name='download.size' value='11328'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.examples.filesystem.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.examples.filesystem.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.debug.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1958'/>
+        <property name='download.size' value='1958'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.debug.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.debug.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.win32.win32.x86.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13727'/>
+        <property name='download.size' value='13727'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.win32.win32.x86.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.win32.win32.x86.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='61731'/>
+        <property name='download.size' value='61731'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.views.properties.tabbed.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3543'/>
+        <property name='download.size' value='3543'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.views.properties.tabbed.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.views.properties.tabbed.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.jarprocessor.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3374'/>
+        <property name='download.size' value='3374'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.jarprocessor.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.jarprocessor.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='44795'/>
+        <property name='download.size' value='44795'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.directorywatcher.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9584'/>
+        <property name='download.size' value='9584'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.directorywatcher.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.directorywatcher.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2091'/>
+        <property name='download.size' value='2091'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.tasks.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='155459'/>
+        <property name='download.size' value='155459'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.tasks.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.tasks.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.platform.doc.isv.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2073'/>
+        <property name='download.size' value='2073'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.platform.doc.isv.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.platform.doc.isv.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.cvs.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='172755'/>
+        <property name='download.size' value='172755'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.cvs.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.cvs.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.undo.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9118'/>
+        <property name='download.size' value='9118'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.undo.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.undo.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2328'/>
+        <property name='download.size' value='2328'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.wikitext.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='58185'/>
+        <property name='download.size' value='58185'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.wikitext.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.wikitext.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.runtime.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14734'/>
+        <property name='download.size' value='14734'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.runtime.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.runtime.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.exemplarysetup.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2363'/>
+        <property name='download.size' value='2363'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.exemplarysetup.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.exemplarysetup.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.director.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2320'/>
+        <property name='download.size' value='2320'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.director.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.director.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ui.templates.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='68090'/>
+        <property name='download.size' value='68090'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ui.templates.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ui.templates.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='49653'/>
+        <property name='download.size' value='49653'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15757'/>
+        <property name='download.size' value='15757'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.sdk.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.sdk.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.navigator.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15827'/>
+        <property name='download.size' value='15827'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.navigator.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.navigator.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.cm.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1984'/>
+        <property name='download.size' value='1984'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.cm.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.cm.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.search.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='43041'/>
+        <property name='download.size' value='43041'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.search.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.search.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.layouts.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6299'/>
+        <property name='download.size' value='6299'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.layouts.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.layouts.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.director.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13508'/>
+        <property name='download.size' value='13508'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.director.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.director.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.reconciler.dropins.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8838'/>
+        <property name='download.size' value='8838'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.reconciler.dropins.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.reconciler.dropins.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.update.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='56347'/>
+        <property name='download.size' value='56347'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.update.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.update.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.externaltools.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='42557'/>
+        <property name='download.size' value='42557'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.externaltools.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.externaltools.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.rcp.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3554'/>
+        <property name='download.size' value='3554'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.rcp.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.rcp.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12539'/>
+        <property name='download.size' value='12539'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.platform.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4151'/>
+        <property name='download.size' value='4151'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.platform.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.platform.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.repository.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2324'/>
+        <property name='download.size' value='2324'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.touchpoint.natives.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14913'/>
+        <property name='download.size' value='14913'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.touchpoint.natives.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.touchpoint.natives.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.useradmin.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10296'/>
+        <property name='download.size' value='10296'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.useradmin.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.useradmin.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1093481'/>
+        <property name='download.size' value='1093481'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.launching.ui.macosx.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9868'/>
+        <property name='download.size' value='9868'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.launching.ui.macosx.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.launching.ui.macosx.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1837'/>
+        <property name='download.size' value='1837'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.updatesite.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='16165'/>
+        <property name='download.size' value='16165'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.updatesite.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.updatesite.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.doc.isv.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4115'/>
+        <property name='download.size' value='4115'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.doc.isv.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.doc.isv.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.repository.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10131'/>
+        <property name='download.size' value='10131'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.repository.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.repository.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.databinding.beans.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2037'/>
+        <property name='download.size' value='2037'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.databinding.beans.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.databinding.beans.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.log.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1943'/>
+        <property name='download.size' value='1943'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.log.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.log.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.apt.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12103'/>
+        <property name='download.size' value='12103'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.apt.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.apt.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.expressions.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9716'/>
+        <property name='download.size' value='9716'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.expressions.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.expressions.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.commands.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1873'/>
+        <property name='download.size' value='1873'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.commands.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.commands.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.text.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1903'/>
+        <property name='download.size' value='1903'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.text.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.text.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.contributions.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12020'/>
+        <property name='download.size' value='12020'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.contributions.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.contributions.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.runtime.compatibility.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5862'/>
+        <property name='download.size' value='5862'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.runtime.compatibility.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.runtime.compatibility.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.jetty5.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2419'/>
+        <property name='download.size' value='2419'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.jetty5.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.jetty5.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.garbagecollector.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8081'/>
+        <property name='download.size' value='8081'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.garbagecollector.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.garbagecollector.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.debug.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='122839'/>
+        <property name='download.size' value='122839'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.debug.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.debug.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.app.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8163'/>
+        <property name='download.size' value='8163'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.app.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.app.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.debug.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='35567'/>
+        <property name='download.size' value='35567'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.debug.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.debug.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.ui.examples.projects.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7098'/>
+        <property name='download.size' value='7098'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.ui.examples.projects.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.ui.examples.projects.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.context.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='31069'/>
+        <property name='download.size' value='31069'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.context.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.context.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.releng.tools.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='17852'/>
+        <property name='download.size' value='17852'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.releng.tools.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.releng.tools.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.metatype.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8737'/>
+        <property name='download.size' value='8737'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.metatype.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.metatype.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14954'/>
+        <property name='download.size' value='14954'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.osgi.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='80642'/>
+        <property name='download.size' value='80642'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.osgi.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.osgi.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.compare.win32.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8552'/>
+        <property name='download.size' value='8552'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.compare.win32.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.compare.win32.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='19051'/>
+        <property name='download.size' value='19051'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.console.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3346'/>
+        <property name='download.size' value='3346'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.console.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.console.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.repository.tools.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2354'/>
+        <property name='download.size' value='2354'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.repository.tools.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.repository.tools.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.build_3.6.0.v20100603.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2345'/>
+        <property name='download.size' value='2345'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.build_3.6.0.v20100603.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.build_3.6.0.v20100603.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.dtd.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='24586'/>
+        <property name='download.size' value='24586'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.dtd.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.dtd.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='16602'/>
+        <property name='download.size' value='16602'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.ide.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1931'/>
+        <property name='download.size' value='1931'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.ide.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.ide.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.presentations.r21.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5301'/>
+        <property name='download.size' value='5301'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.presentations.r21.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.presentations.r21.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.scheduler.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15891'/>
+        <property name='download.size' value='15891'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.sdk.scheduler.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.sdk.scheduler.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='122627'/>
+        <property name='download.size' value='122627'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.browser.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13939'/>
+        <property name='download.size' value='13939'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.browser.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.browser.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.xml.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='97788'/>
+        <property name='download.size' value='97788'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.xml.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.xml.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.engine.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2312'/>
+        <property name='download.size' value='2312'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.engine.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.engine.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.contenttype.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7030'/>
+        <property name='download.size' value='7030'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.contenttype.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.contenttype.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.rcp.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4038'/>
+        <property name='download.size' value='4038'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.rcp.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.rcp.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.publisher.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2322'/>
+        <property name='download.size' value='2322'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.publisher.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.publisher.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.exemplarysetup.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3389'/>
+        <property name='download.size' value='3389'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.exemplarysetup.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.exemplarysetup.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.garbagecollector.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2349'/>
+        <property name='download.size' value='2349'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.garbagecollector.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.garbagecollector.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='79974'/>
+        <property name='download.size' value='79974'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.touchpoint.natives.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2381'/>
+        <property name='download.size' value='2381'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.touchpoint.natives.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.touchpoint.natives.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.api.tools.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='86629'/>
+        <property name='download.size' value='86629'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.api.tools.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.api.tools.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.tools.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='29374'/>
+        <property name='download.size' value='29374'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.tools.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.tools.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.common.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10476'/>
+        <property name='download.size' value='10476'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.common.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.common.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.touchpoint.eclipse.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='22529'/>
+        <property name='download.size' value='22529'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.touchpoint.eclipse.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.touchpoint.eclipse.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.validation.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='23044'/>
+        <property name='download.size' value='23044'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.validation.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.validation.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.registry.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2402'/>
+        <property name='download.size' value='2402'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.registry.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.registry.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.editors.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='76384'/>
+        <property name='download.size' value='76384'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.editors.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.editors.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.cvs.ssh2.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12260'/>
+        <property name='download.size' value='12260'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.cvs.ssh2.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.cvs.ssh2.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.boot.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1862'/>
+        <property name='download.size' value='1862'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.boot.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.boot.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.compare.examples.xml.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12702'/>
+        <property name='download.size' value='12702'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.compare.examples.xml.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.compare.examples.xml.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.text.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14938'/>
+        <property name='download.size' value='14938'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.text.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.text.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.ole.win32.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9475'/>
+        <property name='download.size' value='9475'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.ole.win32.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.ole.win32.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.extensionlocation.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2360'/>
+        <property name='download.size' value='2360'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.extensionlocation.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.extensionlocation.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.event.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8576'/>
+        <property name='download.size' value='8576'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.event.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.event.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='193591'/>
+        <property name='download.size' value='193591'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.update.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='49805'/>
+        <property name='download.size' value='49805'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.update.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.update.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.osgi.util.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3467'/>
+        <property name='download.size' value='3467'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.osgi.util.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.osgi.util.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.junit.runtime.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1976'/>
+        <property name='download.size' value='1976'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.junit.runtime.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.junit.runtime.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ua.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='71955'/>
+        <property name='download.size' value='71955'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ua.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ua.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.sdk.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13852'/>
+        <property name='download.size' value='13852'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.sdk.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.sdk.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.compare.examples.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4952'/>
+        <property name='download.size' value='4952'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.compare.examples.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.compare.examples.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.update.scheduler.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8327'/>
+        <property name='download.size' value='8327'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.update.scheduler.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.update.scheduler.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.touchpoint.eclipse.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2361'/>
+        <property name='download.size' value='2361'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.touchpoint.eclipse.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.touchpoint.eclipse.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.views.properties.tabbed.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7581'/>
+        <property name='download.size' value='7581'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.views.properties.tabbed.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.views.properties.tabbed.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.resources.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='48985'/>
+        <property name='download.size' value='48985'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.resources.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.resources.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.osgi.services.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3520'/>
+        <property name='download.size' value='3520'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.osgi.services.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.osgi.services.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='17342'/>
+        <property name='download.size' value='17342'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jsch.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15473'/>
+        <property name='download.size' value='15473'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jsch.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jsch.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.sse.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='53719'/>
+        <property name='download.size' value='53719'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.sse.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.sse.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.win32.win32.x86.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13772'/>
+        <property name='download.size' value='13772'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.win32.win32.x86.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.win32.win32.x86.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.runtime.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13772'/>
+        <property name='download.size' value='13772'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.runtime.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.runtime.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.device.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10225'/>
+        <property name='download.size' value='10225'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.device.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.device.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.updatechecker.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2367'/>
+        <property name='download.size' value='2367'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.updatechecker.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.updatechecker.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.filebuffers.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14566'/>
+        <property name='download.size' value='14566'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.filebuffers.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.filebuffers.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.console.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2313'/>
+        <property name='download.size' value='2313'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.console.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.console.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit4.runtime.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2125'/>
+        <property name='download.size' value='2125'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit4.runtime.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit4.runtime.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='32061'/>
+        <property name='download.size' value='32061'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.filesystem.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9055'/>
+        <property name='download.size' value='9055'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.filesystem.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.filesystem.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.controls.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6111'/>
+        <property name='download.size' value='6111'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.controls.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.controls.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.browser.demos.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5761'/>
+        <property name='download.size' value='5761'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.browser.demos.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.browser.demos.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.generator.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2386'/>
+        <property name='download.size' value='2386'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.generator.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.generator.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ltk.ui.refactoring.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='42391'/>
+        <property name='download.size' value='42391'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ltk.ui.refactoring.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ltk.ui.refactoring.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.engine.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='30493'/>
+        <property name='download.size' value='30493'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.engine.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.engine.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.launching.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='37387'/>
+        <property name='download.size' value='37387'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.launching.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.launching.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.artifact.repository.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2429'/>
+        <property name='download.size' value='2429'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.artifact.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.artifact.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.ide.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='215362'/>
+        <property name='download.size' value='215362'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.ide.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.ide.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.updatechecker.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3406'/>
+        <property name='download.size' value='3406'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.updatechecker.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.updatechecker.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.ds.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='35576'/>
+        <property name='download.size' value='35576'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.ds.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.ds.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.sdk.examples.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4200'/>
+        <property name='download.size' value='4200'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.sdk.examples.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.sdk.examples.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.views.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8993'/>
+        <property name='download.size' value='8993'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.views.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.views.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.resources.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8954'/>
+        <property name='download.size' value='8954'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.resources.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.resources.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.help.base.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='16998'/>
+        <property name='download.size' value='16998'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.help.base.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.help.base.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.runtime.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1981'/>
+        <property name='download.size' value='1981'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.runtime.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.runtime.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.repository.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='27007'/>
+        <property name='download.size' value='27007'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.repository.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.repository.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='21961'/>
+        <property name='download.size' value='21961'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.doc.user.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3925'/>
+        <property name='download.size' value='3925'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='win.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6910'/>
+        <property name='download.size' value='6910'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/win.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\win.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='11224'/>
+        <property name='download.size' value='11224'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.browser.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6063'/>
+        <property name='download.size' value='6063'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.browser.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.browser.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.apt.pluggable.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2313'/>
+        <property name='download.size' value='2313'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.apt.pluggable.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.apt.pluggable.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.platform_3.6.0.v201006031500.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8631'/>
+        <property name='download.size' value='8631'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.platform_3.6.0.v201006031500.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.platform_3.6.0.v201006031500.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ant.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='21913'/>
+        <property name='download.size' value='21913'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ant.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ant.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.update.configurator.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='12343'/>
+        <property name='download.size' value='12343'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.update.configurator.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.update.configurator.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ant.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='132671'/>
+        <property name='download.size' value='132671'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ant.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ant.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4131'/>
+        <property name='download.size' value='4131'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='295204'/>
+        <property name='download.size' value='295204'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.carbon.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2388'/>
+        <property name='download.size' value='2388'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.carbon.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.carbon.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ds.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14862'/>
+        <property name='download.size' value='14862'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ds.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ds.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.platform.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='16028'/>
+        <property name='download.size' value='16028'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.platform.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.platform.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.osgi.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2072'/>
+        <property name='download.size' value='2072'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.osgi.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.osgi.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.build.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2148'/>
+        <property name='download.size' value='2148'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.build.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.build.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.wst.xsd.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='118883'/>
+        <property name='download.size' value='118883'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.wst.xsd.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.wst.xsd.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.launching.macosx.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5447'/>
+        <property name='download.size' value='5447'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.launching.macosx.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.launching.macosx.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.core.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2300'/>
+        <property name='download.size' value='2300'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.core.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.core.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jsch.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5964'/>
+        <property name='download.size' value='5964'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jsch.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jsch.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.help.appserver.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6456'/>
+        <property name='download.size' value='6456'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.help.appserver.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.help.appserver.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.director.app.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2380'/>
+        <property name='download.size' value='2380'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.director.app.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.director.app.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.variables.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6204'/>
+        <property name='download.size' value='6204'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.variables.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.variables.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.propertysheet.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14541'/>
+        <property name='download.size' value='14541'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.propertysheet.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.propertysheet.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.debug.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='191512'/>
+        <property name='download.size' value='191512'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.debug.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.debug.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.help.webapp.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='21957'/>
+        <property name='download.size' value='21957'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.help.webapp.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.help.webapp.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.apt.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='17071'/>
+        <property name='download.size' value='17071'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.apt.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.apt.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.databinding.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2053'/>
+        <property name='download.size' value='2053'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.databinding.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.databinding.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.navigator.resources.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='11326'/>
+        <property name='download.size' value='11326'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.navigator.resources.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.navigator.resources.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.workbench.texteditor.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2056'/>
+        <property name='download.size' value='2056'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.workbench.texteditor.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.workbench.texteditor.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.servletbridge.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1999'/>
+        <property name='download.size' value='1999'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.servletbridge.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.servletbridge.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit.runtime.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8081'/>
+        <property name='download.size' value='8081'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit.runtime.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit.runtime.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.ui.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2038'/>
+        <property name='download.size' value='2038'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.launcher.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8801'/>
+        <property name='download.size' value='8801'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.launcher.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.launcher.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.sdk-feature.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8992'/>
+        <property name='download.size' value='8992'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.sdk-feature.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.sdk-feature.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.cvs.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='43950'/>
+        <property name='download.size' value='43950'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.cvs.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.cvs.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.updatesite.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2465'/>
+        <property name='download.size' value='2465'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.updatesite.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.updatesite.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.commands.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1801'/>
+        <property name='download.size' value='1801'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.commands.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.commands.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.multipageeditor.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6382'/>
+        <property name='download.size' value='6382'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.multipageeditor.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.multipageeditor.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.cheatsheets.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='28287'/>
+        <property name='download.size' value='28287'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.cheatsheets.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.cheatsheets.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.build.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='29916'/>
+        <property name='download.size' value='29916'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.build.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.build.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.compare.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='80896'/>
+        <property name='download.size' value='80896'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.compare.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.compare.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.registry.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13612'/>
+        <property name='download.size' value='13612'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.registry.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.registry.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.javaeditor.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='14798'/>
+        <property name='download.size' value='14798'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.javaeditor.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.javaeditor.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.tasks.bugs.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='17539'/>
+        <property name='download.size' value='17539'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.tasks.bugs.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.tasks.bugs.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.artifact.repository.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='31469'/>
+        <property name='download.size' value='31469'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.artifact.repository.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.artifact.repository.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.junit.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='52115'/>
+        <property name='download.size' value='52115'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.junit.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.junit.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.jobs.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5239'/>
+        <property name='download.size' value='5239'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.jobs.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.jobs.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.views.log.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13662'/>
+        <property name='download.size' value='13662'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.views.log.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.views.log.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.intro.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='19389'/>
+        <property name='download.size' value='19389'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.intro.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.intro.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.repository.tools.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='25302'/>
+        <property name='download.size' value='25302'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.repository.tools.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.repository.tools.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.workbench.texteditor.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='74760'/>
+        <property name='download.size' value='74760'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.workbench.texteditor.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.workbench.texteditor.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.compare.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5541'/>
+        <property name='download.size' value='5541'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.compare.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.compare.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.text.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='64767'/>
+        <property name='download.size' value='64767'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.text.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.text.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.workbench.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='172114'/>
+        <property name='download.size' value='172114'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.workbench.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.workbench.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.sdk_3.6.0.v201006031500.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='13882'/>
+        <property name='download.size' value='13882'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.sdk_3.6.0.v201006031500.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.sdk_3.6.0.v201006031500.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.junit4.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1987'/>
+        <property name='download.size' value='1987'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.junit4.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.junit4.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.wikitext.tasks.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='11755'/>
+        <property name='download.size' value='11755'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.wikitext.tasks.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.wikitext.tasks.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.jetty6.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2419'/>
+        <property name='download.size' value='2419'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.jetty6.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.jetty6.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.launching.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10988'/>
+        <property name='download.size' value='10988'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.launching.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.launching.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ui.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1868'/>
+        <property name='download.size' value='1868'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ds.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10050'/>
+        <property name='download.size' value='10050'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ds.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ds.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.platform.doc.user.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1984'/>
+        <property name='download.size' value='1984'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.platform.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.platform.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.directorywatcher.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2382'/>
+        <property name='download.size' value='2382'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.directorywatcher.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.directorywatcher.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.discovery.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='18300'/>
+        <property name='download.size' value='18300'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.discovery.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.discovery.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.core.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1856'/>
+        <property name='download.size' value='1856'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.core.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.core.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.preferences.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10040'/>
+        <property name='download.size' value='10040'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.preferences.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.preferences.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.forms.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='5448'/>
+        <property name='download.size' value='5448'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.forms.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.forms.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jface.examples.databinding.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2002'/>
+        <property name='download.size' value='2002'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jface.examples.databinding.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jface.examples.databinding.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.console.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='11876'/>
+        <property name='download.size' value='11876'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.console.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.console.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.search.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1936'/>
+        <property name='download.size' value='1936'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.search.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.search.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.team.cvs.ssh.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='9396'/>
+        <property name='download.size' value='9396'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.team.cvs.ssh.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.team.cvs.ssh.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2400'/>
+        <property name='download.size' value='2400'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.sdk.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.sdk.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ltk.core.refactoring.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='26543'/>
+        <property name='download.size' value='26543'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ltk.core.refactoring.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ltk.core.refactoring.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.ua.core.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2664'/>
+        <property name='download.size' value='2664'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.ua.core.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.ua.core.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.help.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2688'/>
+        <property name='download.size' value='2688'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.help.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.help.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.jarprocessor.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2348'/>
+        <property name='download.size' value='2348'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.jarprocessor.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.jarprocessor.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.ide.application.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3787'/>
+        <property name='download.size' value='3787'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.ide.application.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.ide.application.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.debug.examples.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3774'/>
+        <property name='download.size' value='3774'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.debug.examples.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.debug.examples.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.security.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='39135'/>
+        <property name='download.size' value='39135'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.security.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.security.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.editors.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2025'/>
+        <property name='download.size' value='2025'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.editors.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.editors.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.runtime.compatibility.auth.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='6422'/>
+        <property name='download.size' value='6422'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.runtime.compatibility.auth.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.runtime.compatibility.auth.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.http.servlet.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1975'/>
+        <property name='download.size' value='1975'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.http.servlet.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.http.servlet.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.launching.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1942'/>
+        <property name='download.size' value='1942'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.launching.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.launching.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.carbon.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7149'/>
+        <property name='download.size' value='7149'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.carbon.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.carbon.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.scheduler.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2442'/>
+        <property name='download.size' value='2442'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.ui.sdk.scheduler.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.ui.sdk.scheduler.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.net.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7834'/>
+        <property name='download.size' value='7834'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.net.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.net.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.director.app.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='18590'/>
+        <property name='download.size' value='18590'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.director.app.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.director.app.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.core.resources.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1985'/>
+        <property name='download.size' value='1985'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.core.resources.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.core.resources.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.publisher.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='10741'/>
+        <property name='download.size' value='10741'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.publisher.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.publisher.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.intro.universal.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='69150'/>
+        <property name='download.size' value='69150'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.intro.universal.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.intro.universal.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.swt.examples.paint.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='7079'/>
+        <property name='download.size' value='7079'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.swt.examples.paint.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.swt.examples.paint.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.servletbridge.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1883'/>
+        <property name='download.size' value='1883'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.servletbridge.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.servletbridge.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.workbench.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1912'/>
+        <property name='download.size' value='1912'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.workbench.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.workbench.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.mylyn.team.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='23265'/>
+        <property name='download.size' value='23265'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.mylyn.team.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.mylyn.team.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.readmetool.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='19806'/>
+        <property name='download.size' value='19806'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.readmetool.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.readmetool.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='3939'/>
+        <property name='download.size' value='3939'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.net.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='8421'/>
+        <property name='download.size' value='8421'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.net.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.net.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.repository.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2385'/>
+        <property name='download.size' value='2385'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.repository.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.help.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='28060'/>
+        <property name='download.size' value='28060'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.help.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.help.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.generator.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='17925'/>
+        <property name='download.size' value='17925'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.generator.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.generator.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.common.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2074'/>
+        <property name='download.size' value='2074'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.common.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.common.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.debug.ui.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='1969'/>
+        <property name='download.size' value='1969'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.debug.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.debug.ui.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.metadata.source.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='2323'/>
+        <property name='download.size' value='2323'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.p2.metadata.source.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.p2.metadata.source.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.pde.api.tools.ui.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='53651'/>
+        <property name='download.size' value='53651'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.pde.api.tools.ui.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.pde.api.tools.ui.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.doc.user.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4021'/>
+        <property name='download.size' value='4021'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.doc.user.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.security.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='19874'/>
+        <property name='download.size' value='19874'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.equinox.security.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.equinox.security.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.ui.examples.fieldassist.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='15433'/>
+        <property name='download.size' value='15433'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.ui.examples.fieldassist.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.ui.examples.fieldassist.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.jdt.debug_3.6.0.v20100526.nl1_3.6.0.v20091121043401' version='3.6.0.v20091121043401'>
+      <properties size='2'>
+        <property name='artifact.size' value='4426'/>
+        <property name='download.size' value='4426'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/eclipse/plugins/org.eclipse.jdt.debug_3.6.0.v20100526.nl1_3.6.0.v20091121043401.jar'/>
+        <property name='file.name' value='C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\eclipse\plugins\org.eclipse.jdt.debug_3.6.0.v20100526.nl1_3.6.0.v20091121043401.jar'/>
+      </repositoryProperties>
+    </artifact>
+  </artifacts>
+</repository>

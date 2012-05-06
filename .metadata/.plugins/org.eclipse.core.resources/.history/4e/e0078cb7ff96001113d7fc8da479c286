@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  label="Dungeon"
+		  click="showDungeonView();"
+		  > 
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>			
+		<![CDATA[			
+			import character.Inventory;
+			
+			import mx.managers.PopUpManager;
+			
+			import resizableTitleWindow.*;
+			
+			import spark.components.TitleWindow;
+			
+			public function showDungeonView():void{
+				var filter : GlowFilter = new GlowFilter();
+				filter.blurX = 10;
+				filter.blurY = 10;
+				filter.quality = 2;
+				filter.alpha = 0.8;
+				filter.color = 0xFFD520;
+				filter.inner = false;
+				this.filters = [filter];
+				this.skin.setStyle("up","@Embed('assets/HUD/Attribute_Down.png')");
+			}	
+			
+			public function clickHander(e:Event):void {	
+				showDungeonView();
+			}
+		]]>
+	</fx:Script>	
+	
+	
+</s:Button>

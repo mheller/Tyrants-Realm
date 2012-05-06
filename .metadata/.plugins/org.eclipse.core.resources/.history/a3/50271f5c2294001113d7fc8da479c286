@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   xmlns:hud = "hud.*"
+			   xmlns:pkgInventory="pkgInventory.*"
+			   xmlns:dungeon="dungeon.*"
+			   width="1000" height="700"		   
+			   creationComplete="creationCompleteHandler(event)"
+			   backgroundColor="#000000" xmlns:views="views.*"
+			   >
+	<fx:Declarations>
+		
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import character.*;
+			
+			import dungeon.*;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.managers.SystemManager;
+			
+			import pkgInventory.Item;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			
+			import spark.components.TitleWindow;
+			
+			import views.CharacterView;
+			
+			[Bindable] //do really need
+			public var currChar:Character;// = new Character("Jane Doe","female",100,0,1);
+			
+			[Bindable]
+			public var party1:Party = new Party("myParty",10);
+						
+			[Bindable]
+			public var map:Map;
+					
+//			[Bindable]
+//			public var dungeon3D:Dungeon_6; 
+					
+			// Hardcoded demo party
+			[Bindable]
+			public var char2:Character = new Character("Jane","Female","Defender",50, 100, 0, 100, 1, 0, 0, 0, 0, 10, 5, 5, 8, 9, 20, 25, 0, 1, "Fists", 0,0, 0,0,0,0, 1,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Black.png");
+			[Bindable]
+			public var char3:Character = new Character("Jill","Female", "Elementalist", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5, 10, 9, 6, 5, 15, 35, 0, 1, "Fists", 1, 2, 0,0,0,0, 2,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Blonde.png");
+			[Bindable]
+			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head - Black.png");
+			[Bindable]
+			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head - Red.png");
+	
+
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{				
+				
+				party1.addChar(char2);
+				party1.addChar(char3);
+				party1.addChar(char4);
+				party1.addChar(char5);
+				
+				party1.currChar = party1.arr_chars.getItemAt(0) as Character;
+				this.currChar = party1.currChar;
+				
+				addEventListener("finishedLoadingMapXML", start3D);//later, will do this one in Preloader
+				map = new Map();	
+				view.addElement(map);
+				addEventListener(KeyboardEvent.KEY_DOWN, reportKeyDown);
+
+
+			}		
+			
+			public function reportKeyDown(event:KeyboardEvent):void 
+			{ 
+//				trace("Key Pressed: " + String.fromCharCode(event.charCode) +         " (character code: " + event.charCode + ")");
+				if (String.fromCharCode(event.charCode) == 'm')
+					hud_map.showMapView();
+				if (String.fromCharCode(event.charCode) == 'c')
+					hud_chat.showChatView();
+				if (String.fromCharCode(event.charCode) == 'l')
+					hud_logout.showLogoutView();
+//				if (String.fromCharCode(event.charCode) == 'i')
+//					hud_attribute.clickHander(event);
+				if (String.fromCharCode(event.charCode) == 'p') {
+					hud_party.showPartyView();
+					if (party_name.text=="")
+						party_name.text = this.party1.name;
+					else
+						party_name.text = "";
+				}
+
+			} 
+			
+			public function start3D(e:Event):void{
+				//trace(map);
+//				dungeon3D =  new Dungeon_6(map);
+//				addElement(dungeon3D);
+				dungeon3D.init();
+				hud_map.showMapView();
+				hud_chat.showChatView();
+				hud_party.showPartyView();
+				
+				//this.setFocus();
+				//this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
+				
+			}
+			
+					
+		]]>
+	</fx:Script>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		s|Button#hud_attribute {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_logout {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_settings {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_ranking {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_forum {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_party_groups {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_shop {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_dungeon {
+			skinClass: ClassReference("skins.MainHUDViewsSkin");
+		}
+		s|Button#hud_world {
+			skinClass: ClassReference("skins.MainHUDViewsSkin");
+		}
+		s|Button#hud_town {
+			skinClass: ClassReference("skins.MainHUDViewsSkin");
+		}
+
+	</fx:Style>
+
+	<s:Group id="view" width="900" height="600">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<dungeon:Dungeon_6 id="dungeon3D" width="100%" height = "100%"
+						   map="{this.map}"/>
+
+		<s:Group x="535" y="25" >
+			<s:HGroup>
+				<hud:HudTown id="hud_town" label="T" width="45" height="45"/>
+				<hud:HudWorld id="hud_world" label="W" width="45" height="45"/>
+				<hud:HudDungeon id="hud_dungeon" label="D" width="45" height="45"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="525" >
+			<s:HGroup>
+				<hud:HudPartyGroups id="hud_party_groups" label="Parties"/>
+				<hud:HudShop id="hud_shop" label="Shop"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="655" >
+			<s:HGroup>
+				<hud:HudRanking id="hud_ranking" label="Rankings"/>
+				<hud:HudForum id="hud_forum" label="Forum"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="785" >
+			<s:HGroup>
+				<hud:HudSettings id="hud_settings" label="Settings"/>
+				<hud:HudLogout id="hud_logout" label="Logout"/>
+				<hud:HudChat id="hud_chat" width="100%" height="100%" visible="false"/>
+				<hud:HudMap id="hud_map" width="100%" height="100%"
+							map="{map}"
+							dungeon3D="{dungeon3D}" visible="false"/>				
+				<hud:HudParty id="hud_party" width="100%" height="100%" visible="false" aParty="{this.party1}"/>		
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="500" y="300">
+			<hud:HudAttribute id="hud_attribute" label="Attribute" char="{this.currChar}" party="{this.party1}" />			
+		</s:Group>
+		<s:Label id="party_name" x="{hud_party.width / 2 - (this.party1.name.length / 2)}" y="5" text="{this.party1.name}" fontSize="16" fontWeight="bold"/>
+
+	</s:Group>
+	
+	
+	
+</s:Application>

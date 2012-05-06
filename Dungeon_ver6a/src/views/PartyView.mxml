@@ -3,7 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   width="125"  height="644"
-			   x="0" y="0"
+			   x="0" y="60"
 			   creationComplete="titlewindow1_creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -13,38 +13,45 @@
 		<![CDATA[
 			import character.Character;
 			
+			import hud.HudAttribute;
+			
 			import mx.collections.ArrayList;
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
 			
+			import pkgParty.CharacterDblClickedEvent;
 			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
 			import pkgParty.ViewEachCharInParty;
 			
 			import spark.components.Label;
-			import spark.filters.DropShadowFilter;
+			import spark.filters.GlowFilter;
+			
+			import views.CharacterView;
 			
 			[Bindable]
 			public var aParty: Party;
 			
+			[Bindable]
+			public var character_view:CharacterView;
 
 			private function handleCloseEvent():void{
 				visible =false;
 			}
 			
 			private function updateSelectedView(oldIndex:int, newIndex:int):void{
+				
+				if (oldIndex == newIndex) return; // Don't do anything if you click on the same item again
 				aParty.currCharIndex = newIndex;
 				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex) as ViewEachCharInParty;
 				
-				var filter : DropShadowFilter = new DropShadowFilter();
-				filter.blurX = 4;
-				filter.blurY = 4;
+				var filter : GlowFilter = new GlowFilter();
+				filter.blurX = 10;
+				filter.blurY = 10;
 				filter.quality = 2;
-				filter.alpha = 0.5;
-				filter.angle = 45;
-				filter.color = 0x00FFFF;
-				filter.distance = 6;
+				filter.alpha = 0.8;
+				filter.color = 0xFFD520;
 				filter.inner = false;
 				
 				newSelectedElement.filters= [filter];
@@ -56,7 +63,7 @@
 
 			}
 			
-			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
+			public function handleCharacterSelected(event:CharacterSelectedEvent):void {
 				//Alert.show(event.char.name.value as String);
 				aParty.currChar = event.char;
 				
@@ -65,8 +72,31 @@
 				//Alert.show(aParty.currChar.name.value as String);
 				
 				updateSelectedView(old_index,event.indexCharInParty);
+				
 			}
 			
+			public function handleCharacterDblClicked(event:CharacterDblClickedEvent):void {
+				if (character_view == null){							
+					character_view= PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
+					character_view.char = aParty.currChar;	
+					character_view.party = this.aParty;
+				}
+				else{					
+					if (character_view.visible == false){
+						character_view.char = aParty.currChar;	
+						character_view.party = this.aParty;
+						character_view.visible = true;
+					}
+					else{
+						character_view.char = aParty.currChar;	
+						character_view.party = this.aParty;
+						character_view.visible = false;
+					}
+				}
+				
+				
+			}
+
 			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
 			{
 				if (aParty == null) return;
@@ -74,6 +104,7 @@
 				var i:int;
 				
 				addEventListener("CharacterIsSelected",handleCharacterSelected);		
+				addEventListener("CharacterIsDblClicked",handleCharacterDblClicked);		
 
 				
 
@@ -83,7 +114,7 @@
 					viewAChar.updateStatusBar();
 										
 					viewAChar.index_in_partyview = i;
-										
+				
 					this.addElement(viewAChar);
 				}
 				
@@ -97,7 +128,7 @@
 	
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center"
-						  gap="24"/>
+						  gap="30"/>
 	</s:layout>
 	
 </s:Group>

@@ -25,7 +25,7 @@
 			import mx.managers.SystemManager;
 			
 			import pkgInventory.Item;
-			
+			import pkgParty.CharacterDblClickedEvent;
 			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
 			
@@ -70,9 +70,34 @@
 				addEventListener("finishedLoadingMapXML", start3D);//later, will do this one in Preloader
 				map = new Map();	
 				view.addElement(map);
+				addEventListener(KeyboardEvent.KEY_DOWN, reportKeyDown);
+
 
 			}		
 			
+			public function reportKeyDown(event:KeyboardEvent):void 
+			{ 
+				trace("Key Pressed: " + String.fromCharCode(event.charCode) +         " (character code: " + event.charCode + ")");
+				if (String.fromCharCode(event.charCode) == 'm')
+					hud_map.showMapView();
+				if (String.fromCharCode(event.charCode) == 'c')
+					hud_chat.showChatView();
+				if (String.fromCharCode(event.charCode) == 'l')
+					hud_logout.showLogoutView();
+				if (String.fromCharCode(event.charCode) == 'i') {
+					hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.currChar,0));
+						
+//					hud_attribute.clickHander(event);
+				}
+				if (String.fromCharCode(event.charCode) == 'p') {
+					hud_party.showPartyView();
+					if (party_name.text=="")
+						party_name.text = this.party1.name;
+					else
+						party_name.text = "";
+				}
+
+			} 
 			
 			public function start3D(e:Event):void{
 				//trace(map);
@@ -82,20 +107,65 @@
 				hud_map.showMapView();
 				hud_chat.showChatView();
 				hud_party.showPartyView();
+				hud_dungeon.showDungeonView();
 				
 				//this.setFocus();
 				//this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
 				
 			}
 			
-//			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
-//				//Alert.show(event.char.name.value as String);
-//				//Alert.show("Event change character");
-//				//this.currChar = party1.currChar;
-//			}
 					
 		]]>
 	</fx:Script>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		s|Button#hud_attribute {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_logout {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_settings {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_ranking {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_forum {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_party_groups {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_shop {
+			skinClass: ClassReference("skins.MainHUDButtonSkin");
+		}
+		s|Button#hud_dungeon {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
+		s|Button#hud_world {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
+		s|Button#hud_town {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
+		s|Button#hud_inv_drop {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
+		s|Button#hud_inv_transfer {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
+		s|Button#hud_inv_left {
+			skinClass: ClassReference("skins.InventoryShiftLeftSkin");
+		}
+		s|Button#hud_inv_right {
+			skinClass: ClassReference("skins.InventoryShiftRightSkin");
+		}
+
+	</fx:Style>
 
 	<s:Group id="view" width="900" height="600">
 		<s:layout>
@@ -104,10 +174,33 @@
 		<dungeon:Dungeon_6 id="dungeon3D" width="100%" height = "100%"
 						   map="{this.map}"/>
 
-		
-		<s:Group x="1160" y="800" >
+		<s:Group x="535" y="25" >
 			<s:HGroup>
-				<hud:HudAttribute id="hud_attribute" icon="assets/HUD/Attribute.png" label="" char="{this.currChar}" party="{this.party1}"/>
+				<hud:HudTown id="hud_town" label="T" width="45" height="45"/>
+				<hud:HudWorld id="hud_world" label="W" width="45" height="45"/>
+				<hud:HudDungeon id="hud_dungeon" label="D" width="45" height="45"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="525" >
+			<s:HGroup>
+				<hud:HudPartyGroups id="hud_party_groups" label="Parties"/>
+				<hud:HudShop id="hud_shop" label="Shop"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="655" >
+			<s:HGroup>
+				<hud:HudRanking id="hud_ranking" label="Rankings"/>
+				<hud:HudForum id="hud_forum" label="Forum"/>
+			</s:HGroup>
+			
+		</s:Group>
+		<s:Group x="1040" y="785" >
+			<s:HGroup>
+				<hud:HudSettings id="hud_settings" label="Settings"/>
+				<hud:HudLogout id="hud_logout" label="Logout"/>
+				<hud:HudAttribute id="hud_attribute" label="Attribute" char="{this.currChar}" party="{this.party1}" visible="false"/>			
 				<hud:HudChat id="hud_chat" width="100%" height="100%" visible="false"/>
 				<hud:HudMap id="hud_map" width="100%" height="100%"
 							map="{map}"
@@ -115,7 +208,9 @@
 				<hud:HudParty id="hud_party" width="100%" height="100%" visible="false" aParty="{this.party1}"/>		
 			</s:HGroup>
 			
-		</s:Group>	
+		</s:Group>
+		<s:Label id="party_name" x="{hud_party.width / 2 - (this.party1.name.length / 2)}" y="5" text="{this.party1.name}" fontSize="16" fontWeight="bold"/>
+
 	</s:Group>
 	
 	

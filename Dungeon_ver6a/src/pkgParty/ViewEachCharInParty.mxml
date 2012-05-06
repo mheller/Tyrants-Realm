@@ -2,7 +2,10 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100" height="100"
-		 click="group1_clickHandler(event)">
+		 click="group1_clickHandler(event)" 
+		 doubleClickEnabled="true" 
+		 doubleClick="dbl_clickHandler(event)"
+		 >
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -10,6 +13,7 @@
 	
 	<fx:Metadata>
 		[Event(name="CharacterIsSelected", type="flash.events.Event")]
+		[Event(name="CharacterIsDblClicked", type="flash.events.Event")]
 	</fx:Metadata>
 
 	
@@ -18,6 +22,9 @@
 			import character.Character;
 			
 			import mx.controls.Alert;
+			
+			import spark.filters.BevelFilter;
+			import spark.primitives.Ellipse;
 			
 			[Bindable]
 			public var char:Character;
@@ -32,7 +39,15 @@
 				
 				this.dispatchEvent(eventObject);
 			}
-			
+
+			protected function dbl_clickHandler(event:MouseEvent):void
+			{
+				//var eventObject:Event = new Event("CharacterIsSelected",true);
+				var eventObject:CharacterDblClickedEvent = new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,this.index_in_partyview);				
+				
+				this.dispatchEvent(eventObject);
+			}
+
 			public function updateStatusBar():void{
 				var tmpHealth:int;
 				tmpHealth = ((char.health_max.value as int)*40)/(char.health_max.value as int);
@@ -41,6 +56,13 @@
 				var tmpSpirae:int;
 				tmpSpirae = ((char.spirae_max.value as int)*40)/(char.spirae_max.value as int);
 				this.spiraeStatusBar.setProgress(tmpSpirae,40);
+				
+//				var cropArea:Rectangle = new Rectangle( 0, 0, _width, _height );
+//				var croppedBitmap:Bitmap = new Bitmap( new BitmapData( _width, _height ), PixelSnapping.ALWAYS, true );
+//				croppedBitmap.bitmapData.draw( (displayObject!=null) ? displayObject : stage, new Matrix(1, 0, 0, 1, -_x, -_y) , null, null, cropArea, true );
+				
+				
+				
 			}
 			
 		]]>
@@ -56,11 +78,18 @@
 		<s:layout>
 			<s:BasicLayout/>
 		</s:layout>
+	    <s:BitmapImage id="bmpImg" source="{char.appearance_basebody}" 
+					   width="100" height="100" 					
+				   	   horizontalAlign="center" maskType="clip">
+			
+			<s:mask>
+				<s:BorderContainer id="bmpMask"
+								   cornerRadius="50"
+								   width="{bmpImg.width}" height="{bmpImg.height}" />
+			</s:mask>
 
-	    <s:BitmapImage source="{char.appearance_basebody}"
-					   width="100" height="100"
-				   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_basehead}"
+		</s:BitmapImage>
+		<s:BitmapImage source="{char.appearance_basehead}" 
 					   width="100" height="100"
 					   horizontalAlign="center"/>	
 		<s:BitmapImage source="{char.appearance_torso}"

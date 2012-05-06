@@ -136,22 +136,39 @@ package character
 			
 			//*** HUY create current_items
 			var itemS1:ItemStack = new ItemStack(1);
+			itemS1.owner = this;
 			var itemS2:ItemStack = new ItemStack(1);
+			itemS2.owner = this;
 			var itemS3:ItemStack = new ItemStack(1);
+			itemS3.owner = this;
 			var itemS4:ItemStack = new ItemStack(1);
+			itemS4.owner = this;
 			var itemS5:ItemStack = new ItemStack(1);
+			itemS5.owner = this;
 			var itemS6:ItemStack = new ItemStack(1);
+			itemS6.owner = this;
 			var itemS7:ItemStack = new ItemStack(1);
+			itemS7.owner = this;
 			var itemS8:ItemStack = new ItemStack(1);
+			itemS8.owner = this;
 			var itemS9:ItemStack = new ItemStack(1);
+			itemS9.owner = this;
 			var itemS10:ItemStack = new ItemStack(1);
+			itemS10.owner = this;
 			var itemS11:ItemStack = new ItemStack(1);
+			itemS11.owner = this;
 			var itemS12:ItemStack = new ItemStack(1);
+			itemS12.owner = this;
 			var itemS13:ItemStack = new ItemStack(1);
+			itemS13.owner = this;
 			var itemS14:ItemStack = new ItemStack(1);
+			itemS14.owner = this;
 			var itemS15:ItemStack = new ItemStack(1);
+			itemS15.owner = this;
 			var itemS16:ItemStack = new ItemStack(1);
+			itemS16.owner = this;
 			var itemS17:ItemStack = new ItemStack(1);
+			itemS17.owner = this;
 			
 			
 			current_items.addOneStack(itemS1);
@@ -188,27 +205,49 @@ package character
 
 			// Stacks for Inventory:
 			var iStack1:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack1.owner = this;
 			var iStack2:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack2.owner = this;
 			var iStack3:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack3.owner = this;
 			var iStack4:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack4.owner = this;
 			var iStack5:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack5.owner = this;
 			var iStack6:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack6.owner = this;
 			var iStack7:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack7.owner = this;
 			var iStack8:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack8.owner = this;
 			var iStack9:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack9.owner = this;
 			var iStack10:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack10.owner = this;
 			var iStack11:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack11.owner = this;
 			var iStack12:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack12.owner = this;
 			var iStack13:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack13.owner = this;
 			var iStack14:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack14.owner = this;
 			var iStack15:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack15.owner = this;
 			var iStack16:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack16.owner = this;
 			var iStack17:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack17.owner = this;
 			var iStack18:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack18.owner = this;
 			var iStack19:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack19.owner = this;
 			var iStack20:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack20.owner = this;
 			var iStack21:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			iStack21.owner = this;
 			var iStackBG:ItemStack = new ItemStack(9999);
+			iStackBG.owner = this;
 
 			
 			// Items:
@@ -219,7 +258,7 @@ package character
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 2));
 			item_material.addItem(new Attribute("90000", 5));
-			var newItem1:Item = new Item(1,"Dagger01","a notched dagger","notched daggers", 1, 6, 0, 14, "This notched and dull iron dagger has seen better days.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Dagger_Icon_Rank_01.jpg", item_benefit, item_material);
+			var newItem1:Item = new Item(1,"Dagger","a notched dagger","notched daggers", 1, 6, 0, 14, "This notched and dull iron dagger has seen better days.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Dagger_Icon_Rank_01.jpg", item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -229,14 +268,14 @@ package character
 			item_benefit.addItem(new Attribute("Fitness", 2));
 			item_material.addItem(new Attribute("90000", 5));
 			item_material.addItem(new Attribute("90003", 8));
-			var newItem2:Item = new Item(13,"Broadsword02","an ornate broadsword", "ornate broadswords", 2, 35, 0, 14, "This wickedly curved blade is a common weapon used by mercenaries in close combat situations. It can be founda t almost any shop, but this one is of particularly good quality.", false, true, false, true, true, true, false,"assets/OotE/InvIcons/Broadsword_Icon_Rank_02.jpg", item_benefit, item_material);
+			var newItem2:Item = new Item(13,"Broadsword","an ornate broadsword", "ornate broadswords", 2, 35, 0, 14, "This wickedly curved blade is a common weapon used by mercenaries in close combat situations. It can be founda t almost any shop, but this one is of particularly good quality.", false, true, false, true, true, true, false,"assets/OotE/InvIcons/Broadsword_Icon_Rank_02.jpg", item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 10));		
 			item_material.addItem(new Attribute("90000", 6));
-			var newItem3:Item = new Item(16,"Greatsword01","a worn iron greatsword", "worn iron greatswords", 1, 18, 0, 14, "This huge weapon is a symbol of power, strength and death. Without a doubt, no warrior would be afraid with one of these on his or her hip.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Greatsword_Icon_Rank_01.jpg", item_benefit, item_material);
+			var newItem3:Item = new Item(16,"Greatsword","a worn iron greatsword", "worn iron greatswords", 1, 18, 0, 14, "This huge weapon is a symbol of power, strength and death. Without a doubt, no warrior would be afraid with one of these on his or her hip.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Greatsword_Icon_Rank_01.jpg", item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -245,14 +284,14 @@ package character
 			item_benefit.addItem(new Attribute("Eloquence", 2));
 			item_benefit.addItem(new Attribute("Fitness", 2));		
 			item_material.addItem(new Attribute("90003", 14));
-			var newItem4:Item = new Item(15,"Longsword02","an ornate longsword", "ornate longswords", 2, 35, 0, 14, "This blade can be seen at the hip of many leaders in military and civilian authority. It has the keen edge of a weapon able to perform well in combat but it also has the look many would be proud to have at their side when making a good impression on others.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Longsword_Icon_Rank_02.jpg",item_benefit, item_material);
+			var newItem4:Item = new Item(15,"Longsword","an ornate longsword", "ornate longswords", 2, 35, 0, 14, "This blade can be seen at the hip of many leaders in military and civilian authority. It has the keen edge of a weapon able to perform well in combat but it also has the look many would be proud to have at their side when making a good impression on others.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Longsword_Icon_Rank_02.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
 			item_material.addItem(new Attribute("90002", 5));
-			var newItem5:Item = new Item(4,"Mace01","a bronze mace", "bronze maces", 1, 15, 0, 14, "This utilitarian mace will bash heads with the best of them. However, the relatively soft nature of bronze makes it constantly have a battered look to it.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem5:Item = new Item(4,"Mace","a bronze mace", "bronze maces", 1, 15, 0, 14, "This utilitarian mace will bash heads with the best of them. However, the relatively soft nature of bronze makes it constantly have a battered look to it.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -260,28 +299,28 @@ package character
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 62));		
 			item_benefit.addItem(new Attribute("Fitness", 2));		
 			item_material.addItem(new Attribute("90000", 17));
-			var newItem6:Item = new Item(5,"Mace02","a crowned spike mace", "crowned spiked maces", 2, 33, 0, 14, "This functional iron mace has spikes on the end to allow for a limited form of thrust damage when the unfortunate recipient leaves an opening.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_02.jpg",item_benefit, item_material);
+			var newItem6:Item = new Item(5,"Mace","a crowned spike mace", "crowned spiked maces", 2, 33, 0, 14, "This functional iron mace has spikes on the end to allow for a limited form of thrust damage when the unfortunate recipient leaves an opening.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_02.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 7));		
 			item_material.addItem(new Attribute("90000", 6));
-			var newItem7:Item = new Item(26,"Rapier01","a basic cross-hilt rapier", "cross-hilt rapiers", 1, 12, 0, 14, "This rapier looks fancier than it is. The thin blade makes for good quick movements, but its poor construction makes it vulternatble to heavier blows.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Rapier_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem7:Item = new Item(26,"Rapier","a basic cross-hilt rapier", "cross-hilt rapiers", 1, 12, 0, 14, "This rapier looks fancier than it is. The thin blade makes for good quick movements, but its poor construction makes it vulternatble to heavier blows.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Rapier_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
 			item_material.addItem(new Attribute("90001", 6));
-			var newItem8:Item = new Item(22,"Recurvebow01", "a hunter's recurve bow", "hunter's recurve bows", 1, 17, 1, 14, "This basic curved bow allows for more punch when it hits and, as such, is a favorite of most hunteres as it is rare for game to run far after taken with an arrow from this weapon.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/RecurveBow_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem8:Item = new Item(22,"Recurvebow", "a hunter's recurve bow", "hunter's recurve bows", 1, 17, 1, 14, "This basic curved bow allows for more punch when it hits and, as such, is a favorite of most hunteres as it is rare for game to run far after taken with an arrow from this weapon.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/RecurveBow_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
 			item_material.addItem(new Attribute("90001", 4));
-			var newItem9:Item = new Item(18,"Shortbow01","an oaken shortbow", "oaken shortbows", 1, 11, 1, 14, "This smoothly carved shortbow has limited range but can certainly get the job done. Each end is curved adding a touch of style and strength that only human hunters with elfish training would know how to create.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem9:Item = new Item(18,"Shortbow","an oaken shortbow", "oaken shortbows", 1, 11, 1, 14, "This smoothly carved shortbow has limited range but can certainly get the job done. Each end is curved adding a touch of style and strength that only human hunters with elfish training would know how to create.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -290,14 +329,14 @@ package character
 			item_benefit.addItem(new Attribute("Spirit", 29));
 			item_benefit.addItem(new Attribute("Coordination", 129));		
 			item_material.addItem(new Attribute("90001", 14));
-			var newItem10:Item = new Item(19,"Shortbow02","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_02.jpg",item_benefit, item_material);
+			var newItem10:Item = new Item(19,"Shortbow","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_02.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
 			item_material.addItem(new Attribute("90001", 6));
-			var newItem11:Item = new Item(28,"Staff01","a crystal-topped staff", "crystal-topped staves", 1, 14, 0, 14, "This staff is of very simple design considering the power it holds. A master of the staff can generally beat any sword wielder, even when the staff is as basic as this one.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem11:Item = new Item(28,"Staff","a crystal-topped staff", "crystal-topped staves", 1, 14, 0, 14, "This staff is of very simple design considering the power it holds. A master of the staff can generally beat any sword wielder, even when the staff is as basic as this one.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -306,14 +345,14 @@ package character
 			item_benefit.addItem(new Attribute("Mental", 1));
 			item_benefit.addItem(new Attribute("Fitness", 2));		
 			item_material.addItem(new Attribute("90001", 14));
-			var newItem12:Item = new Item(29,"Staff02"," an enchanted staff", "enchanted staves", 2, 34, 0, 14, "This staff has been infused with power of some kind. The knarled limb looks like it would be more fail than it actually is.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_02.jpg",item_benefit, item_material);
+			var newItem12:Item = new Item(29,"Staff"," an enchanted staff", "enchanted staves", 2, 34, 0, 14, "This staff has been infused with power of some kind. The knarled limb looks like it would be more fail than it actually is.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_02.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 6));		
 			item_material.addItem(new Attribute("90000", 3));
-			var newItem13:Item = new Item(27,"ThrowingKnife01","a training throwing knife", "training throwing knives", 1, 8, 1, 14, "This blade is balanced for throwing. However, it is of poor craftsmanship and has been around the block a few times.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingKnife_Icon_Rank_01.jpg",item_benefit, item_material);
+			var newItem13:Item = new Item(27,"Throwing Knife","a training throwing knife", "training throwing knives", 1, 8, 1, 14, "This blade is balanced for throwing. However, it is of poor craftsmanship and has been around the block a few times.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingKnife_Icon_Rank_01.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -323,7 +362,7 @@ package character
 			item_benefit.addItem(new Attribute("Fitness", 1));		
 			item_material.addItem(new Attribute("90001", 3));
 			item_material.addItem(new Attribute("90003", 10));			
-			var newItem14:Item = new Item(25,"ThrowingAxe02","a hooked throwing axe", "hooked throwing axes", 2, 34, 1, 14, "One glance at this axe reminds you of the old saying: never bring a sword to a ranged fight. Without a doubt, you would want this on your side if you faced someone with a sword.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingAxe_Icon_Rank_02.jpg",item_benefit, item_material);
+			var newItem14:Item = new Item(25,"Throwing Axe","a hooked throwing axe", "hooked throwing axes", 2, 34, 1, 14, "One glance at this axe reminds you of the old saying: never bring a sword to a ranged fight. Without a doubt, you would want this on your side if you faced someone with a sword.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingAxe_Icon_Rank_02.jpg",item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -333,9 +372,23 @@ package character
 			item_benefit.addItem(new Attribute("Spirae", 12));		
 			item_material.addItem(new Attribute("90004", 14));
 			item_material.addItem(new Attribute("90005", 2));
-			var newItem15:Item = new Item(7,"Wand02","a bloody yew wand", "blood yew wands", 2, 35, 0, 14, "This wand was obviously put together by someone of skill years ago. You can sense the power contained within it by the merest of touches.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Wand_Icon_Rank_02.jpg", item_benefit, item_material);
+			var newItem15:Item = new Item(7,"Wand","a bloody yew wand", "blood yew wands", 2, 35, 0, 14, "This wand was obviously put together by someone of skill years ago. You can sense the power contained within it by the merest of touches.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Wand_Icon_Rank_02.jpg", item_benefit, item_material);
 
 			
+			item_benefit.removeAll();
+			item_material.removeAll();
+			item_benefit.addItem(new Attribute("Fitness", 2));
+			item_material.addItem(new Attribute("90005", 5));
+			var newItem16:Item = new Item(10000,"Ring","a plain gold ring", "plain gold rings", 1, 20, 10, 9, "This simple loop of metal is commonly worn by men of any race as it symbolizes unity and strength.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_01.jpg", item_benefit, item_material);
+
+			item_benefit.removeAll();
+			item_material.removeAll();
+			item_benefit.addItem(new Attribute("Spirae", 20));
+			item_benefit.addItem(new Attribute("Mental", 2));
+			item_material.addItem(new Attribute("90005", 7));
+			item_material.addItem(new Attribute("90010", 12));
+			var newItem17:Item = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.jpg", item_benefit, item_material);
+
 			// push items to stacks
 			iStack1.pushItem(newItem1);
 			iStack1.owner = this;
@@ -362,8 +415,10 @@ package character
 			iStack11.owner = this;
 			iStack12.pushItem(newItem15);
 			iStack12.owner = this;
-			iStack13.owner = this; // Empty Inv slot
-			iStack14.owner = this; // Empty Inv slot
+			iStack13.pushItem(newItem16);
+			iStack13.owner = this; 
+			iStack14.pushItem(newItem17);
+			iStack14.owner = this; 
 			iStack15.owner = this; // Empty Inv slot
 			iStack16.owner = this; // Empty Inv slot
 			iStack17.owner = this; // Empty Inv slot

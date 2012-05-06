@@ -3,14 +3,14 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark" 
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  emphasized="{character_view.visible}"
-		  label="Attribute"
-		  click="clickHander(event);"
+		  label="Attribute" 
+		  click="clickHander(event);" height="72" width="72"
 		  >
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	
-	<fx:Script>
+		
+	<fx:Script>			
 		<![CDATA[			
 			import character.Character;
 			
@@ -33,9 +33,9 @@
 			[Bindable]
 			public var character_view:CharacterView;
 				
-			private function clickHander(e:Event):void{		
+			public function clickHander(e:Event):void{		
 				if (character_view == null){							
-					character_view= PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
+					character_view = PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
 					character_view.char = char;	
 					character_view.party = this.party;
 				}
@@ -45,7 +45,7 @@
 					}
 					else{
 						character_view.visible = false;
-//						character_view = null;
+						//						character_view = null;
 					}
 				}
 			}

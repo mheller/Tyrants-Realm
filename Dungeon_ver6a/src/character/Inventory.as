@@ -89,6 +89,233 @@ package character
 			return false;
 		}
 
+		public function nextAvailableInventorySpot(src:ItemStack):ItemStack {
+			var tempItemStack:ItemStack;
+			var source:ItemStack = src;
+			tempItemStack = this.iStack1;   // inv slot 1
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+					
+				}						
+			}	
+			tempItemStack = this.iStack2; // inv slot 2
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack3; // inv slot 3
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;					
+				}						
+			}	
+			tempItemStack = this.iStack4; // inv slot 4
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;					
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+					
+				}						
+			}	
+			tempItemStack = this.iStack5;   // inv slot 5
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack6; // inv slot 6
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;			
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+					
+				}						
+			}	
+			tempItemStack = this.iStack7;  // inv slot 7
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+					
+				}						
+			}	
+			tempItemStack = this.iStack8; // inv slot 8
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack9;  // inv slot 9
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack10;  // inv slot 10
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+				
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+					
+				}						
+			}	
+			tempItemStack = this.iStack11;  // inv slot 11
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack12;  // inv slot 12
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack13;  // inv slot 13
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack14;  // inv slot 14
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack15;  // inv slot 15
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack16;  // inv slot 16
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack17;  // inv slot 17
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack18;  // inv slot 18
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack19;  // inv slot 19
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack20;  // inv slot 20
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			tempItemStack = this.iStack21;  // inv slot 21
+			if (tempItemStack.currSize == 0) {
+				// First open spot
+				return tempItemStack;
+			}
+			else { // Not empty, but maybe stackable?
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+					return tempItemStack;
+				}						
+			}	
+			return null;			
+		}
 
 //		//@ Hoang: add a new Group to inventory
 //		public function addGroup(newGroup:ItemGroup) :Boolean{

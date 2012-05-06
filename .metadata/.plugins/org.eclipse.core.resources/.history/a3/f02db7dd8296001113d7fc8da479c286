@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:resizableTitleWindow="resizableTitleWindow.*"
+			   xmlns:hud = "hud.*"
+			   xmlns:pkgInventory="pkgInventory.*"
+			   width="100%"  height="100%"
+			   creationComplete="creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<!--<pkgInventory:Inventory id="inventory" />-->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			import character.Inventory;
+			
+			import mx.effects.easing.Bounce;
+			import mx.events.FlexEvent;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemGroup;
+			import pkgInventory.ItemGroupView;
+			
+			import spark.components.NavigatorContent;
+			
+			[Bindable]
+			public var inventory:Inventory;
+			
+			[Bindable]
+			public var char:Character;
+						
+			
+			/* @Hoang: this function initializes the view for inventory
+				= create number of item groups based on current size of inventory
+				each item group view is a navigation container which is added to the inventory window
+			*/
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				//this.inventory = char.inventory;
+				
+//				for(var i:int =0; i<inventory.currSize;i++){
+//					//var iGroupNavContent:ItemGroupView = new ItemGroupView();	// each groupView is a nav content
+//					//iGroupNavContent.itemGroup = inventory.list_itemGroup.getItemAt(i) as ItemGroup;
+//					//iGroupNavContent.label =iGroupNavContent.itemGroup.groupName;
+//					//accordion.addElement(iGroupNavContent);
+//				}				
+			}
+						
+		]]>
+	</fx:Script>		
+
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<pkgInventory:ItemStackView id="iStackView_Bg" itemStack="{inventory.iStackBG}" x="-1" y="0" width="230" height="611"/>
+
+	<s:Group id="inventory_cells_container"
+			 width="100%" height="100%">
+
+		<s:layout>
+			<s:TileLayout>
+				<s:requestedColumnCount>3</s:requestedColumnCount>
+			</s:TileLayout>
+		</s:layout>
+
+		<pkgInventory:ItemStackView id="iStackView_1" itemStack="{inventory.iStack1}"/>
+		<pkgInventory:ItemStackView id="iStackView_2" itemStack="{inventory.iStack2}"/>
+		<pkgInventory:ItemStackView id="iStackView_3" itemStack="{inventory.iStack3}"/>
+		<pkgInventory:ItemStackView id="iStackView_4" itemStack="{inventory.iStack4}"/>
+		<pkgInventory:ItemStackView id="iStackView_5" itemStack="{inventory.iStack5}"/>
+		<pkgInventory:ItemStackView id="iStackView_6" itemStack="{inventory.iStack6}"/>
+		<pkgInventory:ItemStackView id="iStackView_7" itemStack="{inventory.iStack7}"/>
+		<pkgInventory:ItemStackView id="iStackView_8" itemStack="{inventory.iStack8}"/>
+		<pkgInventory:ItemStackView id="iStackView_9" itemStack="{inventory.iStack9}"/>
+		<pkgInventory:ItemStackView id="iStackView_10" itemStack="{inventory.iStack10}"/>
+		<pkgInventory:ItemStackView id="iStackView_11" itemStack="{inventory.iStack11}"/>
+		<pkgInventory:ItemStackView id="iStackView_12" itemStack="{inventory.iStack12}"/>
+		<pkgInventory:ItemStackView id="iStackView_13" itemStack="{inventory.iStack13}"/>
+		<pkgInventory:ItemStackView id="iStackView_14" itemStack="{inventory.iStack14}"/>
+		<pkgInventory:ItemStackView id="iStackView_15" itemStack="{inventory.iStack15}"/>
+		<pkgInventory:ItemStackView id="iStackView_16" itemStack="{inventory.iStack16}"/>
+		<pkgInventory:ItemStackView id="iStackView_17" itemStack="{inventory.iStack17}"/>
+		<pkgInventory:ItemStackView id="iStackView_18" itemStack="{inventory.iStack18}"/>
+		<pkgInventory:ItemStackView id="iStackView_19" itemStack="{inventory.iStack19}"/>
+		<pkgInventory:ItemStackView id="iStackView_20" itemStack="{inventory.iStack20}"/>
+		<pkgInventory:ItemStackView id="iStackView_21" itemStack="{inventory.iStack21}"/>
+	
+<!--	<resizableTitleWindow:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</resizableTitleWindow:layout>
+-->	
+<!--	<mx:Accordion id="accordion" 
+				  openEasingFunction="{Bounce.easeOut}" 
+				  openDuration="1000"/>
+-->	
+	</s:Group>
+	<s:Group  x="35" y="550">		
+		<s:HGroup>
+			<hud:HudInventoryDrop id="hud_inv_drop" label="Drop" width="50" height="50"/>
+		</s:HGroup>	
+	</s:Group>
+
+</s:Group>

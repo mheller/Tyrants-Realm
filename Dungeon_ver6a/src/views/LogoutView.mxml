@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+			   title="Logout"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   close="handleCloseEvent();"
+			   x="380"
+			   y="300"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			private function handleCloseEvent():void{
+				visible = false;		
+			}		
+		]]>
+	</fx:Script>
+	
+	<s:Group>
+		<s:Label x="155" y="125" text="Under Construction" verticalAlign="middle"/>
+	</s:Group>
+</s:TitleWindow>

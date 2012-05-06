@@ -47,9 +47,12 @@
 			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
 			
-			import spark.filters.DropShadowFilter;
+//			import spark.filters.DropShadowFilter;
+			import spark.filters.GlowFilter;
 			import spark.primitives.BitmapImage;
 			import spark.primitives.Graphic;
+			
+			import views.CurrentItemListView;
 			
 			[Bindable]
 			public var itemStack:ItemStack;
@@ -117,8 +120,72 @@
 					
 					//@huy : 2nd : if move insides inventory or character
 					else{
-						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) return;   // TODO: Hack so inv 2 inv isn't done. Will need to change as dual item slots are available.
+//						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) return;   // TODO: Hack so inv 2 inv isn't done. Will need to change as dual item slots are available.
 																								   // This solution may also need redesign as stacked items are properly implemented
+						// Equipped slot swapping for dual slots.
+						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) {  // Currently equipped item moving to another currently equipped slot.
+						   var tempSlot:int = source.itemStack.item.itemSlot;
+						   if ((tempSlot == 9) || (tempSlot == 12) || (tempSlot == 13)) {   // Dual slot item
+							   var tempCurr:CurrentItemListView = (CurrentItemListView)(target.automationOwner);
+							   var tempStack:ItemStack = tempCurr.current_items.list_itemStacks.getItemAt(10);
+							   if (tempSlot == 9) {   // Ring
+								   var tempStack1:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(9));
+								   var tempStack2:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(10));
+								   if ( (tempStack1==target.itemStack) || (tempStack2==target.itemStack)) {   
+
+									   if (target.itemStack.currSize == 0){
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+									   }
+									   else {
+										   var storage:ItemStack = new ItemStack(1);
+										   storage.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage);
+									   }
+								   }
+								   return;
+							   }
+							   if (tempSlot == 12) {   // Belt Attachment
+								   var tempStack3:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(13));
+								   var tempStack4:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(14));
+								   if ( (tempStack3==target.itemStack) || (tempStack4==target.itemStack)) {   
+									   
+									   if (target.itemStack.currSize == 0){
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+									   }
+									   else {
+										   var storage2:ItemStack = new ItemStack(1);
+										   storage2.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage2);
+									   }
+								   }
+								   return;
+							   }
+							   if (tempSlot == 13) {   // Ring
+								   var tempStack5:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(15));
+								   var tempStack6:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(16));
+								   if ( (tempStack5==target.itemStack) || (tempStack6==target.itemStack)) {   
+									   
+									   if (target.itemStack.currSize == 0){
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+									   }
+									   else {
+										   var storage3:ItemStack = new ItemStack(1);
+										   storage3.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage3);
+									   }
+								   }
+								   return;
+							   }
+						   }
+						   else return;  // Do nothing if not a dual slot item
+						}
+						
 						if (target.itemStack.maxSize == 9999) return;   // Trying to drop on the HUD background
 
 						// 1st case: 2 groups of the same items
@@ -134,9 +201,9 @@
 								// this will enable swapping itemstack in the same group such as : char items or inventory's group
 								// with the assumption that item stack in the same group should have the same size.
 								if(target.itemStack.maxSize == source.itemStack.maxSize){
-									var tempStack3:ItemStack = target.itemStack;
+									var tempStack9:ItemStack = target.itemStack;
 									target.itemStack = source.itemStack;
-									source.itemStack = tempStack3;
+									source.itemStack = tempStack9;
 								}
 							}
 						}
@@ -188,14 +255,12 @@
 					
 					
 					// @HOANG: highlight the moved source item
-					var filter : DropShadowFilter = new DropShadowFilter();
-					filter.blurX = 4;
-					filter.blurY = 4;
-					filter.quality = 2;
+					var filter : GlowFilter = new GlowFilter();
+					filter.blurX = 14;
+					filter.blurY = 14;
+					filter.quality = 6;
 					filter.alpha = 0.5;
-					filter.angle = 45;
-					filter.color = 0xFFFF0000;
-					filter.distance = 6;
+					filter.color = 0xFFD520;
 					filter.inner = false;
 					this.imgOrig.filters = [ filter ];    
 					
