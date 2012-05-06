@@ -52,7 +52,6 @@
 				this.parentApplication.hud_party.party_view.handleCharacterSelected(new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,currIndex));
 				this.parentApplication.hud_party.party_view.character_view=null;
 				this.parentApplication.hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
-//				this.parentApplication.hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
 			}	
 			
 		]]>
