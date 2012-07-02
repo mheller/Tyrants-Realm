@@ -30,27 +30,27 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.name.text}"/>
+			<s:Label text="{char.name.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.name.value}"/>
+				<s:Label id="char_name" text="{char.name.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.gender.text}"/>
+			<s:Label text="{char.gender.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.gender.value}"/>
+				<s:Label id="char_gender" text="{char.gender.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.character_class.text}"/>
+			<s:Label text="{char.character_class.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.character_class.value}"/>
+				<s:Label id="char_class" text="{char.character_class.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -66,58 +66,58 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.health_current.text}"/>
+			<s:Label text="{char.health_current.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.health_current.value}"/>
+				<s:Label id="health_curr" text="{char.health_current.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.health_max.value}"/>
+				<s:Label id="health_max" text="{char.health_max.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.spirae_current.text}"/>
+			<s:Label id="spir_name" text="{char.spirae_current.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.spirae_current.value}"/>
+				<s:Label id="spirae_curr" text="{char.spirae_current.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.spirae_max.value}"/>
+				<s:Label id="spirae_max" text="{char.spirae_max.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.total_experience.text}"/>
+			<s:Label text="{char.total_experience.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.total_experience.value}"/>
+				<s:Label id="tot_exp" text="{char.total_experience.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.experience_to_level.text}"/>
+			<s:Label text="{char.experience_to_level.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.experience_to_level.value}"/>
+				<s:Label id="exp_to_level" text="{char.experience_to_level.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.level.text}"/>
+			<s:Label text="{char.level.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.level.value}"/>
+				<s:Label id="char_level" text="{char.level.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 	
 		<mx:HRule width="100%"/>
 
 		<s:Group width="100%">			
-			<s:Label text="{char.career_changes.text}"/>
+			<s:Label text="{char.career_changes.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.career_changes.value}"/>
+				<s:Label id="char_career" text="{char.career_changes.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -134,55 +134,55 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.fitness.text}"/>
+			<s:Label text="{char.fitness.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.fitness.value}"/>
+				<s:Label id="fit_curr" text="{char.fitness.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.fitness.max_value}"/>
+				<s:Label id="fit_max" text="{char.fitness.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.mental_prowess.text}"/>
+			<s:Label text="{char.mental_prowess.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.mental_prowess.value}"/>
+				<s:Label id="ment_curr" text="{char.mental_prowess.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.mental_prowess.max_value}"/>
+				<s:Label id="ment_max" text="{char.mental_prowess.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.spirituality.text}"/>
+			<s:Label text="{char.spirituality.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.spirituality.value}"/>
+				<s:Label id="spir_curr" text="{char.spirituality.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.spirituality.max_value}"/>
+				<s:Label id="spir_max" text="{char.spirituality.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.eloquence.text}"/>
+			<s:Label text="{char.eloquence.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.eloquence.value}"/>
+				<s:Label id="elo_curr" text="{char.eloquence.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.eloquence.max_value}"/>
+				<s:Label id="elo_max" text="{char.eloquence.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.coordination.text}"/>
+			<s:Label text="{char.coordination.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.coordination.value}"/>
+				<s:Label id="coor_curr" text="{char.coordination.getValue()}"/>
 				<s:Label text="/"/>
-				<s:Label text="{char.coordination.max_value}"/>
+				<s:Label id="coor_max" text="{char.coordination.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -198,63 +198,63 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.hit.text}"/>
+			<s:Label text="{char.hit.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.hit.value}"/>
+				<s:Label id="hit" text="{char.hit.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.avoidance.text}"/>
+			<s:Label text="{char.avoidance.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.avoidance.value}"/>
+				<s:Label id="avoid" text="{char.avoidance.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="Min. {char.phys_dmg.text}"/>
+			<s:Label text="Min. {char.phys_dmg.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.phys_dmg.value}"/>
+				<s:Label id="phys_dmg_min" text="{char.phys_dmg.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 	
 		<s:Group width="100%">			
-			<s:Label text="Max. {char.phys_dmg.text}"/>
+			<s:Label text="Max. {char.phys_dmg.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.phys_dmg.max_value}"/>
+				<s:Label id="phys_dmg_max" text="{char.phys_dmg.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.damage_type.text}"/>
+			<s:Label text="{char.damage_type.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.damage_type.value}"/>
+				<s:Label id="dmg_type" text="{char.damage_type.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="Min. {char.magic_dmg.text}"/>
+			<s:Label text="Min. {char.magic_dmg.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.magic_dmg.value}"/>
+				<s:Label id="mag_dmg_min" text="{char.magic_dmg.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="Max. {char.magic_dmg.text}"/>
+			<s:Label text="Max. {char.magic_dmg.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.magic_dmg.max_value}"/>
+				<s:Label id="mag_dmg_max" text="{char.magic_dmg.getMaxValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
@@ -270,36 +270,36 @@
 		</s:Group>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.damage_resistance.text}"/>
+			<s:Label text="{char.damage_resistance.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.damage_resistance.value}"/>
+				<s:Label id="dmg_res" text="{char.damage_resistance.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.cold_resistance.text}"/>
+			<s:Label text="{char.cold_resistance.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.cold_resistance.value}"/>
+				<s:Label id="cold_res" text="{char.cold_resistance.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.heat_resistance.text}"/>
+			<s:Label text="{char.heat_resistance.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.heat_resistance.value}"/>
+				<s:Label id="heat_res" text="{char.heat_resistance.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		
 		<mx:HRule width="100%"/>
 		
 		<s:Group width="100%">			
-			<s:Label text="{char.magic_resistance.text}"/>
+			<s:Label text="{char.magic_resistance.getText()}"/>
 			<s:HGroup  right="0" >
-				<s:Label text="{char.magic_resistance.value}"/>
+				<s:Label id="mag_res" text="{char.magic_resistance.getValue()}"/>
 			</s:HGroup>				
 		</s:Group>
 		

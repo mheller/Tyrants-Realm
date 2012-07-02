@@ -28,7 +28,7 @@
 			//public var inv:pkgInventory.InventoryView_old;
 			
 			public function transferItem():void{
-				
+	/*			
 				if (transferView == null){
 					transferView = PopUpManager.createPopUp(this, TransferView,false) as TransferView;
 					transferView.setStyle("skinClass", ResizableTitleWindowSkin);
@@ -40,7 +40,7 @@
 						transferView.visible = false;
 				}
 				
-				
+		*/		
 				
 			}	
 			

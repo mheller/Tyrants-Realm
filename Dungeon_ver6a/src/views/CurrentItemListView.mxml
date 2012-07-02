@@ -11,6 +11,8 @@
 		<![CDATA[
 			import character.Character;
 			
+			import hud.HudAttribute;
+			
 			import mx.events.FlexEvent;
 			
 			import pkgInventory.Item;
@@ -21,13 +23,12 @@
 			[Bindable]
 			public var current_items:ItemGroup;
 			
-
-			
 			[Bindable]
 			public var start_index:int;
 			
 			[Bindable]
 			public var char:Character;
+
 			
 			public function creationCompleteHandler(event:FlexEvent):void
 			{
@@ -35,146 +36,208 @@
 
 			}
 			public function createListView():void{
-				this.removeAllElements();
+//				this.removeAllElements();
+				
+				if (equipped_slot0.itemStack == null) return;
+				
+				if (equipped_slot0.itemStack.currSize == 0) {
+					equipped_slot0.itemStack.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+				} 
+				if (equipped_slot1.itemStack.currSize == 0) {
+					equipped_slot1.itemStack.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+				}
+				if (equipped_slot2.itemStack.currSize == 0) {
+					equipped_slot2.itemStack.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+				}
+				if (equipped_slot3.itemStack.currSize == 0) {
+					equipped_slot3.itemStack.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+				}
+				if (equipped_slot4.itemStack.currSize == 0) {
+					equipped_slot4.itemStack.displayPath = "assets/HUD/Inventory/Icons/Feet.jpg";
+				}
+				if (equipped_slot5.itemStack.currSize == 0) {
+					equipped_slot5.itemStack.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+				}
+				if (equipped_slot6.itemStack.currSize == 0) {
+					equipped_slot6.itemStack.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+				}
+				if (equipped_slot7.itemStack.currSize == 0) {
+					equipped_slot7.itemStack.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+				}
+				if (equipped_slot8.itemStack.currSize == 0) {
+					equipped_slot8.itemStack.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+				}
+				if (equipped_slot9.itemStack.currSize == 0) {
+					equipped_slot9.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+				}
+				if (equipped_slot10.itemStack.currSize == 0) {
+					equipped_slot10.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+				}
+				if (equipped_slot11.itemStack.currSize == 0) {
+					equipped_slot11.itemStack.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+				}
+				if (equipped_slot12.itemStack.currSize == 0) {
+					equipped_slot12.itemStack.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+				}
+				if (equipped_slot13.itemStack.currSize == 0) {
+					equipped_slot13.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+				}
+				if (equipped_slot14.itemStack.currSize == 0) {
+					equipped_slot14.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+				}
+				if (equipped_slot15.itemStack.currSize == 0) {
+					equipped_slot15.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+				}
+				if (equipped_slot16.itemStack.currSize == 0) {
+					equipped_slot16.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+				}
+			}
+			
+		
+			public function fetchISVBySlot(slot:int):ItemStackView {
+				if (slot < 0 || slot > 16) return null;
+				
+				if (slot == 0) return equipped_slot0;
+				if (slot == 1) return equipped_slot1;
+				if (slot == 2) return equipped_slot2;
+				if (slot == 3) return equipped_slot3;
+				if (slot == 4) return equipped_slot4;
+				if (slot == 5) return equipped_slot5;
+				if (slot == 6) return equipped_slot6;
+				if (slot == 7) return equipped_slot7;
+				if (slot == 8) return equipped_slot8;
+				if (slot == 9) return equipped_slot9;
+				if (slot == 10) return equipped_slot10;
+				if (slot == 11) return equipped_slot11;
+				if (slot == 12) return equipped_slot12;
+				if (slot == 13) return equipped_slot13;
+				if (slot == 14) return equipped_slot14;
+				if (slot == 15) return equipped_slot15;
+				if (slot == 16) return equipped_slot16;
+				return null;
+			}
+			
+			// Take an ItemStack and look to see if its equipped. If so, return the ISV for the slot its occupied in.
+			public function fetchEquippedISV(stack:ItemStack):ItemStackView {
+				if (stack==null) return null; 
 
-				trace("current list max size:"+current_items.maxSize);				
-				for(var i:int =start_index; i<17;i++){ 
-					if (i == 17) continue; // Skip the last as there are an odd number of equipped slots.
-					var iStackView:ItemStackView = new ItemStackView();	// each groupView is a nav content
-					iStackView.itemStack = current_items.list_itemStacks.getItemAt(i) as ItemStack;
-					switch (i){
-						case 0:			
-										iStackView.x="15";
-										iStackView.y="220";
-										break;
-						case 1:			
-										iStackView.x="227";
-										iStackView.y="5";
-										break;
-						case 2:			
-										iStackView.x="15";
-										iStackView.y="297";
-										break;
-						case 3:			
-										iStackView.x="423";
-										iStackView.y="451";
-										break;
-						case 4:			
-										iStackView.x="227";
-										iStackView.y="515";
-										break;
-						case 5:			
-										iStackView.x="423";
-										iStackView.y="297";
-										break;
-						case 6:			
-										iStackView.x="15";
-										iStackView.y="143";
-										break;
-						case 7:			
-										iStackView.x="423";
-										iStackView.y="143";
-										break;
-						case 8:			
-										iStackView.x="423";
-										iStackView.y="220";
-										break;
-						case 9:			
-										iStackView.x="15";
-										iStackView.y="374";
-										break;
-						case 10:		
-										iStackView.x="423";
-										iStackView.y="374";
-										break;
-						case 11:		
-										iStackView.x="227";
-										iStackView.y="82";
-										break;
-						case 12:		
-										iStackView.x="15";
-										iStackView.y="451";
-										break;
-						case 13:		
-										iStackView.x="130";
-										iStackView.y="533";
-										break;
-						case 14:		
-										iStackView.x="324";
-										iStackView.y="533";
-										break;
-						case 15:		
-										iStackView.x="130";
-										iStackView.y="44";
-										break;
-						case 16:		
-										iStackView.x="324";
-										iStackView.y="44";
-										break;
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 0) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
-					} 
-					if (iStackView.itemStack.currSize == 0 && i == 1) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 2) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 3) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 4) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Feet.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 5) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 6) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 7) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 8) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 9) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 10) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 11) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 12) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 13) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 14) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 15) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
-					}
-					if (iStackView.itemStack.currSize == 0 && i == 16) {
-						iStackView.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
-					}
-					iStackView.width = 72;
-					iStackView.height = 72;
-					//iStackView.lblCurrSize.visible = false;
-					this.addElement(iStackView);
-				}	
+				if (equipped_slot0.itemStack == stack) return equipped_slot0;				
+				if (equipped_slot1.itemStack == stack) return equipped_slot1;				
+				if (equipped_slot2.itemStack == stack) return equipped_slot2;				
+				if (equipped_slot3.itemStack == stack) return equipped_slot3;				
+				if (equipped_slot4.itemStack == stack) return equipped_slot4;				
+				if (equipped_slot5.itemStack == stack) return equipped_slot5;				
+				if (equipped_slot6.itemStack == stack) return equipped_slot6;				
+				if (equipped_slot7.itemStack == stack) return equipped_slot7;				
+				if (equipped_slot8.itemStack == stack) return equipped_slot8;				
+				if (equipped_slot9.itemStack == stack) return equipped_slot9;				
+				if (equipped_slot10.itemStack == stack) return equipped_slot10;				
+				if (equipped_slot11.itemStack == stack) return equipped_slot11;				
+				if (equipped_slot12.itemStack == stack) return equipped_slot12;				
+				if (equipped_slot13.itemStack == stack) return equipped_slot13;				
+				if (equipped_slot14.itemStack == stack) return equipped_slot14;				
+				if (equipped_slot15.itemStack == stack) return equipped_slot15;				
+				if (equipped_slot16.itemStack == stack) return equipped_slot16;				
+				
+				return null;
+
 			}
 
+			public function updateEquippedItemTooltips():void {
+				
+				equipped_slot0.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(0) as ItemStack;
+				if (equipped_slot0.itemStack == null || equipped_slot0.itemStack.item == null) equipped_slot0.toolTip = "";
+				else equipped_slot0.toolTip = equipped_slot0.itemStack.item.itemTooltip;
+
+				equipped_slot1.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(1) as ItemStack;
+				if (equipped_slot1.itemStack == null || equipped_slot1.itemStack.item == null) equipped_slot1.toolTip = "";
+				else equipped_slot1.toolTip = equipped_slot1.itemStack.item.itemTooltip;
+
+				equipped_slot2.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(2) as ItemStack;
+				if (equipped_slot2.itemStack == null || equipped_slot2.itemStack.item == null) equipped_slot2.toolTip = "";
+				else equipped_slot2.toolTip = equipped_slot2.itemStack.item.itemTooltip;
+
+				equipped_slot3.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(3) as ItemStack;
+				if (equipped_slot3.itemStack == null || equipped_slot3.itemStack.item == null) equipped_slot3.toolTip = "";
+				else equipped_slot3.toolTip = equipped_slot3.itemStack.item.itemTooltip;
+
+				equipped_slot4.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(4) as ItemStack;
+				if (equipped_slot4.itemStack == null || equipped_slot4.itemStack.item == null) equipped_slot4.toolTip = "";
+				else equipped_slot4.toolTip = equipped_slot4.itemStack.item.itemTooltip;
+
+				equipped_slot5.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(5) as ItemStack;
+				if (equipped_slot5.itemStack == null || equipped_slot5.itemStack.item == null) equipped_slot5.toolTip = "";
+				else equipped_slot5.toolTip = equipped_slot5.itemStack.item.itemTooltip;
+
+				equipped_slot6.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(6) as ItemStack;
+				if (equipped_slot6.itemStack == null || equipped_slot6.itemStack.item == null) equipped_slot6.toolTip = "";
+				else equipped_slot6.toolTip = equipped_slot6.itemStack.item.itemTooltip;
+
+				equipped_slot7.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(7) as ItemStack;
+				if (equipped_slot7.itemStack == null || equipped_slot7.itemStack.item == null) equipped_slot7.toolTip = "";
+				else equipped_slot7.toolTip = equipped_slot7.itemStack.item.itemTooltip;
+
+				equipped_slot8.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(8) as ItemStack;
+				if (equipped_slot8.itemStack == null || equipped_slot8.itemStack.item == null) equipped_slot8.toolTip = "";
+				else equipped_slot8.toolTip = equipped_slot8.itemStack.item.itemTooltip;
+
+				equipped_slot9.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(9) as ItemStack;
+				if (equipped_slot9.itemStack == null || equipped_slot9.itemStack.item == null) equipped_slot9.toolTip = "";
+				else equipped_slot9.toolTip = equipped_slot9.itemStack.item.itemTooltip;
+
+				equipped_slot10.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(10) as ItemStack;
+				if (equipped_slot10.itemStack == null || equipped_slot10.itemStack.item == null) equipped_slot10.toolTip = "";
+				else equipped_slot10.toolTip = equipped_slot10.itemStack.item.itemTooltip;
+
+				equipped_slot11.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(11) as ItemStack;
+				if (equipped_slot11.itemStack == null || equipped_slot11.itemStack.item == null) equipped_slot11.toolTip = "";
+				else equipped_slot11.toolTip = equipped_slot11.itemStack.item.itemTooltip;
+
+				equipped_slot12.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(12) as ItemStack;
+				if (equipped_slot12.itemStack == null || equipped_slot12.itemStack.item == null) equipped_slot12.toolTip = "";
+				else equipped_slot12.toolTip = equipped_slot12.itemStack.item.itemTooltip;
+
+				equipped_slot13.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(13) as ItemStack;
+				if (equipped_slot13.itemStack == null || equipped_slot13.itemStack.item == null) equipped_slot13.toolTip = "";
+				else equipped_slot13.toolTip = equipped_slot13.itemStack.item.itemTooltip;
+
+				equipped_slot14.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(14) as ItemStack;
+				if (equipped_slot14.itemStack == null || equipped_slot14.itemStack.item == null) equipped_slot14.toolTip = "";
+				else equipped_slot14.toolTip = equipped_slot14.itemStack.item.itemTooltip;
+
+				equipped_slot15.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(15) as ItemStack;
+				if (equipped_slot15.itemStack == null || equipped_slot15.itemStack.item == null) equipped_slot15.toolTip = "";
+				else equipped_slot15.toolTip = equipped_slot15.itemStack.item.itemTooltip;
+
+				equipped_slot16.itemStack = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.current_items.list_itemStacks.getItemAt(16) as ItemStack;
+				if (equipped_slot16.itemStack == null || equipped_slot16.itemStack.item == null) equipped_slot16.toolTip = "";
+				else equipped_slot16.toolTip = equipped_slot16.itemStack.item.itemTooltip;
+
+			
+			}
+			
+			
 		]]>
 	</fx:Script>
-
 	<s:layout>
 		<s:BasicLayout/>
 	</s:layout>
+	<pkgInventory:ItemStackView id="equipped_slot0" itemStack="{current_items.list_itemStacks.getItemAt(0) as ItemStack}" width="72" height="72" x="15" y="220"/>
+	<pkgInventory:ItemStackView id="equipped_slot1" itemStack="{current_items.list_itemStacks.getItemAt(1) as ItemStack}" width="72" height="72" x="227" y="5"/>
+	<pkgInventory:ItemStackView id="equipped_slot2" itemStack="{current_items.list_itemStacks.getItemAt(2) as ItemStack}" width="72" height="72" x="15" y="297"/>
+	<pkgInventory:ItemStackView id="equipped_slot3" itemStack="{current_items.list_itemStacks.getItemAt(3) as ItemStack}" width="72" height="72" x="423" y=" 451"/>
+	<pkgInventory:ItemStackView id="equipped_slot4" itemStack="{current_items.list_itemStacks.getItemAt(4) as ItemStack}" width="72" height="72" x="227" y="515"/>
+	<pkgInventory:ItemStackView id="equipped_slot5" itemStack="{current_items.list_itemStacks.getItemAt(5) as ItemStack}" width="72" height="72" x="423" y="297"/>
+	<pkgInventory:ItemStackView id="equipped_slot6" itemStack="{current_items.list_itemStacks.getItemAt(6) as ItemStack}" width="72" height="72" x="15" y="143"/>
+	<pkgInventory:ItemStackView id="equipped_slot7" itemStack="{current_items.list_itemStacks.getItemAt(7) as ItemStack}" width="72" height="72" x="423" y="143"/>
+	<pkgInventory:ItemStackView id="equipped_slot8" itemStack="{current_items.list_itemStacks.getItemAt(8) as ItemStack}" width="72" height="72" x="423" y="220"/>
+	<pkgInventory:ItemStackView id="equipped_slot9" itemStack="{current_items.list_itemStacks.getItemAt(9) as ItemStack}" width="72" height="72" x="15" y="374"/>
+	<pkgInventory:ItemStackView id="equipped_slot10" itemStack="{current_items.list_itemStacks.getItemAt(10) as ItemStack}" width="72" height="72" x="423" y="374"/>
+	<pkgInventory:ItemStackView id="equipped_slot11" itemStack="{current_items.list_itemStacks.getItemAt(11) as ItemStack}" width="72" height="72" x="227" y="82"/>
+	<pkgInventory:ItemStackView id="equipped_slot12" itemStack="{current_items.list_itemStacks.getItemAt(12) as ItemStack}" width="72" height="72" x="15" y="451"/>
+	<pkgInventory:ItemStackView id="equipped_slot13" itemStack="{current_items.list_itemStacks.getItemAt(13) as ItemStack}" width="72" height="72" x="130" y="533"/>
+	<pkgInventory:ItemStackView id="equipped_slot14" itemStack="{current_items.list_itemStacks.getItemAt(14) as ItemStack}" width="72" height="72" x="324" y="533"/>
+	<pkgInventory:ItemStackView id="equipped_slot15" itemStack="{current_items.list_itemStacks.getItemAt(15) as ItemStack}" width="72" height="72" x="130" y="44"/>
+	<pkgInventory:ItemStackView id="equipped_slot16" itemStack="{current_items.list_itemStacks.getItemAt(16) as ItemStack}" width="72" height="72" x="324" y="44"/>
 
 </s:Group>

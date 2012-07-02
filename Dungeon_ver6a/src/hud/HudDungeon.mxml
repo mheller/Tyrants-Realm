@@ -22,7 +22,7 @@
 			import spark.filters.GlowFilter;
 
 			[Bindable]
-			var sdvState: Boolean = true;
+			private var sdvState: Boolean = true;
 			
 			public function showDungeonView():void {
 				if (sdvState == true) {

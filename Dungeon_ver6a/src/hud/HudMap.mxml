@@ -3,7 +3,7 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark" 
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  emphasized="{map_view.visible}"
-		  label="Map"
+		  label=""
 		  click="showMapView();">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -18,6 +18,7 @@
 			import dungeon.Map;
 			
 			import mx.events.FlexEvent;
+			import mx.events.FlexMouseEvent;
 			import mx.managers.PopUpManager;
 			
 			import resizableTitleWindow.*;
@@ -28,7 +29,7 @@
 			import views.MapView;
 			
 			[Bindable]
-			private var map_view:MapView;
+			public var map_view:MapView;
 			
 			[Bindable]
 			public var map:Map;
@@ -40,16 +41,25 @@
 					map_view= PopUpManager.createPopUp(this, MapView,false) as MapView;
 					map_view.map = map;
 					map_view.dungeon3D = dungeon3D;
+					
+					var name:String = "Player: " + (TyrantsRealm)(this.parentApplication).player.getPlayerName();
+					this.map_view.map_player_name.text = name;
+					var den:String = "Denarii: " + (TyrantsRealm)(this.parentApplication).player.getDenarii();
+					this.map_view.map_player_denarii.text = den;
+					var stat:String = "Stater: " + (TyrantsRealm)(this.parentApplication).player.getStater();
+					this.map_view.map_player_stater.text = stat;
+
 				}
 				else{
 					if (map_view.visible == false)
 						map_view.visible = true;
-					else
+					else {
 						map_view.visible = false;
+					}
 				}
 					
 			}	
-			
+						
 			protected function button1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub

@@ -9,12 +9,13 @@
 			   xmlns:pkgInventory="pkgInventory.*"
 			   width="100%"  height="644"
 			   minWidth="650" minHeight="600"
-			   x="126"
 			   title="Character View"
 			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
 			   creationComplete="creationCompleteHandler(event)"
 			   close="handleCloseEvent();"
-			   >
+			   x="{(this.parentApplication.width-this.width)/2}" 
+			   y="{(this.parentApplication.height-this.height)/2}"		   
+			 >
 		
 		   
 	<s:layout>
@@ -29,6 +30,8 @@
 			import character.Character;
 			
 			import events.DragDropEvent;
+			
+			import hud.HudInventoryDrop;
 			
 			import mx.collections.ArrayList;
 			import mx.controls.Alert;
@@ -46,18 +49,17 @@
 			
 			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
+			import pkgParty.ViewEachCharInParty;
+			
+			import views.InventoryView;
 
 			
 			[Bindable]
 			public var char:Character;	
 			
-			[Bindable]
-			public var party:Party;	
-
-			
 			public var item:Item;
 			
-			private function handleCloseEvent():void{
+			public function handleCloseEvent():void{
 				visible = false;
 			}		
 			
@@ -67,15 +69,113 @@
 					addEventListener(DragDropEvent.DRAG_FROM_INVENTORY,handleDragFromInventory);
 					character_appearance_container.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
 					character_appearance_container.addEventListener(DragEvent.DRAG_DROP, handleDrop);
+					//	inv_view.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					//	inv_view.addEventListener(DragEvent.DRAG_DROP, handleDrop2);
+					inv_view.hud_inv_drop.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					inv_view.hud_inv_drop.addEventListener(DragEvent.DRAG_DROP, handleDrop2);
+					inv_view.hud_inv_transfer.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					inv_view.hud_inv_transfer.addEventListener(DragEvent.DRAG_DROP, handleTransfer);
 					
 					// capture the event pop up by party window
 					this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
 			}
 			
 			
-			private function handleCharacterSelected(event:CharacterSelectedEvent):void {
-				//Alert.show("Event change character");
-				this.char = party.currChar;
+			public function xferItem(dragEvent:DragEvent):void {
+				
+				var source:IUIComponent = dragEvent.dragInitiator;   // ItemStackView
+				var target:IUIComponent = dragEvent.currentTarget as IUIComponent;   // ViewEachCharInParty
+
+				performItemXfer((ItemStackView)(source),(ViewEachCharInParty)(target));
+			}
+			
+			
+			// Transfer an item from one player to another. Will handle source from both inventory and equipped lists
+			public function performItemXfer (source:ItemStackView, target:ViewEachCharInParty):void {
+				var index:int = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrCharIndex();
+				var selectedNPC:ViewEachCharInParty = (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt
+					(index) as ViewEachCharInParty;
+				
+				// Check for target being the active NPC
+				if (target == selectedNPC)
+					return;   // Don't do anything if drop is to the current characgter TODO: May change later to remove equipped or shift inv to first slot.
+				
+				// Check that target has available inv
+				var targetIS:ItemStack = target.char.inventory.nextAvailableInventorySpot(source.itemStack, 
+					source.itemStack);
+				if (targetIS == null) {
+					Alert.show("No space left on "+target.char.name.getValue() + ".");
+					return;
+				}
+				
+				// xfer item
+				var sourceIS:ItemStack = source.itemStack;
+				var sourceISV:ItemStackView = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchEquippedISV(sourceIS);
+				var tempSlot:int = sourceIS.item.itemSlot;
+				
+				targetIS.displayPath = sourceIS.displayPath;
+				
+				if (sourceISV != null) {   // Item is currently equipped so remove stats, remove 2D image and reset the display path
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.remBenefits(sourceIS);
+					
+					// Clear item from 2D if applicable  
+					switch (tempSlot) { 
+						case 0 : 	break; // Can't ever happen as slot type is unequipable
+						case 1 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_head = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+							break;
+						case 2 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_torso = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+							break;
+						case 3 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_legs = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 4 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_feet = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 5 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_hands = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+							break;
+						case 6 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_shoulders = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+							break;
+						case 7 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+						case 8 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_offhand = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+							break;
+						case 9 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+							break;
+						case 10 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+							break;
+						case 11 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+							break;
+						case 12 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+							break;
+						case 13 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+							break;
+						case 14: 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_weapon = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+							(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.damage_type.setValue("Fists");
+							(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.dmg_type.text="Fists";
+							break;
+					}
+					
+				}
+				else 
+					sourceIS.displayPath = null;
+				
+				targetIS.currSize += sourceIS.currSize;
+				targetIS.item = sourceIS.item;
+				targetIS.itemType = sourceIS.itemType;
+				targetIS.owner = target.char;
+				
+				sourceIS.currSize = 0;
+				sourceIS.item = null;
+				sourceIS.itemType = -1;
+				source.toolTip = "";
+			}
+			private function handleCharacterSelected(event:CharacterSelectedEvent):void {			
+				this.char = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrChar();
 				
 				//recreate the list view when different character is selected
 				current_list_view1.createListView();
@@ -111,7 +211,7 @@
 					else {    // Item is present and either its a different type, isn't stackable or the stack is full; each case requires app to find another open slot if available.
 
 						// Look for another slot if one exists, otherwise exit
-						target = char.inventory.nextAvailableInventorySpot(source);
+						target = char.inventory.nextAvailableInventorySpot(source,source);
 
 						if (target == null) { 
 							Alert.show("There are no inventory slots available.");
@@ -122,15 +222,12 @@
 				}
 								
 				// Move item
-				var storage:ItemStack = new ItemStack(1);
-				storage.owner = char;
-				if (dualSlotSwap == true) {
-					storage.pushItemFromSimilarStack(source);
-					source.pushItemFromSimilarStack(target);
-					target.pushItemFromSimilarStack(storage);
+				if (dualSlotSwap == true) {    // swap from slot 1 to 2 or vice versa (no benefit update needed)
+					target.moveStacks(source, current_list_view1.fetchEquippedISV(source), inv_view.fetchISView(target), null); 	
 				}
-				else {
-					target.pushItemFromSimilarStack(source);  
+				else {   // Move item from character into inventory slot and remove benefits.
+					target.moveStacks(source, current_list_view1.fetchEquippedISV(source), inv_view.fetchISView(target), null); 	
+					
 					// Clear item from 2D if applicable  
 					switch (target.item.itemSlot) { 
 						case 0 : 	break; // Can't ever happen as slot type is unequipable
@@ -168,118 +265,14 @@
 									break;
 						case 14: 	char.appearance_weapon = null;
 									source.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
-									char.damage_type.value = "Fists";
+									char.damage_type.setValue("Fists");
+									att_view.dmg_type.text="Fists";
 									break;
 					}
-	//				char.appearance_weapon = null;
 	
 					// Update benefits   TODO: Adjust for items that are use cases (like potions)
-					for(var i:int=0; i<target.item.item_benefit.length;i++){
-						if (target.item.item_benefit.getItemAt(i).text == "Min Phys Dmg") {
-							char.phys_dmg.value = char.phys_dmg.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Max Phys Dmg") {
-							char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Fitness") {
-							char.fitness.value = char.fitness.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							char.fitness.max_value = char.fitness.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Mental") {
-							char.mental_prowess.value = char.mental_prowess.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						} 
-						if (target.item.item_benefit.getItemAt(i).text == "Spirit") {
-							char.spirituality.value = char.spirituality.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							char.spirituality.max_value = char.spirituality.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue; 
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Eloquence") {
-							char.eloquence.value = char.eloquence.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							char.eloquence.max_value = char.eloquence.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Coordination") {
-							char.coordination.value = char.coordination.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							char.coordination.max_value = char.coordination.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Health") {
-							char.health_current.value = char.health_current.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							if (char.health_current.value <= 0)
-								char.health_current.value = 1;
-							char.health_max.value = char.health_max.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Spirae") {
-							char.spirae_current.value = char.spirae_current.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							if (char.spirae_current.value < 0)
-								char.spirae_current.value = 0;
-							char.spirae_max.value = char.spirae_max.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Exp Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Gold Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Avoidance") {
-							char.avoidance.value = char.avoidance.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Hit") {
-							char.hit.value = char.hit.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Damage") {
-							char.damage_resistance.value = char.damage_resistance.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Cold") {
-							char.cold_resistance.value = char.cold_resistance.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Heat") {
-							char.heat_resistance.value = char.heat_resistance.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Magic") {
-							char.magic_resistance.value = char.magic_resistance.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Max Magic Dmg") {
-							char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Min Magic Dmg") {
-							char.magic_dmg.value = char.magic_dmg.value - (int)(target.item.item_benefit.getItemAt(i).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Wander") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Const Cost") {
-							// TODO: Add in after create Player-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Inc Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(i).text == "Dec Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-	
-					}
+					// Decrement benefits
+					remBenefits(target);
 				}
 			}
 /*
@@ -294,6 +287,7 @@
 				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
 				
 				var same_category:Boolean = false;
+				var same_spot:Boolean = false;
 				var itemS:ItemStack=ItemStack(char.current_items.list_itemStacks.getItemAt(0));
 				itemS.owner = char;
 				var targetOrig:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
@@ -314,6 +308,7 @@
 				// If target matches, then use that slot regardless of if something is in it (swap if there is). Don't fail over to the secondary slot
 				if (targetOrig == target) {    
 					same_category = true;	
+					same_spot = true;
 				}
 				if ((temp == 9) && (targetOrig == ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1)))) {   // Rings
 					same_category = true;
@@ -328,8 +323,6 @@
 					target = ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1))					
 				}
 
-				var storage:ItemStack = new ItemStack(target.maxSize);
-				storage.owner = char;
 				var benefitStorage:ItemStack;
 				var k:int;
 				
@@ -344,399 +337,114 @@
 					
 					if ((target.currSize > 0) && (temp == 15))   // Slot 1 of trailing is full, shift to slot 2
 						target = ItemStack(char.current_items.list_itemStacks.getItemAt(16));
+										
 				}
 				// Set the image and benefits
 				if (target.currSize > 0){
-					///////
-					// Switch the weapons
-					storage.pushItemFromSimilarStack(target);						
-					target.pushItemFromSimilarStack(source);
 					
 					// Look for another slot if one exists, otherwise exit
 					var spotFound:Boolean = false;
 					var tempItemStack:ItemStack;
-					tempItemStack = char.inventory.iStack1;   // inv slot 1
-
-					tempItemStack = char.inventory.nextAvailableInventorySpot(storage);
-					
+					tempItemStack = char.inventory.nextAvailableInventorySpot(target, source);
+					tempItemStack.owner = target.owner;
 					if (tempItemStack == null) { 
-						source.pushItemFromSimilarStack(target);
-						target.pushItemFromSimilarStack(storage);
 						Alert.show("There are no inventory slots available to exchange items.");
 						return;
 					}
-					tempItemStack.pushItemFromSimilarStack(storage);
-					benefitStorage=tempItemStack;
+					var swapISV:ItemStackView = inv_view.fetchISView(tempItemStack);
+					var startISV:ItemStackView = inv_view.fetchISView(source);
 					
+					
+					target.moveStacks(source,inv_view.fetchISView(source), current_list_view1.fetchEquippedISV(target), swapISV); 	
+					benefitStorage=swapISV.itemStack;
+
 					// Set the picture based on the type of item
 					if (target.item.itemSlot == 14) {
-						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
-						char.damage_type.value = target.item.itemTitle;
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.damage_type.setValue(target.item.itemTitle);
+						att_view.dmg_type.text=char.damage_type.getValue();
 					}
 					if (target.item.itemSlot == 8)
-						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 2)
-						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 3)
-						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 4)
-						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 6)
-						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 5)
-						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 1)
-						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					
 					// Outgoing Item
-					
-					for(k=0; k<benefitStorage.item.item_benefit.length;k++){
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-							char.phys_dmg.value = char.phys_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-							char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Fitness") {
-							char.fitness.value = char.fitness.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.fitness.max_value = char.fitness.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Mental") {
-							char.mental_prowess.value = char.mental_prowess.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						} 
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirit") {
-							char.spirituality.value = char.spirituality.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.spirituality.max_value = char.spirituality.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue; 
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Eloquence") {
-							char.eloquence.value = char.eloquence.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.eloquence.max_value = char.eloquence.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Coordination") {
-							char.coordination.value = char.coordination.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.coordination.max_value = char.coordination.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Health") {
-							char.health_current.value = char.health_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.health_max.value = char.health_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirae") {
-							char.spirae_current.value = char.spirae_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							char.spirae_max.value = char.spirae_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Avoidance") {
-							char.avoidance.value = char.avoidance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Hit") {
-							char.hit.value = char.hit.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Damage") {
-							char.damage_resistance.value = char.damage_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Cold") {
-							char.cold_resistance.value = char.cold_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Heat") {
-							char.heat_resistance.value = char.heat_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Magic") {
-							char.magic_resistance.value = char.magic_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-							char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-							char.magic_dmg.value = char.magic_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Wander") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Const Cost") {
-							// TODO: Add in after create Player-Stats
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (benefitStorage.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						} 
-						
-					}
-					
+					remBenefits(benefitStorage);
 					// Incoming Item
-					for(k=0; k<target.item.item_benefit.length;k++){
-						if (target.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-							char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-							char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Fitness") {
-							char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Mental") {
-							char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						} 
-						if (target.item.item_benefit.getItemAt(k).text == "Spirit") {
-							char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue; 
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Eloquence") {
-							char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Coordination") {
-							char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Health") {
-							char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Spirae") {
-							char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Avoidance") {
-							char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Hit") {
-							char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Damage") {
-							char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Cold") {
-							char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Heat") {
-							char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Magic") {
-							char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-							char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-							char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(k).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Wander") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Const Cost") {
-							// TODO: Add in after create Player-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						
-					}
-					
+					addBenefits(target);				
+					return;
 				}
 				else {
 				
 				
-					target.pushItemFromSimilarStack(source);
-					
+					target.moveStacks(source,inv_view.fetchISView(source), current_list_view1.fetchEquippedISV(target), null);
+									
 					if (target.item.itemSlot == 14) {
-						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
-						char.damage_type.value = target.item.itemTitle;
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.damage_type.setValue(target.item.itemTitle);
+						att_view.dmg_type.text=char.damage_type.getValue();
 					}
 					if (target.item.itemSlot == 8)
-						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 2)
-						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 3)
-						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 4)
-						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 6)
-						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 5)
-						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 					if (target.item.itemSlot == 1)
-						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
-					for(var j:int=0; j<target.item.item_benefit.length;j++){
-						if (target.item.item_benefit.getItemAt(j).text == "Min Phys Dmg") {
-							char.phys_dmg.value = char.phys_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Max Phys Dmg") {
-							char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Fitness") {
-							char.fitness.value = char.fitness.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.fitness.max_value = char.fitness.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Mental") {
-							char.mental_prowess.value = char.mental_prowess.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						} 
-						if (target.item.item_benefit.getItemAt(j).text == "Spirit") {
-							char.spirituality.value = char.spirituality.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.spirituality.max_value = char.spirituality.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue; 
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Eloquence") {
-							char.eloquence.value = char.eloquence.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.eloquence.max_value = char.eloquence.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Coordination") {
-							char.coordination.value = char.coordination.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.coordination.max_value = char.coordination.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Health") {
-							char.health_current.value = char.health_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.health_max.value = char.health_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Spirae") {
-							char.spirae_current.value = char.spirae_current.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							char.spirae_max.value = char.spirae_max.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Exp Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Gold Bonus") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Avoidance") {
-							char.avoidance.value = char.avoidance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Hit") {
-							char.hit.value = char.hit.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Damage") {
-							char.damage_resistance.value = char.damage_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Cold") {
-							char.cold_resistance.value = char.cold_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Heat") {
-							char.heat_resistance.value = char.heat_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Magic") {
-							char.magic_resistance.value = char.magic_resistance.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Max Magic Dmg") {
-							char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Min Magic Dmg") {
-							char.magic_dmg.value = char.magic_dmg.value + (int)(target.item.item_benefit.getItemAt(j).value);
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Wander") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Const Cost") {
-							// TODO: Add in after create Player-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Inc Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
-						if (target.item.item_benefit.getItemAt(j).text == "Dec Monster") {
-							// TODO: Add in after create Party-Stats
-							continue;
-						}
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.getValue())+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
 
-					}
+					addBenefits(target);				
 				}
 			}
 			
-			private function acceptDrop(dragEvent:DragEvent):void{
+			public function acceptDrop(dragEvent:DragEvent):void{
 				trace("accept Drop");
 				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
 				
 				DragManager.acceptDragDrop(dropTarget);
 			}
 			
+			// Dropping the item permanently from the character inventory.
+			private function handleDrop2(dragEvent:DragEvent):void {
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				inv_view.dropHandler(dragEvent);
+				
+			}
+			private function handleTransfer(dragEvent:DragEvent):void {
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				inv_view.dropHandlerXfer(dragEvent);
+
+			}
+			
+			// Drag-n-Drop on art panel
 			private function handleDrop(dragEvent:DragEvent):void{
 
 				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
 				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+							
+				var tempTT:String = ItemStackView(dragInitiator).toolTip;
+				
 				//handle dropping
 				var same_category:Boolean = false;
 				for(var i:int=0;i<char.current_items.maxSize;i++){  // Filters out if the item is the same 
@@ -786,395 +494,349 @@
 					if ((itemS2.currSize > 0) && (temp == 15))   // Slot 1 of trailing is full, shift to slot 2
 						itemS2 = ItemStack(char.current_items.list_itemStacks.getItemAt(16));
 
-					// Slot in use... swap item?
+					// Slot in use... then swap items
 					// If dual slot, then this will always swap out on the second slot.
 					if (itemS2.currSize > 0){
 
-						
-						// Switch the items
-						storage.pushItemFromSimilarStack(itemS2);						
-						itemS2.pushItemFromSimilarStack(ItemStackView(dragInitiator).itemStack);
-						
-						
 						// Look for another slot if one exists, otherwise exit
 						var tempItemStack:ItemStack;						
-						tempItemStack = char.inventory.nextAvailableInventorySpot(storage);
+						tempItemStack = char.inventory.nextAvailableInventorySpot(itemS2, ItemStackView(dragInitiator).itemStack);
 						
 						if (tempItemStack == null) { 
-							ItemStackView(dragInitiator).itemStack.pushItemFromSimilarStack(itemS2);
-							itemS2.pushItemFromSimilarStack(storage);													
 							Alert.show("There are no inventory slots available to exchange items.");
 							return;
 						}
 						
-						tempItemStack.pushItemFromSimilarStack(storage);
-						benefitStorage=tempItemStack;
+						var tempISV:ItemStackView = inv_view.fetchISView(tempItemStack);
+						
+						itemS2.moveStacks(ItemStackView(dragInitiator).itemStack,ItemStackView(dragInitiator), current_list_view1.fetchEquippedISV(itemS2), tempISV);
+						benefitStorage=tempISV.itemStack;
 
 						// Set the picture based on the type of item
 						if (itemS2.item.itemSlot == 14) {
-							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
-							char.damage_type.value = itemS2.item.itemTitle;
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.damage_type.setValue(itemS2.item.itemTitle);
+							att_view.dmg_type.text=char.damage_type.getValue();
 						}
 						if (itemS2.item.itemSlot == 8)
-							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 2)
-							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 3)
-							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 4)
-							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 5)
-							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 1)
-							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 
 						// Outgoing Item
-						
-						for(k=0; k<benefitStorage.item.item_benefit.length;k++){
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Fitness") {
-								char.fitness.value = char.fitness.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.fitness.max_value = char.fitness.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							} 
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.spirituality.max_value = char.spirituality.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue; 
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.eloquence.max_value = char.eloquence.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Coordination") {
-								char.coordination.value = char.coordination.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.coordination.max_value = char.coordination.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Health") {
-								char.health_current.value = char.health_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.health_max.value = char.health_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								char.spirae_max.value = char.spirae_max.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Hit") {
-								char.hit.value = char.hit.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value - (int)(benefitStorage.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (benefitStorage.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							} 
-							
-						}
-						
+						remBenefits(benefitStorage);
 						// Incoming Item
-						for(k=0; k<itemS2.item.item_benefit.length;k++){
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Fitness") {
-								char.fitness.value = char.fitness.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.fitness.max_value = char.fitness.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							} 
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.spirituality.max_value = char.spirituality.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue; 
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.eloquence.max_value = char.eloquence.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Coordination") {
-								char.coordination.value = char.coordination.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.coordination.max_value = char.coordination.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Health") {
-								char.health_current.value = char.health_current.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.health_max.value = char.health_max.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.spirae_max.value = char.spirae_max.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Hit") {
-								char.hit.value = char.hit.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							
-						}
-						
+						addBenefits(itemS2);
 					}
-					else {
-						itemS2.pushItemFromSimilarStack(ItemStackView(dragInitiator).itemStack);
-						
+					else {  // Straight Move
+						itemS2.moveStacks(ItemStackView(dragInitiator).itemStack,ItemStackView(dragInitiator), current_list_view1.fetchEquippedISV(itemS2), null);
+
 						// Set the picture based on the type of item
 						if (itemS2.item.itemSlot == 14) {
-							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
-							char.damage_type.value = itemS2.item.itemTitle;
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.damage_type.setValue(itemS2.item.itemTitle);
+							att_view.dmg_type.text=char.damage_type.getValue();
 						}
 						if (itemS2.item.itemSlot == 8)
-							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 2)
-							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 3)
-							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 4)
-							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 6)
-							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 5)
-							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
 						if (itemS2.item.itemSlot == 1)
-							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
-						
-						for(k=0; k<itemS2.item.item_benefit.length;k++){
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
-								char.phys_dmg.value = char.phys_dmg.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
-								char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Fitness") {
-								char.fitness.value = char.fitness.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.fitness.max_value = char.fitness.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Mental") {
-								char.mental_prowess.value = char.mental_prowess.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							} 
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Spirit") {
-								char.spirituality.value = char.spirituality.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.spirituality.max_value = char.spirituality.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue; 
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Eloquence") {
-								char.eloquence.value = char.eloquence.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.eloquence.max_value = char.eloquence.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Coordination") {
-								char.coordination.value = char.coordination.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.coordination.max_value = char.coordination.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Health") {
-								char.health_current.value = char.health_current.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.health_max.value = char.health_max.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Spirae") {
-								char.spirae_current.value = char.spirae_current.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								char.spirae_max.value = char.spirae_max.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Avoidance") {
-								char.avoidance.value = char.avoidance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Hit") {
-								char.hit.value = char.hit.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Damage") {
-								char.damage_resistance.value = char.damage_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Cold") {
-								char.cold_resistance.value = char.cold_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Heat") {
-								char.heat_resistance.value = char.heat_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Magic") {
-								char.magic_resistance.value = char.magic_resistance.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
-								char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
-								char.magic_dmg.value = char.magic_dmg.value + (int)(itemS2.item.item_benefit.getItemAt(k).value);
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Wander") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Const Cost") {
-								// TODO: Add in after create Player-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Inc Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-							if (itemS2.item.item_benefit.getItemAt(k).text == "Dec Monster") {
-								// TODO: Add in after create Party-Stats
-								continue;
-							}
-								
-						}
-							
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.getValue())+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+
+						addBenefits(itemS2);
+													
 					} 
 				} 
 			}
+			
+			public function addBenefits(itemToBeWorn:ItemStack):void{
+				for(var k:int=0; k<itemToBeWorn.item.item_benefit.length;k++){
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+						char.phys_dmg.setValue(char.phys_dmg.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.phys_dmg_min.text = (char.phys_dmg.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+						char.phys_dmg.setMaxValue(char.phys_dmg.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.phys_dmg_max.text = (char.phys_dmg.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Fitness") {
+						char.fitness.setValue(char.fitness.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.fitness.setMaxValue(char.fitness.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.fit_curr.text = (char.fitness.getValue() as int).toString(10);
+						att_view.fit_max.text = (char.fitness.getMaxValue() as int).toString(10);						
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Mental") {
+						char.mental_prowess.setValue(char.mental_prowess.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.mental_prowess.setMaxValue(char.mental_prowess.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.ment_curr.text = (char.mental_prowess.getValue() as int).toString(10);
+						att_view.ment_max.text = (char.mental_prowess.getMaxValue() as int).toString(10);
+						continue;
+					} 
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Spirit") {
+						char.spirituality.setValue(char.spirituality.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.spirituality.setMaxValue(char.spirituality.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.spir_curr.text = (char.spirituality.getValue() as int).toString(10);
+						att_view.spir_max.text = (char.spirituality.getMaxValue() as int).toString(10);
+						continue; 
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Eloquence") {
+						char.eloquence.setValue(char.eloquence.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.eloquence.setMaxValue(char.eloquence.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.elo_curr.text = (char.eloquence.getValue() as int).toString(10);
+						att_view.elo_max.text = (char.eloquence.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Coordination") {
+						char.coordination.setValue(char.coordination.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.coordination.setMaxValue(char.coordination.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.coor_curr.text = (char.coordination.getValue() as int).toString(10);
+						att_view.coor_max.text = (char.coordination.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Health") {
+						char.health_current.setValue(char.health_current.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.health_max.setValue(char.health_max.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.health_curr.text = (char.health_current.getValue() as int).toString(10);
+						att_view.health_max.text = (char.health_max.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Spirae") {
+						char.spirae_current.setValue((char.spirae_current.getValue() as int) + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						char.spirae_max.setValue((char.spirae_max.getValue() as int) + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.spirae_curr.text = (char.spirae_current.getValue() as int).toString(10);
+						att_view.spirae_max.text = (char.spirae_max.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+						(TyrantsRealm)(this.parentApplication).party1.addExpBonus(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+						(TyrantsRealm)(this.parentApplication).party1.addDenBonus(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Avoidance") {
+						char.avoidance.setValue(char.avoidance.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.avoid.text = (char.avoidance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Hit") {
+						char.hit.setValue(char.hit.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.hit.text = (char.hit.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Damage") {
+						char.damage_resistance.setValue(char.damage_resistance.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.dmg_res.text = (char.damage_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Cold") {
+						char.cold_resistance.setValue(char.cold_resistance.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.cold_res.text = (char.cold_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Heat") {
+						char.heat_resistance.setValue(char.heat_resistance.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.heat_res.text = (char.heat_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Magic") {
+						char.magic_resistance.setValue(char.magic_resistance.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.mag_res.text = (char.magic_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+						char.magic_dmg.setMaxValue(char.magic_dmg.getMaxValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.mag_dmg_max.text = (char.magic_dmg.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+						char.magic_dmg.setValue(char.magic_dmg.getValue() + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value));
+						att_view.mag_dmg_min.text = (char.magic_dmg.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Wander") {   // Increased Run Success rate
+						(TyrantsRealm)(this.parentApplication).party1.addRunBonus(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Const Cost") {
+						(TyrantsRealm)(this.parentApplication).player.incConstructionCostBonus(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+						(TyrantsRealm)(this.parentApplication).party1.addIncMonsterFreq(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+						(TyrantsRealm)(this.parentApplication).party1.addDecMonsterFreq(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					
+				}
+
+				
+			}
+			public function remBenefits(itemToBeRemoved:ItemStack):void{
+				
+				for(var k:int=0; k<itemToBeRemoved.item.item_benefit.length;k++){
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+						char.phys_dmg.setValue(char.phys_dmg.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.phys_dmg_min.text = (char.phys_dmg.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+						char.phys_dmg.setMaxValue(char.phys_dmg.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.phys_dmg_max.text = (char.phys_dmg.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Fitness") {
+						char.fitness.setValue(char.fitness.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.fitness.setMaxValue(char.fitness.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.fit_curr.text = (char.fitness.getValue() as int).toString(10);
+						att_view.fit_max.text = (char.fitness.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Mental") {
+						char.mental_prowess.setValue(char.mental_prowess.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.mental_prowess.setMaxValue(char.mental_prowess.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.ment_curr.text = (char.mental_prowess.getValue() as int).toString(10);
+						att_view.ment_max.text = (char.mental_prowess.getMaxValue() as int).toString(10);
+						continue;
+					} 
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Spirit") {
+						char.spirituality.setValue(char.spirituality.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.spirituality.setMaxValue(char.spirituality.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.spir_curr.text = (char.spirituality.getValue() as int).toString(10);
+						att_view.spir_max.text = (char.spirituality.getMaxValue() as int).toString(10);
+						continue; 
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Eloquence") {
+						char.eloquence.setValue(char.eloquence.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.eloquence.setMaxValue(char.eloquence.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.elo_curr.text = (char.eloquence.getValue() as int).toString(10);
+						att_view.elo_max.text = (char.eloquence.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Coordination") {
+						char.coordination.setValue(char.coordination.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.coordination.setMaxValue(char.coordination.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.coor_curr.text = (char.coordination.getValue() as int).toString(10);
+						att_view.coor_max.text = (char.coordination.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Health") {
+						char.health_current.setValue(char.health_current.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.health_max.setValue(char.health_max.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.health_curr.text = (char.health_current.getValue() as int).toString(10);
+						att_view.health_max.text = (char.health_max.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Spirae") {
+						char.spirae_current.setValue(char.spirae_current.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						char.spirae_max.setValue(char.spirae_max.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.spirae_curr.text = (char.spirae_current.getValue() as int).toString(10);
+						att_view.spirae_max.text = (char.spirae_max.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+						(TyrantsRealm)(this.parentApplication).party1.remExpBonus(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+						(TyrantsRealm)(this.parentApplication).party1.remDenBonus(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Avoidance") {
+						char.avoidance.setValue(char.avoidance.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.avoid.text = (char.avoidance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Hit") {
+						char.hit.setValue(char.hit.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.hit.text = (char.hit.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Damage") {
+						char.damage_resistance.setValue(char.damage_resistance.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.dmg_res.text = (char.damage_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Cold") {
+						char.cold_resistance.setValue(char.cold_resistance.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.cold_res.text = (char.cold_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Heat") {
+						char.heat_resistance.setValue(char.heat_resistance.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.heat_res.text = (char.heat_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Magic") {
+						char.magic_resistance.setValue(char.magic_resistance.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.mag_res.text = (char.magic_resistance.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+						char.magic_dmg.setMaxValue(char.magic_dmg.getMaxValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.mag_dmg_max.text = (char.magic_dmg.getMaxValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+						char.magic_dmg.setValue(char.magic_dmg.getValue() - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value));
+						att_view.mag_dmg_min.text = (char.magic_dmg.getValue() as int).toString(10);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Wander") {
+						(TyrantsRealm)(this.parentApplication).party1.remRunBonus(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Const Cost") {
+						(TyrantsRealm)(this.parentApplication).player.remConstructionCostBonus(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+						(TyrantsRealm)(this.parentApplication).party1.remIncMonsterFreq(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+						(TyrantsRealm)(this.parentApplication).party1.remDecMonsterFreq(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					} 
+					
+				}				
+				
+			}
+
+			
+			
 			
 		]]>
 	</fx:Script>
 	
 
-	<views:AttributeView 	char="{char}"
+	<views:AttributeView id="att_view"	char="{char}"
 							  height="100%"
 							  width="180"/>
 	
@@ -1240,6 +902,7 @@
 					   source="assets/InventoryDivider.png"
 					   />	
 	</s:Group>
-	<views:InventoryView char="{char}" inventory="{char.inventory}"/>
+
+	<views:InventoryView id="inv_view" char="{char}" inventory="{char.inventory}"/>
 
 </s:TitleWindow>

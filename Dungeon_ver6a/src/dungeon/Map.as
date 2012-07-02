@@ -29,7 +29,7 @@ package dungeon
 			
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(Event.COMPLETE, _finishedLoadingXMLResources);
-			xmlLoader.load(new URLRequest("http://web.pdx.edu/~hptran/Dungeon/Den-Sample-Sparse-LV1.xml"));
+			xmlLoader.load(new URLRequest("dungeon/XML/Den/Den-Sample-Sparse-LV1.xml"));
 			//xmlLoader.load(new URLRequest("http://web.pdx.edu/~hptran/Dungeon/Den-Sample-Dense-LV1.xml"));
 		}
 		

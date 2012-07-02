@@ -41,18 +41,20 @@
 			import mx.skins.halo.DefaultDragImage;
 			
 			import pkgInventory.Item;
+			import pkgInventory.ItemGroup;
 			import pkgInventory.ItemStack;
 			import pkgInventory.ItemStackView;
 			
 			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
 			
-//			import spark.filters.DropShadowFilter;
 			import spark.filters.GlowFilter;
 			import spark.primitives.BitmapImage;
 			import spark.primitives.Graphic;
 			
+			import views.CharacterView;
 			import views.CurrentItemListView;
+			import views.InventoryView;
 			
 			[Bindable]
 			public var itemStack:ItemStack;
@@ -63,6 +65,8 @@
 			[Bindable]
 			public var party:Party;	
 
+			[Bindable]
+			public var itemSlot:int;
 			
 			public function getUIComponentBitmapData( target :UIComponent ) : BitmapData
 			{ 
@@ -82,12 +86,14 @@
 			
 			private function doDragDrop(event:DragEvent,format:String):void
 			{
-				
+
 				if((event.target != null) && (event.target != event.dragInitiator)){
 					var source:ItemStackView = (event.dragInitiator as ItemStackView);
 					var target:ItemStackView = (event.target as ItemStackView);
 					var transferedItem: ItemStack = (event.dragSource.dataForFormat(format) as ItemStack);
-					
+
+					var tempTT:String = target.toolTip;
+				
 					
 					//@huy : 2 main cases 
 					
@@ -99,10 +105,9 @@
 						if (source.itemStack.maxSize==1){//only itemstacks in the current list items of char can send event to char
 							var eventObject:DragDropEvent;
 							if (target.itemStack.maxSize == 9999) {
-//								var tempStack:ItemStack = target.itemStack.owner.inventory.iStack1;
 								eventObject = new DragDropEvent(DragDropEvent.DRAG_FROM_CHARACTER,source.itemStack,target.itemStack.owner.inventory.iStack1);
 								source.dispatchEvent(eventObject);
-								
+							
 							}
 							else {
 								eventObject = new DragDropEvent(DragDropEvent.DRAG_FROM_CHARACTER,source.itemStack,target.itemStack);
@@ -111,9 +116,9 @@
 						}
 						//@huy : if move from inventory to character
 						if (target.itemStack.maxSize==1) {//only itemstacks in the current list items of char can send event to char
+							tempStack:itemStack = target.itemStack;
 							var eventObject2:DragDropEvent = new DragDropEvent(DragDropEvent.DRAG_FROM_INVENTORY,source.itemStack,target.itemStack);
 							target.dispatchEvent(eventObject2);	
-							
 						}
 						
 					}
@@ -133,15 +138,20 @@
 								   var tempStack2:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(10));
 								   if ( (tempStack1==target.itemStack) || (tempStack2==target.itemStack)) {   
 
-									   if (target.itemStack.currSize == 0){
+									   if (target.itemStack.currSize == 0){										   
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   target.toolTip = source.toolTip;
 										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+										   source.toolTip = "";
+										   
 									   }
 									   else {
 										   var storage:ItemStack = new ItemStack(1);
 										   storage.pushItemFromSimilarStack(target.itemStack);
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
 										   source.itemStack.pushItemFromSimilarStack(storage);
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
 									   }
 								   }
 								   return;
@@ -154,13 +164,17 @@
 									   if (target.itemStack.currSize == 0){
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
 										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+										   target.toolTip = source.toolTip;
+										   source.toolTip = "";
 									   }
 									   else {
 										   var storage2:ItemStack = new ItemStack(1);
 										   storage2.pushItemFromSimilarStack(target.itemStack);
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
 										   source.itemStack.pushItemFromSimilarStack(storage2);
-									   }
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
+								   }
 								   }
 								   return;
 							   }
@@ -172,12 +186,16 @@
 									   if (target.itemStack.currSize == 0){
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
 										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+										   target.toolTip = source.toolTip;
+										   source.toolTip = "";
 									   }
 									   else {
 										   var storage3:ItemStack = new ItemStack(1);
 										   storage3.pushItemFromSimilarStack(target.itemStack);
 										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
 										   source.itemStack.pushItemFromSimilarStack(storage3);
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
 									   }
 								   }
 								   return;
@@ -189,13 +207,16 @@
 						if (target.itemStack.maxSize == 9999) return;   // Trying to drop on the HUD background
 
 						// 1st case: 2 groups of the same items
-						if(target.itemStack.itemType == source.itemStack.itemType)
+						if(target.itemStack.itemType == source.itemStack.itemType) 
 							target.itemStack.pushItemFromSimilarStack(source.itemStack);
 
 						else{	// 2nd case: 2 groups of different items					
 							// if move to an empty stack
-							if(target.itemStack.currSize ==0)
-								target.itemStack.pushItemFromSimilarStack(source.itemStack);									
+							if(target.itemStack.currSize ==0) {
+								target.itemStack.pushItemFromSimilarStack(source.itemStack);	
+								target.toolTip = source.toolTip;
+								source.toolTip = tempTT;
+							}
 							else{
 								// @Hoang: if move to a existed stack, if the same maxsize then swap
 								// this will enable swapping itemstack in the same group such as : char items or inventory's group
@@ -204,6 +225,8 @@
 									var tempStack9:ItemStack = target.itemStack;
 									target.itemStack = source.itemStack;
 									source.itemStack = tempStack9;
+									target.toolTip = source.toolTip;
+									source.toolTip = tempTT;
 								}
 							}
 						}
@@ -264,12 +287,41 @@
 					filter.inner = false;
 					this.imgOrig.filters = [ filter ];    
 					
+					
+					var filter2 : GlowFilter = new GlowFilter();
+					filter2.blurX = 14;
+					filter2.blurY = 14;
+					filter2.quality = 6;
+					filter2.alpha = 0.5;
+					filter2.color = 0xFFD520;
+					filter2.inner = false;				
+					
 					var slot_index:int = initiator.itemStack.item.itemSlot;
 					if (slot_index == 14) slot_index = 0;
+					this.itemSlot = slot_index;
 					
-//					var targetStack:ItemStack=ItemStack(initiator.itemStack.owner.current_items.list_itemStacks.getItemAt(slot_index));
-					//targetStack.item.
+					var tempISV:ItemStackView = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(slot_index);
+					if (tempISV != null) {
+						tempISV.filters = [ filter2 ];					
+					}
+					if (slot_index == 9) {
+						tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(10);
+						if (tempISV != null) tempISV.filters = [ filter2 ];
+					}
+						
+					if (slot_index == 12) {
+						tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(14);
+						if (tempISV != null) tempISV.filters = [ filter2 ];
+
+					}
+
+					if (slot_index == 13) {
+						tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(16);
+						if (tempISV != null) tempISV.filters = [ filter2 ];
+					}
+
 					
+										
 					DragManager.doDrag(initiator,ds,event,imgBeingDragged);
 					
 				}
@@ -279,6 +331,32 @@
 			protected function skinnablecontainer1_dragCompleteHandler(event:DragEvent,format:String):void
 			{
 				this.imgOrig.filters=[];
+				
+				var tempISV:ItemStackView = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(this.itemSlot);
+				if (tempISV != null) {
+					tempISV.filters = [ ];
+				}
+
+				if (this.itemSlot == 9) {
+					tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(10);
+					if (tempISV != null) {
+						tempISV.filters = [ ];
+					}
+				}
+				if (this.itemSlot == 12) {
+					tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(14);
+					if (tempISV != null) {
+						tempISV.filters = [ ];
+					}
+				}
+				
+				if (this.itemSlot == 13) {
+					tempISV = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchISVBySlot(16);
+					if (tempISV != null) {
+						tempISV.filters = [ ];
+					}
+				}
+
 			}
 			
 			protected function skinnablecontainer1_creationCompleteHandler(event:FlexEvent):void

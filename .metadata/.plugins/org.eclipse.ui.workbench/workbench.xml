@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="30" version="2.0">
+<workbench progressCount="34" version="2.0">
 <workbenchAdvisor/>
-<window height="1040" maximized="true" width="970" x="822" y="0">
+<window height="1040" maximized="true" width="960" x="229" y="3">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
-<itemSize x="160"/>
+<itemSize x="158"/>
 </perspectiveBar>
 <coolbarLayout locked="0">
 <coolItem id="group.file" itemType="typeGroupMarker"/>
@@ -31,70 +31,33 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="2"/>
 <part id="1"/>
 <part id="4"/>
-<part id="3"/>
-<part id="2"/>
 <part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
-<part id="14"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="CharacterView.mxml" partName="CharacterView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/CharacterView.mxml" title="CharacterView.mxml" tooltip="Dungeon_ver6a/src/views/CharacterView.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/CharacterView.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ItemStack.as" partName="ItemStack.as" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/pkgInventory/ItemStack.as" title="ItemStack.as" tooltip="Dungeon_ver6a/src/pkgInventory/ItemStack.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/pkgInventory/ItemStack.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="536" selectionTopPixel="0"/>
-</editor>
 <editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="TyrantsRealm.mxml" partName="TyrantsRealm.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/TyrantsRealm.mxml" title="TyrantsRealm.mxml" tooltip="Dungeon_ver6a/src/TyrantsRealm.mxml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/TyrantsRealm.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ItemStackView.mxml" partName="ItemStackView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/pkgInventory/ItemStackView.mxml" title="ItemStackView.mxml" tooltip="Dungeon_ver6a/src/pkgInventory/ItemStackView.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/pkgInventory/ItemStackView.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="CurrentItemListView.mxml" partName="CurrentItemListView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/CurrentItemListView.mxml" title="CurrentItemListView.mxml" tooltip="Dungeon_ver6a/src/views/CurrentItemListView.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/CurrentItemListView.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudAttribute.mxml" partName="HudAttribute.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudAttribute.mxml" title="HudAttribute.mxml" tooltip="Dungeon_ver6a/src/hud/HudAttribute.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudAttribute.mxml"/>
 </editor>
 <editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="PartyView.mxml" partName="PartyView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/PartyView.mxml" title="PartyView.mxml" tooltip="Dungeon_ver6a/src/views/PartyView.mxml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/PartyView.mxml"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudDungeon.mxml" partName="HudDungeon.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudDungeon.mxml" title="HudDungeon.mxml" tooltip="Dungeon_ver6a/src/hud/HudDungeon.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudDungeon.mxml"/>
+<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="CharacterView.mxml" partName="CharacterView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/CharacterView.mxml" title="CharacterView.mxml" tooltip="Dungeon_ver6a/src/views/CharacterView.mxml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/CharacterView.mxml"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudTown.mxml" partName="HudTown.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudTown.mxml" title="HudTown.mxml" tooltip="Dungeon_ver6a/src/hud/HudTown.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudTown.mxml"/>
+<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="FullMapView.mxml" partName="FullMapView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/FullMapView.mxml" title="FullMapView.mxml" tooltip="Dungeon_ver6a/src/views/FullMapView.mxml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/FullMapView.mxml"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudWorld.mxml" partName="HudWorld.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudWorld.mxml" title="HudWorld.mxml" tooltip="Dungeon_ver6a/src/hud/HudWorld.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudWorld.mxml"/>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Dungeon_6.as" partName="Dungeon_6.as" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/dungeon/Dungeon_6.as" title="Dungeon_6.as" tooltip="Dungeon_ver6a/src/dungeon/Dungeon_6.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/dungeon/Dungeon_6.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15081" selectionTopPixel="6670"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="InventoryView.mxml" partName="InventoryView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/InventoryView.mxml" title="InventoryView.mxml" tooltip="Dungeon_ver6a/src/views/InventoryView.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/InventoryView.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudInventoryDrop.mxml" partName="HudInventoryDrop.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudInventoryDrop.mxml" title="HudInventoryDrop.mxml" tooltip="Dungeon_ver6a/src/hud/HudInventoryDrop.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudInventoryDrop.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ViewEachCharInParty.mxml" partName="ViewEachCharInParty.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml" title="ViewEachCharInParty.mxml" tooltip="Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml"/>
-</editor>
-<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudInventoryRight.mxml" partName="HudInventoryRight.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/hud/HudInventoryRight.mxml" title="HudInventoryRight.mxml" tooltip="Dungeon_ver6a/src/hud/HudInventoryRight.mxml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/hud/HudInventoryRight.mxml"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Party.as" partName="Party.as" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/pkgParty/Party.as" title="Party.as" tooltip="Dungeon_ver6a/src/pkgParty/Party.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/pkgParty/Party.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="18" selectionOffset="213" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="MapView.mxml" partName="MapView.mxml" path="C:/Users/mheller/Adobe Flash Builder 4.5/Dungeon_ver6a/src/views/MapView.mxml" title="MapView.mxml" tooltip="Dungeon_ver6a/src/views/MapView.mxml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Dungeon_ver6a/src/views/MapView.mxml"/>
 </editor>
 </editors>
 <views>
@@ -103,7 +66,6 @@
 </view>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
-<view IMemento.internal.id="com.adobe.flexbuilder.as.editors.searchpage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
 </viewState>
 </view>
@@ -112,11 +74,7 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Errors (2 items)"/>
-<category IMemento.internal.id="Errors"/>
-</expanded>
-<columnWidths org.eclipse.ui.ide.locationField="64" org.eclipse.ui.ide.markerType="94" org.eclipse.ui.ide.pathField="164" org.eclipse.ui.ide.resourceField="156" org.eclipse.ui.ide.severityAndDescriptionField="448"/>
+<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -132,16 +90,13 @@
 <fpeExpanded>
 <fpeElement fpePath="/Dungeon_ver6a"/>
 <fpeElement fpePath="/Dungeon_ver6a/src"/>
-<fpeElement fpePath="/Dungeon_ver6a/src/%typeDefaultPackage"/>
-<fpeElement fpePath="/Dungeon_ver6a/src/character"/>
 <fpeElement fpePath="/Dungeon_ver6a/src/dungeon"/>
 <fpeElement fpePath="/Dungeon_ver6a/src/hud"/>
-<fpeElement fpePath="/Dungeon_ver6a/src/pkgInventory"/>
 <fpeElement fpePath="/Dungeon_ver6a/src/pkgParty"/>
 <fpeElement fpePath="/Dungeon_ver6a/src/views"/>
 </fpeExpanded>
 <fpeSelection>
-<fpeElement fpePath="/Dungeon_ver6a/src/pkgParty/Party.as"/>
+<fpeElement fpePath="/Dungeon_ver6a/src/hud/HudParty.mxml"/>
 </fpeSelection>
 <filters>
 <filter element="*.class" isEnabled="false"/>
@@ -167,7 +122,7 @@
 <element path="/Dungeon_ver6a"/>
 </expanded>
 <selection>
-<element path="/Dungeon_ver6a/src/pkgParty/Party.as"/>
+<element path="/Dungeon_ver6a/src/hud/HudParty.mxml"/>
 </selection>
 </viewState>
 </view>
@@ -190,7 +145,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="com.adobe.flexbuilder.editors.mxml.MXMLEditor" activePerspective="com.adobe.flexbuilder.debug.ui.perspectives.debug">
+<perspectives activePart="org.eclipse.debug.ui.VariableView" activePerspective="com.adobe.flexbuilder.debug.ui.perspectives.debug">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.adobe.flexbuilder.mxml.editor.ui.perspectives.DevelopmentPerspectiveFactory" id="com.adobe.flexbuilder.editors.mxml.ui.perspectives.development" label="Flash"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -214,8 +169,8 @@
 <alwaysOnActionSet id="com.adobe.flexbuilder.debug.ui.flexDebuggingActionSet"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.zzz.editors.common.ui.project.publish"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.exportimport.actionSet1"/>
-<alwaysOnActionSet id="com.adobe.flexbuilder.as.editor.ui.NavigationActions"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.as.editor.ui.NavigationActions"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
 <show_view_action id="com.adobe.flexbuilder.mxml.editor.AppearanceView"/>
 <show_view_action id="com.adobe.flexbuilder.mxml.editor.components.ComponentsView"/>
@@ -252,17 +207,17 @@
 <perspective_action id="com.adobe.flash.profiler.ui.ProfilingPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="com.adobe.flexbuilder.packageexplorer"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="com.adobe.flexbuilder.dcrad.views.DataServicesView"/>
 <view id="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView"/>
 <view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="com.adobe.flexbuilder.as.editor.asdocviewer"/>
+<view id="com.adobe.flexbuilder.packageexplorer"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="bottomLayout" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.2998933"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.30416223"/>
 <view id="org.eclipse.debug.ui.DebugView" ratio="0.2998933"/>
 </fastViews>
 </fastViewBar>
@@ -282,9 +237,10 @@
 <page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.18019906" ratioLeft="344" ratioRight="1565" relationship="2" relative="org.eclipse.ui.internal.ViewStack@2cf63"/>
+<info part="org.eclipse.ui.editorss" ratio="0.21686748" ratioLeft="414" ratioRight="1495" relationship="2" relative="org.eclipse.ui.internal.ViewStack@2cf63"/>
 <info folder="true" part="statesViewHolder" ratio="0.65" ratioLeft="520" ratioRight="280" relationship="2" relative="org.eclipse.ui.editorss">
 <folder appearance="2" expanded="2">
 <page content="com.adobe.flexbuilder.mxml.editor.states.StatesViewer" label="LabelNotFound"/>
@@ -306,7 +262,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1e73564" ratio="0.6423983" ratioLeft="600" ratioRight="334" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1e73564" ratio="0.72055674" ratioLeft="673" ratioRight="261" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.search.ui.views.SearchView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="com.adobe.flexbuilder.dcrad.views.DataServicesView" label="Data/Services"/>
@@ -357,9 +313,9 @@
 <alwaysOnActionSet id="com.adobe.flexbuilder.debug.ui.flexDebuggingActionSet"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.zzz.editors.common.ui.project.publish"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.exportimport.actionSet1"/>
-<alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.as.editor.ui.NavigationActions"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
 <show_view_action id="org.eclipse.debug.ui.VariableView"/>
 <show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
 <show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
@@ -418,11 +374,12 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<info folder="true" part="stickyFolderRight" ratio="0.8234678" ratioLeft="1572" ratioRight="337" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.82655245" ratioLeft="772" ratioRight="162" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
@@ -439,7 +396,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.59687907" ratioLeft="459" ratioRight="310" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info part="org.eclipse.ui.editorss" ratio="0.55786735" ratioLeft="429" ratioRight="340" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
 <info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
 <folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
@@ -459,169 +416,168 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/CharacterView.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/InventoryView.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/CurrentItemListView.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/PartyView.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/pkgInventory/ItemStackView.mxml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/TyrantsRealm.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/hud/HudInventory.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/hud/HudInventoryDrop.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/MapView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/FullMapView.mxml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/hud/HudInventoryRight.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.mxml.editor.MXMLCodeEditor" path="/Dungeon_ver6a/src/views/CharacterView.mxml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/Dungeon_ver6a/src/pkgParty/Party.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.mxml.editor.MXMLCodeEditor" path="/Dungeon_ver6a/src/hud/HudInventoryRight.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/hud/HudParty.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/PartyView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.mxml.editor.MXMLCodeEditor" path="/Dungeon_ver6a/src/TyrantsRealm.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/CharacterView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/MapView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.mxml.editor.MXMLCodeEditor" path="/Dungeon_ver6a/src/views/MapView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/FullMapView.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/Dungeon_ver6a/src/views/MapView.mxml"/>
 </editors>
-<item historyLabel="HudInventory.mxml" index="6">
+<item historyLabel="TyrantsRealm.mxml" index="0">
+<position info="not_deleted" x="8074" y="7"/>
+</item>
+<item historyLabel="ViewEachCharInParty.mxml" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="36222" y="6"/>
+<item historyLabel="HudParty.mxml" index="4">
+<position/>
 </item>
-<item historyLabel="InventoryView.mxml" index="1">
-<position info="not_deleted" x="3950" y="0"/>
+<item historyLabel="ViewEachCharInParty.mxml" index="3">
+<position/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61986" y="0"/>
+<item historyLabel="PartyView.mxml" index="5">
+<position info="not_deleted" x="244" y="0"/>
 </item>
-<item historyLabel="InventoryView.mxml" index="1">
-<position info="not_deleted" x="3950" y="0"/>
-</item>
-<item historyLabel="ItemStackView.mxml" index="4">
-<position info="not_deleted" x="10758" y="0"/>
-</item>
-<item historyLabel="InventoryView.mxml" index="1">
-<position info="not_deleted" x="3950" y="0"/>
-</item>
-<item historyLabel="TyrantsRealm.mxml" index="5">
-<position info="not_deleted" x="4097" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61986" y="0"/>
-</item>
-<item historyLabel="InventoryView.mxml" index="1">
-<position info="not_deleted" x="1886" y="13"/>
-</item>
-<item historyLabel="PartyView.mxml" index="3">
-<position info="not_deleted" x="918" y="37"/>
-</item>
-<item historyLabel="ItemStackView.mxml" index="4">
-<position info="not_deleted" x="10758" y="0"/>
-</item>
-<item historyLabel="PartyView.mxml" index="3">
-<position info="not_deleted" x="918" y="37"/>
-</item>
-<item historyLabel="HudInventoryDrop.mxml" index="7">
+<item historyLabel="HudParty.mxml" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61986" y="0"/>
+<item historyLabel="TyrantsRealm.mxml" index="0">
+<position info="not_deleted" x="8074" y="7"/>
 </item>
-<item historyLabel="ItemStackView.mxml" index="4">
+<item historyLabel="TyrantsRealm.mxml" index="6">
+<position info="not_deleted" x="8470" y="10"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="6">
+<position info="not_deleted" x="3312" y="10"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="6">
+<position info="not_deleted" x="4213" y="10"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="6">
+<position info="not_deleted" x="4233" y="0"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="6">
+<position info="not_deleted" x="8488" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="2434" y="72"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="9944" y="190"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="2434" y="72"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
 <position/>
 </item>
-<item historyLabel="TyrantsRealm.mxml" index="5">
-<position info="not_deleted" x="4097" y="0"/>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="2434" y="72"/>
 </item>
-<item historyLabel="PartyView.mxml" index="3">
-<position info="not_deleted" x="571" y="30"/>
-</item>
-<item historyLabel="HudInventoryDrop.mxml" index="7">
-<position info="not_deleted" x="828" y="0"/>
-</item>
-<item historyLabel="PartyView.mxml" index="3">
-<position info="not_deleted" x="1396" y="0"/>
-</item>
-<item historyLabel="ViewEachCharInParty.mxml" index="8">
-<position info="not_deleted" x="984" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61612" y="16"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
-<position info="not_deleted" x="212" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61612" y="16"/>
-</item>
-<item historyLabel="ViewEachCharInParty.mxml" index="8">
-<position info="not_deleted" x="316" y="5"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
-<position info="not_deleted" x="212" y="0"/>
-</item>
-<item historyLabel="ViewEachCharInParty.mxml" index="8">
-<position info="not_deleted" x="984" y="16"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
-<position info="not_deleted" x="606" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61612" y="16"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="10">
-<position info="not_deleted" x="2450" y="18"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="10">
-<position info="not_deleted" x="61515" y="18"/>
-</item>
-<item historyLabel="CurrentItemListView.mxml" index="2">
-<position info="not_deleted" x="1606" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="61515" y="18"/>
-</item>
-<item historyLabel="CurrentItemListView.mxml" index="2">
-<position info="not_deleted" x="1606" y="0"/>
-</item>
-<item historyLabel="ItemStackView.mxml" index="4">
-<position info="not_deleted" x="10839" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="2371" y="0"/>
-</item>
-<item historyLabel="Party.as" index="11">
-<position info="not_deleted" x="213" y="18"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
-<position info="not_deleted" x="452" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="1336" y="71"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
-<position info="not_deleted" x="452" y="0"/>
-</item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="1414" y="96"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
+<item historyLabel="FullMapView.mxml" index="2">
 <position/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="833" y="32"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
+<item historyLabel="MapView.mxml" index="1">
 <position/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="833" y="32"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
+<item historyLabel="FullMapView.mxml" index="2">
 <position/>
 </item>
-<item historyLabel="CharacterView.mxml" index="0">
-<position info="not_deleted" x="945" y="30"/>
-</item>
-<item historyLabel="HudInventoryRight.mxml" index="9">
+<item historyLabel="MapView.mxml" index="1">
 <position/>
 </item>
-<item historyLabel="HudInventoryRight.mxml" index="12">
-<position info="not_deleted" x="858" y="0"/>
+<item historyLabel="FullMapView.mxml" index="2">
+<position/>
 </item>
-<item active="true" historyLabel="HudInventoryRight.mxml" index="12">
-<position info="not_deleted" x="860" y="0"/>
+<item historyLabel="MapView.mxml" index="1">
+<position/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="4099" y="1056"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="2315" y="21"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="6180" y="1"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="2315" y="21"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="6180" y="1"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="2315" y="21"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position/>
+</item>
+<item historyLabel="FullMapView.mxml" index="2">
+<position info="not_deleted" x="7851" y="336"/>
+</item>
+<item historyLabel="MapView.mxml" index="1">
+<position info="not_deleted" x="8522" y="0"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="0">
+<position info="not_deleted" x="2663" y="0"/>
+</item>
+<item historyLabel="CharacterView.mxml" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="TyrantsRealm.mxml" index="0">
+<position info="not_deleted" x="2663" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="9">
+<position info="not_deleted" x="2104" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="9">
+<position info="not_deleted" x="486" y="11"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="11">
+<position info="not_deleted" x="2206" y="27"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="11">
+<position info="not_deleted" x="2206" y="27"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="11">
+<position info="not_deleted" x="4235" y="0"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="11">
+<position info="not_deleted" x="4235" y="0"/>
+</item>
+<item historyLabel="FullMapView.mxml" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MapView.mxml" index="11">
+<position/>
+</item>
+<item active="true" historyLabel="MapView.mxml" index="9">
+<position info="not_deleted" x="4204" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -629,10 +585,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@2cf63"/>
-<trimItem IMemento.internal.id="outlineHolder"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -641,55 +593,54 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
 <trimItem IMemento.internal.id="bottomLayout"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@1e73564"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Party.as" tooltip="Dungeon_ver6a/src/pkgParty/Party.as">
-<persistable path="/Dungeon_ver6a/src/pkgParty/Party.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudInventoryRight.mxml" tooltip="Dungeon_ver6a/src/hud/HudInventoryRight.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudInventoryRight.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudParty.mxml" tooltip="Dungeon_ver6a/src/hud/HudParty.mxml">
+<persistable path="/Dungeon_ver6a/src/hud/HudParty.mxml"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ViewEachCharInParty.mxml" tooltip="Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml">
 <persistable path="/Dungeon_ver6a/src/pkgParty/ViewEachCharInParty.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudInventoryDrop.mxml" tooltip="Dungeon_ver6a/src/hud/HudInventoryDrop.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudInventoryDrop.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="LogoutView.mxml" tooltip="Dungeon_ver6a/src/views/LogoutView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/LogoutView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="InventoryView.mxml" tooltip="Dungeon_ver6a/src/views/InventoryView.mxml">
-<persistable path="/Dungeon_ver6a/src/views/InventoryView.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudLogout.mxml" tooltip="Dungeon_ver6a/src/hud/HudLogout.mxml">
+<persistable path="/Dungeon_ver6a/src/hud/HudLogout.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudInventory.mxml" tooltip="Dungeon_ver6a/src/hud/HudInventory.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudInventory.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudForum.mxml" tooltip="Dungeon_ver6a/src/hud/HudForum.mxml">
+<persistable path="/Dungeon_ver6a/src/hud/HudForum.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudWorld.mxml" tooltip="Dungeon_ver6a/src/hud/HudWorld.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudWorld.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudChatFilter.mxml" tooltip="Dungeon_ver6a/src/hud/HudChatFilter.mxml">
+<persistable path="/Dungeon_ver6a/src/hud/HudChatFilter.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudTown.mxml" tooltip="Dungeon_ver6a/src/hud/HudTown.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudTown.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ChatFilters.mxml" tooltip="Dungeon_ver6a/src/views/ChatFilters.mxml">
+<persistable path="/Dungeon_ver6a/src/views/ChatFilters.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudDungeon.mxml" tooltip="Dungeon_ver6a/src/hud/HudDungeon.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudDungeon.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ShopView.mxml" tooltip="Dungeon_ver6a/src/views/ShopView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/ShopView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="CharacterSelectedEvent.as" tooltip="Dungeon_ver6a/src/pkgParty/CharacterSelectedEvent.as">
-<persistable path="/Dungeon_ver6a/src/pkgParty/CharacterSelectedEvent.as"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="SettingsView.mxml" tooltip="Dungeon_ver6a/src/views/SettingsView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/SettingsView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="CharacterDblClickedEvent.as" tooltip="Dungeon_ver6a/src/pkgParty/CharacterDblClickedEvent.as">
-<persistable path="/Dungeon_ver6a/src/pkgParty/CharacterDblClickedEvent.as"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="RankingView.mxml" tooltip="Dungeon_ver6a/src/views/RankingView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/RankingView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="HudParty.mxml" tooltip="Dungeon_ver6a/src/hud/HudParty.mxml">
-<persistable path="/Dungeon_ver6a/src/hud/HudParty.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="PartyGroupsView.mxml" tooltip="Dungeon_ver6a/src/views/PartyGroupsView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/PartyGroupsView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Character.as" tooltip="Dungeon_ver6a/src/character/Character.as">
-<persistable path="/Dungeon_ver6a/src/character/Character.as"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ForumView.mxml" tooltip="Dungeon_ver6a/src/views/ForumView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/ForumView.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="PartyView.mxml" tooltip="Dungeon_ver6a/src/views/PartyView.mxml">
-<persistable path="/Dungeon_ver6a/src/views/PartyView.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="MainHUDButtonSkin.mxml" tooltip="Dungeon_ver6a/src/skins/MainHUDButtonSkin.mxml">
+<persistable path="/Dungeon_ver6a/src/skins/MainHUDButtonSkin.mxml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="InventoryShiftRightSkin.mxml" tooltip="Dungeon_ver6a/src/skins/InventoryShiftRightSkin.mxml">
-<persistable path="/Dungeon_ver6a/src/skins/InventoryShiftRightSkin.mxml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="ChatView.mxml" tooltip="Dungeon_ver6a/src/views/ChatView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/ChatView.mxml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="MapView.mxml" tooltip="Dungeon_ver6a/src/views/MapView.mxml">
+<persistable path="/Dungeon_ver6a/src/views/MapView.mxml"/>
 </file>
 </mruList>
 </workbench>

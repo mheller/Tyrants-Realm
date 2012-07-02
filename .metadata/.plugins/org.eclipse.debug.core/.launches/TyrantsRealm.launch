@@ -2,7 +2,7 @@
 <launchConfiguration type="com.adobe.flexbuilder.debug.launchConfigurationType.flash">
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_APPLICATION" value="src/TyrantsRealm.mxml"/>
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_PROJECT" value="Dungeon_ver6a"/>
-<stringAttribute key="com.adobe.flexbuilder.debug.ATTR_RUN_URL" value="file:/C:/Users/mheller/Adobe%20Flash%20Builder%204.5/Dungeon_ver6a/bin-debug/Dungeon_ver6a.html"/>
+<stringAttribute key="com.adobe.flexbuilder.debug.ATTR_RUN_URL" value="file:/C:/Users/mheller/Adobe%20Flash%20Builder%204.5/Dungeon_ver6a/bin-debug/TyrantsRealm.html"/>
 <booleanAttribute key="com.adobe.flexbuilder.debug.ATTR_USE_DEFAULT_URLS" value="true"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/Dungeon_ver6a"/>

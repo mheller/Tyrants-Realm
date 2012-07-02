@@ -89,7 +89,7 @@ package character
 			return false;
 		}
 
-		public function nextAvailableInventorySpot(src:ItemStack):ItemStack {
+		public function nextAvailableInventorySpot(src:ItemStack, vacatingStack:ItemStack):ItemStack {
 			var tempItemStack:ItemStack;
 			var source:ItemStack = src;
 			tempItemStack = this.iStack1;   // inv slot 1
@@ -99,10 +99,10 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
-				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
+				if (tempItemStack == vacatingStack)
 					return tempItemStack;
-					
-				}						
+				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize)
+					return tempItemStack;
 			}	
 			tempItemStack = this.iStack2; // inv slot 2
 			if (tempItemStack.currSize == 0) {
@@ -111,6 +111,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -122,6 +124,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;					
 				}						
@@ -132,6 +136,8 @@ package character
 				return tempItemStack;					
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 					
@@ -143,6 +149,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -153,6 +161,8 @@ package character
 				return tempItemStack;			
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 					
@@ -165,6 +175,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 					
@@ -177,6 +189,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -188,6 +202,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -199,6 +215,8 @@ package character
 				
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 					
@@ -210,6 +228,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -220,6 +240,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -230,6 +252,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -240,6 +264,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -250,6 +276,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -260,6 +288,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -270,6 +300,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -280,6 +312,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -290,6 +324,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -300,6 +336,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						
@@ -310,6 +348,8 @@ package character
 				return tempItemStack;
 			}
 			else { // Not empty, but maybe stackable?
+				if (tempItemStack == vacatingStack)
+					return tempItemStack;
 				if (tempItemStack.item.itemID == source.item.itemID && tempItemStack.item.isStackable && tempItemStack.currSize < tempItemStack.maxSize){
 					return tempItemStack;
 				}						

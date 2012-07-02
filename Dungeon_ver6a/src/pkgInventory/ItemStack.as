@@ -123,6 +123,122 @@ package pkgInventory
 			return true;
 		}
 		
+
+		//push items from other stack of the same type
+		public function moveStacks(otherStack:ItemStack, startLoc:ItemStackView, endLoc:ItemStackView, swapLoc:ItemStackView): Boolean{
+			var startToolTip:String;
+			var endToolTip:String;
+
+			// If the endLoc is empty, then perform a simple move
+			if(this.currSize == 0){
+				startToolTip = otherStack.item.itemTooltip;
+
+				this.item = otherStack.item;
+				this.itemType = otherStack.itemType;
+				this.displayPath = otherStack.displayPath;
+				this.owner = otherStack.owner;
+				
+				if(this.maxSize < otherStack.currSize){
+					var remain:int = this.maxSize - this.currSize;
+					this.currSize = this.maxSize;
+					otherStack.currSize -= remain;
+				}else{
+					this.currSize = otherStack.currSize;
+					otherStack.currSize = 0;
+					otherStack.item = null;
+					otherStack.itemType = -1;
+					otherStack.displayPath = null;
+					otherStack.owner = null;
+					
+				}
+				startLoc.toolTip = "";
+				endLoc.toolTip = startToolTip;
+				return true;
+			}
+
+			
+			
+			// If the items aren't the same, then do a swap, otherwise skip and try to stack.
+			if(this.item.itemID != otherStack.item.itemID){
+
+				var storage:ItemStack = new ItemStack(otherStack.maxSize);
+				
+				// Backup the endLoc itemStack
+				storage.item = this.item;
+				storage.itemType = this.itemType;
+				storage.displayPath = this.displayPath;
+				storage.currSize = this.currSize;
+				storage.owner = this.owner;
+				startToolTip = startLoc.toolTip;
+				startLoc.toolTip = "";
+				
+				// Copy startLoc to endLoc
+				this.item = startLoc.itemStack.item;
+				this.itemType = startLoc.itemStack.itemType;
+				this.displayPath = startLoc.itemStack.displayPath;
+				this.currSize = startLoc.itemStack.currSize;
+				this.owner = startLoc.itemStack.owner;
+				endToolTip = endLoc.toolTip;
+				endLoc.toolTip = startToolTip;
+
+				// Clean up startLoc
+				otherStack.currSize = 0;
+				otherStack.item = null;
+				otherStack.itemType = -1;
+				otherStack.displayPath = null;
+				otherStack.owner = null;
+
+				// Copy backup to swapLoc
+				swapLoc.itemStack.item = storage.item;
+				swapLoc.itemStack.itemType = storage.itemType;
+				swapLoc.itemStack.displayPath = storage.displayPath;
+				swapLoc.itemStack.currSize = storage.currSize;
+				swapLoc.itemStack.owner = storage.owner;
+				swapLoc.toolTip = endToolTip;
+				
+				
+				return true;
+			}
+			
+			// Slot can't merge as full
+			if(this.currSize == this.maxSize){
+				return false;
+			}
+			
+			// Slot types aren't stackable
+			if(this.item.isStackable == false){
+				Alert.show("This item is not stackable");
+				return false;
+			}
+			
+			// Move as many as can fit and stop
+			// Items are left in startLoc so no change in tooltips needed
+			if((this.currSize+otherStack.currSize) > this.maxSize){
+				var _remain:int = this.maxSize - this.currSize;
+				this.currSize = this.maxSize;
+				otherStack.currSize -= _remain;
+				return true;
+			}
+			
+			// else : the same type + had enough space, then add:
+			// Add stack and remove from source
+			this.currSize+= otherStack.currSize;
+			otherStack.currSize = 0;
+			otherStack.item = null;
+			otherStack.itemType = -1;
+			otherStack.displayPath = null;
+			
+			startLoc.toolTip = "";
+			
+			return true;
+		}
+		
+		
+		
+		
+		
+		
+		
 		// pop 1 item out of the stack
 		public function popItem():Boolean{
 			if (this.currSize >0){

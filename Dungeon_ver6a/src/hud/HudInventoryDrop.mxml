@@ -3,7 +3,7 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark" 
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  label="Drop"
-		  click="dropItem();"
+		  click="clickHander(event);"
 		  > 
 	
 	<fx:Declarations>
@@ -15,6 +15,7 @@
 			import character.Inventory;
 			import mx.controls.Alert;
 			import mx.managers.PopUpManager;
+			import events.DragDropEvent;
 			
 			import resizableTitleWindow.*;
 			
@@ -25,33 +26,14 @@
 			
 			//public var inv:pkgInventory.InventoryView_old;
 			
-			public function dropItem():void{
-				Alert.show('Are you sure you want to drop it? It will be gone forever!', 'Drop', 3, this.parentApplication, dropHandler);
-
-				
-				/*				
-				if (logoutView == null){
-					logoutView = PopUpManager.createPopUp(this, LogoutView,false) as LogoutView;
-					logoutView.setStyle("skinClass", ResizableTitleWindowSkin);
-				}				
-				else{
-					if (logoutView.visible == false)
-						logoutView.visible = true;
-					else
-						logoutView.visible = false;
-				}
-				
-	*/			
+/*			public function dropItem():void{
 				
 			}	
 			
-			public function dropHandler(e:Event):void {
-				
-			}
-			
+	*/		
 			
 			public function clickHander(e:Event):void {	
-				dropItem();
+				return;
 			}
 		]]>
 	</fx:Script>	

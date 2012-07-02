@@ -5,6 +5,7 @@
 		 click="group1_clickHandler(event)" 
 		 doubleClickEnabled="true" 
 		 doubleClick="dbl_clickHandler(event)"
+		 creationComplete="creationCompleteHandler(event)"
 		 >
 	
 	<fx:Declarations>
@@ -22,10 +23,12 @@
 			import character.Character;
 			
 			import mx.controls.Alert;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
 			
 			import spark.filters.BevelFilter;
 			import spark.primitives.Ellipse;
-			
+
 			[Bindable]
 			public var char:Character;
 			
@@ -50,11 +53,11 @@
 
 			public function updateStatusBar():void{
 				var tmpHealth:int;
-				tmpHealth = ((char.health_max.value as int)*40)/(char.health_max.value as int);
+				tmpHealth = ((char.health_max.getValue() as int)*40)/(char.health_max.getValue());
 				this.healthStatusBar.setProgress(tmpHealth,40);
 				
 				var tmpSpirae:int;
-				tmpSpirae = ((char.spirae_max.value as int)*40)/(char.spirae_max.value as int);
+				tmpSpirae = ((char.spirae_max.getValue() as int)*40)/(char.spirae_max.getValue());
 				this.spiraeStatusBar.setProgress(tmpSpirae,40);
 				
 //				var cropArea:Rectangle = new Rectangle( 0, 0, _width, _height );
@@ -64,6 +67,15 @@
 				
 				
 			}
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				// Manage dropping items from Inventory or Equipped to Character portraits to transfer them.
+				addEventListener(DragEvent.DRAG_ENTER, (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.acceptDrop);
+				addEventListener(DragEvent.DRAG_DROP, (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.xferItem);
+			}
+			
+			
 			
 		]]>
 	</fx:Script>
@@ -84,54 +96,42 @@
 			
 			<s:mask>
 				<s:BorderContainer id="bmpMask"
-								   cornerRadius="50"
+								   cornerRadius="{bmpImg.width}"
 								   width="{bmpImg.width}" height="{bmpImg.height}" />
 			</s:mask>
 
 		</s:BitmapImage>
-		<s:BitmapImage source="{char.appearance_basehead}" 
-					   width="100" height="100"
+		<s:BitmapImage id="basehead" source="{char.appearance_basehead}" 
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_torso}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_torso" source="{char.appearance_torso}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_head}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_head" source="{char.appearance_head}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_legs}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_legs" source="{char.appearance_legs}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_feet}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_feet" source="{char.appearance_feet}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_shoulders}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_shoulders" source="{char.appearance_shoulders}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_hands}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_hands" source="{char.appearance_hands}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
-		<s:BitmapImage source="{char.appearance_weapon}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_weapon" source="{char.appearance_weapon}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>
-		<s:BitmapImage source="{char.appearance_offhand}"
-					   width="100" height="100"
+		<s:BitmapImage id="char_offhand" source="{char.appearance_offhand}"
+					   width="{bmpImg.width}" height="{bmpImg.height}"
 					   horizontalAlign="center"/>	
 
 	</s:Group>
 
-<!--	<s:HGroup width="100%">			
-		<s:Label text="Health "/>
-		<s:Label text="{char.health.value}"/>
-	</s:HGroup>
-	
-	<s:HGroup width="100%">			
-		<s:Label text="Level "/>
-		<s:Label text="{char.level.value}"/>
-	</s:HGroup>	
--->	
-	
-
-	<s:HGroup>
+	<s:HGroup id="health_group">
 		<s:Label text="H" fontSize="8"/>
 		<mx:ProgressBar id="healthStatusBar"
 						mode="manual"
@@ -142,7 +142,7 @@
 						height="8"/>
 	</s:HGroup>
 
-	<s:HGroup>
+	<s:HGroup id="spirae_group">
 		<s:Label text="S" fontSize="8"/>
 		<mx:ProgressBar id="spiraeStatusBar"
 						mode="manual"

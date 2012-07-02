@@ -326,8 +326,8 @@ package character
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 29));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 129));		
-			item_benefit.addItem(new Attribute("Spirit", 29));
-			item_benefit.addItem(new Attribute("Coordination", 129));		
+			item_benefit.addItem(new Attribute("Spirit", 2));
+			item_benefit.addItem(new Attribute("Coordination", 2));		
 			item_material.addItem(new Attribute("90001", 14));
 			var newItem10:Item = new Item(19,"Shortbow","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_02.jpg",item_benefit, item_material);
 
@@ -379,7 +379,7 @@ package character
 			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Fitness", 2));
 			item_material.addItem(new Attribute("90005", 5));
-			var newItem16:Item = new Item(10000,"Ring","a plain gold ring", "plain gold rings", 1, 20, 10, 9, "This simple loop of metal is commonly worn by men of any race as it symbolizes unity and strength.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_01.jpg", item_benefit, item_material);
+			var newItem16:Item = new Item(10000,"Ring","a plain gold ring", "plain gold rings", 1, 20, 10, 9, "This simple loop of metal is commonly worn by men of any race as it symbolizes unity and strength.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_01.png", item_benefit, item_material);
 
 			item_benefit.removeAll();
 			item_material.removeAll();
@@ -387,7 +387,7 @@ package character
 			item_benefit.addItem(new Attribute("Mental", 2));
 			item_material.addItem(new Attribute("90005", 7));
 			item_material.addItem(new Attribute("90010", 12));
-			var newItem17:Item = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.jpg", item_benefit, item_material);
+			var newItem17:Item = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.png", item_benefit, item_material);
 
 			// push items to stacks
 			iStack1.pushItem(newItem1);

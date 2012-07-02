@@ -21,16 +21,18 @@
 			import mx.controls.Alert;
 			import mx.managers.PopUpManager;
 			
-			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.CharacterDblClickedEvent;
+			import pkgParty.CharacterSelectedEvent;
 			import pkgParty.Party;
 			
-			import views.PartyView;
-			import views.CharacterView;
-
 			import resizableTitleWindow.*;
 			
 			import spark.components.TitleWindow;
+			
+			import views.CharacterView;
+			import views.CurrentItemListView;
+			import views.InventoryView;
+			import views.PartyView;
 			
 			[Bindable]
 			public var char:Character;	
@@ -39,19 +41,27 @@
 			public var party:Party;	
 
 			public function shiftRight(event:MouseEvent):void{
-				this.party = (Party)(super.document.party);
-				var currIndex:int = party.currCharIndex;
-				var currPop:int = party.currPopulation;
+				this.party = (TyrantsRealm)(this.parentApplication).hud_party.aParty;
+				var currIndex:int = party.getCurrCharIndex();
+				var currPop:int = party.getCurrPopulation();
 				
 				if (currIndex<(currPop-1)) currIndex++; 
 				else currIndex = 0;   // we're at the bottom and going to wrap to the top.
 				
-				this.char = party.arr_chars.getItemAt(currIndex);
+				this.char = party.getCharAt(currIndex);
 				
 				// Update the hud
-				this.parentApplication.hud_party.party_view.handleCharacterSelected(new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,currIndex));
-				this.parentApplication.hud_party.party_view.character_view=null;
-				this.parentApplication.hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.handleCharacterSelected(new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.aParty.setCurrCharIndex(currIndex);
+				var x:int = (TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.x;
+				var y:int = (TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.y;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.handleCloseEvent();
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view = null;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.y = y;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.x = x;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.updateTooltips();
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.updateEquippedItemTooltips();
 			}	
 			
 		]]>

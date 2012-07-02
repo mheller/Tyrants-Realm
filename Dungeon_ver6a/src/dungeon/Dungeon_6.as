@@ -4,8 +4,8 @@
 	import away3d.core.base.*;
 	import away3d.core.clip.Clipping;
 	import away3d.core.clip.RectangleClipping;
-	import away3d.core.utils.*;
 	import away3d.core.render.Renderer;
+	import away3d.core.utils.*;
 	import away3d.debug.AwayStats;
 	import away3d.events.MouseEvent3D;
 	import away3d.lights.DirectionalLight3D;
@@ -69,7 +69,7 @@
 		
 		private const objectType:Array = new Array(Crate);
 		
-		private const _visibleDistance:int = 5;
+		private const _visibleDistance:int = 3;
 		
 		
 		//public function Dungeon_6(map:Map) {
@@ -139,10 +139,12 @@
 				tile.y = deltaY[type-1] + gridHeight/2;//-(2*tile.maxY-gridHeight-deltaY[type-1]))/2;//suppose left corner's y-coordinate is 0 
 				tile.pushback =true;
 				tile.rotationY = rotation*90;
-				tile.visible = true;
-				
+				tile.visible = true;		
 				_grids[gridX][gridZ].tile = tile;
 				_view.scene.addChild(tile);
+				_grids[gridX][gridZ].explored = true;
+				
+				
 				
 				//add objects into the tile
 				if (_grids[gridX][gridZ].objects != null){
@@ -157,6 +159,7 @@
 						trace("x,z : "+(int)((dungeon_object.h_loc-1)/3)+","+(dungeon_object.h_loc-1)%3);
 						trace("h_loc,v_loc : "+dungeon_object.h_loc+","+dungeon_object.v_loc);
 						
+						// Clicking on Crate
 						mesh.addEventListener(MouseEvent3D.MOUSE_DOWN,function (e:MouseEvent3D):void{							
 							Alert.show("Crate : x="+mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
 						});
@@ -190,7 +193,7 @@
 					d = -_visibleDistance;
 					
 				for (i = Math.max(newCamGridX-_visibleDistance,0); i<Math.min(newCamGridX+_visibleDistance+1,_numGridsX); i++){
-					if (newCamGridZ+d>=0 && newCamGridZ+d<_numGridsZ &&_grids[i][newCamGridZ+d] != null){
+					if (newCamGridZ+d>=0 && newCamGridZ+d<_numGridsZ &&_grids[i][newCamGridZ+d] != null) {
 						addTile(_grids[i][newCamGridZ+d].type,i,newCamGridZ+d,_grids[i][newCamGridZ+d].rotation);
 					}
 				}
@@ -212,8 +215,9 @@
 					d = -_visibleDistance;
 					
 				for (i = Math.max(newCamGridZ-_visibleDistance,0); i<Math.min(newCamGridZ+_visibleDistance+1,_numGridsZ); i++){
-					if (newCamGridX+d>=0 && newCamGridX+d<_numGridsX &&_grids[newCamGridX+d][i] != null)
+					if (newCamGridX+d>=0 && newCamGridX+d<_numGridsX &&_grids[newCamGridX+d][i] != null) {
 						addTile(_grids[newCamGridX+d][i].type,newCamGridX+d,i,_grids[newCamGridX+d][i].rotation);
+					}
 				}
 				
 				for (i = Math.max(curCamGridZ-_visibleDistance,0); i<Math.min(curCamGridZ+_visibleDistance+1,_numGridsZ); i++){
@@ -231,7 +235,7 @@
 			var newCamPosX:int;
 			var newCamPosZ:int;
 			
-			this.stage.focus = this;
+//			this.stage.focus = this;   Moved to TyrantsRealm.reportMouse.Down
 			if(_keyLeft)
 			{
 				_view.camera.rotationY -= _angularVelocity; 				
@@ -638,6 +642,10 @@
 		
 		public function getCurCamPos():Vector3D{
 			return _view.camera.position;
+		}
+		
+		public function getCurCamRot():Number{
+			return _view.camera.rotationY;
 		}
 	}
 	

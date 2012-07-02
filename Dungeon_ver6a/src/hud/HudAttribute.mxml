@@ -4,6 +4,7 @@
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  emphasized="{character_view.visible}"
 		  label="Attribute" 
+		  creationComplete="creationCompleteHandler(event)"
 		  click="clickHander(event);" height="72" width="72"
 		  >
 	<fx:Declarations>
@@ -23,7 +24,8 @@
 			
 			import views.CharacterView;
 			import views.PartyView;
-			
+			import mx.events.FlexEvent;
+		
 			[Bindable]
 			public var char:Character;
 			
@@ -33,19 +35,28 @@
 			[Bindable]
 			public var character_view:CharacterView;
 				
-			public function clickHander(e:Event):void{		
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{		
 				if (character_view == null){							
 					character_view = PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
 					character_view.char = char;	
-					character_view.party = this.party;
+					character_view.visible = false;
+				}
+			}
+			public function clickHander(e:Event):void{		
+				if (character_view == null){	// Should never be called						
+					character_view = PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
+					character_view.char = char;	
 				}
 				else{					
 					if (character_view.visible == false){
 						character_view.visible = true;
 					}
 					else{
-						character_view.visible = false;
-						//						character_view = null;
+						//character_view.visible = false;
+						character_view = null;
+						this.char = null;
+						this.party = null;
 					}
 				}
 			}

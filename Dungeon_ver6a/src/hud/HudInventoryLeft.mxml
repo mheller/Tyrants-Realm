@@ -17,6 +17,8 @@
 		<![CDATA[			
 			import character.Character;
 			import character.Inventory;
+			import views.CharacterView;
+			import views.CurrentItemListView;
 			
 			import mx.controls.Alert;
 			import mx.managers.PopUpManager;
@@ -37,19 +39,27 @@
 			public var party:Party;	
 			
 			public function shiftLeft(event:MouseEvent):void{
-				this.party = (Party)(super.document.party);
-				var currIndex:int = party.currCharIndex;
-				var currPop:int = party.currPopulation;
+				this.party = (TyrantsRealm)(this.parentApplication).hud_party.aParty;
+				var currIndex:int = party.getCurrCharIndex();
+				var currPop:int = party.getCurrPopulation();
 				
 				if (currIndex>0) currIndex--; 
 				else currIndex = currPop-1;   // we're at the top and going to wrap to the bottom.
 				
-				this.char = party.arr_chars.getItemAt(currIndex);
+				this.char = party.getCharAt(currIndex);
 				
 				// Update main app hud
-				this.parentApplication.hud_party.party_view.handleCharacterSelected(new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,currIndex));						
-				this.parentApplication.hud_party.party_view.character_view=null;
-				this.parentApplication.hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.handleCharacterSelected(new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.aParty.setCurrCharIndex(currIndex);
+				var x:int = (TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.x;
+				var y:int = (TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.y;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.handleCloseEvent();
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view = null;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.char,currIndex));
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.y = y;
+				(TyrantsRealm)(this.parentApplication).hud_party.party_view.character_view.x = x;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.updateTooltips();
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.updateEquippedItemTooltips();
 				
 			}	
 			
