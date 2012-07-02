@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:pkgInventory="pkgInventory.*"
+		 xmlns:resizableTitleWindow="resizableTitleWindow.*"
+		 width="72" height="72" 
+		 
+		 dragDrop="doDragDrop(event,'itemStackFormat')"
+		 dragComplete="skinnablecontainer1_dragCompleteHandler(event,'itemStackFormat')"
+		 dragEnter="doDragEnter(event,'itemStackFormat')"
+		 mouseDown="dragIt(this,event,'itemStackFormat')"
+		 dragOver="skinnablecontainer1_dragOverHandler(event)"
+		 backgroundColor="#222222"
+		 creationComplete="skinnablecontainer1_creationCompleteHandler(event)"
+		 
+		 >
+
+	<fx:Metadata>
+		[Event(name="changeCurrentSize", type="flash.events.Event")]
+	</fx:Metadata>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import events.DragDropEvent;
+			
+			import mx.containers.Canvas;
+			import mx.controls.Label;
+			import mx.core.DragSource;
+			import mx.core.IUIComponent;
+			import mx.core.UIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.DragManager;
+			import mx.skins.halo.DefaultDragImage;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			import pkgInventory.ItemGroup;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			
+			import spark.filters.GlowFilter;
+			import spark.primitives.BitmapImage;
+			import spark.primitives.Graphic;
+			
+			import views.CurrentItemListView;
+			import views.InventoryView;
+			import views.CharacterView;
+			
+			[Bindable]
+			public var itemStack:ItemStack;
+			
+			[Bindable]
+			public var char:Character;	
+			
+			[Bindable]
+			public var party:Party;	
+
+			
+			public function getUIComponentBitmapData( target :UIComponent ) : BitmapData
+			{ 
+				var bd:BitmapData = new BitmapData( target.width, target.height );
+				var m:Matrix = new Matrix();
+				bd.draw( target, m );
+				return bd;  
+			}
+
+
+			private function doDragEnter(event:DragEvent,format:String):void
+			{
+				if(event.dragSource.hasFormat(format)){
+					DragManager.acceptDragDrop((IUIComponent(event.target)));
+				}
+			}
+			
+			private function doDragDrop(event:DragEvent,format:String):void
+			{
+
+				if((event.target != null) && (event.target != event.dragInitiator)){
+					var source:ItemStackView = (event.dragInitiator as ItemStackView);
+					var target:ItemStackView = (event.target as ItemStackView);
+					var transferedItem: ItemStack = (event.dragSource.dataForFormat(format) as ItemStack);
+
+					var tempTT:String = target.toolTip;
+				
+					
+					//@huy : 2 main cases 
+					
+					//1st: move between character and inventory
+					if ((target.itemStack.maxSize==1 && source.itemStack.maxSize !=1)
+						|| (target.itemStack.maxSize!=1 && source.itemStack.maxSize ==1))
+					{
+						//@huy : if move from character to inventory
+						if (source.itemStack.maxSize==1){//only itemstacks in the current list items of char can send event to char
+							var eventObject:DragDropEvent;
+							if (target.itemStack.maxSize == 9999) {
+								eventObject = new DragDropEvent(DragDropEvent.DRAG_FROM_CHARACTER,source.itemStack,target.itemStack.owner.inventory.iStack1);
+								source.dispatchEvent(eventObject);
+							
+							}
+							else {
+								eventObject = new DragDropEvent(DragDropEvent.DRAG_FROM_CHARACTER,source.itemStack,target.itemStack);
+								source.dispatchEvent(eventObject);	
+							}
+						}
+						//@huy : if move from inventory to character
+						if (target.itemStack.maxSize==1) {//only itemstacks in the current list items of char can send event to char
+							tempStack:itemStack = target.itemStack;
+							var eventObject2:DragDropEvent = new DragDropEvent(DragDropEvent.DRAG_FROM_INVENTORY,source.itemStack,target.itemStack);
+							target.dispatchEvent(eventObject2);	
+						}
+						
+					}
+					
+					//@huy : 2nd : if move insides inventory or character
+					else{
+//						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) return;   // TODO: Hack so inv 2 inv isn't done. Will need to change as dual item slots are available.
+																								   // This solution may also need redesign as stacked items are properly implemented
+						// Equipped slot swapping for dual slots.
+						if (target.itemStack.maxSize==1 && source.itemStack.maxSize ==1) {  // Currently equipped item moving to another currently equipped slot.
+						   var tempSlot:int = source.itemStack.item.itemSlot;
+						   if ((tempSlot == 9) || (tempSlot == 12) || (tempSlot == 13)) {   // Dual slot item
+							   var tempCurr:CurrentItemListView = (CurrentItemListView)(target.automationOwner);
+							   var tempStack:ItemStack = tempCurr.current_items.list_itemStacks.getItemAt(10);
+							   if (tempSlot == 9) {   // Ring
+								   var tempStack1:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(9));
+								   var tempStack2:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(10));
+								   if ( (tempStack1==target.itemStack) || (tempStack2==target.itemStack)) {   
+
+									   if (target.itemStack.currSize == 0){										   
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   target.toolTip = source.toolTip;
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+										   source.toolTip = "";
+										   
+									   }
+									   else {
+										   var storage:ItemStack = new ItemStack(1);
+										   storage.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage);
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
+									   }
+								   }
+								   return;
+							   }
+							   if (tempSlot == 12) {   // Belt Attachment
+								   var tempStack3:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(13));
+								   var tempStack4:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(14));
+								   if ( (tempStack3==target.itemStack) || (tempStack4==target.itemStack)) {   
+									   
+									   if (target.itemStack.currSize == 0){
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+										   target.toolTip = source.toolTip;
+										   source.toolTip = "";
+									   }
+									   else {
+										   var storage2:ItemStack = new ItemStack(1);
+										   storage2.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage2);
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
+								   }
+								   }
+								   return;
+							   }
+							   if (tempSlot == 13) {   // Ring
+								   var tempStack5:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(15));
+								   var tempStack6:ItemStack = (ItemStack)(tempCurr.current_items.list_itemStacks.getItemAt(16));
+								   if ( (tempStack5==target.itemStack) || (tempStack6==target.itemStack)) {   
+									   
+									   if (target.itemStack.currSize == 0){
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+										   target.toolTip = source.toolTip;
+										   source.toolTip = "";
+									   }
+									   else {
+										   var storage3:ItemStack = new ItemStack(1);
+										   storage3.pushItemFromSimilarStack(target.itemStack);
+										   target.itemStack.pushItemFromSimilarStack(source.itemStack);
+										   source.itemStack.pushItemFromSimilarStack(storage3);
+										   target.toolTip = source.toolTip;
+										   source.toolTip = tempTT;
+									   }
+								   }
+								   return;
+							   }
+						   }
+						   else return;  // Do nothing if not a dual slot item
+						}
+						
+						if (target.itemStack.maxSize == 9999) return;   // Trying to drop on the HUD background
+
+						// 1st case: 2 groups of the same items
+						if(target.itemStack.itemType == source.itemStack.itemType) 
+							target.itemStack.pushItemFromSimilarStack(source.itemStack);
+
+						else{	// 2nd case: 2 groups of different items					
+							// if move to an empty stack
+							if(target.itemStack.currSize ==0) {
+								target.itemStack.pushItemFromSimilarStack(source.itemStack);	
+								target.toolTip = source.toolTip;
+								source.toolTip = tempTT;
+							}
+							else{
+								// @Hoang: if move to a existed stack, if the same maxsize then swap
+								// this will enable swapping itemstack in the same group such as : char items or inventory's group
+								// with the assumption that item stack in the same group should have the same size.
+								if(target.itemStack.maxSize == source.itemStack.maxSize){
+									var tempStack9:ItemStack = target.itemStack;
+									target.itemStack = source.itemStack;
+									source.itemStack = tempStack9;
+									target.toolTip = source.toolTip;
+									source.toolTip = tempTT;
+								}
+							}
+						}
+					}
+										
+				}
+				
+		}
+			
+			private function dragIt(initiator:ItemStackView,event:MouseEvent,format:String):void
+			{
+				if(this.itemStack.currSize >0){
+					var ds:DragSource = new DragSource();
+					ds.addData(this.itemStack,format);
+					
+//					var ds_target:DragSource = new DragSource();
+
+//					ds_target.addData(char.current_items.list_itemStacks.getItemAt(slot_index),format);
+
+					
+					
+					//ds.addData(this.itemStack.item,format);
+					
+					//var dragSrc:Image = ((ItemStackView)(event.currentTarget)).img as Image;
+					
+					//create a proxy by creating a new "copy" of the drag src
+//					var className:String = getQualifiedClassName(dragSrc);
+//					var klass:Class = getDefinitionByName(className) as Class;
+//					var proxy:* = new klass();
+					
+					//NOTE: in order for the above new klass() to actually work correctly,
+					//it is critical to have a set of custom components (Square, Circle,
+					//and Star) that contains all of the drawing.  So when we say new, we
+					//get the entire component.
+					
+					//set the proxy's properties to match the src + sexy drop shadow
+//					proxy.width = 50;
+//					proxy.height = 50;
+					//proxy.fillColor = (dragSrc as IDraggableGraphic).fillColor;
+					//proxy.filters = [new DropShadowFilter()];
+					
+//					proxy.filters = [new spark.filters.DropShadowFilter()];
+					
+					//var dragedImage:DefaultDragImage = new DefaultDragImage();
+					var imgBeingDragged:Image = new Image();
+					imgBeingDragged.source = new Bitmap(getUIComponentBitmapData(this.imgOrig as UIComponent));
+					imgBeingDragged.width = 72;
+					imgBeingDragged.height = 72;
+					
+					
+					// @HOANG: highlight the moved source item
+					var filter : GlowFilter = new GlowFilter();
+					filter.blurX = 14;
+					filter.blurY = 14;
+					filter.quality = 6;
+					filter.alpha = 0.5;
+					filter.color = 0xFFD520;
+					filter.inner = false;
+					this.imgOrig.filters = [ filter ];    
+					
+					var slot_index:int = initiator.itemStack.item.itemSlot;
+					if (slot_index == 14) slot_index = 0;
+					
+//					var tempIS:ItemStack =(CharacterView)((InventoryView)(this.parentDocument).owner).current_list_view1.current_items.list_itemStacks.getItemAt(slot_index) as ItemStack;
+//				var potentialTargetISV:ItemStackView = (CharacterView)((InventoryView)(this.parentDocument).owner).current_list_view1.fetchEquippedISV(tempIS);
+					
+//					potentialTargetISV.imgOrig.imageDisplay.filters = [ filter ];
+										
+					DragManager.doDrag(initiator,ds,event,imgBeingDragged);
+					
+				}
+			}
+			
+			// when dragging complete, remove highlight on image		
+			protected function skinnablecontainer1_dragCompleteHandler(event:DragEvent,format:String):void
+			{
+				this.imgOrig.filters=[];
+			}
+			
+			protected function skinnablecontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function skinnablecontainer1_dragOverHandler(event:DragEvent):void
+			{
+				// TODO Auto-generated method stub
+//				trace("test");
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<s:Image id="imgOrig" x="0" y="0" width="100%" height="100%" source="{itemStack.displayPath}"
+			 visible="{itemStack.maxSize > 1/*huy : not display number in current list*/}"/>
+	
+	<s:Image x="0" y="0" width="100%" height="100%" source="{itemStack.displayPath}"
+			 visible="{itemStack.maxSize == 1/*huy : not display number in current list*/}"/>
+
+	<s:Image x="0" y="0" width="100%" height="100%" source="assets/HUD/Inventory/Blank.png"
+			 visible="{itemStack.maxSize == 9999 /*huy : not display number in current list*/}"/>
+	
+	<s:Label id="lblCurrSize" text="{itemStack.currSize}" x="60" y="55"
+			 color="#FFFF00" 
+			 visible="{(itemStack.currSize > 1)/*huy : not display number in current list*/}"/>
+
+	
+</s:SkinnableContainer>
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Dungeon_ver6a/src/events/DragDropItem2InventoryButtons.mxml&apos; to &apos;DragDropItem2InventoryButtonsEvent.mxml&apos;" description="Rename resource &apos;DragDropItem2InventoryButtons.mxml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/events/DragDropItem2InventoryButtons.mxml" name="DragDropItem2InventoryButtonsEvent.mxml" stamp="1336285598180" updateReferences="true"/>
+</session>

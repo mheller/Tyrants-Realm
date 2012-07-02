@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="120" 
+			   backgroundColor="#000000" borderColor="#FFFFFF"
+			   title="Transfer Target"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   close="handleCloseEvent();" 
+			   creationComplete="creationCompleteHandler(event)"
+			   x="{(TyrantsRealm)(this.parentApplication).width / 2 - 68}"
+			   y="200" xmlns:views="views.*"
+			   >
+	
+	<s:layout>
+		<s:HorizontalLayout paddingLeft="0" paddingRight="0" gap="0"/>
+	</s:layout>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		
+		<![CDATA[
+				
+			import mx.events.DragEvent; 
+			import mx.managers.PopUpManager;
+			import views.TransferView;
+			import spark.components.TitleWindow;
+			import mx.events.FlexEvent;
+	
+
+			[Bindable]
+			public var xferEvent:DragEvent;
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{		
+				this.height=(TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrPopulation() * 87 + 70;
+				transfer_party_container.height=(TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrPopulation() * 65;
+			}
+			private function handleCloseEvent():void{
+				PopUpManager.removePopUp(this);
+			}		
+		]]>
+	</fx:Script>
+	
+
+	<s:Group id="transfer_party_container" width="120">
+       <views:TransferView/>
+	</s:Group>
+</s:TitleWindow>

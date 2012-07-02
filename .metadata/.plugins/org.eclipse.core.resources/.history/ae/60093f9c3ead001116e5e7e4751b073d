@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:TitleWindow
+			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   xmlns:hud="hud.*"
+			   xmlns:pkgInventory="pkgInventory.*"
+			   width="100%"  height="644"
+			   minWidth="650" minHeight="600"
+			   title="Character View"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   creationComplete="creationCompleteHandler(event)"
+			   close="handleCloseEvent();"
+			   x="{(this.parentApplication.width-this.width)/2}" 
+			   y="{(this.parentApplication.height-this.height)/2}"		   
+			 >
+		
+		   
+	<s:layout>
+		<s:HorizontalLayout paddingLeft="0" paddingRight="0" gap="0"/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import events.DragDropEvent;
+			
+			import hud.HudInventoryDrop;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.core.BitmapAsset;
+			import mx.core.IUIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.DragManager;
+			import mx.managers.PopUpManager;
+			import mx.utils.OnDemandEventDispatcher;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			import pkgParty.ViewEachCharInParty;
+			
+			import views.InventoryView;
+
+			
+			[Bindable]
+			public var char:Character;	
+			
+			public var item:Item;
+			
+			public function handleCloseEvent():void{
+				visible = false;
+			}		
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{		
+					addEventListener(DragDropEvent.DRAG_FROM_CHARACTER,handleDragFromCharacter);	
+					addEventListener(DragDropEvent.DRAG_FROM_INVENTORY,handleDragFromInventory);
+					character_appearance_container.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					character_appearance_container.addEventListener(DragEvent.DRAG_DROP, handleDrop);
+					inv_view.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
+					inv_view.addEventListener(DragEvent.DRAG_DROP, handleDrop2);
+					
+					// capture the event pop up by party window
+					this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
+			}
+			
+			
+			public function xferItem(dragEvent:DragEvent):void {
+				
+				var source:IUIComponent = dragEvent.dragInitiator;   // ItemStackView
+				var target:IUIComponent = dragEvent.currentTarget as IUIComponent;   // ViewEachCharInParty
+
+				performItemXfer((ItemStackView)(source),(ViewEachCharInParty)(target));
+			}
+			
+			
+			// Transfer an item from one player to another. Will handle source from both inventory and equipped lists
+			private function performItemXfer (source:ItemStackView, target:ViewEachCharInParty):void {
+				var index:int = (TyrantsRealm)(this.parentApplication).hud_party.aParty.currCharIndex;
+				var selectedNPC:ViewEachCharInParty = (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt
+					(index) as ViewEachCharInParty;
+				
+				// Check for target being the active NPC
+				if (target == selectedNPC)
+					return;   // Don't do anything if drop is to the current characgter TODO: May change later to remove equipped or shift inv to first slot.
+				
+				// Check that target has available inv
+				var targetIS:ItemStack = target.char.inventory.nextAvailableInventorySpot(source.itemStack, 
+					source.itemStack);
+				if (targetIS == null) {
+					Alert.show("No space left on "+target.char.name.value + ".");
+					return;
+				}
+				
+				// xfer item
+				var sourceIS:ItemStack = source.itemStack;
+				var sourceISV:ItemStackView = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchEquippedISV(sourceIS);
+				var tempSlot:int = sourceIS.item.itemSlot;
+				
+				targetIS.displayPath = sourceIS.displayPath;
+				
+				if (sourceISV != null) {   // Item is currently equipped so remove stats, remove 2D image and reset the display path
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.remBenefits(sourceIS);
+					
+					// Clear item from 2D if applicable  
+					switch (tempSlot) { 
+						case 0 : 	break; // Can't ever happen as slot type is unequipable
+						case 1 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_head = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+							break;
+						case 2 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_torso = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+							break;
+						case 3 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_legs = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 4 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_feet = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 5 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_hands = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+							break;
+						case 6 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_shoulders = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+							break;
+						case 7 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+						case 8 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_offhand = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+							break;
+						case 9 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+							break;
+						case 10 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+							break;
+						case 11 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+							break;
+						case 12 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+							break;
+						case 13 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+							break;
+						case 14: 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_weapon = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+							(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.damage_type.value = "Fists";
+							break;
+					}
+					
+				}
+				else 
+					sourceIS.displayPath = null;
+				
+				targetIS.currSize += sourceIS.currSize;
+				targetIS.item = sourceIS.item;
+				targetIS.itemType = sourceIS.itemType;
+				targetIS.owner = target.char;
+				
+				sourceIS.currSize = 0;
+				sourceIS.item = null;
+				sourceIS.itemType = -1;
+				source.toolTip = "";
+			}
+			private function handleCharacterSelected(event:CharacterSelectedEvent):void {			
+				this.char = (TyrantsRealm)(this.parentApplication).hud_party.aParty.currChar;
+				
+				//recreate the list view when different character is selected
+				current_list_view1.createListView();
+			}
+
+
+			
+			public function handleDragFromCharacter(event:DragDropEvent):void{
+				trace("drag from character - Removing Equipped Item");
+				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
+				source.owner = char;
+				var target:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
+				target.owner = char;
+				trace("Target Max: "+ target.maxSize);
+				
+				if (source == target) return; // Drag and drop onto the same spot.
+				
+				// Test for swapping dual slot items
+				var tempSlot:int = source.item.itemSlot;
+				var dualSlotSwap:Boolean = false;
+				if ((tempSlot == 9) && (target == char.current_items.list_itemStacks.getItemAt(10)))
+					dualSlotSwap = true;
+				if ((tempSlot == 12) && (target == char.current_items.list_itemStacks.getItemAt(14)))
+					dualSlotSwap = true;
+				if ((tempSlot == 13) && (target == char.current_items.list_itemStacks.getItemAt(16)))
+					dualSlotSwap = true;
+				
+				
+				if (target.currSize > 0 && dualSlotSwap == false) { // Target has an item already there
+					if (target.item.itemID == source.item.itemID && target.item.isStackable && target.currSize < target.maxSize) {   // Same item, is stackable and not a full stack
+						// No action, same flow as empty target
+					}
+					else {    // Item is present and either its a different type, isn't stackable or the stack is full; each case requires app to find another open slot if available.
+
+						// Look for another slot if one exists, otherwise exit
+						target = char.inventory.nextAvailableInventorySpot(source,source);
+
+						if (target == null) { 
+							Alert.show("There are no inventory slots available.");
+							return;  
+						}
+					}						
+
+				}
+								
+				// Move item
+				if (dualSlotSwap == true) {    // swap from slot 1 to 2 or vice versa (no benefit update needed)
+					target.moveStacks(source, current_list_view1.fetchEquippedISV(source), inv_view.fetchISView(target), null); 	
+				}
+				else {   // Move item from character into inventory slot and remove benefits.
+					target.moveStacks(source, current_list_view1.fetchEquippedISV(source), inv_view.fetchISView(target), null); 	
+					
+					// Clear item from 2D if applicable  
+					switch (target.item.itemSlot) { 
+						case 0 : 	break; // Can't ever happen as slot type is unequipable
+	 					case 1 : 	char.appearance_head = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+									break;
+						case 2 :	char.appearance_torso = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+									break;
+						case 3 :	char.appearance_legs = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+									break;
+						case 4 :	char.appearance_feet = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+									break;
+						case 5 : 	char.appearance_hands = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+									break;
+						case 6 :	char.appearance_shoulders = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+									break;
+						case 7 : 	source.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+						case 8 :	char.appearance_offhand = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+									break;
+						case 9 :	source.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+									break;
+						case 10 : 	source.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+									break;
+						case 11 : 	source.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+									break;
+						case 12 : 	source.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+									break;
+						case 13 :	source.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+									break;
+						case 14: 	char.appearance_weapon = null;
+									source.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+									char.damage_type.value = "Fists";
+									break;
+					}
+	
+					// Update benefits   TODO: Adjust for items that are use cases (like potions)
+					// Decrement benefits
+					remBenefits(target);
+				}
+			}
+/*
+			*** Benefit Types: Fitness, Mental, Spirit, Eloquence, Coordination, Health, Spirae, 
+			Experience Bonus, Gold Bonus, Avoidance, Hit, Dmg Res, Cold Res, Heat Res, Magic Res, 
+			Max Phys Dmg, Min Phys Dmg, Max Magic Dmg, Min Magic Dmg, Wander, Construction Cost, 
+			increased monster freq and decreased monster freq.
+*/
+			
+			public function handleDragFromInventory(event:DragDropEvent):void{
+				trace("drag from inventory");
+				var source:ItemStack = ((DragDropEvent)(event)).src as ItemStack;
+				
+				var same_category:Boolean = false;
+				var same_spot:Boolean = false;
+				var itemS:ItemStack=ItemStack(char.current_items.list_itemStacks.getItemAt(0));
+				itemS.owner = char;
+				var targetOrig:ItemStack = ((DragDropEvent)(event)).tar as ItemStack;
+				targetOrig.owner = char;
+				
+				var temp:int = source.item.itemSlot;   // source item slot type
+				if (temp == 0) return; // Unequipable item
+				if (temp == 14) temp = 0; // Place weapons in the first slot.
+				if (temp == 13) temp = 15; // Trailing adjustment
+				if (temp == 12) temp = 13; // Belt attachment adjustment
+				if (temp == 11) temp = 12; // Belt adjustment
+				if (temp == 10) temp = 11; // Neck item adjustment
+
+				var target:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(temp));
+				target.owner = char;
+
+				// Check if drag target is also the correct slot of item, used for dual slots
+				// If target matches, then use that slot regardless of if something is in it (swap if there is). Don't fail over to the secondary slot
+				if (targetOrig == target) {    
+					same_category = true;	
+					same_spot = true;
+				}
+				if ((temp == 9) && (targetOrig == ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1)))) {   // Rings
+					same_category = true;
+					target = ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1))
+				}
+				if ((temp == 13) && (targetOrig == ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1)))) {  // Belt Attachment
+					same_category = true;
+					target = ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1))					
+				}
+				if ((temp == 15) && (targetOrig == ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1)))) {  // Trailing
+					same_category = true;
+					target = ItemStack(char.current_items.list_itemStacks.getItemAt(temp+1))					
+				}
+
+				var benefitStorage:ItemStack;
+				var k:int;
+				
+				
+				// Adjustments for dual slot items. Assumes drag was to any other item slot besides correct target, then check for available slot
+				if (same_category == false) {
+					if ((target.currSize > 0) && (temp == 9))   // Slot 1 of ring is full, shift to slot 2
+						target = ItemStack(char.current_items.list_itemStacks.getItemAt(10));
+					
+					if ((target.currSize > 0) && (temp == 13))   // Slot 1 of belt attachment is full, shift to slot 2
+						target = ItemStack(char.current_items.list_itemStacks.getItemAt(14));
+					
+					if ((target.currSize > 0) && (temp == 15))   // Slot 1 of trailing is full, shift to slot 2
+						target = ItemStack(char.current_items.list_itemStacks.getItemAt(16));
+										
+				}
+				// Set the image and benefits
+				if (target.currSize > 0){
+					
+					// Look for another slot if one exists, otherwise exit
+					var spotFound:Boolean = false;
+					var tempItemStack:ItemStack;
+					tempItemStack = char.inventory.nextAvailableInventorySpot(target, source);
+					tempItemStack.owner = target.owner;
+					if (tempItemStack == null) { 
+						Alert.show("There are no inventory slots available to exchange items.");
+						return;
+					}
+					var swapISV:ItemStackView = inv_view.fetchISView(tempItemStack);
+					var startISV:ItemStackView = inv_view.fetchISView(source);
+					
+					
+					target.moveStacks(source,inv_view.fetchISView(source), current_list_view1.fetchEquippedISV(target), swapISV); 	
+					benefitStorage=swapISV.itemStack;
+
+					// Set the picture based on the type of item
+					if (target.item.itemSlot == 14) {
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.damage_type.value = target.item.itemTitle;
+					}
+					if (target.item.itemSlot == 8)
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 2)
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 3)
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 4)
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 6)
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 5)
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 1)
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					
+					// Outgoing Item
+					remBenefits(benefitStorage);
+					// Incoming Item
+					addBenefits(target);				
+					return;
+				}
+				else {
+				
+				
+					target.moveStacks(source,inv_view.fetchISView(source), current_list_view1.fetchEquippedISV(target), null);
+									
+					if (target.item.itemSlot == 14) {
+						char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+						char.damage_type.value = target.item.itemTitle;
+					}
+					if (target.item.itemSlot == 8)
+						char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 2)
+						char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 3)
+						char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 4)
+						char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 6)
+						char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 5)
+						char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+					if (target.item.itemSlot == 1)
+						char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+target.item.itemTitle+"0"+(String)(target.item.itemTier)+".png";
+
+					addBenefits(target);				
+				}
+			}
+			
+			public function acceptDrop(dragEvent:DragEvent):void{
+				trace("accept Drop");
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				DragManager.acceptDragDrop(dropTarget);
+			}
+			
+			// Dropping the item permanently from the character inventory.
+			private function handleDrop2(dragEvent:DragEvent):void {
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				inv_view.dropHandler(dragEvent);
+				
+			}
+			private function handleTransfer(dragEvent:DragEvent):void {
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+				
+				
+			}
+			
+			// Drag-n-Drop on art panel
+			private function handleDrop(dragEvent:DragEvent):void{
+
+				var dragInitiator:IUIComponent = dragEvent.dragInitiator;
+				var dropTarget:IUIComponent = dragEvent.currentTarget as IUIComponent;
+							
+				var tempTT:String = ItemStackView(dragInitiator).toolTip;
+				
+				//handle dropping
+				var same_category:Boolean = false;
+				for(var i:int=0;i<char.current_items.maxSize;i++){  // Filters out if the item is the same 
+					var itemS:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(i));					
+					if (itemS.currSize>0 && itemS.item.itemID == ItemStackView(dragInitiator).itemStack.item.itemID){
+						same_category =  true;
+						break;
+					}
+				}
+				if (same_category == false){
+					
+					// What slot does it go in?
+					// Slot:  0 = None
+					//        1 = Head
+					//        2 = Torso
+					//        3 = Legs
+					//        4 = Feet
+					//        5 = Hands
+					//        6 = Shoulders
+					//        7 = Cloak
+					//        8 = Offhand
+					//        9 = Ring
+					//        10 = Neck
+					//        11 = Belt
+					//        12 = Attachment (Belt)
+					//        13 = Trailing
+					//        14 = Weapon					
+					var temp:int = ItemStackView(dragInitiator).itemStack.item.itemSlot;
+					if (temp == 0) return; // Unequipable item
+					if (temp == 14) temp = 0; // Place weapons in the first slot.
+					if (temp == 13) temp = 15; // Trailing adjustment
+					if (temp == 12) temp = 13; // Belt attachment adjustment
+					if (temp == 11) temp = 12; // Belt adjustment
+					if (temp == 10) temp = 11; // Neck item adjustment
+					
+					var itemS2:ItemStack = ItemStack(char.current_items.list_itemStacks.getItemAt(temp));		
+					var storage:ItemStack = new ItemStack(itemS2.maxSize);	
+					var benefitStorage:ItemStack;
+					var k:int;
+					
+					if ((itemS2.currSize > 0) && (temp == 9))   // Slot 1 of ring is full, shift to slot 2
+						itemS2 = ItemStack(char.current_items.list_itemStacks.getItemAt(10));
+
+					if ((itemS2.currSize > 0) && (temp == 13))   // Slot 1 of belt attachment is full, shift to slot 2
+						itemS2 = ItemStack(char.current_items.list_itemStacks.getItemAt(14));
+
+					if ((itemS2.currSize > 0) && (temp == 15))   // Slot 1 of trailing is full, shift to slot 2
+						itemS2 = ItemStack(char.current_items.list_itemStacks.getItemAt(16));
+
+					// Slot in use... then swap items
+					// If dual slot, then this will always swap out on the second slot.
+					if (itemS2.currSize > 0){
+
+						// Look for another slot if one exists, otherwise exit
+						var tempItemStack:ItemStack;						
+						tempItemStack = char.inventory.nextAvailableInventorySpot(itemS2, ItemStackView(dragInitiator).itemStack);
+						
+						if (tempItemStack == null) { 
+							Alert.show("There are no inventory slots available to exchange items.");
+							return;
+						}
+						
+						var tempISV:ItemStackView = inv_view.fetchISView(tempItemStack);
+						
+						itemS2.moveStacks(ItemStackView(dragInitiator).itemStack,ItemStackView(dragInitiator), current_list_view1.fetchEquippedISV(itemS2), tempISV);
+						benefitStorage=tempISV.itemStack;
+
+						// Set the picture based on the type of item
+						if (itemS2.item.itemSlot == 14) {
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.damage_type.value = itemS2.item.itemTitle;
+						}
+						if (itemS2.item.itemSlot == 8)
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 2)
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 3)
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 4)
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 6)
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 5)
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 1)
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+
+						// Outgoing Item
+						remBenefits(benefitStorage);
+						// Incoming Item
+						addBenefits(itemS2);
+					}
+					else {  // Straight Move
+						itemS2.moveStacks(ItemStackView(dragInitiator).itemStack,ItemStackView(dragInitiator), current_list_view1.fetchEquippedISV(itemS2), null);
+
+						// Set the picture based on the type of item
+						if (itemS2.item.itemSlot == 14) {
+							char.appearance_weapon = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+							char.damage_type.value = itemS2.item.itemTitle;
+						}
+						if (itemS2.item.itemSlot == 8)
+							char.appearance_offhand = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 2)
+							char.appearance_torso = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 3)
+							char.appearance_legs = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 4)
+							char.appearance_feet = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 6)
+							char.appearance_shoulders = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 5)
+							char.appearance_hands = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+						if (itemS2.item.itemSlot == 1)
+							char.appearance_head = "assets/OotE/"+(String)(char.gender.value)+"/"+itemS2.item.itemTitle+"0"+(String)(itemS2.item.itemTier)+".png";
+
+						addBenefits(itemS2);
+													
+					} 
+				} 
+			}
+			
+			public function addBenefits(itemToBeWorn:ItemStack):void{
+				for(var k:int=0; k<itemToBeWorn.item.item_benefit.length;k++){
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+						char.phys_dmg.value = char.phys_dmg.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+						char.phys_dmg.max_value = char.phys_dmg.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Fitness") {
+						char.fitness.value = char.fitness.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.fitness.max_value = char.fitness.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Mental") {
+						char.mental_prowess.value = char.mental_prowess.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.mental_prowess.max_value = char.mental_prowess.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					} 
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Spirit") {
+						char.spirituality.value = char.spirituality.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.spirituality.max_value = char.spirituality.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue; 
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Eloquence") {
+						char.eloquence.value = char.eloquence.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.eloquence.max_value = char.eloquence.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Coordination") {
+						char.coordination.value = char.coordination.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.coordination.max_value = char.coordination.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Health") {
+						char.health_current.value = char.health_current.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.health_max.value = char.health_max.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Spirae") {
+						char.spirae_current.value = char.spirae_current.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						char.spirae_max.value = char.spirae_max.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Avoidance") {
+						char.avoidance.value = char.avoidance.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Hit") {
+						char.hit.value = char.hit.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Damage") {
+						char.damage_resistance.value = char.damage_resistance.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Cold") {
+						char.cold_resistance.value = char.cold_resistance.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Heat") {
+						char.heat_resistance.value = char.heat_resistance.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Magic") {
+						char.magic_resistance.value = char.magic_resistance.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+						char.magic_dmg.max_value = char.magic_dmg.max_value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+						char.magic_dmg.value = char.magic_dmg.value + (int)(itemToBeWorn.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Wander") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Const Cost") {
+						// TODO: Add in after create Player-Stats
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeWorn.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					
+				}
+
+				
+			}
+			public function remBenefits(itemToBeRemoved:ItemStack):void{
+				
+				for(var k:int=0; k<itemToBeRemoved.item.item_benefit.length;k++){
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Min Phys Dmg") {
+						char.phys_dmg.value = char.phys_dmg.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Max Phys Dmg") {
+						char.phys_dmg.max_value = char.phys_dmg.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Fitness") {
+						char.fitness.value = char.fitness.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.fitness.max_value = char.fitness.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Mental") {
+						char.mental_prowess.value = char.mental_prowess.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.mental_prowess.max_value = char.mental_prowess.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					} 
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Spirit") {
+						char.spirituality.value = char.spirituality.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.spirituality.max_value = char.spirituality.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue; 
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Eloquence") {
+						char.eloquence.value = char.eloquence.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.eloquence.max_value = char.eloquence.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Coordination") {
+						char.coordination.value = char.coordination.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.coordination.max_value = char.coordination.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Health") {
+						char.health_current.value = char.health_current.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.health_max.value = char.health_max.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Spirae") {
+						char.spirae_current.value = char.spirae_current.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						char.spirae_max.value = char.spirae_max.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Exp Bonus") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Gold Bonus") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Avoidance") {
+						char.avoidance.value = char.avoidance.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Hit") {
+						char.hit.value = char.hit.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Damage") {
+						char.damage_resistance.value = char.damage_resistance.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Cold") {
+						char.cold_resistance.value = char.cold_resistance.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Heat") {
+						char.heat_resistance.value = char.heat_resistance.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Magic") {
+						char.magic_resistance.value = char.magic_resistance.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Max Magic Dmg") {
+						char.magic_dmg.max_value = char.magic_dmg.max_value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Min Magic Dmg") {
+						char.magic_dmg.value = char.magic_dmg.value - (int)(itemToBeRemoved.item.item_benefit.getItemAt(k).value);
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Wander") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Const Cost") {
+						// TODO: Add in after create Player-Stats
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Inc Monster") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					}
+					if (itemToBeRemoved.item.item_benefit.getItemAt(k).text == "Dec Monster") {
+						// TODO: Add in after create Party-Stats
+						continue;
+					} 
+					
+				}				
+				
+			}
+
+			
+			
+			
+		]]>
+	</fx:Script>
+	
+
+	<views:AttributeView id="att_view"	char="{char}"
+							  height="100%"
+							  width="180"/>
+	
+	<s:BitmapImage id="invdev1" width="5" height="611" 
+				   source="assets/InventoryDivider.png"
+				   />	
+
+	<s:Group id="character_appearance_container"
+			 width="100%" height="100%">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:BitmapImage id="character_top" x="0" width="510" height="170" 
+					   source="assets/HUD/Inventory/Top.png"
+					   />	
+		<s:BitmapImage id="character_left" x="0" y="170" width="100" height="340" 
+					   source="assets/HUD/Inventory/Side.png"
+					   />	
+		<s:BitmapImage id="character_right" x="410" y="170" width="100" height="340" 
+					   source="assets/HUD/Inventory/Side.png"
+					   />	
+		<s:BitmapImage id="character_bottom" x="0" y="510" width="510" height="101" 
+					   source="assets/HUD/Inventory/Bottom.png"
+					   />	
+		<s:BitmapImage id="character_appearance" x="100" y="170" width="310" height="340" 
+					   source="{char.appearance_basebody}"
+					   />	
+		<s:BitmapImage id="character_appearance2" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_basehead}"
+					   />	
+		<s:BitmapImage id="character_appearance3" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_torso}"
+					   />	
+		<s:BitmapImage id="character_appearance4" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_head}"
+					   />	
+		<s:BitmapImage id="character_appearance5" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_legs}"
+					   />	
+		<s:BitmapImage id="character_appearance6" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_feet}"
+					   />	
+		<s:BitmapImage id="character_appearance7" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_shoulders}"
+					   />	
+		<s:BitmapImage id="character_appearance8" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_hands}"
+					   />	
+		<s:BitmapImage id="character_appearance9" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_weapon}"
+					   />	
+		<s:BitmapImage id="character_appearance10" x="100" y="170" width="310" height="340"
+					   source="{char.appearance_offhand}"
+					   />
+		
+		<views:CurrentItemListView id="current_list_view1" current_items="{char.current_items}"
+								   start_index="0"/>
+
+		<hud:HudInventoryLeft id="hud_inv_left" width="50" height="50" x="15" y="545"/>
+		<hud:HudInventoryRight id="hud_inv_right" width="50" height="50" x="445" y="545"/>
+			
+		<s:BitmapImage id="invdev2" x="510" y="0" width="5" height="611" 
+					   source="assets/InventoryDivider.png"
+					   />	
+	</s:Group>
+
+	<views:InventoryView id="inv_view" char="{char}" inventory="{char.inventory}"/>
+
+</s:TitleWindow>

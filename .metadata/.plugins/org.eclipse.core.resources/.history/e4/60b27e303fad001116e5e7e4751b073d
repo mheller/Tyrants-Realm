@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:resizableTitleWindow="resizableTitleWindow.*"
+			   xmlns:hud = "hud.*"
+			   xmlns:pkgInventory="pkgInventory.*"
+			   width="100%"  height="100%"
+			   creationComplete="creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<!--<pkgInventory:Inventory id="inventory" />-->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			import character.Inventory;
+			
+			import events.DragDropEvent;
+			
+			import mx.controls.Alert;
+			import mx.controls.Button;
+			import mx.core.IUIComponent;
+			import mx.effects.easing.Bounce;
+			import mx.events.CloseEvent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			
+			import pkgInventory.Item;
+			import pkgInventory.ItemGroup;
+			import pkgInventory.ItemGroupView;
+			import pkgInventory.ItemStack;
+			
+			import spark.components.NavigatorContent;
+			
+			[Bindable]
+			public var inventory:Inventory;
+			
+			[Bindable]
+			public var char:Character;	
+			
+			[Bindable]
+			public var de:DragEvent;
+			
+			/* @Hoang: this function initializes the view for inventory
+				= create number of item groups based on current size of inventory
+				each item group view is a navigation container which is added to the inventory window
+			*/
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				//this.inventory = char.inventory;
+				
+//				for(var i:int =0; i<inventory.currSize;i++){
+//					//var iGroupNavContent:ItemGroupView = new ItemGroupView();	// each groupView is a nav content
+//					//iGroupNavContent.itemGroup = inventory.list_itemGroup.getItemAt(i) as ItemGroup;
+//					//iGroupNavContent.label =iGroupNavContent.itemGroup.groupName;
+//					//accordion.addElement(iGroupNavContent);
+//				}	
+				
+				
+				updateTooltips();
+			}
+			
+			// Takes an ItemStack from Inventory and will return which ItemStackView contains that stack. Null is returned if no match is found
+			public function fetchISView(stack:ItemStack):ItemStackView {
+				if (iStackView_1.itemStack == stack) return iStackView_1;
+				if (iStackView_2.itemStack == stack) return iStackView_2;
+				if (iStackView_3.itemStack == stack) return iStackView_3;
+				if (iStackView_4.itemStack == stack) return iStackView_4;
+				if (iStackView_5.itemStack == stack) return iStackView_5;
+				if (iStackView_6.itemStack == stack) return iStackView_6;
+				if (iStackView_7.itemStack == stack) return iStackView_7;
+				if (iStackView_8.itemStack == stack) return iStackView_8;
+				if (iStackView_9.itemStack == stack) return iStackView_9;
+				if (iStackView_10.itemStack == stack) return iStackView_10;
+				if (iStackView_11.itemStack == stack) return iStackView_11;
+				if (iStackView_12.itemStack == stack) return iStackView_12;
+				if (iStackView_13.itemStack == stack) return iStackView_13;
+				if (iStackView_14.itemStack == stack) return iStackView_14;
+				if (iStackView_15.itemStack == stack) return iStackView_15;
+				if (iStackView_16.itemStack == stack) return iStackView_16;
+				if (iStackView_17.itemStack == stack) return iStackView_17;
+				if (iStackView_18.itemStack == stack) return iStackView_18;
+				if (iStackView_19.itemStack == stack) return iStackView_19;
+				if (iStackView_20.itemStack == stack) return iStackView_20;
+				if (iStackView_21.itemStack == stack) return iStackView_21;
+				return null				
+			}
+			
+			
+			public function updateTooltips():void {
+				if (inventory == null || inventory.iStack1 == null) return;
+				
+				if (inventory.iStack1.item != null)
+					iStackView_1.toolTip = inventory.iStack1.item.itemTooltip;
+				else
+					iStackView_1.toolTip = "";
+				if (inventory.iStack2.item != null)
+					iStackView_2.toolTip = inventory.iStack2.item.itemTooltip;
+				else
+					iStackView_2.toolTip = "";
+				if (inventory.iStack3.item != null)
+					iStackView_3.toolTip = inventory.iStack3.item.itemTooltip;
+				else
+					iStackView_3.toolTip = "";
+				if (inventory.iStack4.item != null)
+					iStackView_4.toolTip = inventory.iStack4.item.itemTooltip;
+				else
+					iStackView_4.toolTip = "";
+				if (inventory.iStack5.item != null)
+					iStackView_5.toolTip = inventory.iStack5.item.itemTooltip;
+				else
+					iStackView_5.toolTip = "";
+				if (inventory.iStack6.item != null)
+					iStackView_6.toolTip = inventory.iStack6.item.itemTooltip;
+				else
+					iStackView_6.toolTip = "";
+				if (inventory.iStack7.item != null)
+					iStackView_7.toolTip = inventory.iStack7.item.itemTooltip;
+				else
+					iStackView_7.toolTip = "";
+				if (inventory.iStack8.item != null)
+					iStackView_8.toolTip = inventory.iStack8.item.itemTooltip;
+				else
+					iStackView_8.toolTip = "";
+				if (inventory.iStack9.item != null)
+					iStackView_9.toolTip = inventory.iStack9.item.itemTooltip;
+				else
+					iStackView_9.toolTip = "";
+				if (inventory.iStack10.item != null)
+					iStackView_10.toolTip = inventory.iStack10.item.itemTooltip;
+				else
+					iStackView_10.toolTip = "";
+				if (inventory.iStack11.item != null)
+					iStackView_11.toolTip = inventory.iStack11.item.itemTooltip;
+				else
+					iStackView_11.toolTip = "";
+				if (inventory.iStack12.item != null)
+					iStackView_12.toolTip = inventory.iStack12.item.itemTooltip;
+				else
+					iStackView_12.toolTip = "";
+				if (inventory.iStack13.item != null)
+					iStackView_13.toolTip = inventory.iStack13.item.itemTooltip;
+				else
+					iStackView_13.toolTip = "";
+				if (inventory.iStack14.item != null)
+					iStackView_14.toolTip = inventory.iStack14.item.itemTooltip;
+				else
+					iStackView_14.toolTip = "";
+				if (inventory.iStack15.item != null)
+					iStackView_15.toolTip = inventory.iStack15.item.itemTooltip;
+				else
+					iStackView_15.toolTip = "";
+				if (inventory.iStack16.item != null)
+					iStackView_16.toolTip = inventory.iStack16.item.itemTooltip;
+				else
+					iStackView_16.toolTip = "";
+				if (inventory.iStack17.item != null)
+					iStackView_17.toolTip = inventory.iStack17.item.itemTooltip;
+				else
+					iStackView_17.toolTip = "";
+				if (inventory.iStack18.item != null)
+					iStackView_18.toolTip = inventory.iStack18.item.itemTooltip;
+				else
+					iStackView_18.toolTip = "";
+				if (inventory.iStack19.item != null)
+					iStackView_19.toolTip = inventory.iStack19.item.itemTooltip;
+				else
+					iStackView_19.toolTip = "";
+				if (inventory.iStack20.item != null)
+					iStackView_20.toolTip = inventory.iStack20.item.itemTooltip;
+				else
+					iStackView_20.toolTip = "";
+				if (inventory.iStack21.item != null)
+					iStackView_21.toolTip = inventory.iStack21.item.itemTooltip;
+				else
+					iStackView_21.toolTip = "";
+
+			}
+			public function dropHandler(event:DragEvent):void {
+				this.de = event;
+				if (event.localX > 115) // Fixed local coord. Will need rework .
+					Alert.show('Are you sure you want to drop it? It will be gone forever!', 'Drop', 3, this, dropItem);	
+				else
+					Alert.show('Are you sure you want to transfer it?', 'Transfer', 3, this.parentApplication);	
+			}
+
+			public function dropItem(event:CloseEvent):void {
+				var dragInitiator:IUIComponent = this.de.dragInitiator;
+				var tempISV:ItemStackView;
+				
+				if(event.detail == Alert.YES) {
+
+					tempISV = (CharacterView)(this.owner).current_list_view1.fetchEquippedISV(ItemStackView(dragInitiator).itemStack);
+					if (tempISV != null) {   // An equipped item
+						
+						// Reset empty item image
+						switch (ItemStackView(dragInitiator).itemStack.item.itemSlot) { 
+							case 0 : 	break; // Can't ever happen as slot type is unequipable
+							case 1 : 	char.appearance_head = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+								break;
+							case 2 :	char.appearance_torso = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+								break;
+							case 3 :	char.appearance_legs = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+								break;
+							case 4 :	char.appearance_feet = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+								break;
+							case 5 : 	char.appearance_hands = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+								break;
+							case 6 :	char.appearance_shoulders = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+								break;
+							case 7 : 	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+							case 8 :	char.appearance_offhand = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+								break;
+							case 9 :	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+								break;
+							case 10 : 	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+								break;
+							case 11 : 	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+								break;
+							case 12 : 	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+								break;
+							case 13 :	ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+								break;
+							case 14: 	char.appearance_weapon = null;
+								ItemStackView(dragInitiator).itemStack.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+								char.damage_type.value = "Fists";
+								break;
+						}
+						(CharacterView)(this.owner).remBenefits(ItemStackView(dragInitiator).itemStack);
+					}
+					else 
+						ItemStackView(dragInitiator).itemStack.displayPath = null;
+				
+					// Clear other values either way
+					ItemStackView(dragInitiator).itemStack.item = null;
+					ItemStackView(dragInitiator).itemStack.currSize = 0;
+					ItemStackView(dragInitiator).itemStack.itemType = -1;
+					ItemStackView(dragInitiator).toolTip = "";
+				}
+				return;
+			}
+
+						
+		]]>
+	</fx:Script>		
+
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<pkgInventory:ItemStackView id="iStackView_Bg" itemStack="{inventory.iStackBG}" x="-1" y="0" width="230" height="611"/>
+
+	<s:Group id="inventory_cells_container"
+			 width="100%" height="100%">
+
+		<s:layout>
+			<s:TileLayout>
+				<s:requestedColumnCount>3</s:requestedColumnCount>
+			</s:TileLayout>
+		</s:layout>
+
+		<pkgInventory:ItemStackView id="iStackView_1" itemStack="{inventory.iStack1}"/>
+		<pkgInventory:ItemStackView id="iStackView_2" itemStack="{inventory.iStack2}"/>
+		<pkgInventory:ItemStackView id="iStackView_3" itemStack="{inventory.iStack3}"/>
+		<pkgInventory:ItemStackView id="iStackView_4" itemStack="{inventory.iStack4}"/>
+		<pkgInventory:ItemStackView id="iStackView_5" itemStack="{inventory.iStack5}"/>
+		<pkgInventory:ItemStackView id="iStackView_6" itemStack="{inventory.iStack6}"/>
+		<pkgInventory:ItemStackView id="iStackView_7" itemStack="{inventory.iStack7}"/>
+		<pkgInventory:ItemStackView id="iStackView_8" itemStack="{inventory.iStack8}"/>
+		<pkgInventory:ItemStackView id="iStackView_9" itemStack="{inventory.iStack9}"/>
+		<pkgInventory:ItemStackView id="iStackView_10" itemStack="{inventory.iStack10}"/>
+		<pkgInventory:ItemStackView id="iStackView_11" itemStack="{inventory.iStack11}"/>
+		<pkgInventory:ItemStackView id="iStackView_12" itemStack="{inventory.iStack12}"/>
+		<pkgInventory:ItemStackView id="iStackView_13" itemStack="{inventory.iStack13}"/>
+		<pkgInventory:ItemStackView id="iStackView_14" itemStack="{inventory.iStack14}"/>
+		<pkgInventory:ItemStackView id="iStackView_15" itemStack="{inventory.iStack15}"/>
+		<pkgInventory:ItemStackView id="iStackView_16" itemStack="{inventory.iStack16}"/>
+		<pkgInventory:ItemStackView id="iStackView_17" itemStack="{inventory.iStack17}"/>
+		<pkgInventory:ItemStackView id="iStackView_18" itemStack="{inventory.iStack18}"/>
+		<pkgInventory:ItemStackView id="iStackView_19" itemStack="{inventory.iStack19}"/>
+		<pkgInventory:ItemStackView id="iStackView_20" itemStack="{inventory.iStack20}"/>
+		<pkgInventory:ItemStackView id="iStackView_21" itemStack="{inventory.iStack21}"/>
+	
+
+	</s:Group>
+	<s:Group  x="35" y="550" >		
+		<s:HGroup>
+			<hud:HudInventoryTransfer id="hud_inv_transfer" label="Xfer" width="80" height="50"/>
+			<hud:HudInventoryDrop id="hud_inv_drop" label="Drop" width="80" height="50"/>
+		</s:HGroup>	
+	</s:Group>
+
+</s:Group>
