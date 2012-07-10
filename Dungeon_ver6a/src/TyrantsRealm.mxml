@@ -5,7 +5,7 @@
 			   xmlns:hud = "hud.*"
 			   xmlns:pkgInventory="pkgInventory.*"
 			   xmlns:dungeon="dungeon.*"
-			   width="1000" height="700"		   
+			   width="900" height="600"		   
 			   creationComplete="creationCompleteHandler(event)"
 			   backgroundColor="#000000" xmlns:views="views.*"
 			   >
@@ -64,6 +64,10 @@
 			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head1 - Black.png");
 			[Bindable]
 			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head3 - Red.png");
+			[Bindable]
+			public var char6:Character = new Character("Foo","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head2 - Blonde.png");
+			[Bindable]
+			public var char7:Character = new Character("Choo","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head3 - Red.png");
 	
 			
 			
@@ -74,6 +78,8 @@
 				party1.addChar(char3);
 				party1.addChar(char4);
 				party1.addChar(char5);
+				party1.addChar(char6);
+				party1.addChar(char7);
 				
 				party1.setCurrChar(party1.getCharAt(0));
 				this.currChar = party1.getCurrChar();
@@ -86,7 +92,8 @@
 				addEventListener(MouseEvent.CLICK, reportMouseDown);
 
 				var name:String = this.party1.getName();
-				party_name.x = hud_party.width / 2 - (name.length / 2);
+//				party_name.x = hud_party.width / 2 - (name.length / 2);
+				party_name.x = "22";
 				party_name.text = name;
 				
 				
@@ -248,7 +255,7 @@
 						map="{map}"
 						dungeon3D="{dungeon3D}" visible="false"/>				
 		</s:Group>
-		<s:Label id="party_name"  y="25" fontSize="16" fontWeight="bold"/>
+		<s:Label id="party_name" y="25" fontSize="16" fontWeight="bold"/>
 
 	</s:Group>
 	

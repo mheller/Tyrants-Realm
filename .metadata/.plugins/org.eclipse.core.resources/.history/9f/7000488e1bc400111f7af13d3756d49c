@@ -1,0 +1,9 @@
+package dungeon
+{
+	public class RandomNPC
+	{
+		public function RandomNPC()
+		{
+		}
+	}
+}

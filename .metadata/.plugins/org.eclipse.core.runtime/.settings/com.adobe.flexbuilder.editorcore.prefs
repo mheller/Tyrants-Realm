@@ -1,5 +1,5 @@
-#Wed Jun 27 23:48:05 PDT 2012
+#Thu Jul 05 00:44:49 PDT 2012
 eclipse.preferences.version=1
 activeViewIDs3=org.eclipse.ui.views.ProblemView,com.adobe.flexbuilder.packageexplorer,com.adobe.flexbuilder.mxml.editor.components.ComponentsView,com.adobe.flexbuilder.mxml.editor.states.StatesViewer,com.adobe.flexbuilder.mxml.editor.AppearanceView
-activeViewIDs2=org.eclipse.ui.console.ConsoleView,org.eclipse.debug.ui.DebugView,org.eclipse.debug.ui.VariableView
+activeViewIDs2=org.eclipse.search.ui.views.SearchView,com.adobe.flexbuilder.packageexplorer,org.eclipse.ui.views.ContentOutline
 autoViewIDs=com.adobe.flexbuilder.mxml.editor.states.StatesViewer\=design-mxml\=0\=true,com.adobe.flexbuilder.mxml.editor.components.ComponentsView\=design-mxml\=0\=true,com.adobe.flexbuilder.mxml.editor.inspector.view.PropertiesView\=design-mxml;design-css\=0\=true,com.adobe.flexbuilder.as.editor.asdocviewer\=code\=0\=false,com.adobe.flexbuilder.mxml.editor.AppearanceView\=design-mxml\=1\=false

@@ -50,7 +50,7 @@
 				if (oldIndex == newIndex) return; // Don't do anything if you click on the same item again
 				aParty.setCurrCharIndex(newIndex);
 				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex) as ViewEachCharInParty;
-								
+							
 				
 				var filter : GlowFilter = new GlowFilter();
 				filter.blurX = 10;
@@ -140,8 +140,33 @@
 				for(i=0; i<currPop; i++){
 					var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
 					viewAChar.char = aParty.getCharAt(i);
+//					viewAChar.bmpImg.height="70";
+//					viewAChar.bmpImg.width="70";
+					if (viewAChar.char.gender.getValue() == "Male")
+						viewAChar.bmpImg.x="-130";
+					else
+						viewAChar.bmpImg.x="-135";
+					
+					viewAChar.height="70"
+					if (i < 5) {
+						viewAChar.x="0";
+						viewAChar.y = i *105;
+					}
+					else {
+						viewAChar.x="100";
+						viewAChar.y = (i-5) *105;
+					}
+					viewAChar.basehead.x=viewAChar.bmpImg.x;
+					viewAChar.char_torso.x=viewAChar.bmpImg.x;
+					viewAChar.char_head.x=viewAChar.bmpImg.x;
+					viewAChar.char_legs.x=viewAChar.bmpImg.x;
+					viewAChar.char_feet.x=viewAChar.bmpImg.x;
+					viewAChar.char_shoulders.x=viewAChar.bmpImg.x;
+					viewAChar.char_hands.x=viewAChar.bmpImg.x;
+					viewAChar.char_weapon.x=viewAChar.bmpImg.x;
+					viewAChar.char_offhand.x=viewAChar.bmpImg.x;
+					
 					viewAChar.updateStatusBar();
-										
 					viewAChar.index_in_partyview = i;
 				
 					this.addElement(viewAChar);
@@ -156,8 +181,9 @@
 	
 	
 	<s:layout>
-		<s:VerticalLayout horizontalAlign="center"
-						  gap="30"/>
+		<s:BasicLayout/>
 	</s:layout>
+	
+	
 	
 </s:Group>

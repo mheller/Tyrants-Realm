@@ -1,0 +1,9 @@
+package dungeon
+{
+	public class FixedNPC
+	{
+		public function FixedNPC()
+		{
+		}
+	}
+}
