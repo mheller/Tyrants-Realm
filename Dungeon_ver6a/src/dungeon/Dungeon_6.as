@@ -83,7 +83,7 @@
 				trace("grid[0][0] type = "+_grids[0][5].type);
 				
 				_numGridsX = map.numGridsX;
-				_numGridsZ = map.numGridsZ;
+				_numGridsZ = map.numGridsY;
 				
 				_init3D();
 			}
@@ -287,46 +287,48 @@
 			var newCamPosX:int;
 			var newCamPosZ:int;
 			//check if there is a door in this grid
-			if (_grids[curCamGridX][curCamGridZ].collision != null){
+			if (_grids[curCamGridX][curCamGridZ].collisions != null){
 				//if there is a door, check if door allowed moving direction is the same as player direction
 				//***right now, not care about the type of door
 				//trace("door", curCamGridX,  curCamGridZ, _grids[curCamGridX][curCamGridZ].collision.direction);
-				switch (_grids[curCamGridX][curCamGridZ].collision.direction){
-					case 0: if (int(_view.camera.z) == (curCamGridZ+1)*gridDepth-_distanceFromWall){
-								newCamPosZ = (curCamGridZ+1)*gridDepth+_distanceFromWall;
-								_updateScene(_view.camera.x,newCamPosZ);
-								_view.camera.z = newCamPosZ;
-								return true;
-							}
-							//trace("0");
-							break;
-							
-					case 1: if (int(_view.camera.x) == (curCamGridX+1)*gridWidth-_distanceFromWall){
-								newCamPosX = (curCamGridX+1)*gridWidth+_distanceFromWall;
-								_updateScene(newCamPosX,_view.camera.z);
-								_view.camera.x = newCamPosX ;
-								return true;
-							}
-								//trace("1");
-							break;
-							
-					case 2: if (int(_view.camera.z) == curCamGridZ*gridDepth+_distanceFromWall){
-								newCamPosZ = curCamGridZ*gridDepth-2*_distanceFromWall;
-								_updateScene(_view.camera.x,newCamPosZ);
-								_view.camera.z = newCamPosZ;
-								return true;
-							}
-							//trace("2");
-							break;
-							
-					case 3: if (int(_view.camera.x) == curCamGridX*gridWidth+_distanceFromWall){
-								newCamPosX = curCamGridX*gridWidth-2*_distanceFromWall;
-								_updateScene(newCamPosX,_view.camera.z);
-								_view.camera.x = newCamPosX;
-								return true;
-							}
-							//trace("3");
-							break;
+				for ( var i:int= 0; i<_grids[curCamGridX][curCamGridZ].collisions.length; i++){
+					switch ((Collision)(_grids[curCamGridX][curCamGridZ].collisions[i]).direction){
+						case 0: if (int(_view.camera.z) == (curCamGridZ+1)*gridDepth-_distanceFromWall){
+									newCamPosZ = (curCamGridZ+1)*gridDepth+_distanceFromWall;
+									_updateScene(_view.camera.x,newCamPosZ);
+									_view.camera.z = newCamPosZ;
+									return true;
+								}
+								//trace("0");
+								break;
+								
+						case 1: if (int(_view.camera.x) == (curCamGridX+1)*gridWidth-_distanceFromWall){
+									newCamPosX = (curCamGridX+1)*gridWidth+_distanceFromWall;
+									_updateScene(newCamPosX,_view.camera.z);
+									_view.camera.x = newCamPosX ;
+									return true;
+								}
+									//trace("1");
+								break;
+								
+						case 2: if (int(_view.camera.z) == curCamGridZ*gridDepth+_distanceFromWall){
+									newCamPosZ = curCamGridZ*gridDepth-2*_distanceFromWall;
+									_updateScene(_view.camera.x,newCamPosZ);
+									_view.camera.z = newCamPosZ;
+									return true;
+								}
+								//trace("2");
+								break;
+								
+						case 3: if (int(_view.camera.x) == curCamGridX*gridWidth+_distanceFromWall){
+									newCamPosX = curCamGridX*gridWidth-2*_distanceFromWall;
+									_updateScene(newCamPosX,_view.camera.z);
+									_view.camera.x = newCamPosX;
+									return true;
+								}
+								//trace("3");
+								break;
+					}
 				}
 			}
 			return false;

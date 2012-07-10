@@ -7,11 +7,16 @@ package dungeon  {
 		public var type: int;
 		public var rotation:int;
 		public var tile:Mesh = null;
-		public var collision:Collision=null;
 		public var explored:Boolean=false;
+		public var collisions:Array=null;
 		public var objects:Array = null;
+		public var battle:Array = null;
+		public var effects:Array = null;
+		public var quests:Array = null;
+
 		public function Grid() {
 			// constructor code
+			
 		}
 		
 	}

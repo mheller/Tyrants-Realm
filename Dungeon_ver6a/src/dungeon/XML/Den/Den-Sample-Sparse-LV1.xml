@@ -8,6 +8,7 @@
 			<FNPC ID= "1005" QtyMin= "1" QtyMax= "1" Boss= "0"></FNPC>
 			<FNPC ID= "1000" QtyMin= "3" QtyMax= "3" Boss= "0"></FNPC>
 		</FixedNPC>
+		<Effect ID= "1" HLoc= "2" Vloc= "0"></Effect>
 	</Grid>
 	<Grid X= "5" Y= "1"> 
 		<Wall WallType= "5" WallRotation= "0"></Wall>
@@ -38,7 +39,6 @@
 	</Grid>
 	<Grid X= "0" Y= "5"> 
 		<Wall WallType= "2" WallRotation= "3"></Wall>
-		<Effect ID= "1" HLoc= "2" Vloc= "0"></Effect>
 	</Grid>
 	<Grid X= "1" Y= "5"> 
 		<Wall WallType= "4" WallRotation= "1"></Wall>
@@ -48,7 +48,8 @@
 	</Grid>
 	<Grid X= "3" Y= "5"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>
-        <Obj Id="0" HLoc="5" VLoc="1"></Obj>
+        
+		<Obj ID="0" HLoc="5" VLoc="1"></Obj>
 	</Grid>
 	<Grid X= "4" Y= "5"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>

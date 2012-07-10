@@ -17,6 +17,8 @@
 			
 			import dungeon.Dungeon_6;
 			import dungeon.Map;
+			import dungeon.Collision;
+			import dungeon.Effect;
 			
 			import flash.display.MovieClip;
 			
@@ -79,7 +81,7 @@
 				
 				//grid size is scaled with the size of its container
 				_grid_width = (this.width-2)/map.numGridsX;
-				_grid_height = (this.height-33)/map.numGridsZ;
+				_grid_height = (this.height-33)/map.numGridsY;
 				
 				// Initial offset to center player position TODO: needs more dynamic work for start location.
 				_offset_x = _grid_width *2 -6;
@@ -98,17 +100,16 @@
 				
 				_user_position.rotation = dungeon3D.getCurCamRot();
 				
-				this.addElement(_user_position);
 				
 				// Set the initial start location absolute coords
 				orig_loc_x =  _grid_width *( int(cam_pos.x/Dungeon_6.gridWidth) + (cam_pos.x % Dungeon_6.gridWidth)/Dungeon_6.gridWidth);
-				orig_loc_y = 70+(2*_grid_height)+_grid_height*map.numGridsZ - _grid_height * (int(cam_pos.z/Dungeon_6.gridHeight) 
+				orig_loc_y = 70+(2*_grid_height)+_grid_height*map.numGridsY - _grid_height * (int(cam_pos.z/Dungeon_6.gridHeight) 
 					+ (cam_pos.z % Dungeon_6.gridDepth)/Dungeon_6.gridDepth);
 
 				
 				map_group = new Group();
 				for (var i:int = 0; i<map.numGridsX; i++)
-					for (var j:int =0; j<map.numGridsZ; j++){
+					for (var j:int =0; j<map.numGridsY; j++){
 						if ((map.map_array[i][j] != null) && (map.map_array[i][j].explored == true)){
 /*							grid = new Rect();							
 							grid.x = i* _grid_width;
@@ -141,9 +142,55 @@
 							path.rotation = 90*map.map_array[i][j].rotation;
 							path.cacheAsBitmap=true;
 							path.x = _offset_x+i* _grid_width;
-							path.y = _offset_y+70+(2*_grid_height)+_grid_height*(map.numGridsZ-1) - j* _grid_height;
+							path.y = _offset_y+70+(2*_grid_height)+_grid_height*(map.numGridsY-1) - j* _grid_height;
 							
 							map_group.addElement(path); 
+							
+							// Add in doors.
+							for each (var col:Collision in map.map_array[i][j].collisions){
+								var door:Image = new Image();
+								door.width=path.width;
+								door.height=path.height;
+								switch (col.type) {
+									case 1 : door.source = "assets/HUD/Dungeons/Den1/minimap-den1-door.png";
+										break;
+								}
+								door.transformX = door.width / 2;
+								door.transformY = door.height / 2;
+								door.rotation = 90*col.direction;
+								door.cacheAsBitmap=true;
+								door.x = path.x;
+								door.y = path.y;
+								map_group.addElement(door);
+							}
+							
+							// Add in Stairs
+							for each (var stair:Effect in map.map_array[i][j].effects){
+								if (stair.id == 1) {  // Stairs up
+									var su:Label = new Label();
+									su.x=path.x + (path.width/2 - 10);
+									su.y=path.y + (path.height/2 - 2);
+									su.height=path.height;
+									su.width=path.width;
+									su.text="SU";
+									su.setStyle("fontSize", 8);
+									map_group.addElement(su);
+									
+									continue;
+								}
+								if (stair.id == 2) {  // Stairs down
+									var sd:Label = new Label();
+									sd.x=path.x + (path.width/2 - 10);
+									sd.y=path.y + (path.height/2 - 2);
+									sd.height=path.height;
+									sd.width=path.width;
+									sd.text="SD";
+									sd.setStyle("fontSize", 8);
+									map_group.addElement(sd);
+									
+									continue;
+								}
+							}
 						}
 						else {
 /*							hidden = new Image();
@@ -157,6 +204,7 @@
 						} 
 					}
 				map_image.addElement(map_group);
+				this.addElement(_user_position);
 				addEventListener(Event.ENTER_FRAME, _updateCameraPosition);
 				addEventListener(MouseEvent.CLICK, launchFullMap);
 			}
@@ -171,7 +219,7 @@
 
 				// Where is the player now
 				curr_loc_x =  _grid_width *( int(cam_pos.x/Dungeon_6.gridWidth) + (cam_pos.x % Dungeon_6.gridWidth)/Dungeon_6.gridWidth);
-				curr_loc_y = 70+(2*_grid_height)+_grid_height*map.numGridsZ - _grid_height * (int(cam_pos.z/Dungeon_6.gridHeight) 
+				curr_loc_y = 70+(2*_grid_height)+_grid_height*map.numGridsY - _grid_height * (int(cam_pos.z/Dungeon_6.gridHeight) 
 										+ (cam_pos.z % Dungeon_6.gridDepth)/Dungeon_6.gridDepth);
 				
 				
@@ -181,7 +229,7 @@
 				
 				// Reset MiniMap for explored squares
 				for (var i:int = 0; i<map.numGridsX; i++)
-					for (var j:int =0; j<map.numGridsZ; j++){
+					for (var j:int =0; j<map.numGridsY; j++){
 						if ((map.map_array[i][j] != null) && (map.map_array[i][j].explored == true)){
 /*							grid = new Rect();							
 							grid.x = i* _grid_width;
@@ -215,7 +263,7 @@
 								path.rotation = 90*map.map_array[i][j].rotation;
 								path.cacheAsBitmap=true;
 								path.x = _offset_x+i* _grid_width;
-								path.y = _offset_y+70+(2*_grid_height)+_grid_height*(map.numGridsZ-1) - j* _grid_height;
+								path.y = _offset_y+70+(2*_grid_height)+_grid_height*(map.numGridsY-1) - j* _grid_height;
 								
 								var present:Boolean = false;
 								for (var k:int=0; k < map_group.numElements; k++) {
@@ -224,10 +272,55 @@
 										break;
 									}
 								}
-								if (!present)
+								if (!present) {
 									map_group.addElement(path); 
  
-								
+									// Add in doors.
+									for each (var col:Collision in map.map_array[i][j].collisions){
+										var door:Image = new Image();
+										door.width=path.width;
+										door.height=path.height;
+										switch (col.type) {
+											case 1 : door.source = "assets/HUD/Dungeons/Den1/minimap-den1-door.png";
+												break;
+										}
+										door.transformX = door.width / 2;
+										door.transformY = door.height / 2;
+										door.rotation = 90*col.direction;
+										door.cacheAsBitmap=true;
+										door.x = path.x;
+										door.y = path.y;
+										map_group.addElement(door);
+									}
+									// Add in Stairs
+									for each (var stair:Effect in map.map_array[i][j].effects){
+										if (stair.id == 1) {  // Stairs up
+											var su:Label = new Label();
+											su.x=path.x + (path.width/2 - 10);
+											su.y=path.y + (path.height/2 - 2);
+											su.height=path.height;
+											su.width=path.width;
+											su.text="SU";
+											su.setStyle("fontSize", 8);
+											map_group.addElement(su);
+											
+											continue;
+										}
+										if (stair.id == 2) {  // Stairs down
+											var sd:Label = new Label();
+											sd.x=path.x + (path.width/2 - 10);
+											sd.y=path.y + (path.height/2 - 2);
+											sd.height=path.height;
+											sd.width=path.width;
+											sd.text="SD";
+											sd.setStyle("fontSize", 8);
+											map_group.addElement(sd);
+											
+											continue;
+										}
+									}
+
+								}								
 							}
 							
 							

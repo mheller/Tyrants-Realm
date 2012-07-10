@@ -1,0 +1,142 @@
+<Dungeon Type= "Den" Level = "1" ID= "0" Special= "0" Tileset= "1">
+	<Grid X= "0" Y= "4"> 
+		<Wall WallType= "1" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "1" Y= "4"> 
+		<Wall WallType= "5" WallRotation= "1"></Wall>
+	</Grid>
+	<Grid X= "2" Y= "4"> 
+		<Wall WallType= "1" WallRotation= "1"></Wall>
+	</Grid>
+	<Grid X= "3" Y= "4"> 
+		<Wall WallType= "2" WallRotation= "0"></Wall>
+		<Effect ID= "1" HLoc= "2" Vloc= "0"></Effect>
+	</Grid>
+	<Grid X= "4" Y= "4"> 
+		<Wall WallType= "1" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "5" Y= "4"> 
+		<Wall WallType= "5" WallRotation= "1"></Wall>
+		<FixedNPC >
+			<FNPC ID= "1005" QtyMin= "1" QtyMax= "1" Boss= "0"></FNPC>
+			<FNPC ID= "1000" QtyMin= "3" QtyMax= "3" Boss= "0"></FNPC>
+		</FixedNPC>
+	</Grid>
+	<Grid X= "6" Y= "4"> 
+		<Wall WallType= "1" WallRotation= "1"></Wall>
+		<Object ID= "10000" HLoc= "2" VLoc= "0"></Object>
+	</Grid>
+	<Grid X= "0" Y= "3"> 
+		<Wall WallType= "5" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "1" Y= "3"> 
+		<Wall WallType= "3" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "2" Y= "3"> 
+		<Wall WallType= "5" WallRotation= "2"> 
+			<Collision Type= "1" Direction= "1"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "3" Y= "3"> 
+		<Wall WallType= "4" WallRotation= "0"> 
+			<Collision Type= "1" Direction= "3"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "4" Y= "3"> 
+		<Wall WallType= "1" WallRotation= "3"></Wall>
+	</Grid>
+	<Grid X= "5" Y= "3"> 
+		<Wall WallType= "5" WallRotation= "3"> 
+			<Collision Type= "1" Direction= "2"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "6" Y= "3"> 
+		<Wall WallType= "1" WallRotation= "2"></Wall>
+	</Grid>
+	<Grid X= "0" Y= "2"> 
+		<Wall WallType= "5" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "1" Y= "2"> 
+		<Wall WallType= "5" WallRotation= "3"></Wall>
+	</Grid>
+	<Grid X= "2" Y= "2"> 
+		<Wall WallType= "1" WallRotation= "2"></Wall>
+	</Grid>
+	<Grid X= "3" Y= "2"> 
+		<Wall WallType= "2" WallRotation= "2"></Wall>
+	</Grid>
+	<Grid X= "4" Y= "2"> 
+		<Wall WallType= "1" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "5" Y= "2"> 
+		<Wall WallType= "5" WallRotation= "1"> 
+			<Collision Type= "1" Direction= "0"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "6" Y= "2"> 
+		<Wall WallType= "1" WallRotation= "1"></Wall>
+	</Grid>
+	<Grid X= "0" Y= "1"> 
+		<Wall WallType= "4" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "1" Y= "1"> 
+		<Wall WallType= "2" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "2" Y= "1"> 
+		<Wall WallType= "2" WallRotation= "0"> 
+			<Collision Type= "1" Direction= "1"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "3" Y= "1"> 
+		<Wall WallType= "2" WallRotation= "3"> 
+			<Collision Type= "1" Direction= "3"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "4" Y= "1"> 
+		<Wall WallType= "3" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "5" Y= "1"> 
+		<Wall WallType= "3" WallRotation= "0"></Wall>
+	</Grid>
+	<Grid X= "6" Y= "1"> 
+		<Wall WallType= "5" WallRotation= "2"></Wall>
+	</Grid>
+	<Grid X= "0" Y= "0"> 
+		<Wall WallType= "1" WallRotation= "3"></Wall>
+	</Grid>
+	<Grid X= "1" Y= "0"> 
+		<Wall WallType= "1" WallRotation= "2"> 
+			<Collision Type= "1" Direction= "1"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "2" Y= "0"> 
+		<Wall WallType= "2" WallRotation= "2">
+			<Collision Type= "1" Direction= "3"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "3" Y= "0"> 
+		<Wall WallType= "6" WallRotation= "0"> 
+			<Collision Type= "3" Direction= "1"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "4" Y= "0"> 
+		<Wall WallType= "1" WallRotation= "3"> 
+			<Collision Type= "3" Direction= "3"> </Collision>
+		</Wall>
+	</Grid>
+	<Grid X= "5" Y= "0"> 
+		<Wall WallType= "5" WallRotation= "3"></Wall>
+	</Grid>
+	<Grid X= "6" Y= "0"> 
+		<Wall WallType= "1" WallRotation= "2"></Wall>
+		<Effect ID= "2" HLoc= "6" Vloc= "0"></Effect>
+	</Grid>
+
+	<RandomNPC MinGroups= "1" MaxGroups= "3">
+		<NPC ID= "1000" QtyMin= "1" QtyMax= "4" Boss= "0"></NPC>
+		<NPC ID= "1001" QtyMin= "1" QtyMax= "3" Boss= "0"></NPC>
+		<NPC ID= "1002" QtyMin= "1" QtyMax= "3" Boss= "0"></NPC>
+		<NPC ID= "1003" QtyMin= "1" QtyMax= "2" Boss= "0"></NPC>
+		<NPC ID= "1004" QtyMin= "1" QtyMax= "2" Boss= "0"></NPC>
+	</RandomNPC>
+</Dungeon>
