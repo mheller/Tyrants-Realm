@@ -75,11 +75,59 @@
 			{				
 				
 				party1.addChar(char2);
+				char2.invLoader(1);
+				char2.invLoader(13);
+				char2.invLoader(28);
+				char2.invLoader(18);
+				char2.invLoader(19);
+				char2.invLoader(22);
+				char2.invLoader(25);
+				char2.invLoader(15);
+				char2.invLoader(16);
+				char2.invLoader(7);
+				char2.invLoader(29);
+				char2.invLoader(10000);
+				char2.invLoader(10001);
+				
 				party1.addChar(char3);
+				char3.invLoader(28);
+				char3.invLoader(29);
+				char3.invLoader(5);
+				char3.invLoader(7);
+				char3.invLoader(10001);
+				char3.invLoader(10000);
+				
 				party1.addChar(char4);
+				char4.invLoader(13);
+				char4.invLoader(29);
+				char4.invLoader(15);
+				char4.invLoader(7);
+				char4.invLoader(10001);
+				char4.invLoader(10001);
+
 				party1.addChar(char5);
+				char5.invLoader(16);
+				char5.invLoader(29);
+				char5.invLoader(5);
+				char5.invLoader(4);
+				char5.invLoader(10001);
+				char5.invLoader(10000);
+
 				party1.addChar(char6);
+				char6.invLoader(18);
+				char6.invLoader(19);
+				char6.invLoader(5);
+				char6.invLoader(22);
+				char6.invLoader(10001);
+				char6.invLoader(10000);
+
 				party1.addChar(char7);
+				char7.invLoader(26);
+				char7.invLoader(27);
+				char7.invLoader(1);
+				char7.invLoader(7);
+				char7.invLoader(10001);
+				char7.invLoader(10000);
 				
 				party1.setCurrChar(party1.getCharAt(0));
 				this.currChar = party1.getCurrChar();
@@ -216,7 +264,13 @@
 		s|Button#system_filter {
 			skinClass: ClassReference("skins.ChatSystemFilterButtonSkin");
 		}
-
+		s|Button#chat_enter {
+			skinClass: ClassReference("skins.ChatEnterButtonSkin");
+		}
+		s|Button#hud_chat_toggle {
+			skinClass: ClassReference("skins.ChatToggleButtonSkin");
+		}
+		
 
 	</fx:Style>
 
@@ -243,13 +297,12 @@
 				<hud:HudForum id="hud_forum" label="Forum"/>
 				<hud:HudSettings id="hud_settings" label="Settings"/>
 				<hud:HudLogout id="hud_logout" label="Logout"/>
-				
+				<hud:HudChat id="hud_chat" width="100%" height="100%" visible="false"/>				
 				<hud:HudAttribute id="hud_attribute" label="Attribute" char="{this.currChar}" party="{this.party1}" visible="false"/>			
-				<hud:HudChat id="hud_chat" width="100%" height="100%" visible="false"/>
 				<hud:HudParty id="hud_party" width="100%" height="100%" visible="false" aParty="{this.party1}"/>		
 			</s:HGroup>			
 		</s:Group>
-		
+
 		<s:Group x="1060" y="85" >
 			<hud:HudMap id="hud_map" width="100%" height="100%"
 						map="{map}"

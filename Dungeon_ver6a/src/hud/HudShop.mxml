@@ -41,7 +41,7 @@
 					else
 						shopView.visible = false;
 				}
-				
+	
 			}	
 			
 			public function clickHander(e:Event):void {	

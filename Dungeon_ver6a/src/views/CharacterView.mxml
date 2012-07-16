@@ -861,37 +861,40 @@
 		<s:BitmapImage id="character_bottom" x="0" y="510" width="510" height="101" 
 					   source="assets/HUD/Inventory/Bottom.png"
 					   />	
-		<s:BitmapImage id="character_appearance" x="100" y="170" width="310" height="340" 
-					   source="{char.appearance_basebody}"
-					   />	
-		<s:BitmapImage id="character_appearance2" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_basehead}"
-					   />	
-		<s:BitmapImage id="character_appearance3" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_torso}"
-					   />	
-		<s:BitmapImage id="character_appearance4" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_head}"
-					   />	
-		<s:BitmapImage id="character_appearance5" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_legs}"
-					   />	
-		<s:BitmapImage id="character_appearance6" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_feet}"
-					   />	
-		<s:BitmapImage id="character_appearance7" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_shoulders}"
-					   />	
-		<s:BitmapImage id="character_appearance8" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_hands}"
-					   />	
-		<s:BitmapImage id="character_appearance9" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_weapon}"
-					   />	
-		<s:BitmapImage id="character_appearance10" x="100" y="170" width="310" height="340"
-					   source="{char.appearance_offhand}"
-					   />
-		
+		<s:Group id="npc3d">
+			
+			<s:BitmapImage id="character_appearance" x="100" y="170" width="310" height="340" 
+						   source="{char.appearance_basebody}"
+						   />	
+			<s:BitmapImage id="character_appearance2" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_basehead}"
+						   />	
+			<s:BitmapImage id="character_appearance3" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_torso}"
+						   />	
+			<s:BitmapImage id="character_appearance4" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_head}"
+						   />	
+			<s:BitmapImage id="character_appearance5" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_legs}"
+						   />	
+			<s:BitmapImage id="character_appearance6" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_feet}"
+						   />	
+			<s:BitmapImage id="character_appearance7" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_shoulders}"
+						   />	
+			<s:BitmapImage id="character_appearance8" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_hands}"
+						   />	
+			<s:BitmapImage id="character_appearance9" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_weapon}"
+						   />	
+			<s:BitmapImage id="character_appearance10" x="100" y="170" width="310" height="340"
+						   source="{char.appearance_offhand}"
+						   />
+		</s:Group>
+	
 		<views:CurrentItemListView id="current_list_view1" current_items="{char.current_items}"
 								   start_index="0"/>
 

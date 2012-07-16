@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  click="submitChat();"
+>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Script>
+		
+		<![CDATA[			
+			import mx.managers.PopUpManager;		
+			import spark.components.TitleWindow;
+			import mx.controls.textClasses.TextRange;
+			import views.ChatView;
+						
+			public function submitChat():void {
+				var msgChannel:String;
+				var msg:String;
+
+				if ((ChatView)(this.parent).channel_sel.selectedIndex == -1) return;   // No channel selected. Should never happen
+				
+				msgChannel = (ChatView)(this.parent).ddlac.getItemAt((ChatView)(this.parent).channel_sel.selectedIndex);
+				
+				// TODO: Will need to add msg size limits and area box limits and activate filters. 
+				msg = "["+msgChannel+"] Mark: "+(ChatView)(this.parent).chat_msg.text+"\n"
+				var startInd:int = (ChatView)(this.parent).chat_msg_area.text.length;
+				if (startInd < 0) startInd = 0;
+				(ChatView)(this.parent).chat_msg_area.text += msg;
+				var endInd:int = (ChatView)(this.parent).chat_msg_area.text.length-1;
+				if (endInd < 0) endInd = 0;
+				
+				var tr:TextRange = new TextRange(
+					(ChatView)(this.parent).chat_msg_area, false);
+				tr.beginIndex = startInd;
+				tr.endIndex = endInd;
+				tr.text = msg;
+				
+				switch ((ChatView)(this.parent).channel_sel.selectedIndex) {
+					case 0 : tr.color=0x914502; // Orange World Channel
+						break;
+					case 1 : tr.color=0x0445bc; // Blue Faction Channel
+						break;						
+					case 2 : tr.color=0xf3ce01; // Yellow Guild Channel
+						break;						
+					case 3 : tr.color=0x105001; // Green Raid Channel
+						break;						
+					case 4 : tr.color=0x5809f8; // Purple Private Channel
+						break;						
+					case 5 : tr.color=0xfefdfd; // White Info Channel
+						break;						
+					case 6 : tr.color=0xa50303; // Red System Channel
+						break;						
+				}
+				
+				(ChatView)(this.parent).chat_msg.text="";
+//			}
+			
+//			(ChatView)(this.parent).chat_msg.selectRange((ChatView)(this.parent).chat_msg.text.length, (ChatView)(this.parent).chat_msg.text.length);			
+
+			}	
+		]]>
+	</fx:Script>	
+
+</s:Button>

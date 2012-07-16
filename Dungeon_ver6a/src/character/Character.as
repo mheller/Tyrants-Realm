@@ -51,7 +51,7 @@ package character
 		//@Hoang <<
 		public static const MAX_NUMBER_ITEMGROUP:int = 20;
 		public static const MAX_ITEM_STACK_SIZE:int = 20;
-		public static const MAX_NUMBER_OF_SLOTS_IN_INVENTORY:int = 21;
+		public static const MAX_NUMBER_OF_SLOTS_IN_INVENTORY:int = 21;    // TODO: Make dynamic/expandable through new bags, spells or shop purchases.
 		public var inventory:Inventory;
 		
 		// >>Hoang
@@ -86,7 +86,8 @@ package character
 		                          appearance_legs:String="", appearance_feet:String="", appearance_shoulders:String="",
 		                          appearance_hands:String="")
 		{
-			
+			// Set base status passed in on contructors.
+			// TODO: load from db calls
 			this.name = new Attribute("Name",name);
 			this.gender = new Attribute("Gender",gender);
 			this.character_class = new Attribute("Class", character_class);
@@ -134,7 +135,7 @@ package character
 			
 			
 			
-			//*** HUY create current_items
+			// Create empty placeholder stacks for the current character's worn items
 			var itemS1:ItemStack = new ItemStack(1);
 			itemS1.owner = this;
 			var itemS2:ItemStack = new ItemStack(1);
@@ -190,20 +191,9 @@ package character
 			current_items.addOneStack(itemS17);
 			
 			
-			//@Hoang 	<<
 			this.inventory = new Inventory(MAX_NUMBER_OF_SLOTS_IN_INVENTORY);
-			//this.inventory.initialInventory();
-			// create item groups : 
 			
-			// Groups:
-			//var iGroup1:ItemGroup = new ItemGroup("group_1",10);
-			//var iGroup2:ItemGroup = new ItemGroup("group_2",5);
-
-			// add groups to inventory
-			//this.inventory.addGroup(iGroup1);
-			//this.inventory.addGroup(iGroup2);
-
-			// Stacks for Inventory:
+			// Empty Stacks for Inventory:
 			var iStack1:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			iStack1.owner = this;
 			var iStack2:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
@@ -246,6 +236,8 @@ package character
 			iStack20.owner = this;
 			var iStack21:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
 			iStack21.owner = this;
+			
+			// Special stack to allow for drag-n-drop interaction with the background on the inventory panel.
 			var iStackBG:ItemStack = new ItemStack(9999);
 			iStackBG.owner = this;
 
@@ -255,6 +247,11 @@ package character
 			// *** Benefit Types: Fitness, Mental, Spirit, Eloquence, Coordination, Health, Spirae, Experience Bonus, 
 			//    Gold Bonus, Avoidance, Hit, Dmg Res, Cold Res, Heat Res, Magic Res, Max Phys Dmg, Min Phys Dmg, 
 			//    Max Magic Dmg, Min Magic Dmg, Wander, Construction Cost, increased monster freq and decreased monster freq.
+
+/*			
+			
+			item_benefit.removeAll();
+			item_material.removeAll();
 			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
 			item_benefit.addItem(new Attribute("Max Phys Dmg", 2));
 			item_material.addItem(new Attribute("90000", 5));
@@ -388,36 +385,35 @@ package character
 			item_material.addItem(new Attribute("90005", 7));
 			item_material.addItem(new Attribute("90010", 12));
 			var newItem17:Item = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.png", item_benefit, item_material);
-
+*/
 			// push items to stacks
-			iStack1.pushItem(newItem1);
+//			iStack1.pushItem(newItem1);
 			iStack1.owner = this;
-			iStack2.pushItem(newItem2);
+//			iStack2.pushItem(newItem2);
 			iStack2.owner = this;
-			iStack3.pushItem(newItem3);
+//			iStack3.pushItem(newItem3);
 			iStack3.owner = this;
-			iStack4.pushItem(newItem6);
+//			iStack4.pushItem(newItem6);
 			iStack4.owner = this;
-			iStack5.pushItem(newItem7);
+//			iStack5.pushItem(newItem7);
 			iStack5.owner = this;
-			
-			iStack6.pushItem(newItem9);
+//			iStack6.pushItem(newItem9);
 			iStack6.owner = this;
-			iStack7.pushItem(newItem10);
+//			iStack7.pushItem(newItem10);
 			iStack7.owner = this;
-			iStack8.pushItem(newItem11);
+//			iStack8.pushItem(newItem11);
 			iStack8.owner = this;
-			iStack9.pushItem(newItem12);
+//			iStack9.pushItem(newItem12);
 			iStack9.owner = this;
-			iStack10.pushItem(newItem13);
+//			iStack10.pushItem(newItem13);
 			iStack10.owner = this;
-			iStack11.pushItem(newItem14);
+//			iStack11.pushItem(newItem14);
 			iStack11.owner = this;
-			iStack12.pushItem(newItem15);
+//			iStack12.pushItem(newItem15);
 			iStack12.owner = this;
-			iStack13.pushItem(newItem16);
+//			iStack13.pushItem(newItem16);
 			iStack13.owner = this; 
-			iStack14.pushItem(newItem17);
+//			iStack14.pushItem(newItem17);
 			iStack14.owner = this; 
 			iStack15.owner = this; // Empty Inv slot
 			iStack16.owner = this; // Empty Inv slot
@@ -452,20 +448,152 @@ package character
 			inventory.iStack21 = iStack21;
 			inventory.iStackBG = iStackBG;			
 			
-			// push stacks to groups
-//			iGroup1.addOneStack(iStack1);
-//			iGroup1.addOneStack(iStack2);
-//			iGroup1.addOneStack(iStack3);
-//			iGroup1.addOneStack(iStack4);
-//			iGroup1.addOneStack(iStack5);
-//			iGroup1.addOneStack(iStack6);
-//			iGroup1.addOneStack(iStack7);
-//			iGroup1.addOneStack(iStack8);
-//			iGroup1.addOneStack(iStack9);
-//			iGroup1.addOneStack(iStack10);
-			//	>> Hoang
 
 		}
+		
+		
+		
+		// This function will process character inventories on load. TODO: Rework completely when DB is used.
+		public function invLoader(itemID:int):void {
+			var newItem:Item = null;
+			
+			// Mark: Hardcoded items currently in the game. Will load from database later.
+			item_benefit.removeAll();
+			item_material.removeAll();
+			switch (itemID) {
+				case 1 : 
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 2));
+					item_material.addItem(new Attribute("90000", 5));
+					newItem = new Item(1,"Dagger","a notched dagger","notched daggers", 1, 6, 0, 14, "This notched and dull iron dagger has seen better days.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Dagger_Icon_Rank_01.jpg", item_benefit, item_material);
+					break;
+				case 4 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
+					item_material.addItem(new Attribute("90002", 5));
+					newItem = new Item(4,"Mace","a bronze mace", "bronze maces", 1, 15, 0, 14, "This utilitarian mace will bash heads with the best of them. However, the relatively soft nature of bronze makes it constantly have a battered look to it.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 5 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 45));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 62));		
+					item_benefit.addItem(new Attribute("Fitness", 2));		
+					item_material.addItem(new Attribute("90000", 17));
+					newItem = new Item(5,"Mace","a crowned spike mace", "crowned spiked maces", 2, 33, 0, 14, "This functional iron mace has spikes on the end to allow for a limited form of thrust damage when the unfortunate recipient leaves an opening.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_02.jpg",item_benefit, item_material);
+					break;
+				case 7 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 18));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 42));		
+					item_benefit.addItem(new Attribute("Mental", 2));
+					item_benefit.addItem(new Attribute("Spirae", 12));		
+					item_material.addItem(new Attribute("90004", 14));
+					item_material.addItem(new Attribute("90005", 2));
+					newItem = new Item(7,"Wand","a bloody yew wand", "blood yew wands", 2, 35, 0, 14, "This wand was obviously put together by someone of skill years ago. You can sense the power contained within it by the merest of touches.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Wand_Icon_Rank_02.jpg", item_benefit, item_material);
+					break;
+				case 13 : 
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 36));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 129));
+					item_benefit.addItem(new Attribute("Health", 4));
+					item_benefit.addItem(new Attribute("Fitness", 2));
+					item_material.addItem(new Attribute("90000", 5));
+					item_material.addItem(new Attribute("90003", 8));
+					newItem = new Item(13,"Broadsword","an ornate broadsword", "ornate broadswords", 2, 35, 0, 14, "This wickedly curved blade is a common weapon used by mercenaries in close combat situations. It can be founda t almost any shop, but this one is of particularly good quality.", false, true, false, true, true, true, false,"assets/OotE/InvIcons/Broadsword_Icon_Rank_02.jpg", item_benefit, item_material);
+					break;
+				case 15 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 37));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 155));		
+					item_benefit.addItem(new Attribute("Eloquence", 2));
+					item_benefit.addItem(new Attribute("Fitness", 2));		
+					item_material.addItem(new Attribute("90003", 14));
+					newItem = new Item(15,"Longsword","an ornate longsword", "ornate longswords", 2, 35, 0, 14, "This blade can be seen at the hip of many leaders in military and civilian authority. It has the keen edge of a weapon able to perform well in combat but it also has the look many would be proud to have at their side when making a good impression on others.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Longsword_Icon_Rank_02.jpg",item_benefit, item_material);
+					break;
+				case 16 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 10));		
+					item_material.addItem(new Attribute("90000", 6));
+					newItem = new Item(16,"Greatsword","a worn iron greatsword", "worn iron greatswords", 1, 18, 0, 14, "This huge weapon is a symbol of power, strength and death. Without a doubt, no warrior would be afraid with one of these on his or her hip.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Greatsword_Icon_Rank_01.jpg", item_benefit, item_material);
+					break;
+				case 18 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
+					item_material.addItem(new Attribute("90001", 4));
+					newItem = new Item(18,"Shortbow","an oaken shortbow", "oaken shortbows", 1, 11, 1, 14, "This smoothly carved shortbow has limited range but can certainly get the job done. Each end is curved adding a touch of style and strength that only human hunters with elfish training would know how to create.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 19 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 29));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 129));		
+					item_benefit.addItem(new Attribute("Spirit", 2));
+					item_benefit.addItem(new Attribute("Coordination", 2));		
+					item_material.addItem(new Attribute("90001", 14));
+					newItem = new Item(19,"Shortbow","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_02.jpg",item_benefit, item_material);
+					break;
+				case 22 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
+					item_material.addItem(new Attribute("90001", 6));
+					newItem = new Item(22,"Recurvebow", "a hunter's recurve bow", "hunter's recurve bows", 1, 17, 1, 14, "This basic curved bow allows for more punch when it hits and, as such, is a favorite of most hunteres as it is rare for game to run far after taken with an arrow from this weapon.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/RecurveBow_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 25 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 24));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 138));		
+					item_benefit.addItem(new Attribute("Coordination", 2));
+					item_benefit.addItem(new Attribute("Fitness", 1));		
+					item_material.addItem(new Attribute("90001", 3));
+					item_material.addItem(new Attribute("90003", 10));			
+					newItem = new Item(25,"Throwing Axe","a hooked throwing axe", "hooked throwing axes", 2, 34, 1, 14, "One glance at this axe reminds you of the old saying: never bring a sword to a ranged fight. Without a doubt, you would want this on your side if you faced someone with a sword.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingAxe_Icon_Rank_02.jpg",item_benefit, item_material);
+					break;
+				case 26 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 7));		
+					item_material.addItem(new Attribute("90000", 6));
+					newItem = new Item(26,"Rapier","a basic cross-hilt rapier", "cross-hilt rapiers", 1, 12, 0, 14, "This rapier looks fancier than it is. The thin blade makes for good quick movements, but its poor construction makes it vulternatble to heavier blows.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Rapier_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 27 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 6));		
+					item_material.addItem(new Attribute("90000", 3));
+					newItem = new Item(27,"Throwing Knife","a training throwing knife", "training throwing knives", 1, 8, 1, 14, "This blade is balanced for throwing. However, it is of poor craftsmanship and has been around the block a few times.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingKnife_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 28 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
+					item_material.addItem(new Attribute("90001", 6));
+					newItem = new Item(28,"Staff","a crystal-topped staff", "crystal-topped staves", 1, 14, 0, 14, "This staff is of very simple design considering the power it holds. A master of the staff can generally beat any sword wielder, even when the staff is as basic as this one.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_01.jpg",item_benefit, item_material);
+					break;
+				case 29 :
+					item_benefit.addItem(new Attribute("Min Phys Dmg", 44));
+					item_benefit.addItem(new Attribute("Max Phys Dmg", 149));		
+					item_benefit.addItem(new Attribute("Mental", 1));
+					item_benefit.addItem(new Attribute("Fitness", 2));		
+					item_material.addItem(new Attribute("90001", 14));
+					newItem = new Item(29,"Staff"," an enchanted staff", "enchanted staves", 2, 34, 0, 14, "This staff has been infused with power of some kind. The knarled limb looks like it would be more fail than it actually is.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_02.jpg",item_benefit, item_material);
+					break;
+				case 10000 :
+					item_benefit.addItem(new Attribute("Fitness", 2));
+					item_material.addItem(new Attribute("90005", 5));
+					newItem = new Item(10000,"Ring","a plain gold ring", "plain gold rings", 1, 20, 10, 9, "This simple loop of metal is commonly worn by men of any race as it symbolizes unity and strength.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_01.png", item_benefit, item_material);
+					break;
+				case 10001 :
+					item_benefit.addItem(new Attribute("Spirae", 20));
+					item_benefit.addItem(new Attribute("Mental", 2));
+					item_material.addItem(new Attribute("90005", 7));
+					item_material.addItem(new Attribute("90010", 12));
+					newItem = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.png", item_benefit, item_material);
+					break;
+			}
+
+			if (newItem == null) {
+				trace("Bad inventory id for current items: "+itemID.toString());
+				return;
+			}
+			var item:ItemStack = new ItemStack(MAX_ITEM_STACK_SIZE);
+			item.owner = this;
+			item.pushItem(newItem);
+			inventory.addItem(item,1);
+			
+		}
+		
+		
+		
 		
 		private function _createAttributeLists():void{
 			attribute_list.addItem(name);

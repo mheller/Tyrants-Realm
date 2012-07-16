@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  label="x"
+		  click="showChatView2();">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		
+		<![CDATA[			
+			import mx.managers.PopUpManager;		
+			import spark.components.TitleWindow;
+			import views.ChatView;
+			import skins.ChatToggleButtonSkin;
+			import skins.ChatToggle2ButtonSkin;
+			
+			[Bindable]
+			public var chat_view:ChatView;
+			
+			public function showChatView2():void{
+				if (chat_view == null) {
+					chat_view = (TyrantsRealm)(this.parentApplication).hud_chat.chat_view;
+				}
+				if (chat_view.chat_msg_area.visible == true) {
+					chat_view.chat_msg_area.visible = false; 
+					chat_view.channel_sel.visible=false;
+					chat_view.chat_msg.visible = false;
+					chat_view.hud_chat_filters.visible = false;
+					chat_view.Chat.visible = false;
+					this.setStyle("skinClass", skins.ChatToggle2ButtonSkin);
+				}
+				else {
+					chat_view.chat_msg_area.visible = true; 
+					chat_view.channel_sel.visible=true;
+					chat_view.chat_msg.visible = true;
+					chat_view.hud_chat_filters.visible = true;
+					chat_view.Chat.visible = true;
+					this.setStyle("skinClass", skins.ChatToggleButtonSkin);					
+				}
+				
+				
+			}	
+		]]>
+	</fx:Script>	
+</s:Button>
+

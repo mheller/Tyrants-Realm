@@ -140,8 +140,6 @@
 				for(i=0; i<currPop; i++){
 					var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
 					viewAChar.char = aParty.getCharAt(i);
-//					viewAChar.bmpImg.height="70";
-//					viewAChar.bmpImg.width="70";
 					if (viewAChar.char.gender.getValue() == "Male")
 						viewAChar.bmpImg.x="-130";
 					else

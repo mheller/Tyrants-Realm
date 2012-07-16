@@ -20,8 +20,9 @@
 			public var chat_view:ChatView;
 			
 			public function showChatView():void{
-				if (chat_view == null)
+				if (chat_view == null) {
 					chat_view = PopUpManager.createPopUp(this, ChatView,false) as ChatView;
+				}
 				else {
 					if (chat_view.visible == true)
 						chat_view.visible = false;

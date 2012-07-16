@@ -4,7 +4,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:hud = "hud.*"
 			   width="100%"  height="100%"
-			   x="0" y="750" creationComplete="creationCompleteHandler(event)">
+			   x="0" y="747" creationComplete="creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -97,11 +97,12 @@
 			<s:BevelFilter  distance="5"/>         
 		</s:filters> 				   
 	</s:BitmapImage>	
-	<mx:TextArea id="chat_msg_area" y="0" width="650" height="135" borderVisible="true"
+	<mx:TextArea id="chat_msg_area" y="0" width="650" height="133" borderVisible="true"
 				 contentBackgroundAlpha=".2" contentBackgroundColor="#D0C6A6" editable="false"
 				 enabled="true" focusEnabled="false" fontWeight="bold"
 				 verticalScrollPolicy="on" wordWrap="true"/>		
-	<s:DropDownList id="channel_sel" x="0" y="133" width="80" chromeColor="#D0C6A6"
+	<hud:HudChatToggle id="hud_chat_toggle" width="20" x="0" y="133" height="20" chromeColor="#D0C6A6"/>				
+	<s:DropDownList id="channel_sel" x="20" y="133" width="80" chromeColor="#D0C6A6"
 					contentBackgroundAlpha=".5" contentBackgroundColor="#D0C6A6"
 					focusColor="#EEE4C4" rollOverColor="#C3B99A" selectedIndex="0"
 					selectionColor="#EEE4C6">
@@ -113,11 +114,12 @@
 			<fx:String>Private</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
-	<s:TextInput id="chat_msg" x="80" y="133" width="510" chromeColor="#D0C6A6" contentBackgroundAlpha=".4"
+	<s:TextInput id="chat_msg" x="100" y="132" width="465" chromeColor="#D0C6A6" contentBackgroundAlpha=".4"
 				 contentBackgroundColor="#D0C6A6" editable="true" enabled="true" focusEnabled="true"
 				 fontWeight="bold"/>
-	<s:Group x="580" y="133">	
-		<hud:HudChatFilter id="hud_chat_filters" label="Filter" width="100%" height="100%"/>
+	<hud:HudChatEnter id="chat_enter" width="20" x="565" y="133" height="20" />				
+	<s:Group x="585" y="132">	
+		<hud:HudChatFilter id="hud_chat_filters" label="Filter" width="65" height="100%" chromeColor="#D0C6A6"/>
 	</s:Group>
 
 	

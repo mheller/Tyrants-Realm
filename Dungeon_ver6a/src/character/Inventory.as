@@ -1,6 +1,9 @@
 package character
 {
+	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
+	import mx.collections.Sort;
+	import mx.collections.SortField;
 	
 	import pkgInventory.ItemGroup;
 	import pkgInventory.ItemStack;
@@ -37,6 +40,9 @@ package character
 		public var iStack21:ItemStack;
 		public var iStackBG:ItemStack;
 		
+		public var item_benefit:ArrayCollection = new ArrayCollection();//data provider for data grid of item benefits component
+		public var item_material:ArrayCollection = new ArrayCollection();//data provider for data grid of item materials component
+
 		
 /*		public function Inventory(maxSize: int, list_itemGroup:ArrayList){
 				this.maxSize = maxSize;
@@ -51,19 +57,25 @@ package character
 			this.list_itemStack = new ArrayList();
 		}
 
-		// @Hoang << 
-		// initialInventory
-		// ->create item group as a pre-setting mode: no need to create item group or stack from the character,
-		// assume number of item group is a fixed number
-		// >> Hoang
-		public function initialInventory():void{
-			var i:int;
-			for(i=0;i<this.currSize;i++){
-				var iGroup:ItemGroup = new ItemGroup("group_"+i.toString(10),10);
-				iGroup.initialItemGroup();
-				//this.addGroup(iGroup);
+		public function addItem(item:ItemStack, qty:int):void {
+
+			for (var i:int=0; i < qty; i++) {
+				
+				// Find the next available or stackable spot
+				var tempItemStack:ItemStack = nextAvailableInventorySpot(item,item);
+				if (tempItemStack.currSize == 0) {
+					tempItemStack.currSize++;
+					tempItemStack.displayPath = item.displayPath;
+					tempItemStack.item = item.item;
+					tempItemStack.itemType = item.itemType;
+				}
+				else {  // nextAvailableInventorySpot already tests for reaching max stacksize.
+					tempItemStack.currSize++;
+				}
 			}
 		}
+		
+		
 		
 		//@ Hoang: add a new Stack to inventory
 		public function addStack(newStack:ItemStack) :Boolean{
