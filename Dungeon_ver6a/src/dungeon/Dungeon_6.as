@@ -14,6 +14,7 @@
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.Vector3D;
+	import flash.media.Sound;
 	import flash.net.*;
 	import flash.ui.Keyboard;
 	import flash.xml.*;
@@ -24,8 +25,8 @@
 	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	
-	import objects.*;
 	import objects.crate.Crate;
+	import objects.brokencrate.Brokencrate;
 	
 	import spark.components.Application;
 	
@@ -173,10 +174,30 @@
 			
 		}
 		
+		//function for handling interactions with dungeon object
 		private function onInteractWithDungeonObject(e:MouseEvent3D):void{
 			var mesh:Mesh = e.target as Mesh;
-			Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+			if (mesh is Crate){
+				//play sound
+				var sound:Sound = new Sound(new URLRequest("objects/crate/crate_smash.mp3"));
+				sound.play(1,1);
+				//init broken crate
+				var brokencrate:Mesh = new Brokencrate();
+				brokencrate.x = mesh.x;
+				brokencrate.y = mesh.y;
+				brokencrate.z = mesh.z;
+				//remove crate
+				_view.scene.removeChild(mesh);
+				//show broken crate 
+				_view.scene.addChild(brokencrate);
+				
+				//show pop up window for rewarding
+				Alert.show("Reward: in construction"); //Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+				
+				//hide the broken crate
+				_view.scene.removeChild(brokencrate);
 
+			}
 		}
 		
 		private function _updateScene(newCamPosX:int, newCamPosZ:int):void{
