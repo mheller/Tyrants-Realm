@@ -25,8 +25,10 @@
 	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	
-	import objects.crate.Crate;
 	import objects.brokencrate.Brokencrate;
+	import objects.crate.Crate;
+	import objects.chest.Chest;
+	import objects.openchest.Openchest;
 	
 	import spark.components.Application;
 	
@@ -68,10 +70,11 @@
 		private const tileType:Array = new Array(Corner,End,Floor,Hall,Wall,Box);
 		private const deltaY:Array = new Array(0,0,0,0,0,0);//deltaY of each tile's type
 		
-		private const objectType:Array = new Array(Crate);
+		private const objectType:Array = new Array(Crate,Chest);
 		
 		private const _visibleDistance:int = 3;
 		
+		private var _light:PointLight3D = null;
 		
 		//public function Dungeon_6(map:Map) {
 		public function Dungeon_6() {
@@ -123,10 +126,12 @@
 			}
 			//init scence
 			//var scene:Scene3D = new Scene3D();
-			//init light
-			//var light:PointLight3D = new PointLight3D();
-			//light.position = _view.camera.position;
-			//scene.addChild(light);// .addChild(light);
+//			//init light
+//			_light = new PointLight3D(
+//				{ x:_view.camera.x, y:_view.camera.y, z:_view.camera.z,
+//					brightness:5, ambient:30, diffuse:500, specular:180 } );
+//			//light.position = _view.camera.position;
+//			_view.scene.addChild(_light);// .addChild(light);
 		}
 		
 		private function addTile(type:int, gridX:int, gridZ:int, rotation:int):void{
@@ -174,13 +179,13 @@
 			
 		}
 		
-		//function for handling interactions with dungeon object
+		//function for handling interactions with dungeon object, just for quick proving, structure codes later
 		private function onInteractWithDungeonObject(e:MouseEvent3D):void{
 			var mesh:Mesh = e.target as Mesh;
 			if (mesh is Crate){
 				//play sound
-				var sound:Sound = new Sound(new URLRequest("objects/crate/crate_smash.mp3"));
-				sound.play(1,1);
+				var crate_sound:Sound = new Sound(new URLRequest("objects/crate/crate_smash.mp3"));
+				crate_sound.play(1,1);
 				//init broken crate
 				var brokencrate:Mesh = new Brokencrate();
 				brokencrate.x = mesh.x;
@@ -195,8 +200,26 @@
 				Alert.show("Reward: in construction"); //Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
 				
 				//hide the broken crate
-				_view.scene.removeChild(brokencrate);
-
+				//_view.scene.removeChild(brokencrate);
+			}
+			else if (mesh is Chest) {
+				//play sound
+				var chest_sound:Sound = new Sound(new URLRequest("objects/chest/open_chest.mp3"));
+				chest_sound.play(1,1);
+				//init open chest
+				var openchest:Mesh = new Openchest();
+				openchest.x = mesh.x;
+				openchest.y = mesh.y;
+				openchest.z = mesh.z;
+				
+				//remove chest
+				_view.scene.removeChild(mesh);
+				//show open chest 
+				_view.scene.addChild(openchest);
+				
+				//show pop up window for rewarding
+				//Alert.show("Reward: in construction"); //Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+				
 			}
 		}
 		
