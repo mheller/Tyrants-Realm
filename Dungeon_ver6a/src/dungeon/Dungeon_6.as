@@ -44,7 +44,7 @@
 		private const _angularVelocity: Number =5;
 		private const _collisionVelocity: Number =50;
 		private const _minCollisionVelocity: Number = 15;
-		private var _distanceFromWall:Number = 350;
+		private var _distanceFromWall:Number = 350;//value will be changed in init_3D()
 		
 		public static const gridWidth:int  = 1000;//cubic width
 		public static const gridDepth:int  = 1000;//cubic depth 
@@ -80,11 +80,9 @@
 		public function init():void{
 			if (map !=null){
 				_grids = map.map_array;
-				trace("grid[0][0] type = "+_grids[0][5].type);
-				
+				//trace("grid[0][0] type = "+_grids[0][5].type);
 				_numGridsX = map.numGridsX;
 				_numGridsZ = map.numGridsY;
-				
 				_init3D();
 			}
 		}
@@ -93,8 +91,10 @@
 			_view = new View3D();
 //			_view.x = 400;
 //			_view.y = 300;
-			_view.x = 450;//400;
-			_view.y = 300;//300;
+			_view.x = stage.stageWidth/2 ;//set center of viewport as funtion of application width
+			_view.y = stage.stageHeight/2;//and height
+			_distanceFromWall = stage.stageWidth/4;//set min distance between camera and wall as function of application width instead of 350
+
 //			_view.clipping = new RectangleClipping({minX:0,minY:0,maxX:900,maxY:600});;
 			addChild(_view);
 			
@@ -104,7 +104,6 @@
 			
 //			var stat: AwayStats = new AwayStats(_view);
 //			addChild(stat);
-			
 					
 			this.addEventListener(Event.ENTER_FRAME, _start3D);
 			addEventListener(KeyboardEvent.KEY_DOWN, _onKeyDown);
@@ -127,7 +126,6 @@
 			//var light:PointLight3D = new PointLight3D();
 			//light.position = _view.camera.position;
 			//scene.addChild(light);// .addChild(light);
-			
 		}
 		
 		private function addTile(type:int, gridX:int, gridZ:int, rotation:int):void{
@@ -160,9 +158,7 @@
 						trace("h_loc,v_loc : "+dungeon_object.h_loc+","+dungeon_object.v_loc);
 						
 						// Clicking on Crate
-						mesh.addEventListener(MouseEvent3D.MOUSE_DOWN,function (e:MouseEvent3D):void{							
-							Alert.show("Crate : x="+mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
-						});
+						mesh.addEventListener(MouseEvent3D.MOUSE_DOWN,onInteractWithDungeonObject);
 						//mesh.objectHeight
 						_view.scene.addChild(mesh);
 						
@@ -175,6 +171,12 @@
 				_grids[gridX][gridZ].tile.visible = true;
 			}
 			
+		}
+		
+		private function onInteractWithDungeonObject(e:MouseEvent3D):void{
+			var mesh:Mesh = e.target as Mesh;
+			Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+
 		}
 		
 		private function _updateScene(newCamPosX:int, newCamPosZ:int):void{
