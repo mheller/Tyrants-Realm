@@ -209,7 +209,7 @@
 				//init open chest
 				var openchest:Mesh = new Openchest();
 				openchest.x = mesh.x;
-				openchest.y = mesh.y;
+				openchest.y = mesh.y + (openchest.objectHeight - mesh.objectHeight)/2;//openchest and chest can have different size
 				openchest.z = mesh.z;
 				
 				//remove chest
