@@ -13,8 +13,9 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Fists" key="selection"/>
+		<item value="transform" key="selection"/>
 		<list key="findhistory">
+			<item value="transform"/>
 			<item value="Fists"/>
 			<item value="MaxPop"/>
 			<item value="alert"/>

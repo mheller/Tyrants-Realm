@@ -14,6 +14,7 @@
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.Vector3D;
+	import flash.media.Sound;
 	import flash.net.*;
 	import flash.ui.Keyboard;
 	import flash.xml.*;
@@ -24,8 +25,10 @@
 	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	
-	import objects.*;
+	import objects.brokencrate.Brokencrate;
 	import objects.crate.Crate;
+	import objects.chest.Chest;
+	import objects.openchest.Openchest;
 	
 	import spark.components.Application;
 	
@@ -44,7 +47,7 @@
 		private const _angularVelocity: Number =5;
 		private const _collisionVelocity: Number =50;
 		private const _minCollisionVelocity: Number = 15;
-		private var _distanceFromWall:Number = 350;
+		private var _distanceFromWall:Number = 350;//value will be changed in init_3D()
 		
 		public static const gridWidth:int  = 1000;//cubic width
 		public static const gridDepth:int  = 1000;//cubic depth 
@@ -67,10 +70,11 @@
 		private const tileType:Array = new Array(Corner,End,Floor,Hall,Wall,Box);
 		private const deltaY:Array = new Array(0,0,0,0,0,0);//deltaY of each tile's type
 		
-		private const objectType:Array = new Array(Crate);
+		private const objectType:Array = new Array(Crate,Chest);
 		
 		private const _visibleDistance:int = 3;
 		
+		private var _light:PointLight3D = null;
 		
 		//public function Dungeon_6(map:Map) {
 		public function Dungeon_6() {
@@ -80,11 +84,9 @@
 		public function init():void{
 			if (map !=null){
 				_grids = map.map_array;
-				trace("grid[0][0] type = "+_grids[0][5].type);
-				
+				//trace("grid[0][0] type = "+_grids[0][5].type);
 				_numGridsX = map.numGridsX;
 				_numGridsZ = map.numGridsY;
-				
 				_init3D();
 			}
 		}
@@ -93,8 +95,10 @@
 			_view = new View3D();
 //			_view.x = 400;
 //			_view.y = 300;
-			_view.x = 450;//400;
-			_view.y = 300;//300;
+			_view.x = stage.stageWidth/2 ;//set center of viewport as funtion of application width
+			_view.y = stage.stageHeight/2;//and height
+			_distanceFromWall = stage.stageWidth/4;//set min distance between camera and wall as function of application width instead of 350
+
 //			_view.clipping = new RectangleClipping({minX:0,minY:0,maxX:900,maxY:600});;
 			addChild(_view);
 			
@@ -104,7 +108,6 @@
 			
 //			var stat: AwayStats = new AwayStats(_view);
 //			addChild(stat);
-			
 					
 			this.addEventListener(Event.ENTER_FRAME, _start3D);
 			addEventListener(KeyboardEvent.KEY_DOWN, _onKeyDown);
@@ -123,11 +126,12 @@
 			}
 			//init scence
 			//var scene:Scene3D = new Scene3D();
-			//init light
-			//var light:PointLight3D = new PointLight3D();
-			//light.position = _view.camera.position;
-			//scene.addChild(light);// .addChild(light);
-			
+//			//init light
+//			_light = new PointLight3D(
+//				{ x:_view.camera.x, y:_view.camera.y, z:_view.camera.z,
+//					brightness:5, ambient:30, diffuse:500, specular:180 } );
+//			//light.position = _view.camera.position;
+//			_view.scene.addChild(_light);// .addChild(light);
 		}
 		
 		private function addTile(type:int, gridX:int, gridZ:int, rotation:int):void{
@@ -160,9 +164,7 @@
 						trace("h_loc,v_loc : "+dungeon_object.h_loc+","+dungeon_object.v_loc);
 						
 						// Clicking on Crate
-						mesh.addEventListener(MouseEvent3D.MOUSE_DOWN,function (e:MouseEvent3D):void{							
-							Alert.show("Crate : x="+mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
-						});
+						mesh.addEventListener(MouseEvent3D.MOUSE_DOWN,onInteractWithDungeonObject);
 						//mesh.objectHeight
 						_view.scene.addChild(mesh);
 						
@@ -175,6 +177,50 @@
 				_grids[gridX][gridZ].tile.visible = true;
 			}
 			
+		}
+		
+		//function for handling interactions with dungeon object, just for quick proving, structure codes later
+		private function onInteractWithDungeonObject(e:MouseEvent3D):void{
+			var mesh:Mesh = e.target as Mesh;
+			if (mesh is Crate){
+				//play sound
+				var crate_sound:Sound = new Sound(new URLRequest("objects/crate/crate_smash.mp3"));
+				crate_sound.play(1,1);
+				//init broken crate
+				var brokencrate:Mesh = new Brokencrate();
+				brokencrate.x = mesh.x;
+				brokencrate.y = mesh.y;
+				brokencrate.z = mesh.z;
+				//remove crate
+				_view.scene.removeChild(mesh);
+				//show broken crate 
+				_view.scene.addChild(brokencrate);
+				
+				//show pop up window for rewarding
+				Alert.show("Reward: in construction"); //Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+				
+				//hide the broken crate
+				//_view.scene.removeChild(brokencrate);
+			}
+			else if (mesh is Chest) {
+				//play sound
+				var chest_sound:Sound = new Sound(new URLRequest("objects/chest/open_chest.mp3"));
+				chest_sound.play(1,1);
+				//init open chest
+				var openchest:Mesh = new Openchest();
+				openchest.x = mesh.x;
+				openchest.y = mesh.y + (openchest.objectHeight - mesh.objectHeight)/2;//openchest and chest can have different size
+				openchest.z = mesh.z;
+				
+				//remove chest
+				_view.scene.removeChild(mesh);
+				//show open chest 
+				_view.scene.addChild(openchest);
+				
+				//show pop up window for rewarding
+				//Alert.show("Reward: in construction"); //Alert.show("Crate : x="+ mesh.x.toString()+" y="+mesh.y.toString()+" z="+mesh.z.toString());
+				
+			}
 		}
 		
 		private function _updateScene(newCamPosX:int, newCamPosZ:int):void{

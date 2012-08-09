@@ -45,18 +45,22 @@
 	</Grid>
 	<Grid X= "2" Y= "5"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>
+		
 	</Grid>
 	<Grid X= "3" Y= "5"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>
         
 		<Obj ID="0" HLoc="5" VLoc="1"></Obj>
+		
 	</Grid>
 	<Grid X= "4" Y= "5"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>
+		
 	</Grid>
 	<Grid X= "5" Y= "5"> 
 		<Wall WallType= "2" WallRotation= "1">
 			<Collision Type= "1" Direction= "1"> </Collision>
+			
 		</Wall>
 	</Grid>
 	<Grid X= "6" Y= "5"> 
@@ -85,6 +89,7 @@
 	</Grid>
 	<Grid X= "2" Y= "6"> 
 		<Wall WallType= "1" WallRotation= "0"></Wall>
+		<Obj ID="1" HLoc="5" VLoc="1"></Obj>
 	</Grid>
 	<Grid X= "3" Y= "6"> 
 		<Wall WallType= "3" WallRotation= "0"></Wall>

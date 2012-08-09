@@ -1,9 +1,0 @@
-package dungeon
-{
-	public class Effect
-	{
-		public function Effect()
-		{
-		}
-	}
-}

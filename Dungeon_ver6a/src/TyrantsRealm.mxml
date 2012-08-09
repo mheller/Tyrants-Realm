@@ -5,7 +5,7 @@
 			   xmlns:hud = "hud.*"
 			   xmlns:pkgInventory="pkgInventory.*"
 			   xmlns:dungeon="dungeon.*"
-			   width="900" height="600"		   
+			   width="100%" height ="100%"
 			   creationComplete="creationCompleteHandler(event)"
 			   backgroundColor="#000000" xmlns:views="views.*"
 			   >
@@ -18,6 +18,10 @@
 			import character.*;
 			import character.SkillsSpells;
 			
+=======
+			import character.*;	
+
+>>>>>>> 1bf6bce064be3aad4533da7d4dbcd6dc46ae97a2
 			import dungeon.*;
 			
 			import mx.collections.ArrayCollection;

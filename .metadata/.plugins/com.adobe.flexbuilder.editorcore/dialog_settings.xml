@@ -3,8 +3,8 @@
 	<section name="com.adobe.flexbuilder.editorcore.ui.pi.PropertiesView">
 		<item value="true" key="Size and Position"/>
 		<item value="true" key="Layout"/>
-		<item value="false" key="Style"/>
-		<item value="false" key="Common"/>
+		<item value="true" key="Style"/>
 		<item value="1" key="ViewOption"/>
+		<item value="true" key="Common"/>
 	</section>
 </section>
