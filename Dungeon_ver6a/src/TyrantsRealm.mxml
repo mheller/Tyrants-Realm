@@ -17,12 +17,7 @@
 		<![CDATA[
 			import character.*;
 			import character.SkillsSpells;
-			
-=======
-			import character.*;	
-
->>>>>>> 1bf6bce064be3aad4533da7d4dbcd6dc46ae97a2
-			import dungeon.*;
+ 			import dungeon.*;
 			
 			import mx.collections.ArrayCollection;
 			import mx.collections.ArrayList;
