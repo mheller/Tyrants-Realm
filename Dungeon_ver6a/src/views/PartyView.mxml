@@ -13,13 +13,19 @@
 		<![CDATA[
 			import character.Character;
 			
+			import events.DragDropEvent;
+			
 			import hud.HudAttribute;
+			import hud.HudLevelUp;
 			
 			import mx.collections.ArrayList;
 			import mx.controls.Alert;
-			import mx.events.FlexEvent;
 			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
+			
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
 			
 			import pkgParty.CharacterDblClickedEvent;
 			import pkgParty.CharacterSelectedEvent;
@@ -30,10 +36,6 @@
 			import spark.filters.GlowFilter;
 			
 			import views.CharacterView;
-			import pkgInventory.ItemStack;
-			import pkgInventory.ItemStackView;
-
-			import events.DragDropEvent;
 			
 			[Bindable]
 			public var aParty: Party;
@@ -49,7 +51,7 @@
 				
 				if (oldIndex == newIndex) return; // Don't do anything if you click on the same item again
 				aParty.setCurrCharIndex(newIndex);
-				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex) as ViewEachCharInParty;
+				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex*2) as ViewEachCharInParty;
 							
 				
 				var filter : GlowFilter = new GlowFilter();
@@ -63,15 +65,17 @@
 				newSelectedElement.filters= [filter];
 				
 				if(oldIndex != -1){
-					var oldSelectedElement:ViewEachCharInParty = this.getElementAt(oldIndex) as ViewEachCharInParty;
+					var oldSelectedElement:ViewEachCharInParty = this.getElementAt(oldIndex*2) as ViewEachCharInParty;
 					oldSelectedElement.filters= [];
 				}
 
 				
 			}
 			
-			public function handleCharacterSelected(event:CharacterSelectedEvent):void {
+			public function handleCharacterSelected(event:CharacterSelectedEvent):void {				
+				
 				this.aParty.setCurrChar(event.char);
+				(TyrantsRealm)(this.parentApplication).party1.setCurrChar(event.char);
 				if (this.character_view != null) {
 					this.character_view.inv_view.char = event.char;
 					this.character_view.inv_view.inventory = event.char.inventory;
@@ -93,6 +97,30 @@
 					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view != null) {
 					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.updateTooltips();
 				}
+				
+				if (this.character_view != null) {
+					if (character_view.char.experience_to_level.getValue() < 1) 
+						character_view.hud_level_up.visible=true;
+					else 
+						character_view.hud_level_up.visible=false;
+					
+					// Update Skills/Spells Display
+					if (this.character_view.hud_skills_spells.ssp.visible == true) {
+						this.character_view.hud_skills_spells.ssp.visible = false;
+						this.character_view.hud_skills_spells.ssp = null;
+						this.character_view.hud_skills_spells.displaySkills();
+					}
+					
+				}
+				if ((TyrantsRealm)(this.parentApplication).hud_attribute.character_view != null) {
+					if (event.char.experience_to_level.getValue() < 1) 
+						(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_level_up.visible=true;
+					else
+						(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_level_up.visible=false;
+						
+				}
+								
+				
 			}
 			
 			public function handleCharacterDblClicked(event:CharacterDblClickedEvent):void {
@@ -100,6 +128,8 @@
 					character_view= PopUpManager.createPopUp(this, CharacterView,false) as CharacterView;
 					character_view.char = aParty.getCurrChar();	
 					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view = this.character_view;
+					if (character_view.char.experience_to_level.getValue() < 1) 
+						character_view.hud_level_up.visible=true;
 					
 					// Update Tooltips
 					character_view.current_list_view1.updateEquippedItemTooltips();
@@ -113,6 +143,9 @@
 						character_view.current_list_view1.updateEquippedItemTooltips();
 						
 						character_view.visible = true;
+						if (character_view.char.experience_to_level.getValue() < 1) 
+							character_view.hud_level_up.visible=true;
+						
 						character_view.inv_view.updateTooltips();
 					}
 					else{
@@ -168,11 +201,66 @@
 					viewAChar.index_in_partyview = i;
 				
 					this.addElement(viewAChar);
+					
+					// Add level up button (invisible by default)
+					var lub:HudLevelUp = new HudLevelUp();
+					lub.visible = false;
+					switch (i) {
+						case 0: lub.id="lub1"; lub.slot = 0; break;
+						case 1: lub.id="lub2"; lub.slot = 1; break;
+						case 2: lub.id="lub3"; lub.slot = 2; break;
+						case 3: lub.id="lub4"; lub.slot = 3; break;
+						case 4: lub.id="lub5"; lub.slot = 4; break;
+						case 5: lub.id="lub6"; lub.slot = 5; break;
+						case 6: lub.id="lub7"; lub.slot = 6; break;
+						case 7: lub.id="lub8"; lub.slot = 7; break;
+						case 8: lub.id="lub9"; lub.slot = 8; break;
+						case 9: lub.id="lub10"; lub.slot = 9; break;
+					}
+					lub.width = "20";
+					lub.height = "20";
+					lub.x=viewAChar.x+68;
+					lub.y=viewAChar.y;
+					var filter : GlowFilter = new GlowFilter();
+					filter.blurX = 10;
+					filter.blurY = 10;
+					filter.quality = 2;
+					filter.alpha = 1;
+					filter.color = 0xFF0000;
+					filter.inner = false;
+					
+					lub.filters= [filter];
+					this.addElement(lub);	
 				}
 				
 				updateSelectedView(-1,0);
 				
 			}
+			
+			
+			// UI layer wrapper around character experience adding
+			public function addXP(amount:int, char:Character):void {
+				char.addExperience(amount);
+
+				if ((TyrantsRealm)(this.parentApplication).hud_attribute.character_view != null) {					
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.tot_exp.text = char.total_experience.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.exp_to_level.text = char.experience_to_level.getValue().toString();
+					if (char.experience_to_level.getValue() < 1){
+						(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_level_up.visible = true;
+
+					}
+				}
+				
+				
+				// Check if the npc has leveled
+				if (char.experience_to_level.getValue() < 1) {
+					var lub:HudLevelUp = (HudLevelUp)(this.getElementAt(2*char.party_position.getValue()-1));
+					lub.visible = true;	
+					
+				}
+			}
+			
+			
 			
 		]]>
 	</fx:Script>

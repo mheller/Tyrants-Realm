@@ -16,9 +16,12 @@
 	<fx:Script>
 		<![CDATA[
 			import character.*;
+			import character.SkillsSpells;
 			
 			import dungeon.*;
 			
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
@@ -51,23 +54,23 @@
 						
 			[Bindable]
 			public var map:Map;
-					
-//			[Bindable]
-//			public var dungeon3D:Dungeon_6; 
+			
+			[Bindable]
+			public var skills_spells:Vector.<SkillsSpells> = new Vector.<SkillsSpells>();
 					
 			// Hardcoded demo party
 			[Bindable]
-			public var char2:Character = new Character("Jane","Female","Defender",50, 100, 0, 100, 1, 0, 0, 0, 0, 10, 5, 5, 8, 9, 20, 25, 0, 1, "Fists", 0,0, 0,0,0,0, 1,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head1 - Black.png");
+			public var char2:Character = new Character("Jane","Female","Defender",50, 100, 0, 0, 1, 0, 0, 0, 0, 10, 5, 5, 8, 9, 20, 25, 0, 1, "Fists", 0,0, 0,0,0,0, 1,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head1 - Black.png");
 			[Bindable]
-			public var char3:Character = new Character("Jill","Female", "Elementalist", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5, 10, 9, 6, 5, 15, 35, 0, 1, "Fists", 1, 2, 0,0,0,0, 2,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head2 - Blonde.png");
+			public var char3:Character = new Character("Jill","Female", "Elementalist", 100, 100, 0, 0, 1, 100, 100, 0, 0, 5, 10, 9, 6, 5, 15, 35, 0, 1, "Fists", 1, 2, 0,0,0,0, 2,0, "assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head2 - Blonde.png");
 			[Bindable]
-			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 100, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head1 - Black.png");
+			public var char4:Character = new Character("Jack","Male", "Hand of Grace", 100, 100, 0, 0, 1, 100, 100, 0, 0, 5,8, 10, 5, 8, 15, 30, 0, 1, "Fists", 1,1, 0,0,0,0, 3,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head1 - Black.png");
 			[Bindable]
-			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head3 - Red.png");
+			public var char5:Character = new Character("Julia","Female", "Tempus Diem Fur", 100, 100, 0, 0, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head3 - Red.png");
 			[Bindable]
-			public var char6:Character = new Character("Foo","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head2 - Blonde.png");
+			public var char6:Character = new Character("Foo","Female", "Summoner", 100, 100, 0, 0, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 5,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head2 - Blonde.png");
 			[Bindable]
-			public var char7:Character = new Character("Choo","Female", "Tempus Diem Fur", 100, 100, 0, 100, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 4,0,"assets/OotE/Female/Body.jpg", "assets/OotE/Female/Head3 - Red.png");
+			public var char7:Character = new Character("LongLong","Male", "Enhancer", 100, 100, 0, 0, 1, 8, 10, 0, 0, 6, 5, 5, 10, 10, 15, 35, 0, 1, "Fists", 0,0, 0,0,0,0, 6,0,"assets/OotE/Male/Body.jpg", "assets/OotE/Male/Head1 - Black.png");
 	
 			
 			
@@ -144,7 +147,9 @@
 				party_name.x = "22";
 				party_name.text = name;
 				
-				
+				for (var i:int = 0; i <= 200; i++) {
+					skills_spells[i] = new SkillsSpells(i);
+				}
 			}		
 			
 			public function reportKeyDown(event:KeyboardEvent):void 
@@ -153,8 +158,8 @@
 
 				if (String.fromCharCode(event.charCode) == 'm')
 					hud_map.showMapView();
-				if (String.fromCharCode(event.charCode) == 'c')
-					hud_chat.showChatView();
+				if (String.fromCharCode(event.charCode) == 'o')
+					this.hud_party.party_view.addXP(350,this.hud_party.party_view.aParty.getCurrChar());
 				if (String.fromCharCode(event.charCode) == 'l')
 					hud_logout.showLogoutView();
 				if (String.fromCharCode(event.charCode) == 'i') {
@@ -237,8 +242,14 @@
 		s|Button#hud_inv_transfer {
 			skinClass: ClassReference("skins.InventoryButtonSkin");
 		}
+		s|Button#hud_skills_spells {
+			skinClass: ClassReference("skins.InventoryButtonSkin");
+		}
 		s|Button#hud_inv_left {
 			skinClass: ClassReference("skins.InventoryShiftLeftSkin");
+		}
+		s|Button#hud_level_up {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
 		}
 		s|Button#hud_inv_right {
 			skinClass: ClassReference("skins.InventoryShiftRightSkin");
@@ -269,6 +280,36 @@
 		}
 		s|Button#hud_chat_toggle {
 			skinClass: ClassReference("skins.ChatToggleButtonSkin");
+		}
+		s|Button#lub1 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub2 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub3 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub4 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub5 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub6 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub7 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub8 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub9 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
+		}
+		s|Button#lub10 {
+			skinClass: ClassReference("skins.NPCLevelUpButtonSkin");
 		}
 		
 

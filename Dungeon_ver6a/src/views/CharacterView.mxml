@@ -42,6 +42,7 @@
 			import mx.managers.DragManager;
 			import mx.managers.PopUpManager;
 			import mx.utils.OnDemandEventDispatcher;
+			import spark.filters.GlowFilter;
 			
 			import pkgInventory.Item;
 			import pkgInventory.ItemStack;
@@ -75,6 +76,20 @@
 					inv_view.hud_inv_drop.addEventListener(DragEvent.DRAG_DROP, handleDrop2);
 					inv_view.hud_inv_transfer.addEventListener(DragEvent.DRAG_ENTER, acceptDrop);
 					inv_view.hud_inv_transfer.addEventListener(DragEvent.DRAG_DROP, handleTransfer);
+					
+					var filter : GlowFilter = new GlowFilter();
+					filter.blurX = 10;
+					filter.blurY = 10;
+					filter.quality = 2;
+					filter.alpha = 1;
+					filter.color = 0xFFFFFF;
+					filter.inner = false;
+					
+					hud_level_up.filters= [filter];
+
+					
+					if ((TyrantsRealm)(this.parentApplication).currChar.experience_to_level < 1)
+						hud_level_up.visible = true;
 					
 					// capture the event pop up by party window
 					this.systemManager.addEventListener("CharacterIsSelected",handleCharacterSelected);
@@ -861,6 +876,7 @@
 		<s:BitmapImage id="character_bottom" x="0" y="510" width="510" height="101" 
 					   source="assets/HUD/Inventory/Bottom.png"
 					   />	
+
 		<s:Group id="npc3d">
 			
 			<s:BitmapImage id="character_appearance" x="100" y="170" width="310" height="340" 
@@ -900,6 +916,8 @@
 
 		<hud:HudInventoryLeft id="hud_inv_left" width="50" height="50" x="15" y="545"/>
 		<hud:HudInventoryRight id="hud_inv_right" width="50" height="50" x="445" y="545"/>
+		<hud:HudLevelUp id="hud_level_up" width="20" height="20" x="15" y="25" visible="false"/>
+		<hud:HudSkillsSpells id="hud_skills_spells" width="72" height="50" x="423" y="25" label="Skills"/>
 			
 		<s:BitmapImage id="invdev2" x="510" y="0" width="5" height="611" 
 					   source="assets/InventoryDivider.png"

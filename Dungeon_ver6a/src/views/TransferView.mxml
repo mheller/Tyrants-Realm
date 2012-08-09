@@ -116,37 +116,27 @@
 					var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
 					
 					viewAChar.removeEventListener(DragEvent.DRAG_DROP,(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.xferItem);
-					
-					viewAChar.bmpImg.width = diam;
-					viewAChar.bmpImg.height = diam;
-					viewAChar.bmpMask.width = diam;
-					viewAChar.bmpMask.height = diam;
+
+					viewAChar.char = aParty.getCharAt(i);
+					viewAChar.index_in_partyview = i;
+
+					if (viewAChar.char.gender.getValue() == "Male") 
+						viewAChar.bmpImg.x="-130";
+					else
+						viewAChar.bmpImg.x="-135";
 					
 					viewAChar.height=diam;
 					viewAChar.width=diam;
-					viewAChar.character_appearance_container.width = diam;
-					viewAChar.character_appearance_container.height = diam;
-					
-					viewAChar.basehead.width = diam;
-					viewAChar.basehead.height = diam;
-					viewAChar.char_torso.width = diam;
-					viewAChar.char_torso.height = diam;
-					viewAChar.char_head.width = diam;
-					viewAChar.char_head.height = diam;
-					viewAChar.char_legs.width = diam;
-					viewAChar.char_legs.height = diam;
-					viewAChar.char_feet.width = diam;
-					viewAChar.char_feet.height = diam;
-					viewAChar.char_shoulders.width = diam;
-					viewAChar.char_shoulders.height = diam;
-					viewAChar.char_hands.width = diam;
-					viewAChar.char_hands.height = diam;
-					viewAChar.char_weapon.width = diam;
-					viewAChar.char_weapon.height = diam;
-					viewAChar.char_offhand.width = diam;
-					viewAChar.char_offhand.height = diam;
-
-					
+					viewAChar.basehead.x=viewAChar.bmpImg.x;
+					viewAChar.char_torso.x=viewAChar.bmpImg.x;
+					viewAChar.char_head.x=viewAChar.bmpImg.x;
+					viewAChar.char_legs.x=viewAChar.bmpImg.x;
+					viewAChar.char_feet.x=viewAChar.bmpImg.x;
+					viewAChar.char_shoulders.x=viewAChar.bmpImg.x;
+					viewAChar.char_hands.x=viewAChar.bmpImg.x;
+					viewAChar.char_weapon.x=viewAChar.bmpImg.x;
+					viewAChar.char_offhand.x=viewAChar.bmpImg.x;
+										
 					// Remove health/spirae bars
 					viewAChar.health_group.removeAllElements();
 					viewAChar.spirae_group.removeAllElements();
@@ -159,25 +149,15 @@
 					viewAChar.addEventListener(MouseEvent.ROLL_OVER, glowOn);
 					viewAChar.addEventListener(MouseEvent.ROLL_OUT, glowOff);
 					
-										
-				/*	
-					var npcMask:Sprite = new Sprite();
-					var temp:BitmapData = new BitmapData();
-					npcMask.graphics.beginBitmapFill(,null,false);
-					npcMask.graphics.drawCircle(100,100,50);
-					npcMask.x=0;
-					npcMask.y=0;
-					this.addElement(npcMask);
-				*/
-					// Add Character name element
+															// Add Character name element
 					var name:Label = new Label();
 					name.text = viewAChar.char.name.getValue();
 					if (name.text.length > parentWidth) parentWidth = name.text.length;
-					name.x = diam *1.25;
-					name.y = diam / 2 - 8;
+					name.x = diam +20;
+					name.y = diam / 2 + (diam+6)*i;
 					name.setStyle("color", "White");	
-					viewAChar.character_appearance_container.addElement(name);
-//					this.addElement(npcMask);
+//					viewAChar.character_appearance_container.addElement(name);
+					this.addElement(name);
 					
 					partyMemberGroup.addElement(viewAChar);
 					partyMemberGroup.x=5;
@@ -186,8 +166,9 @@
 				this.addElement(partyMemberGroup);
 				
 				// Adjust the window width and item image centering dynamically.
-				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.width = 110+ 10*parentWidth;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.width = 110 + 10*parentWidth;
 				itemForTransfer.x = (110+10*parentWidth)/2 - 42;
+				
 
 				// Divider
 				this.graphics.lineStyle(3, 0xFFFFFF, 100);

@@ -14,25 +14,35 @@ package character
 			this.max_value = max_value;
 		}
 		
+		
 		public function getText():String {
 			return this.text;
 		}
+		
+		
 		public function setText(txt:String):void {
 			this.text = txt;
 		}
 		
+		
 		public function getValue():Object {
 			return this.value;
 		}
+		
+		
 		public function setValue(val:Object):void {
 			this.value = val;
 		}
 		
+		
 		public function getMaxValue():Object {
 			return this.max_value;
 		}
+		
+		
 		public function setMaxValue(max:Object):void {
 			this.max_value = max;
 		}
+		
 	}
 }

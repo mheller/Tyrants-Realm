@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  click="levelUp();"
+		  > 
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>			
+		<![CDATA[			
+			import character.Inventory;
+			import character.Character;
+			
+			import mx.managers.PopUpManager;
+			
+			import resizableTitleWindow.*;
+			
+			import spark.components.TitleWindow;
+			
+			import views.LevelUpView;
+			
+			[Bindable]
+			private var lup:LevelUpView;
+			
+			[Bindable]
+			public var slot:int;
+						
+			public function levelUp():void{
+				
+				if (lup == null){
+					lup = PopUpManager.createPopUp(this, LevelUpView,false) as LevelUpView;
+					lup.setStyle("skinClass", ResizableTitleWindowSkin);
+					lup.slot = this.slot;
+				}				
+				else{
+					if (lup.visible == false) {
+						lup = null;
+						lup = PopUpManager.createPopUp(this, LevelUpView,false) as LevelUpView;
+						lup.setStyle("skinClass", ResizableTitleWindowSkin);
+						lup.slot = this.slot;
+					}
+					else
+						lup.visible = false;
+				}
+				
+			}	
+			
+			public function clickHander(e:Event):void {	
+				levelUp();
+			}
+		]]>
+	</fx:Script>	
+	
+	
+</s:Button>

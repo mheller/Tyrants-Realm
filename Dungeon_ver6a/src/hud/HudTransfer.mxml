@@ -8,7 +8,7 @@
 			   close="handleCloseEvent();" 
 			   creationComplete="creationCompleteHandler(event)"
 			   x="{(TyrantsRealm)(this.parentApplication).width / 2 - 68}"
-			   y="200" xmlns:views="views.*"
+			   y="20" xmlns:views="views.*"
 			   >
 	
 	<s:layout>

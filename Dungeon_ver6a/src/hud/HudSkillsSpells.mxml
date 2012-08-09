@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  click="displaySkills();"
+		  > 
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>			
+		<![CDATA[			
+			import character.Inventory;
+			import character.Character;
+			
+			import mx.managers.PopUpManager;
+			
+			import resizableTitleWindow.*;
+			
+			import spark.components.TitleWindow;
+			
+			import views.SkillsSpellsView;
+			
+			[Bindable]
+			public var ssp:SkillsSpellsView;
+			
+			[Bindable]
+			public var slot:int;
+			
+			public function displaySkills():void{
+				
+				if (ssp == null){
+					ssp = PopUpManager.createPopUp(this, SkillsSpellsView,false) as SkillsSpellsView;
+					ssp.setStyle("skinClass", ResizableTitleWindowSkin);
+					ssp.slot = this.slot;
+				}				
+				else{
+					if (ssp.visible == false) {
+						ssp = null;
+						ssp = PopUpManager.createPopUp(this, SkillsSpellsView,false) as SkillsSpellsView;
+						ssp.setStyle("skinClass", ResizableTitleWindowSkin);
+						ssp.slot = this.slot;
+					}
+					else
+						ssp.visible = false;
+				}
+				
+			}	
+			
+			public function clickHander(e:Event):void {	
+				displaySkills();
+			}
+		]]>
+	</fx:Script>	
+	
+	
+</s:Button>

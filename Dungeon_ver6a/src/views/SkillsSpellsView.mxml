@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="270" height="300"
+			   title="Skills / Spells"
+			   backgroundColor="#000000" borderColor="#FFFFFF"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   close="handleCloseEvent();"
+			   creationComplete="creationCompleteHandler(event)"
+			   x="380"
+			   y="300"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			import character.SkillsSpells;
+			
+			import flash.events.Event;
+			
+			import hud.HudSkillsSpells;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.Grouping;
+			import mx.collections.GroupingCollection2;
+			import mx.collections.GroupingField;
+			import mx.controls.AdvancedDataGrid;
+			import mx.controls.DataGrid;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridRendererProvider;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.core.UIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.events.ToolTipEvent;
+			
+			import pkgParty.ViewEachCharInParty;
+			
+			import spark.components.Button;
+			import spark.components.DataGrid;
+			import spark.components.Label;
+			
+			
+			[Bindable]
+			public var slot:int;
+			
+			private var skillList:ArrayCollection;			
+			private var adg:AdvancedDataGrid;
+			
+			private function handleCloseEvent():void{
+				this.visible = false;		
+			}	
+			
+			public function creationCompleteHandler(event:FlexEvent):void
+			{
+				showSkills();
+			}
+						
+			public function showSkills():void {
+				skillList = new ArrayCollection();
+				
+				
+				// Todo Add class section header 
+				var name:String;
+				var lvl:int;
+				var cost:int;
+				var costStr:String;
+				var lastClass:int = -1;
+				var classStr:String;
+				var currClass:int;
+				
+				for (var i:int=0;i< 201;i++) {
+					lvl = (TyrantsRealm)(this.parentApplication).party1.getCurrChar().skills_level[i];
+					cost = (TyrantsRealm)(this.parentApplication).skills_spells[i].getCost();
+					if (lvl > -1) {
+						// Skill Class header
+						if ((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getFaction() == 0) {   // TODO: Add in other factions
+							if (i<201) { classStr = "Enhancer"; currClass = 7; }
+							if (i<176) { classStr = "Hand of Grace"; currClass = 6; }
+							if (i<151) { classStr = "Summoner"; currClass = 5; }
+							if (i<126) { classStr = "Elementalist"; currClass = 4; }
+							if (i<101) { classStr = "Scout"; currClass = 3; }
+							if (i<76) { classStr = "Tempus Diem Fur"; currClass = 2; }
+							if (i<51) { classStr = "Berserker"; currClass = 1; }
+							if (i<26) { classStr = "Defender"; currClass = 0; }
+						}
+						if (currClass != lastClass) { 
+//							skillList.addItem({Skill: classStr});   // Commented out until better UI
+							lastClass = currClass; 
+						}
+						
+						name = (TyrantsRealm)(this.parentApplication).skills_spells[i].getName();
+						if (lvl == 0) {
+							costStr = "(Learnable)";						
+						}
+						else {
+							costStr = cost.toString() + " sp";
+						}
+						skillList.addItem({Skill: name, Cost: costStr, ID: i.toString()});
+
+					}
+				}
+				
+				
+				var groupColl:GroupingCollection2 = new GroupingCollection2();
+
+				groupColl.source = skillList;
+				adg = new AdvancedDataGrid();
+				var nameDGC:AdvancedDataGridColumn = new AdvancedDataGridColumn("Skill"); 
+				nameDGC.width=this.width*.60;
+				nameDGC.sortable = false;
+				nameDGC.draggable = false;
+				
+				var costDGC:AdvancedDataGridColumn = new AdvancedDataGridColumn("Cost"); 
+				costDGC.width = this.width*.39 -16;
+				costDGC.sortable = false;
+				costDGC.draggable = false;
+				
+				adg.columns = [nameDGC,costDGC];
+
+				adg.dataProvider = groupColl; 
+				adg.setStyle("color", "Black");
+				adg.height = this.height * .75;
+				adg.columnCount = skillList.length;
+				adg.verticalScrollPolicy = "on";
+				adg.allowMultipleSelection= false;
+				
+				groupColl.refresh();
+				adg.setFocus();
+				adg.sortExpertMode=true;
+				adg.iconFunction=clearIcons;
+				adg.headerHeight="0";
+				adg.addEventListener(ListEvent.ITEM_CLICK, clickedEvent);
+				adg.addEventListener(ListEvent.ITEM_ROLL_OUT, deleteToolTip);
+				adg.addEventListener(ListEvent.ITEM_ROLL_OVER, showDetails);
+				adg.selectedIndex = 0;
+				
+				this.addElement(adg);
+				
+				var cast:Button = new Button();
+				cast.label = "Cast";
+				cast.id = "castBtn";
+				cast.x = this.width/2 - 30;
+				cast.y = this.height - 66;
+				cast.enabled = false;
+				cast.addEventListener(MouseEvent.CLICK, castSkillSpell);
+
+				this.addElement(cast);
+			}
+			
+			private function clearIcons(item:Object):Object {
+				return null;
+			}
+			
+			// Updates the Cast button to only display if the pc has mana and the skill/spell can be cast in exploration mode.
+			private function clickedEvent(e:ListEvent):void {
+				var castBtn:Button = this.getElementAt(this.numElements - 1);
+				
+				var selected:int = e.rowIndex;
+
+				if (selected == -1) castBtn.enabled = false;
+				else {
+					
+					var obj:Object = skillList.getItemAt(selected);
+					var id:int = obj['ID'];
+					var skillAvailability:int = (TyrantsRealm)(this.parentApplication).skills_spells[id].getAvailability();
+					
+					// Enable Cast button for Exploration available spells/skills
+					if ((skillAvailability == 1) || (skillAvailability == 2)) castBtn.enabled = true;
+					else castBtn.enabled=false;
+				}
+				
+			}
+			
+			// Clicking the cast button to perform the applicable skill or spell.
+			private function castSkillSpell(e:MouseEvent):void {
+				
+				var index:int = adg.selectedIndex;
+				var obj:Object = skillList.getItemAt(index);
+				var id:int = obj['ID'];
+				
+				var skill:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
+				
+				
+				switch (id){
+					case 151:   // Divine Warmth
+						skill.castFriendlyIndividual((TyrantsRealm)(this.parentApplication).party1.getCurrChar(), id); break;
+				}				
+			}
+			
+			private function showDetails(e:ListEvent):void { 
+				var skillDetails:String = ""; 
+				var obj:Object = e.itemRenderer.data;
+//				var index:int = adg.selectedIndex;
+//				if (index < 1) return;
+				
+//				var obj:Object = skillList.getItemAt(index);
+				
+//				if(skill1 != null)
+//				{ 
+					var id:int = obj['ID'];
+//					var id:int = 1;
+					var char:Character = (TyrantsRealm)(this.parentApplication).party1.getCurrChar();
+					var skillInfo:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
+					
+					// Name of Skill/Spell
+					if (id < 100)
+						skillDetails = "Skill : "  + obj['Skill'] + "\n"; 
+					else
+						skillDetails = "Spell : "  + obj['Skill'] + "\n";
+
+					// Class it belongs to
+					// TODO: Need to factor in faction
+					if ((id > 0) && (id < 26)) skillDetails += "Class: Defender\n";
+					if ((id > 25) && (id < 51)) skillDetails += "Class: Berserker\n";
+					if ((id > 50) && (id < 76)) skillDetails += "Class: Tempus Diem Fur\n";
+					if ((id > 75) && (id < 101)) skillDetails += "Class: Scout\n";
+					if ((id > 100) && (id < 126)) skillDetails += "Class: Elementalist\n";
+					if ((id > 125) && (id < 151)) skillDetails += "Class: Summoner\n";
+					if ((id > 150) && (id < 176)) skillDetails += "Class: Hand of Grace\n";
+					if ((id > 175) && (id < 201)) skillDetails += "Class: Enhancer\n";
+					
+					// Level
+					if (char.skills_level[id] == 0)
+						skillDetails += "Level: 0 (Learnable)\n";
+					else
+						skillDetails += "Level: " + char.skills_level[id] + "\n";
+					
+					// Experience
+					skillDetails += "Experience: " + char.skills_exp[id] + "\n";					
+					
+					// Target Type
+					if (skillInfo.getTargetType() == 0) skillDetails += "Target: Individual (Enemy)\n";
+					if (skillInfo.getTargetType() == 1) skillDetails += "Target: Individual (Friendly)\n";
+					if (skillInfo.getTargetType() == 2) skillDetails += "Target: Group (Enemy)\n";
+					if (skillInfo.getTargetType() == 3) skillDetails += "Target: All (Enemy)\n";
+					if (skillInfo.getTargetType() == 4) skillDetails += "Target: Party\n";
+					if (skillInfo.getTargetType() == 5) skillDetails += "Target: Self\n";
+					if (skillInfo.getTargetType() == 6) skillDetails += "Target: Special\n";
+					
+					// Availability
+					if (skillInfo.getAvailability() == 0) skillDetails += "Availability: Combat\n";
+					if (skillInfo.getAvailability() == 1) skillDetails += "Availability: Exploration\n";
+					if (skillInfo.getAvailability() == 2) skillDetails += "Availability: Any (Enemy)\n";
+					if (skillInfo.getAvailability() == 3) skillDetails += "Availability: Special (Enemy)\n";
+					
+					// Duration Type
+					if (skillInfo.getDurationType() == 0) skillDetails += "Duration Type: Instant\n";
+					if (skillInfo.getDurationType() == 1) skillDetails += "Duration Type: Remainder of Battle\n";
+					if (skillInfo.getDurationType() == 2) skillDetails += "Duration Type: # of Combat Rounds\n";
+					if (skillInfo.getDurationType() == 3) skillDetails += "Duration Type: # of Minutes\n";
+					if (skillInfo.getDurationType() == 4) skillDetails += "Duration Type: Permanent\n";
+					if (skillInfo.getDurationType() == 5) skillDetails += "Duration Type: Special\n";
+					
+					
+					// TODO: Actual Duration					
+					// TODO: DMG type
+					
+					// Spirae Cost
+					skillDetails +=  "Cost : " + skillInfo.getCost() + "\n" 
+
+					// TODO: Description
+				
+//				} 
+				adg.toolTip = skillDetails;
+//				return skillDetails; 
+			} 
+
+			private function deleteToolTip(obj:Object):void { 
+				adg.toolTip = null; 
+			} 
+			
+		]]>
+	</fx:Script>
+	
+	<s:Group>
+	</s:Group>
+</s:TitleWindow>

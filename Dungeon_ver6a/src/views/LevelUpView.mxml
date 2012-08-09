@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="270" height="300"
+			   title="Level Up!"
+			   backgroundColor="#000000" borderColor="#FFFFFF"
+			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
+			   close="handleCloseEvent();"
+			   creationComplete="creationCompleteHandler(event)"
+			   x="380"
+			   y="300"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import hud.HudLevelUp;
+			
+			import mx.core.UIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			
+			import pkgParty.ViewEachCharInParty;
+			
+			import spark.components.Button;
+
+			[Bindable]
+			public var slot:int;
+			
+			
+			// Level Up bonuses
+			private var bonusHealth:int;
+			private var bonusSpirae:int;
+			private var fit:int;
+			private var men:int;
+			private var spi:int;
+			private var elo:int
+			private var coo:int;
+			private var skillNum:int;
+			private var skillNum2:int;
+			
+			private function handleCloseEvent():void{
+				visible = false;		
+			}	
+			
+			public function creationCompleteHandler(event:FlexEvent):void
+			{
+				levelDraw();
+			}
+			
+			private function refreshProcess(e:MouseEvent):void {
+				var temp:UIComponent;
+				var num:int = this.numElements;
+				for (var i:int = 2; i < num; i++) {
+					temp = this.getElementAt(2);
+					temp.visible = false;
+					this.removeElementAt(2);
+				}
+			    levelDraw();
+			}
+			
+			public function levelDraw():void {
+				var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
+				var diam:int = 70;
+				var diam2:int = 350;
+				
+				viewAChar.removeEventListener(DragEvent.DRAG_DROP,(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.xferItem);
+				
+				viewAChar.char = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCharAt(slot);
+				viewAChar.index_in_partyview = slot;
+				
+				if (viewAChar.char.gender.getValue() == "Male") 
+					viewAChar.bmpImg.x="-130";
+				else
+					viewAChar.bmpImg.x="-135";
+				
+				viewAChar.height=diam;
+				viewAChar.width=diam;
+				viewAChar.basehead.x=viewAChar.bmpImg.x;
+				viewAChar.char_torso.x=viewAChar.bmpImg.x;
+				viewAChar.char_head.x=viewAChar.bmpImg.x;
+				viewAChar.char_legs.x=viewAChar.bmpImg.x;
+				viewAChar.char_feet.x=viewAChar.bmpImg.x;
+				viewAChar.char_shoulders.x=viewAChar.bmpImg.x;
+				viewAChar.char_hands.x=viewAChar.bmpImg.x;
+				viewAChar.char_weapon.x=viewAChar.bmpImg.x;
+				viewAChar.char_offhand.x=viewAChar.bmpImg.x;
+				
+				// Remove health/spirae bars
+				viewAChar.health_group.removeAllElements();
+				viewAChar.spirae_group.removeAllElements();
+				
+				viewAChar.char = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCharAt(slot);
+				viewAChar.index_in_partyview = slot;
+				
+				viewAChar.x=0;
+				viewAChar.y=20;
+				
+				diam +=30;
+				
+				var name:Label = new Label();
+				name.text = viewAChar.char.name.getValue();
+				name.x = diam *1.25;
+				name.y = 42;
+				name.setStyle("color", "White");	
+				var level:Label = new Label();
+				level.text = "New Level: " + (viewAChar.char.level.getMaxValue() + 1);
+				level.x = diam *1.25;
+				level.y = 62;
+				level.setStyle("color", "White");	
+				
+				if (this.numElements < 2) 
+					this.addElement(viewAChar);
+				this.addElement(name);
+				this.addElement(level);
+				
+				var down:int = diam;
+				
+				bonusHealth = (Math.random() *9 + 1) * Math.ceil(viewAChar.char.level.getValue() / 5);
+				var health:Label = new Label();
+				health.text = "Health: " + (viewAChar.char.health_max.getValue()) + "+" + bonusHealth;
+				health.x = diam *1.25;
+				health.y = down;
+				down+=20;
+				health.setStyle("color", "White");
+				
+				bonusSpirae = (Math.random() *9 + 1) * Math.ceil(viewAChar.char.level.getValue() / 5);
+				var spirae:Label = new Label();
+				spirae.text = "Spirae: " + (viewAChar.char.spirae_max.getValue()) + "+" + bonusSpirae;
+				spirae.x = diam *1.25;
+				spirae.y = down;
+				down+= 20;
+				spirae.setStyle("color", "White");
+				
+				this.addElement(health);
+				this.addElement(spirae);
+				
+				fit=0;
+				men=0;
+				spi=0;
+				elo=0;
+				coo=0;
+				var bonusAbility:int = (Math.random()*2+1);
+				var i:int = 0;
+				var choice:int;
+				while (i < bonusAbility) {
+					choice = Math.random()*5;
+					switch (choice) {
+						case 0: 
+							if (viewAChar.char.fitness.getValue() + fit + 1 > 100) continue;
+							else {
+								fit++;
+								i++;
+								break;
+							}
+						case 1: 
+							if (viewAChar.char.mental_prowess.getValue() + men + 1 > 100) continue;
+							else {
+								men++;
+								i++;
+								break;
+							}
+						case 2: 
+							if (viewAChar.char.spirituality.getValue() + spi + 1 > 100) continue;
+							else {
+								spi++;
+								i++;
+								break;
+							}
+						case 3: 
+							if (viewAChar.char.eloquence.getValue() + elo + 1 > 100) continue;
+							else {
+								elo++;
+								i++;
+								break;
+							}
+						case 4: 
+							if (viewAChar.char.coordination.getValue() + coo + 1 > 100) continue;
+							else {
+								coo++;
+								i++;
+								break;
+							}
+					}
+				}
+				
+				if (fit > 0) {
+					var fitL:Label = new Label();
+					fitL.text = "Fitness: " + (viewAChar.char.fitness.getValue()) + "+" + fit;
+					fitL.x = diam *1.25;
+					fitL.y = down;
+					fitL.setStyle("color", "White");
+					this.addElement(fitL);
+					down += 20;				
+				}
+				if (men > 0) {
+					var menL:Label = new Label();
+					menL.text = "Mental Prowess: " + (viewAChar.char.mental_prowess.getValue()) + "+" + men;
+					menL.x = diam *1.25;
+					menL.y = down;
+					menL.setStyle("color", "White");
+					this.addElement(menL);
+					down += 20;				
+				}
+				if (spi > 0) {
+					var spiL:Label = new Label();
+					spiL.text = "Spirituality: " + (viewAChar.char.spirituality.getValue()) + "+" + spi;
+					spiL.x = diam *1.25;
+					spiL.y = down;
+					spiL.setStyle("color", "White");
+					this.addElement(spiL);
+					down += 20;				
+				}
+				if (elo > 0) {
+					var eloL:Label = new Label();
+					eloL.text = "Eloquence: " + (viewAChar.char.eloquence.getValue()) + "+" + elo;
+					eloL.x = diam *1.25;
+					eloL.y = down;
+					eloL.setStyle("color", "White");
+					this.addElement(eloL);
+					down += 20;				
+				}
+				if (coo > 0) {
+					var cooL:Label = new Label();
+					cooL.text = "Coordination: " + (viewAChar.char.coordination.getValue()) + "+" + coo;
+					cooL.x = diam *1.25;
+					cooL.y = down;
+					cooL.setStyle("color", "White");
+					this.addElement(cooL);
+					down += 20;				
+				}
+				
+				var skillSection:Label = new Label();
+				skillSection.text = "New Skills Available:";
+				skillSection.x = diam *1.25;
+				skillSection.y = down+10;
+				skillSection.setStyle("color", "White");
+				this.addElement(skillSection);
+				down+=30;
+				var maxLevel:int = viewAChar.char.level.getMaxValue();
+				if ((maxLevel + 1 == 2) || 
+					(maxLevel + 1 == 4) ||
+					(maxLevel + 1 == 6) ||
+					(maxLevel + 1 == 8) ||
+					(maxLevel + 1 == 10) ||
+					(maxLevel + 1 == 11) ||
+					(maxLevel + 1 == 13) ||
+					(maxLevel + 1 == 14) ||
+					(maxLevel + 1 == 16) ||
+					(maxLevel + 1 == 17) ||
+					(maxLevel + 1 == 19) ||
+					(maxLevel + 1 == 20) ||
+					(maxLevel + 1 == 22) ||
+					(maxLevel + 1 == 23) ||
+					(maxLevel + 1 == 25) ||
+					(maxLevel + 1 == 26) ||
+					(maxLevel + 1 == 27) ||
+					(maxLevel + 1 == 28) ||
+					(maxLevel + 1 == 29) ||
+					(maxLevel + 1 == 31) ||
+					(maxLevel + 1 == 32) ||
+					(maxLevel + 1 == 33) ||
+					(maxLevel + 1 == 34) ||
+					(maxLevel + 1 == 35) ||
+					(maxLevel + 1 == 37) ||
+					(maxLevel + 1 == 38) ||
+					(maxLevel + 1 == 39) ||
+					(maxLevel + 1 == 40) ||
+					(maxLevel + 1 == 41) ||
+					(maxLevel + 1 == 43) ||
+					(maxLevel + 1 == 44) ||
+					(maxLevel + 1 == 45) ||
+					(maxLevel + 1 == 46) ||
+					(maxLevel + 1 == 47) ||
+					(maxLevel + 1 == 49) ||
+					(maxLevel + 1 == 50) ||
+					(maxLevel + 1 == 51) ||
+					(maxLevel + 1 == 52) ||
+					(maxLevel + 1 == 53) ||
+					(maxLevel + 1 == 54) ||
+					(maxLevel + 1 == 56) ||
+					(maxLevel + 1 == 57) ||
+					(maxLevel + 1 == 58) ||
+					(maxLevel + 1 == 59) ||
+					(maxLevel + 1 == 60) ||
+					(maxLevel + 1 == 61) ||
+					(maxLevel + 1 == 63) ||
+					(maxLevel + 1 == 64) ||
+					(maxLevel + 1 == 65) ||
+					(maxLevel + 1 == 66) ||
+					(maxLevel + 1 == 67) ||
+					(maxLevel + 1 == 68) ||
+					(maxLevel + 1 == 70) ||
+					(maxLevel + 1 == 71) ||
+					(maxLevel + 1 == 72) ||
+					(maxLevel + 1 == 73) ||
+					(maxLevel + 1 == 74) ||
+					(maxLevel + 1 == 75) ||
+					(maxLevel + 1 == 77) ||
+					(maxLevel + 1 == 78) ||
+					(maxLevel + 1 == 79) ||
+					(maxLevel + 1 == 80) ||
+					(maxLevel + 1 == 81) ||
+					(maxLevel + 1 == 82) ||
+					(maxLevel + 1 == 83) ||
+					(maxLevel + 1 == 85) ||
+					(maxLevel + 1 == 86) ||
+					(maxLevel + 1 == 87) ||
+					(maxLevel + 1 == 88) ||
+					(maxLevel + 1 == 89) ||
+					(maxLevel + 1 == 91) ||
+					(maxLevel + 1 == 92) ||
+					(maxLevel + 1 == 93) ||
+					(maxLevel + 1 == 94) ||
+					(maxLevel + 1 == 95) ||
+					(maxLevel + 1 == 96) ||
+					(maxLevel + 1 == 97) ||
+					(maxLevel + 1 == 98) ||
+					(maxLevel + 1 == 99)) { 
+					var none:Label = new Label();
+					none.text = "None";
+					none.x = diam *1.45;
+					none.y = down;
+					none.setStyle("color", "White");
+					down += 40;
+					this.addElement(none);
+				}
+				var skill1:Label = new Label();
+				var skill2:Label = new Label();
+				skill1.x = diam *1.45;
+				skill2.x = diam *1.45;
+				skill1.setStyle("color", "White");
+				skill2.setStyle("color", "White");
+				skillNum=0;
+				skillNum2=0;
+
+				if (viewAChar.char.level.getValue() + 1 == 3) {
+					skillNum = 3 + 25*viewAChar.char.getClassNum();
+					skillNum2 = 4 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 20;
+					skill2.y = down;
+					skill2.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum2].getName();
+					down += 40;
+					this.addElement(skill1);
+					this.addElement(skill2);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 5) {
+					skillNum = 5 + 25*viewAChar.char.getClassNum();
+					skillNum2 = 6 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 20;
+					skill2.y = down;
+					skill2.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum2].getName();
+					down += 40;
+					this.addElement(skill1);
+					this.addElement(skill2);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 7) {
+					skillNum = 7 + 25*viewAChar.char.getClassNum();
+					skillNum2 = 8 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 20;
+					skill2.y = down;
+					skill2.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum2].getName();
+					down += 40;
+					this.addElement(skill1);
+					this.addElement(skill2);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 9) {
+					skillNum = 9 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 12) {
+					skillNum = 10 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 15) {
+					skillNum = 11 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 18) {
+					skillNum = 12 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 21) {
+					skillNum = 13 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 24) {
+					skillNum = 14 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 30) {
+					skillNum = 15 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 36) {
+					skillNum = 16 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 42) {
+					skillNum = 17 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 48) {
+					skillNum = 18 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 55) {
+					skillNum = 19 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 62) {
+					skillNum = 20 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 69) {
+					skillNum = 21 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 76) {
+					skillNum = 22 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 84) {
+					skillNum = 23 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 90) {
+					skillNum = 24 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+				if (viewAChar.char.level.getValue() + 1 == 100) {
+					skillNum = 25 + 25*viewAChar.char.getClassNum();
+					skill1.text = (TyrantsRealm)(this.parentApplication).skills_spells[skillNum].getName();
+					skill1.y = down;
+					down += 40;
+					this.addElement(skill1);
+				}
+
+				var refresh:Button = new Button();
+				refresh.x = 60;
+				refresh.y = down;
+				refresh.label = "Refresh";
+				refresh.addEventListener(MouseEvent.CLICK, refreshProcess);
+				this.addElement(refresh);
+				
+				var accept:Button = new Button();
+				accept.x = 140;
+				accept.y = down;
+				accept.label = "Accept";
+				accept.addEventListener(MouseEvent.CLICK, acceptProcess);
+				this.addElement(accept);
+
+				this.height = down+80;
+			}
+			
+			private function acceptProcess(e:MouseEvent):void{
+				var char:Character = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCharAt(slot);
+				
+				char.level.setValue(char.level.getValue()+1);
+				char.level.setMaxValue(char.level.getMaxValue()+1);
+				char.health_max.setValue(char.health_max.getValue() + bonusHealth);
+				char.health_current.setValue(char.health_current.getValue() + bonusHealth);
+				char.spirae_max.setValue(char.spirae_max.getValue() + bonusSpirae);
+				char.spirae_current.setValue(char.spirae_current.getValue() + bonusSpirae);
+				
+				char.fitness.setValue(char.fitness.getValue() + fit);
+				char.fitness.setMaxValue(char.fitness.getMaxValue() + fit);
+				char.mental_prowess.setValue(char.mental_prowess.getValue() + men);
+				char.mental_prowess.setMaxValue(char.mental_prowess.getMaxValue() + men);
+				char.spirituality.setValue(char.spirituality.getValue() + spi);
+				char.spirituality.setMaxValue(char.spirituality.getMaxValue() + spi);
+				char.eloquence.setValue(char.eloquence.getValue() + elo);
+				char.eloquence.setMaxValue(char.eloquence.getMaxValue() + elo);
+				char.coordination.setValue(char.coordination.getValue() + coo);
+				char.coordination.setMaxValue(char.coordination.getMaxValue() + coo);
+				
+				// Set new skills/spells to learnable
+//				var offset:int = 1+25*char.getClassNum();
+//				if (skillNum > 0) char.skills_level[offset+skillNum] = 0;
+//				if (skillNum2 > 0) char.skills_level[offset+skillNum2] = 0;			
+				if (skillNum > 0) char.skills_level[skillNum] = 0;
+				if (skillNum2 > 0) char.skills_level[skillNum2] = 0;			
+				
+				// Refactor for next level
+				var exp2lvl:int = char.experience_to_level.getValue();
+				exp2lvl += char.levelComputation();
+				char.experience_to_level.setValue(exp2lvl);
+
+				// Update Character View if not null
+				if ((TyrantsRealm)(this.parentApplication).hud_attribute.character_view != null) {
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.health_curr.text = char.health_current.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.health_max.text = char.health_max.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.spirae_curr.text = char.spirae_current.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.spirae_max.text = char.spirae_max.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.exp_to_level.text = char.experience_to_level.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.char_level.text = char.level.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.fit_curr.text = char.fitness.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.fit_max.text = char.fitness.getMaxValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.ment_curr.text = char.mental_prowess.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.ment_max.text = char.mental_prowess.getMaxValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.spir_curr.text = char.spirituality.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.spir_max.text = char.spirituality.getMaxValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.elo_curr.text = char.eloquence.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.elo_max.text = char.eloquence.getMaxValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.coor_curr.text = char.coordination.getValue().toString();
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.coor_max.text = char.coordination.getMaxValue().toString();
+				}
+
+				if (exp2lvl > 0) {
+					var lub:HudLevelUp = (HudLevelUp) ( (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt(2*char.party_position.getValue()-1) );
+					lub.visible = false;
+					if ((TyrantsRealm)(this.parentApplication).hud_attribute.character_view != null)
+ 						(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_level_up.visible = false;
+				}
+				
+				this.visible = false;			
+				
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Group>
+		<s:Label id="npc_name" x="100" y="20"/>
+		<s:Label id="npc_level" x="100" y="50"/>
+		
+		
+	</s:Group>
+</s:TitleWindow>

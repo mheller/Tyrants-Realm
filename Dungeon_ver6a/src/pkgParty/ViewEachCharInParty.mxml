@@ -41,6 +41,34 @@
 			
 			protected function group1_clickHandler(event:MouseEvent):void
 			{
+				// A bit of a hack due to the event triggering on the background. TODO: make dynamic if any resizing is done
+				// Make sure its not on the background
+				if ((event.stageX < 20) || ((event.stageX > 90) && (event.stageX < 120)) || (event.stageX > 190)) return;
+				
+				if (((event.stageY > 130) && (event.stageY < 165)) || ((event.stageY > 235) && (event.stageY < 270)) ||
+					((event.stageY > 340) && (event.stageY < 375)) || ((event.stageY > 445) && (event.stageY < 480)) ||
+					(event.stageY > 550) || (event.stageY < 60)) return;
+				
+				// Make sure its not on one of the empty party slots
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 10) && 
+					 (event.stageX >= 120) && (event.stageX <=190) && (event.stageY >= 480) && (event.stageY <= 550)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 9) && 
+					(event.stageX >= 120) && (event.stageX <=190) && (event.stageY >= 375) && (event.stageY <= 445)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 8) && 
+					(event.stageX >= 120) && (event.stageX <=190) && (event.stageY >= 270) && (event.stageY <= 340)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 7) && 
+					(event.stageX >= 120) && (event.stageX <=190) && (event.stageY >= 165) && (event.stageY <= 235)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 6) && 
+					(event.stageX >= 120) && (event.stageX <=190) && (event.stageY >= 60) && (event.stageY <= 130)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 5) && 
+					(event.stageX >= 20) && (event.stageX <=90) && (event.stageY >= 480) && (event.stageY <= 550)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 4) && 
+					(event.stageX >= 20) && (event.stageX <=90) && (event.stageY >= 375) && (event.stageY <= 445)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 3) && 
+					(event.stageX >= 20) && (event.stageX <=90) && (event.stageY >= 270) && (event.stageY <= 340)) return;  
+				if ( ((TyrantsRealm)(this.parentApplication).party1.getCurrPopulation() < 2) && 
+					(event.stageX >= 20) && (event.stageX <=90) && (event.stageY >= 165) && (event.stageY <= 235)) return;  
+				
 				//var eventObject:Event = new Event("CharacterIsSelected",true);
 				var eventObject:CharacterSelectedEvent = new CharacterSelectedEvent("CharacterIsSelected",true,false,this.char,this.index_in_partyview);				
 				
@@ -63,12 +91,6 @@
 				var tmpSpirae:int;
 				tmpSpirae = ((char.spirae_max.getValue() as int)*40)/(char.spirae_max.getValue());
 				this.spiraeStatusBar.setProgress(tmpSpirae,40);
-				
-//				var cropArea:Rectangle = new Rectangle( 0, 0, _width, _height );
-//				var croppedBitmap:Bitmap = new Bitmap( new BitmapData( _width, _height ), PixelSnapping.ALWAYS, true );
-//				croppedBitmap.bitmapData.draw( (displayObject!=null) ? displayObject : stage, new Matrix(1, 0, 0, 1, -_x, -_y) , null, null, cropArea, true );
-				
-				
 				
 			}
 			
@@ -93,11 +115,7 @@
 	<s:Group id="character_appearance_container"
 			 width="100%" height="100%" y="0">
 
-		<s:mask>
-			<!--				<s:BorderContainer id="bmpMask"
-			cornerRadius="{bmpImg.width}"
-			width="{bmpImg.width}" height="{bmpImg.height}" /> -->
-			
+		<s:mask>			
 			<s:Graphic id="mask" maskType="{MaskType.ALPHA}" cacheAsBitmap="true" > 
 				<s:Ellipse y="0" x="20" width="70" height="70"> 
 					<s:fill> 
@@ -105,12 +123,7 @@
 					</s:fill> 
 				</s:Ellipse> 
 			</s:Graphic> 
-			
-			
-			
 		</s:mask>
-		
-		
 		
 		<s:layout>
 			<s:BasicLayout/>

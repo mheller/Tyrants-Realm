@@ -8,15 +8,22 @@ package character
 	import pkgInventory.Item;
 	import pkgInventory.ItemGroup;
 	import pkgInventory.ItemStack;
+	
+	import views.PartyView;
 
 	//character's base class for all charaters
 	[Bindable]
 	public class Character
 	{
+		
+		
 		//overview
 		public var name:Attribute = null;
 		public var gender:Attribute = null;
 		public var character_class:Attribute = null;
+		private var classNum:int = -1;
+		private var faction:int = 0;
+		
 		//key metrics
 		public var health_current:Attribute = null;
 		public var health_max:Attribute = null;
@@ -73,6 +80,11 @@ package character
 		public var item_benefit:ArrayCollection = new ArrayCollection();//data provider for data grid of item benefits component
 		public var item_material:ArrayCollection = new ArrayCollection();//data provider for data grid of item materials component
 
+		public var skills_level:Vector.<int> = new Vector.<int>();
+		public var skills_exp:Vector.<int> = new Vector.<int>();
+		
+		
+		
 		public function Character(name:String,gender:String, character_class:String="Undecided",
 								  health_current:int=100, health_max:int=100, total_experience:int=0,experience_to_level:int=0,level:int=0, 
 								  spirae_current:int=0, spirae_max:int=0, denarii:int=0, stater:int=0,
@@ -91,12 +103,26 @@ package character
 			this.name = new Attribute("Name",name);
 			this.gender = new Attribute("Gender",gender);
 			this.character_class = new Attribute("Class", character_class);
+			if ((character_class == "Defender") || (character_class == "Champion") || ( character_class == "Guardian")) classNum = 0;
+			if ((character_class == "Berserker") || (character_class == "Brute") || ( character_class == "Frenzied")) classNum = 1;
+			if ((character_class == "Tempus Diem Fur") || (character_class == "Tempus Crepusculum Fur") || ( character_class == "Tempus Nox Fur")) classNum = 2;
+			if ((character_class == "Scout") || (character_class == "Forerunner") || ( character_class == "Shadow of Fear")) classNum = 3;
+			if ((character_class == "Elementalist") || (character_class == "Shaman") || ( character_class == "Magi")) classNum = 4;
+			if ((character_class == "Summoner") || (character_class == "Spirit Guide") || ( character_class == "Warlock")) classNum = 5;
+			if ((character_class == "Hand of Grace") || (character_class == "Crimson Order") || ( character_class == "Shadow of Death")) classNum = 6;
+			if ((character_class == "Enhancer") || (character_class == "Artificer") || ( character_class == "Scions of Ge")) classNum = 7;
+			
 			
 			this.health_current = new Attribute("Health",health_current);
 			this.health_max = new Attribute("Maximum Health",health_max);
 			this.total_experience = new Attribute("Total Experience",total_experience,0);
-			this.experience_to_level = new Attribute("Experience to Level",experience_to_level);
 			this.level = new Attribute("Level", level,level);
+			this.career_changes = new Attribute("Career Changes", career_changes);
+	
+			if ((total_experience == 0) && (experience_to_level == 0))
+				this.experience_to_level = new Attribute("Experience to Level", this.levelComputation());
+			else
+				this.experience_to_level = new Attribute("Experience to Level",experience_to_level);
 			this.spirae_current = new Attribute("Spirae", spirae_current);
 			this.spirae_max = new Attribute("Maximum Spirae", spirae_max);
 			this.denarii = new Attribute("Denarii", denarii);
@@ -120,16 +146,27 @@ package character
 			this.magic_resistance = new Attribute("Magic", magic_resistance);
 			
 			this.party_position = new Attribute("Party Position",party_position);
-			this.career_changes = new Attribute("Career Changes", career_changes);
 			this.appearance_basebody = appearance_basebody;
 			this.appearance_basehead = appearance_basehead;
 			this.appearance_weapon = appearance_weapon;
 			this.appearance_offhand = appearance_offhand;
 			this.appearance_torso = appearance_torso;
+			this.appearance_head = appearance_head;
 			this.appearance_legs = appearance_legs;
 			this.appearance_feet = appearance_feet;
 			this.appearance_shoulders = appearance_shoulders;
 			this.appearance_hands = appearance_hands;
+			
+			// Skills initialization
+			// Note: skills[0] is presently unused
+			for (var i:int = 0; i<201; ++i) {
+				skills_level[i] = -1;
+				skills_exp[i] = 0;
+			}
+			// TODO: This hardcodes a new character's 1st two skills as lv 1. In the future, loading should be dynamic based on characters known info crossref with db.
+			var offset:int = 1+25*classNum;
+			skills_level[offset] = 1;
+			skills_level[offset+1] = 1;
 						
 			_createAttributeLists();
 			
@@ -248,144 +285,6 @@ package character
 			//    Gold Bonus, Avoidance, Hit, Dmg Res, Cold Res, Heat Res, Magic Res, Max Phys Dmg, Min Phys Dmg, 
 			//    Max Magic Dmg, Min Magic Dmg, Wander, Construction Cost, increased monster freq and decreased monster freq.
 
-/*			
-			
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 2));
-			item_material.addItem(new Attribute("90000", 5));
-			var newItem1:Item = new Item(1,"Dagger","a notched dagger","notched daggers", 1, 6, 0, 14, "This notched and dull iron dagger has seen better days.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Dagger_Icon_Rank_01.jpg", item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 36));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 129));
-			item_benefit.addItem(new Attribute("Health", 4));
-			item_benefit.addItem(new Attribute("Fitness", 2));
-			item_material.addItem(new Attribute("90000", 5));
-			item_material.addItem(new Attribute("90003", 8));
-			var newItem2:Item = new Item(13,"Broadsword","an ornate broadsword", "ornate broadswords", 2, 35, 0, 14, "This wickedly curved blade is a common weapon used by mercenaries in close combat situations. It can be founda t almost any shop, but this one is of particularly good quality.", false, true, false, true, true, true, false,"assets/OotE/InvIcons/Broadsword_Icon_Rank_02.jpg", item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 10));		
-			item_material.addItem(new Attribute("90000", 6));
-			var newItem3:Item = new Item(16,"Greatsword","a worn iron greatsword", "worn iron greatswords", 1, 18, 0, 14, "This huge weapon is a symbol of power, strength and death. Without a doubt, no warrior would be afraid with one of these on his or her hip.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Greatsword_Icon_Rank_01.jpg", item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 37));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 155));		
-			item_benefit.addItem(new Attribute("Eloquence", 2));
-			item_benefit.addItem(new Attribute("Fitness", 2));		
-			item_material.addItem(new Attribute("90003", 14));
-			var newItem4:Item = new Item(15,"Longsword","an ornate longsword", "ornate longswords", 2, 35, 0, 14, "This blade can be seen at the hip of many leaders in military and civilian authority. It has the keen edge of a weapon able to perform well in combat but it also has the look many would be proud to have at their side when making a good impression on others.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Longsword_Icon_Rank_02.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
-			item_material.addItem(new Attribute("90002", 5));
-			var newItem5:Item = new Item(4,"Mace","a bronze mace", "bronze maces", 1, 15, 0, 14, "This utilitarian mace will bash heads with the best of them. However, the relatively soft nature of bronze makes it constantly have a battered look to it.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 45));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 62));		
-			item_benefit.addItem(new Attribute("Fitness", 2));		
-			item_material.addItem(new Attribute("90000", 17));
-			var newItem6:Item = new Item(5,"Mace","a crowned spike mace", "crowned spiked maces", 2, 33, 0, 14, "This functional iron mace has spikes on the end to allow for a limited form of thrust damage when the unfortunate recipient leaves an opening.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Mace_Icon_Rank_02.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 7));		
-			item_material.addItem(new Attribute("90000", 6));
-			var newItem7:Item = new Item(26,"Rapier","a basic cross-hilt rapier", "cross-hilt rapiers", 1, 12, 0, 14, "This rapier looks fancier than it is. The thin blade makes for good quick movements, but its poor construction makes it vulternatble to heavier blows.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Rapier_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
-			item_material.addItem(new Attribute("90001", 6));
-			var newItem8:Item = new Item(22,"Recurvebow", "a hunter's recurve bow", "hunter's recurve bows", 1, 17, 1, 14, "This basic curved bow allows for more punch when it hits and, as such, is a favorite of most hunteres as it is rare for game to run far after taken with an arrow from this weapon.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/RecurveBow_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 2));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 5));		
-			item_material.addItem(new Attribute("90001", 4));
-			var newItem9:Item = new Item(18,"Shortbow","an oaken shortbow", "oaken shortbows", 1, 11, 1, 14, "This smoothly carved shortbow has limited range but can certainly get the job done. Each end is curved adding a touch of style and strength that only human hunters with elfish training would know how to create.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 29));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 129));		
-			item_benefit.addItem(new Attribute("Spirit", 2));
-			item_benefit.addItem(new Attribute("Coordination", 2));		
-			item_material.addItem(new Attribute("90001", 14));
-			var newItem10:Item = new Item(19,"Shortbow","a dwarven shortbow", "dwarven shortbows", 2, 33, 1, 14, "This shortbow has been crafted of fine woods and polished until it nearly gleams. The earth gave her blessing in crafting this shortbow", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Shortbow_Icon_Rank_02.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 3));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 8));		
-			item_material.addItem(new Attribute("90001", 6));
-			var newItem11:Item = new Item(28,"Staff","a crystal-topped staff", "crystal-topped staves", 1, 14, 0, 14, "This staff is of very simple design considering the power it holds. A master of the staff can generally beat any sword wielder, even when the staff is as basic as this one.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 44));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 149));		
-			item_benefit.addItem(new Attribute("Mental", 1));
-			item_benefit.addItem(new Attribute("Fitness", 2));		
-			item_material.addItem(new Attribute("90001", 14));
-			var newItem12:Item = new Item(29,"Staff"," an enchanted staff", "enchanted staves", 2, 34, 0, 14, "This staff has been infused with power of some kind. The knarled limb looks like it would be more fail than it actually is.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Staff_Icon_Rank_02.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 1));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 6));		
-			item_material.addItem(new Attribute("90000", 3));
-			var newItem13:Item = new Item(27,"Throwing Knife","a training throwing knife", "training throwing knives", 1, 8, 1, 14, "This blade is balanced for throwing. However, it is of poor craftsmanship and has been around the block a few times.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingKnife_Icon_Rank_01.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 24));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 138));		
-			item_benefit.addItem(new Attribute("Coordination", 2));
-			item_benefit.addItem(new Attribute("Fitness", 1));		
-			item_material.addItem(new Attribute("90001", 3));
-			item_material.addItem(new Attribute("90003", 10));			
-			var newItem14:Item = new Item(25,"Throwing Axe","a hooked throwing axe", "hooked throwing axes", 2, 34, 1, 14, "One glance at this axe reminds you of the old saying: never bring a sword to a ranged fight. Without a doubt, you would want this on your side if you faced someone with a sword.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/ThrowingAxe_Icon_Rank_02.jpg",item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Min Phys Dmg", 18));
-			item_benefit.addItem(new Attribute("Max Phys Dmg", 42));		
-			item_benefit.addItem(new Attribute("Mental", 2));
-			item_benefit.addItem(new Attribute("Spirae", 12));		
-			item_material.addItem(new Attribute("90004", 14));
-			item_material.addItem(new Attribute("90005", 2));
-			var newItem15:Item = new Item(7,"Wand","a bloody yew wand", "blood yew wands", 2, 35, 0, 14, "This wand was obviously put together by someone of skill years ago. You can sense the power contained within it by the merest of touches.", false, true, false, true, true, true, false, "assets/OotE/InvIcons/Wand_Icon_Rank_02.jpg", item_benefit, item_material);
-
-			
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Fitness", 2));
-			item_material.addItem(new Attribute("90005", 5));
-			var newItem16:Item = new Item(10000,"Ring","a plain gold ring", "plain gold rings", 1, 20, 10, 9, "This simple loop of metal is commonly worn by men of any race as it symbolizes unity and strength.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_01.png", item_benefit, item_material);
-
-			item_benefit.removeAll();
-			item_material.removeAll();
-			item_benefit.addItem(new Attribute("Spirae", 20));
-			item_benefit.addItem(new Attribute("Mental", 2));
-			item_material.addItem(new Attribute("90005", 7));
-			item_material.addItem(new Attribute("90010", 12));
-			var newItem17:Item = new Item(10001,"Ring","a designer's emerald ring", "designer emerald rings", 2, 34, 10, 9, "A band of gold has been topped with a well cut emerald of unusually high quality.", false, true, false, true, true, true, false, "assets/Misc/Ring_Icon_Rank_02.png", item_benefit, item_material);
-*/
 			// push items to stacks
 //			iStack1.pushItem(newItem1);
 			iStack1.owner = this;
@@ -593,7 +492,62 @@ package character
 		}
 		
 		
+		// Increment/decrement experience
+		public function addExperience(expGained:int):void{
+			
+			this.total_experience.setValue(this.total_experience.getValue() + expGained);
+			this.experience_to_level.setValue(this.experience_to_level.getValue() - expGained);
+			
+		}
 		
+		
+		
+		public function levelComputation():int{
+
+			var avgXp:int = 350;
+			var numOfBattles:int = 2 + level.getValue();
+			var multiclass:Number = 1 + (career_changes.getValue()^2 / 10);
+			var classMultiplier:Number;
+			switch (this.classNum) {
+				case 0 : 
+					classMultiplier = 1; 
+					break;
+				case 1 : 
+					classMultiplier = 1.05; 
+					break;
+				case 2 : 
+					classMultiplier = 0.95; 
+					break;
+				case 3 : 
+					classMultiplier = 1.15; 
+					break;
+				case 4 : 
+					classMultiplier = 1.3; 
+					break;
+				case 5 : 
+					classMultiplier = 1.2; 
+					break;
+				case 6 : 
+					classMultiplier = 1.1; 
+					break;
+				case 7 : 
+					classMultiplier = 1.2; 
+					break;
+			}
+			
+			
+		//	(average exp / battle of level x) *(# of battles to level)*(multiclass multiplier)*(class multiplier)
+			return (avgXp * numOfBattles * multiclass * classMultiplier);
+		}
+		
+		
+		public function getClassNum():int { return this.classNum; }
+		
+		public function setClassNum(cn:int):void { this.classNum = cn; }
+		
+		public function getFaction():int { return this.faction; }
+		
+		public function setFaction(faction:int):void { this.faction = faction; }
 		
 		private function _createAttributeLists():void{
 			attribute_list.addItem(name);
