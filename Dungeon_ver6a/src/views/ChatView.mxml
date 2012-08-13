@@ -4,7 +4,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:hud = "hud.*"
 			   width="100%"  height="100%"
-			   x="0" y="747" creationComplete="creationCompleteHandler(event)">
+			   x="0" y="{(TyrantsRealm)(this.parentApplication).height - 152}" creationComplete="creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>

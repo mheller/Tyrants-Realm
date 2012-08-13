@@ -189,6 +189,92 @@
 				sourceIS.itemType = -1;
 				source.toolTip = "";
 			}
+
+			public function performItemXfer2 (source:ItemStackView, target:Character):void {
+				var index:int = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrCharIndex();
+				var selectedNPC:ViewEachCharInParty = (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt
+					(index*2) as ViewEachCharInParty;
+				
+				// Check for target being the active NPC
+				if (target == selectedNPC.char)
+					return;   // Don't do anything if drop is to the current characgter TODO: May change later to remove equipped or shift inv to first slot.
+				
+				// Check that target has available inv
+				var targetIS:ItemStack = target.inventory.nextAvailableInventorySpot(source.itemStack, 
+					source.itemStack);
+				if (targetIS == null) {
+					Alert.show("No space left on "+target.name.getValue() + ".");
+					return;
+				}
+				
+				// xfer item
+				var sourceIS:ItemStack = source.itemStack;
+				var sourceISV:ItemStackView = (TyrantsRealm)(this.parentApplication).hud_attribute.character_view.current_list_view1.fetchEquippedISV(sourceIS);
+				var tempSlot:int = sourceIS.item.itemSlot;
+				
+				targetIS.displayPath = sourceIS.displayPath;
+				
+				if (sourceISV != null) {   // Item is currently equipped so remove stats, remove 2D image and reset the display path
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.remBenefits(sourceIS);
+					
+					// Clear item from 2D if applicable  
+					switch (tempSlot) { 
+						case 0 : 	break; // Can't ever happen as slot type is unequipable
+						case 1 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_head = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Head.jpg";
+							break;
+						case 2 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_torso = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Torso.jpg";
+							break;
+						case 3 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_legs = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 4 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_feet = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Legs.jpg";
+							break;
+						case 5 : 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_hands = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Hands.jpg";
+							break;
+						case 6 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_shoulders = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Shoulders.jpg";
+							break;
+						case 7 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Cloak.jpg";
+						case 8 :	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_offhand = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/OffHand.jpg";
+							break;
+						case 9 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Ring.jpg";
+							break;
+						case 10 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Neck.jpg";
+							break;
+						case 11 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Belt.jpg";
+							break;
+						case 12 : 	sourceIS.displayPath = "assets/HUD/Inventory/Icons/BeltAcc.jpg";
+							break;
+						case 13 :	sourceIS.displayPath = "assets/HUD/Inventory/Icons/Trailing.jpg";
+							break;
+						case 14: 	(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.appearance_weapon = null;
+							sourceIS.displayPath = "assets/HUD/Inventory/Icons/Weapon.jpg";
+							(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.char.damage_type.setValue("Fists");
+							(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.dmg_type.text="Fists";
+							break;
+					}
+					
+				}
+				else 
+					sourceIS.displayPath = null;
+				
+				targetIS.currSize += sourceIS.currSize;
+				targetIS.item = sourceIS.item;
+				targetIS.itemType = sourceIS.itemType;
+				targetIS.owner = target;
+				
+				sourceIS.currSize = 0;
+				sourceIS.item = null;
+				sourceIS.itemType = -1;
+				source.toolTip = "";
+			}
+
+			
 			private function handleCharacterSelected(event:CharacterSelectedEvent):void {			
 				this.char = (TyrantsRealm)(this.parentApplication).hud_party.aParty.getCurrChar();
 				

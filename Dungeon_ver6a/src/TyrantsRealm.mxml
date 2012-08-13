@@ -164,7 +164,7 @@
 				if (String.fromCharCode(event.charCode) == 'i') {
 					hud_party.party_view.handleCharacterDblClicked(new CharacterDblClickedEvent("CharacterIsDblClicked",true,false,this.currChar,0));
 						
-//					hud_attribute.clickHander(event);
+//					hud_attribute.clickHander(event); 
 				}
 				if (String.fromCharCode(event.charCode) == 'p') {
 					hud_party.showPartyView();
@@ -321,7 +321,7 @@
 		<dungeon:Dungeon_6 id="dungeon3D" width="100%" height = "100%"
 						   map="{this.map}"/>
 
-		<s:Group x="535" y="25" >
+		<s:Group x="{this.width/2 -75}" y="25" >
 			<s:HGroup>
 				<hud:HudTown id="hud_town" label="T" width="45" height="45"/>
 				<hud:HudWorld id="hud_world" label="W" width="45" height="45"/>
@@ -329,7 +329,7 @@
 			</s:HGroup>
 		</s:Group>
 				
-		<s:Group x="680" y="785" >
+		<s:Group x="{this.width - 600}" y="{this.height - 100}" >
 			<s:HGroup>
 				<hud:HudPartyGroups id="hud_party_groups" label="Parties"/>
 				<hud:HudShop id="hud_shop" label="Shop"/>
@@ -343,7 +343,7 @@
 			</s:HGroup>			
 		</s:Group>
 
-		<s:Group x="1060" y="85" >
+		<s:Group x="{this.width}" y="85" >
 			<hud:HudMap id="hud_map" width="100%" height="100%"
 						map="{map}"
 						dungeon3D="{dungeon3D}" visible="false"/>				

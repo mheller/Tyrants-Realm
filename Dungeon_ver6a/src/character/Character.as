@@ -542,12 +542,154 @@ package character
 		
 		
 		public function getClassNum():int { return this.classNum; }
-		
 		public function setClassNum(cn:int):void { this.classNum = cn; }
 		
 		public function getFaction():int { return this.faction; }
-		
 		public function setFaction(faction:int):void { this.faction = faction; }
+		
+		public function getCurrSpirae():int { return this.spirae_current.getValue(); }
+		public function setCurrSpirae(newVal:int):void { this.spirae_current.setValue(newVal); }
+		public function incCurrSpirae(incVal:int):void { 
+			this.spirae_current.setValue(this.spirae_current.getValue() + incVal); 
+			
+			// Cap at the max
+			if (this.spirae_current.getValue() > this.spirae_max.getValue()) this.spirae_current.setValue(this.spirae_max.getValue());
+		}   
+		public function decCurrSpirae(decVal:int):int { 
+			this.spirae_current.setValue(this.spirae_current.getValue() - decVal); 
+			
+			// If dec reduces below max, then back out the change and error
+			if (this.spirae_current.getValue() < 0) {
+				this.spirae_current.setValue(this.spirae_current.getValue() + decVal);
+				return 1;
+			}
+			return 0;	
+		}   
+
+		public function getMaxSpirae():int { return this.spirae_max.getValue(); }
+		public function setMaxSpirae(newVal:int):void { this.spirae_max.setValue(newVal); }
+		public function incMaxSpirae(incVal:int):void { 
+			this.spirae_max.setValue(this.spirae_max.getValue() + incVal); 
+		}   
+		public function decMaxSpirae(decVal:int):int { 
+			this.spirae_max.setValue(this.spirae_max.getValue() - decVal); 
+			
+			// If dec reduces below max, then back out the change and error
+			if (this.spirae_max.getValue() < 0) {
+				this.spirae_max.setValue(this.spirae_max.getValue() + decVal);
+				return 1;
+			}
+			return 0;	
+		}   
+
+		public function getCurrHealth():int { return this.health_current.getValue(); }
+		public function setCurrHealth(newVal:int):void { this.health_current.setValue(newVal); }
+		public function incCurrHealth(incVal:int):void { 
+			this.health_current.setValue(this.health_current.getValue() + incVal); 
+			
+			// Cap at the max
+			if (this.health_current.getValue() > this.health_max.getValue()) this.health_current.setValue(this.health_max.getValue());
+		}   
+		public function decCurrHealth(decVal:int):int { 
+			this.health_current.setValue(this.health_current.getValue() - decVal); 
+			
+			// If dec reduces below max, then back out the change and error
+			if (this.health_current.getValue() < 0) {
+				this.health_current.setValue(this.health_current.getValue() + decVal);
+				return 1;
+			}
+			return 0;	
+		}   
+		public function getMaxHealth():int { return this.health_max.getValue(); }
+		public function setMaxHealth(newVal:int):void { this.health_max.setValue(newVal); }
+		public function incMaxHealth(incVal:int):void { 
+			this.health_max.setValue(this.health_max.getValue() + incVal); 
+		}   
+		public function decMaxHealth(decVal:int):int { 
+			this.health_max.setValue(this.health_max.getValue() - decVal); 
+			
+			// If dec reduces below max, then back out the change and error
+			if (this.health_max.getValue() < 0) {
+				this.health_max.setValue(this.health_max.getValue() + decVal);
+				return 1;
+			}
+			return 0;	
+		}   
+
+		public function getName():String { return this.name.getValue(); }
+		public function setName(name:String):void { this.name.setValue(name); }
+		
+		public function getPartyPosition():int { return this.party_position.getValue(); }
+		public function setPartyPosition(pos:int):void { this.party_position.setValue(pos); }
+		
+		public function getGender():String { return this.gender.getValue(); } 
+		public function setGender(gen:String):void { this.gender.setValue(gen); }
+		
+		public function getClass():String { return this.character_class.getValue(); } 
+		public function setClass(pc_class:String):void { this.character_class.setValue(pc_class); }
+		
+		public function getExpToLevel():int { return this.experience_to_level.getValue(); } 
+		public function setExpToLevel(lvl:int):void { this.experience_to_level.setValue(lvl); }
+
+		public function getExp():int { return this.total_experience.getValue(); } 
+		public function setExp(exp:int):void { this.total_experience.setValue(exp); }
+
+		public function getLevel():int { return this.level.getValue(); } 
+		public function setLevel(lvl:int):void { this.level.setValue(lvl); }
+
+		public function getCareer():int { return this.career_changes.getValue(); } 
+		public function setCareer(career:int):void { this.career_changes.setValue(career); }
+		
+		public function getCurrFitness():int { return this.fitness.getValue(); } 
+		public function Max(fit:int):void { this.fitness.setValue(fit); }
+		public function getCurrMental():int { return this.mental_prowess.getValue(); } 
+		public function setCurrMental(ment:int):void { this.mental_prowess.setValue(ment); }
+		public function getCurrEloquence():int { return this.eloquence.getValue(); } 
+		public function setCurrEloquence(elo:int):void { this.eloquence.setValue(elo); }
+		public function getCurrCoordination():int { return this.coordination.getValue(); } 
+		public function setCurrCoordination(coord:int):void { this.coordination.setValue(coord); }
+		public function getCurrSpirit():int { return this.spirituality.getValue(); } 
+		public function setCurrSpirit(spir:int):void { this.spirituality.setValue(spir); }
+
+		public function getMaxFitness():int { return this.fitness.getMaxValue(); } 
+		public function setMaxFitness(fit:int):void { this.fitness.setMaxValue(fit); }
+		public function getMaxMental():int { return this.mental_prowess.getMaxValue(); } 
+		public function setMaxMental(ment:int):void { this.mental_prowess.setMaxValue(ment); }
+		public function getMaxEloquence():int { return this.eloquence.getMaxValue(); } 
+		public function setMaxEloquence(elo:int):void { this.eloquence.setMaxValue(elo); }
+		public function getMaxCoordination():int { return this.coordination.getMaxValue(); } 
+		public function setMaxCoordination(coord:int):void { this.coordination.setMaxValue(coord); }
+		public function getMaxSpirit():int { return this.spirituality.getMaxValue(); } 
+		public function setMaxSpirit(spir:int):void { this.spirituality.setMaxValue(spir); }
+
+		public function getPhysDmgMin():int { return this.phys_dmg.getValue(); } 
+		public function setPhysDmgMin(dmg:int):void { this.phys_dmg.setValue(dmg); }
+		public function getPhysDmgMax():int { return this.phys_dmg.getMaxValue(); } 
+		public function setPhysDmgMax(dmg:int):void { this.phys_dmg.setMaxValue(dmg); }
+		public function getMagicDmgMin():int { return this.magic_dmg.getValue(); } 
+		public function setMagicDmgMin(dmg:int):void { this.magic_dmg.setValue(dmg); }
+		public function getMagicDmgMax():int { return this.magic_dmg.getMaxValue(); } 
+		public function setMagicDmgMax(dmg:int):void { this.magic_dmg.setMaxValue(dmg); }
+		
+		public function getHit():int { return this.hit.getValue(); } 
+		public function setHit(hit:int):void { this.hit.setValue(hit); }
+	
+		public function getAvoid():int { return this.avoidance.getValue(); } 
+		public function setAvoid(avoid:int):void { this.avoidance.setValue(avoid); }
+
+		public function getDmgType():String { return this.damage_type.getValue(); } 
+		public function setDmgType(type:String):void { this.damage_type.setValue(type); }
+
+		public function getDmgRes():int { return this.damage_resistance.getValue(); } 
+		public function setDmgRes(res:int):void { this.damage_resistance.setValue(res); }
+		public function getMagicRes():int { return this.magic_resistance.getValue(); } 
+		public function setMagicRes(res:int):void { this.magic_resistance.setValue(res); }
+		public function getColdRes():int { return this.cold_resistance.getValue(); } 
+		public function setColdRes(res:int):void { this.cold_resistance.setValue(res); }
+		public function getHeatRes():int { return this.heat_resistance.getValue(); } 
+		public function setHeatRes(res:int):void { this.heat_resistance.setValue(res); }
+		
+		
 		
 		private function _createAttributeLists():void{
 			attribute_list.addItem(name);

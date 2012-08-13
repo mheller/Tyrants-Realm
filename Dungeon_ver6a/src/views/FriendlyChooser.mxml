@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 x="5" y="5"
+		 creationComplete="creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import character.Character;
+			
+			import events.DragDropEvent;
+			
+			import hud.HudAttribute;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.core.BitmapAsset;
+			import mx.core.IUIComponent;
+			import mx.events.DragEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import pkgInventory.ItemStack;
+			import pkgInventory.ItemStackView;
+			
+			import pkgParty.CharacterDblClickedEvent;
+			import pkgParty.CharacterSelectedEvent;
+			import pkgParty.Party;
+			import pkgParty.ViewEachCharInParty;
+			
+			import spark.components.Button;
+			import spark.components.Label;
+			import spark.filters.GlowFilter;
+			import spark.layouts.BasicLayout;
+			import spark.layouts.VerticalLayout;
+			import spark.primitives.BitmapImage;
+			import spark.primitives.Line;
+			
+			import views.CharacterView;
+			
+			[Bindable]
+			public var aParty: Party;
+			
+			[Bindable]
+			public var character_view:CharacterView;
+			
+			private function handleCloseEvent():void{
+				visible = false;
+			}
+						
+			
+			private function targetSelected(e:MouseEvent):void {
+				var index:int = (Button)(e.target).id;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.friendlyTarget = this.aParty.getCharAt(index);
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.targetIndex = index;
+				PopUpManager.removePopUp((TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.chooser);
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.divineWarmth();	
+			}
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				if ((TyrantsRealm)(this.parentApplication).hud_party.aParty == null) return;
+				this.aParty = (TyrantsRealm)(this.parentApplication).hud_party.aParty;
+				var currPop:int = aParty.getCurrPopulation();
+				var i:int;
+				var size:int;
+				var height:int;
+				
+				
+				// Text msg
+				var info:Label = new Label();
+				info.text = "Please select target:";
+				info.x = 5;
+				info.y = 5;
+				info.setStyle("color", "White");	
+				addElement(info);
+				
+				size = info.text.length;
+				
+				var partyMemberGroup:Group = new Group();
+				partyMemberGroup.layout = new VerticalLayout();
+				
+				var diam:int = 85;
+				
+				for (i=0; i<currPop; i++) {					
+					if (aParty.getCharAt(i).getName().length > size) size = aParty.getCharAt(i).getName().length;
+				}
+				
+				height=34;
+				var index:int = 0;
+				for(i=0; i<currPop; i++){
+					var char:Character = aParty.getCharAt(i);
+					var viewAChar:Button = new Button();
+					viewAChar.width = 98+size;					
+					viewAChar.label = char.getName();
+					viewAChar.id = index.toString(10);
+					index++;
+					height += 35;
+					viewAChar.x=0;
+					viewAChar.y=0;
+					viewAChar.addEventListener(MouseEvent.ROLL_OVER, glowOn);
+					viewAChar.addEventListener(MouseEvent.ROLL_OUT, glowOff);
+					viewAChar.addEventListener(MouseEvent.CLICK, targetSelected);
+					
+					partyMemberGroup.addElement(viewAChar);
+				}
+				partyMemberGroup.x=0;
+				partyMemberGroup.y=34;
+				this.addElement(partyMemberGroup);
+				
+				// Adjust the window width and item image centering dynamically.
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.chooser.width = 110 + size;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.chooser.height = height;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells.ssp.chooser.y = 
+					((TyrantsRealm)(this.parentApplication).height / 2) - (height / 2);
+				this.height = height;
+				
+			}
+			
+			private function glowOff(e:MouseEvent):void {
+				(Button)(e.currentTarget).filters = [ ];
+			}
+			private function glowOn(e:MouseEvent):void {
+				var filter : GlowFilter = new GlowFilter();
+				filter.blurX = 14;
+				filter.blurY = 14;
+				filter.quality = 6;
+				filter.alpha = 0.5;
+				filter.color = 0xFFD520;
+				filter.inner = false;
+				(Button)(e.currentTarget).filters = [ filter ];    
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<s:layout>
+		<s:BasicLayout/>	
+	</s:layout>
+	
+</s:Group>

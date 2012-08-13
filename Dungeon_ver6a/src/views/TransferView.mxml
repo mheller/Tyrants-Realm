@@ -23,8 +23,7 @@
 			import mx.events.DragEvent;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
-			import spark.filters.GlowFilter;
-
+			
 			import pkgInventory.ItemStack;
 			import pkgInventory.ItemStackView;
 			
@@ -33,6 +32,7 @@
 			import pkgParty.Party;
 			import pkgParty.ViewEachCharInParty;
 			
+			import spark.components.Button;
 			import spark.components.Label;
 			import spark.filters.GlowFilter;
 			import spark.layouts.BasicLayout;
@@ -61,6 +61,14 @@
 			}
 			
 			
+			private function targetSelected(e:MouseEvent):void {
+				var index:int = (Button)(e.target).id;
+				var source:ItemStackView = ItemStackView((TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.xferEvent.dragInitiator);   // ItemStackView
+				var selectedNPC:Character = this.aParty.getCharAt(index);
+				
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.performItemXfer2(source,selectedNPC);
+				PopUpManager.removePopUp((TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer);				
+			}
 
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
@@ -68,9 +76,11 @@
 				this.aParty = (TyrantsRealm)(this.parentApplication).hud_party.aParty;
 				var currPop:int = aParty.getCurrPopulation();
 				var i:int;
+				var size:int;
+				var height:int;
 				
 				// Change Selected NPC
-				addEventListener("CharacterIsSelected",this.handleCharacterSelected);								
+//				addEventListener("CharacterIsSelected",this.handleCharacterSelected);								
 				
 				// Item image
 				var itemForTransfer:BitmapImage = new BitmapImage();
@@ -100,18 +110,38 @@
 				var info:Label = new Label();
 				info.text = "Please select target:";
 				info.x = 5;
-				info.y = 87;
+				info.y = 100;
 				info.setStyle("color", "White");	
 				addElement(info);
 
+				size = info.text.length;
 				
 				var partyMemberGroup:Group = new Group();
 				partyMemberGroup.layout = new VerticalLayout();
 				
 				var diam:int = 85;
-				var parentWidth:int = 0;
+				
+				for (i=0; i<currPop; i++) {					
+					if (aParty.getCharAt(i).getName().length > size) size = aParty.getCharAt(i).getName().length;
+				}
+				
+				height=129;
+				var index:int = 0;
 				for(i=0; i<currPop; i++){
-					if (aParty.getCurrCharIndex() == i) continue;
+					var char:Character = aParty.getCharAt(i);
+					var viewAChar:Button = new Button();
+					viewAChar.width = 98+size;					
+					viewAChar.label = char.getName();
+					viewAChar.id = index.toString(10);
+					index++;
+					height += 35;
+					viewAChar.x=0;
+					viewAChar.y=0;
+					viewAChar.addEventListener(MouseEvent.ROLL_OVER, glowOn);
+					viewAChar.addEventListener(MouseEvent.ROLL_OUT, glowOff);
+					viewAChar.addEventListener(MouseEvent.CLICK, targetSelected);
+
+/*					if (aParty.getCurrCharIndex() == i) continue;  // Filters current user so not able to txfr to self
 					
 					var viewAChar:ViewEachCharInParty = new ViewEachCharInParty();
 					
@@ -158,16 +188,20 @@
 					name.setStyle("color", "White");	
 //					viewAChar.character_appearance_container.addElement(name);
 					this.addElement(name);
-					
+					*/
 					partyMemberGroup.addElement(viewAChar);
-					partyMemberGroup.x=5;
-					partyMemberGroup.y=103;
 				}
+				partyMemberGroup.x=0;
+				partyMemberGroup.y=129;
 				this.addElement(partyMemberGroup);
 				
 				// Adjust the window width and item image centering dynamically.
-				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.width = 110 + 10*parentWidth;
-				itemForTransfer.x = (110+10*parentWidth)/2 - 42;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.width = 110 + size;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.height = height;
+				(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.inv_view.hudTransfer.y = ((TyrantsRealm)(this.parentApplication).height / 2) - (height / 2);
+				this.height = height;
+				
+				itemForTransfer.x = (110+size)/2 - 42;
 				
 
 				// Divider
@@ -178,7 +212,7 @@
 			}
 			
 			private function glowOff(e:MouseEvent):void {
-				(ViewEachCharInParty)(e.currentTarget).filters = [ ];
+				(Button)(e.currentTarget).filters = [ ];
 			}
 			private function glowOn(e:MouseEvent):void {
 				var filter : GlowFilter = new GlowFilter();
@@ -188,7 +222,7 @@
 				filter.alpha = 0.5;
 				filter.color = 0xFFD520;
 				filter.inner = false;
-				(ViewEachCharInParty)(e.currentTarget).filters = [ filter ];    
+				(Button)(e.currentTarget).filters = [ filter ];    
 			}
 		]]>
 	</fx:Script>

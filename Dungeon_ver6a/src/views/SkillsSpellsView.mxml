@@ -7,7 +7,7 @@
 			   xmlns:resizableTitleWindow ="resizableTitleWindow.*"
 			   close="handleCloseEvent();"
 			   creationComplete="creationCompleteHandler(event)"
-			   x="380"
+			   x="{(TyrantsRealm)(this.parentApplication).width/2 - 140}"
 			   y="300"
 			   >
 	<s:layout>
@@ -24,6 +24,7 @@
 			
 			import flash.events.Event;
 			
+			import hud.HudFriendlyChooser;
 			import hud.HudSkillsSpells;
 			
 			import mx.collections.ArrayCollection;
@@ -35,13 +36,17 @@
 			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 			import mx.controls.advancedDataGridClasses.AdvancedDataGridRendererProvider;
 			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.controls.textClasses.TextRange;
 			import mx.core.UIComponent;
 			import mx.events.DragEvent;
 			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
 			import mx.events.ToolTipEvent;
+			import mx.managers.PopUpManager;
 			
 			import pkgParty.ViewEachCharInParty;
+			
+			import resizableTitleWindow.*;
 			
 			import spark.components.Button;
 			import spark.components.DataGrid;
@@ -53,7 +58,10 @@
 			
 			private var skillList:ArrayCollection;			
 			private var adg:AdvancedDataGrid;
-			
+			public var friendlyTarget:Character = null;
+			public var chooser:HudFriendlyChooser;
+			public var targetIndex:int;
+
 			private function handleCloseEvent():void{
 				this.visible = false;		
 			}	
@@ -81,7 +89,7 @@
 					cost = (TyrantsRealm)(this.parentApplication).skills_spells[i].getCost();
 					if (lvl > -1) {
 						// Skill Class header
-						if ((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getFaction() == 0) {   // TODO: Add in other factions
+						if ((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getFaction() == 0) {   
 							if (i<201) { classStr = "Enhancer"; currClass = 7; }
 							if (i<176) { classStr = "Hand of Grace"; currClass = 6; }
 							if (i<151) { classStr = "Summoner"; currClass = 5; }
@@ -90,6 +98,26 @@
 							if (i<76) { classStr = "Tempus Diem Fur"; currClass = 2; }
 							if (i<51) { classStr = "Berserker"; currClass = 1; }
 							if (i<26) { classStr = "Defender"; currClass = 0; }
+						}
+						if ((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getFaction() == 1) {   
+							if (i<201) { classStr = "Artificer"; currClass = 7; }
+							if (i<176) { classStr = "Crimson Order"; currClass = 6; }
+							if (i<151) { classStr = "Spirit Guide"; currClass = 5; }
+							if (i<126) { classStr = "Shaman"; currClass = 4; }
+							if (i<101) { classStr = "Forerunner"; currClass = 3; }
+							if (i<76) { classStr = "Tempus Crepusculum Fur"; currClass = 2; }
+							if (i<51) { classStr = "Brute"; currClass = 1; }
+							if (i<26) { classStr = "Champion"; currClass = 0; }
+						}
+						if ((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getFaction() == 2) {   
+							if (i<201) { classStr = "Scions of Ge"; currClass = 7; }
+							if (i<176) { classStr = "Shadow of Death"; currClass = 6; }
+							if (i<151) { classStr = "Warlock"; currClass = 5; }
+							if (i<126) { classStr = "Magi"; currClass = 4; }
+							if (i<101) { classStr = "Shadow of Fear"; currClass = 3; }
+							if (i<76) { classStr = "Tempus Nox Fur"; currClass = 2; }
+							if (i<51) { classStr = "Frenzied"; currClass = 1; }
+							if (i<26) { classStr = "Guardian"; currClass = 0; }
 						}
 						if (currClass != lastClass) { 
 //							skillList.addItem({Skill: classStr});   // Commented out until better UI
@@ -149,7 +177,19 @@
 				cast.id = "castBtn";
 				cast.x = this.width/2 - 30;
 				cast.y = this.height - 66;
-				cast.enabled = false;
+				
+				var obj:Object = skillList.getItemAt(0);
+				var id:int = obj['ID'];
+				var skillAvailability:int = (TyrantsRealm)(this.parentApplication).skills_spells[id].getAvailability();
+				
+				// Enable Cast button for Exploration available spells/skills
+				lvl = (TyrantsRealm)(this.parentApplication).party1.getCurrChar().skills_level[id];
+				cost = (TyrantsRealm)(this.parentApplication).skills_spells[id].getCost();
+				if (((skillAvailability == 1) || (skillAvailability == 2)) && 
+					((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getCurrSpirae() >= cost) &&
+					(lvl > 0)) cast.enabled = true;
+				else cast.enabled=false;
+
 				cast.addEventListener(MouseEvent.CLICK, castSkillSpell);
 
 				this.addElement(cast);
@@ -171,9 +211,13 @@
 					var obj:Object = skillList.getItemAt(selected);
 					var id:int = obj['ID'];
 					var skillAvailability:int = (TyrantsRealm)(this.parentApplication).skills_spells[id].getAvailability();
+					var lvl:int = (TyrantsRealm)(this.parentApplication).party1.getCurrChar().skills_level[id];
+					var cost:int = (TyrantsRealm)(this.parentApplication).skills_spells[id].getCost();
 					
 					// Enable Cast button for Exploration available spells/skills
-					if ((skillAvailability == 1) || (skillAvailability == 2)) castBtn.enabled = true;
+					if (((skillAvailability == 1) || (skillAvailability == 2)) && 
+						((TyrantsRealm)(this.parentApplication).party1.getCurrChar().getCurrSpirae() >= cost) &&
+						(lvl > 0)) castBtn.enabled = true;
 					else castBtn.enabled=false;
 				}
 				
@@ -185,97 +229,159 @@
 				var index:int = adg.selectedIndex;
 				var obj:Object = skillList.getItemAt(index);
 				var id:int = obj['ID'];
-				
+				var caster:Character = (TyrantsRealm)(this.parentApplication).party1.getCurrChar();
 				var skill:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
 				
 				
 				switch (id){
+					case 102:   // Illumination
+						skill.castParty(caster, id); 
+						break;
 					case 151:   // Divine Warmth
-						skill.castFriendlyIndividual((TyrantsRealm)(this.parentApplication).party1.getCurrChar(), id); break;
+						friendlyChooser();
+						break;
 				}				
+			}
+			
+			// Spell ID: 151
+			public function divineWarmth():void {
+				var index:int = adg.selectedIndex;
+				var obj:Object = skillList.getItemAt(index);
+				var id:int = obj['ID'];
+				var caster:Character = (TyrantsRealm)(this.parentApplication).party1.getCurrChar();
+				var skill:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
+				
+				
+				var msg:String;
+
+				// Break out if healing someone who doesn't need it.
+				if (friendlyTarget.getCurrHealth() == friendlyTarget.getMaxHealth()) {			 
+					msg = "[Info]: Casting aborted! " + friendlyTarget.getName() + " is at full health already.\n";
+					PopUpManager.removePopUp((TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells);
+				}
+				else { // Cast the spell
+					skill.castFriendlyIndividual(caster, friendlyTarget, id);
+					msg = "[Info]: " + friendlyTarget.getName() + skill.getCastMsg() + "\n";
+					PopUpManager.removePopUp((TyrantsRealm)(this.parentApplication).hud_attribute.character_view.hud_skills_spells);
+				}
+				
+				var startInd:int = (TyrantsRealm)(this.parentApplication).hud_chat.chat_view.chat_msg_area.text.length;
+				if (startInd < 0) startInd = 0;
+				(TyrantsRealm)(this.parentApplication).hud_chat.chat_view.chat_msg_area.text += msg;
+				var endInd:int = (TyrantsRealm)(this.parentApplication).hud_chat.chat_view.chat_msg_area.text.length-1;
+				if (endInd < 0) endInd = 0;
+				
+				var tr:TextRange = new TextRange(
+					(TyrantsRealm)(this.parentApplication).hud_chat.chat_view.chat_msg_area, false);
+				tr.beginIndex = startInd;
+				tr.endIndex = endInd;
+				tr.text = msg;
+				tr.color=0xfefdfd;
+				
+				// Update caster and target
+				var target:ViewEachCharInParty = (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt(targetIndex*2) as ViewEachCharInParty;
+				target.updateStatusBar();
+				var source:ViewEachCharInParty = (TyrantsRealm)(this.parentApplication).hud_party.party_view.getElementAt((caster.getPartyPosition()-1)*2) as ViewEachCharInParty;
+				source.updateStatusBar();
+				
+				if ((TyrantsRealm)(this.parentApplication).hud_attribute.character_view != null)
+					(TyrantsRealm)(this.parentApplication).hud_attribute.character_view.att_view.refresh();
+
 			}
 			
 			private function showDetails(e:ListEvent):void { 
 				var skillDetails:String = ""; 
 				var obj:Object = e.itemRenderer.data;
-//				var index:int = adg.selectedIndex;
-//				if (index < 1) return;
+				var id:int = obj['ID'];
+				var char:Character = (TyrantsRealm)(this.parentApplication).party1.getCurrChar();
+				var skillInfo:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
 				
-//				var obj:Object = skillList.getItemAt(index);
-				
-//				if(skill1 != null)
-//				{ 
-					var id:int = obj['ID'];
-//					var id:int = 1;
-					var char:Character = (TyrantsRealm)(this.parentApplication).party1.getCurrChar();
-					var skillInfo:SkillsSpells = (SkillsSpells)((TyrantsRealm)(this.parentApplication).skills_spells[id]);
-					
-					// Name of Skill/Spell
-					if (id < 100)
-						skillDetails = "Skill : "  + obj['Skill'] + "\n"; 
-					else
-						skillDetails = "Spell : "  + obj['Skill'] + "\n";
+				// Name of Skill/Spell
+				if (id < 100)
+					skillDetails = "Skill : "  + obj['Skill'] + "\n"; 
+				else
+					skillDetails = "Spell : "  + obj['Skill'] + "\n";
 
-					// Class it belongs to
-					// TODO: Need to factor in faction
-					if ((id > 0) && (id < 26)) skillDetails += "Class: Defender\n";
-					if ((id > 25) && (id < 51)) skillDetails += "Class: Berserker\n";
-					if ((id > 50) && (id < 76)) skillDetails += "Class: Tempus Diem Fur\n";
-					if ((id > 75) && (id < 101)) skillDetails += "Class: Scout\n";
-					if ((id > 100) && (id < 126)) skillDetails += "Class: Elementalist\n";
-					if ((id > 125) && (id < 151)) skillDetails += "Class: Summoner\n";
-					if ((id > 150) && (id < 176)) skillDetails += "Class: Hand of Grace\n";
-					if ((id > 175) && (id < 201)) skillDetails += "Class: Enhancer\n";
-					
-					// Level
-					if (char.skills_level[id] == 0)
-						skillDetails += "Level: 0 (Learnable)\n";
-					else
-						skillDetails += "Level: " + char.skills_level[id] + "\n";
-					
-					// Experience
-					skillDetails += "Experience: " + char.skills_exp[id] + "\n";					
-					
-					// Target Type
-					if (skillInfo.getTargetType() == 0) skillDetails += "Target: Individual (Enemy)\n";
-					if (skillInfo.getTargetType() == 1) skillDetails += "Target: Individual (Friendly)\n";
-					if (skillInfo.getTargetType() == 2) skillDetails += "Target: Group (Enemy)\n";
-					if (skillInfo.getTargetType() == 3) skillDetails += "Target: All (Enemy)\n";
-					if (skillInfo.getTargetType() == 4) skillDetails += "Target: Party\n";
-					if (skillInfo.getTargetType() == 5) skillDetails += "Target: Self\n";
-					if (skillInfo.getTargetType() == 6) skillDetails += "Target: Special\n";
-					
-					// Availability
-					if (skillInfo.getAvailability() == 0) skillDetails += "Availability: Combat\n";
-					if (skillInfo.getAvailability() == 1) skillDetails += "Availability: Exploration\n";
-					if (skillInfo.getAvailability() == 2) skillDetails += "Availability: Any (Enemy)\n";
-					if (skillInfo.getAvailability() == 3) skillDetails += "Availability: Special (Enemy)\n";
-					
-					// Duration Type
-					if (skillInfo.getDurationType() == 0) skillDetails += "Duration Type: Instant\n";
-					if (skillInfo.getDurationType() == 1) skillDetails += "Duration Type: Remainder of Battle\n";
-					if (skillInfo.getDurationType() == 2) skillDetails += "Duration Type: # of Combat Rounds\n";
-					if (skillInfo.getDurationType() == 3) skillDetails += "Duration Type: # of Minutes\n";
-					if (skillInfo.getDurationType() == 4) skillDetails += "Duration Type: Permanent\n";
-					if (skillInfo.getDurationType() == 5) skillDetails += "Duration Type: Special\n";
-					
-					
-					// TODO: Actual Duration					
-					// TODO: DMG type
-					
-					// Spirae Cost
-					skillDetails +=  "Cost : " + skillInfo.getCost() + "\n" 
-
-					// TODO: Description
+				// Class it belongs to
+				// TODO: Need to factor in faction
+				if ((id > 0) && (id < 26)) skillDetails += "Class: Defender\n";
+				if ((id > 25) && (id < 51)) skillDetails += "Class: Berserker\n";
+				if ((id > 50) && (id < 76)) skillDetails += "Class: Tempus Diem Fur\n";
+				if ((id > 75) && (id < 101)) skillDetails += "Class: Scout\n";
+				if ((id > 100) && (id < 126)) skillDetails += "Class: Elementalist\n";
+				if ((id > 125) && (id < 151)) skillDetails += "Class: Summoner\n";
+				if ((id > 150) && (id < 176)) skillDetails += "Class: Hand of Grace\n";
+				if ((id > 175) && (id < 201)) skillDetails += "Class: Enhancer\n";
 				
-//				} 
+				// Level
+				if (char.skills_level[id] == 0)
+					skillDetails += "Level: 0 (Learnable)\n";
+				else
+					skillDetails += "Level: " + char.skills_level[id] + "\n";
+				
+				// Experience
+				skillDetails += "Experience: " + char.skills_exp[id] + "\n";					
+				
+				// Target Type
+				if (skillInfo.getTargetType() == 0) skillDetails += "Target: Individual (Enemy)\n";
+				if (skillInfo.getTargetType() == 1) skillDetails += "Target: Individual (Friendly)\n";
+				if (skillInfo.getTargetType() == 2) skillDetails += "Target: Group (Enemy)\n";
+				if (skillInfo.getTargetType() == 3) skillDetails += "Target: All (Enemy)\n";
+				if (skillInfo.getTargetType() == 4) skillDetails += "Target: Party\n";
+				if (skillInfo.getTargetType() == 5) skillDetails += "Target: Self\n";
+				if (skillInfo.getTargetType() == 6) skillDetails += "Target: Special\n";
+				
+				// Availability
+				if (skillInfo.getAvailability() == 0) skillDetails += "Availability: Combat\n";
+				if (skillInfo.getAvailability() == 1) skillDetails += "Availability: Exploration\n";
+				if (skillInfo.getAvailability() == 2) skillDetails += "Availability: Any\n";
+				if (skillInfo.getAvailability() == 3) skillDetails += "Availability: Special\n";
+				
+				// Duration Type
+				if (skillInfo.getDurationType() == 0) skillDetails += "Duration Type: Instant\n";
+				if (skillInfo.getDurationType() == 1) skillDetails += "Duration Type: Remainder of Battle\n";
+				if (skillInfo.getDurationType() == 2) skillDetails += "Duration Type: # of Combat Rounds\n";
+				if (skillInfo.getDurationType() == 3) skillDetails += "Duration Type: # of Minutes\n";
+				if (skillInfo.getDurationType() == 4) skillDetails += "Duration Type: Permanent\n";
+				if (skillInfo.getDurationType() == 5) skillDetails += "Duration Type: Special\n";
+				
+				
+				// Duration Formula
+				if (skillInfo.getDurationFormula() != "") skillDetails += "Duration Range: " + skillInfo.getDurationFormula() + "\n";
+				 
+				// Damage Type
+				if (skillInfo.getDmgType() != "")
+					skillDetails += "Damage Type: " + skillInfo.getDmgType() + "\n";
+				
+				// DMG Forumula
+				if (skillInfo.getDmgFormula() != "") skillDetails += "Damage Range: " + skillInfo.getDmgFormula() + "\n";
+				
+				// Spirae Cost
+				skillDetails +=  "Cost : " + skillInfo.getCost() + "\n" 
+
+				// Description
+				if (skillInfo.getDesc() != "")
+					skillDetails += "Description: " + skillInfo.getDesc() + "\n";
+				
 				adg.toolTip = skillDetails;
-//				return skillDetails; 
 			} 
 
+			// This function clears the skill/spell details found in the tooltip.
 			private function deleteToolTip(obj:Object):void { 
 				adg.toolTip = null; 
 			} 
+			
+			// This function allows for selecting a party member and returns that individual for processing.
+			public function friendlyChooser():void {
+				friendlyTarget = null;
+				
+				chooser = PopUpManager.createPopUp(this, HudFriendlyChooser,true) as HudFriendlyChooser;
+				chooser.setStyle("skinClass", ResizableTitleWindowSkin);
+
+				return;
+			}
+			
+			
 			
 		]]>
 	</fx:Script>

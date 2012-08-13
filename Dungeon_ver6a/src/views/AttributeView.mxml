@@ -14,6 +14,47 @@
 			[Bindable]
 			public var char:Character;
 			
+			public function refresh():void {
+				this.char = (TyrantsRealm)(this.parentApplication).hud_party.party_view.aParty.getCurrChar();
+				char_name.text = char.getName();
+				char_gender.text = char.getGender();
+				char_class.text = char.getClass();
+				health_curr.text = char.getCurrHealth();
+				health_max.text = char.getMaxHealth();
+				spirae_curr.text = char.getCurrSpirae();
+				spirae_max.text = char.getMaxSpirae();
+				tot_exp.text = char.getExp();
+				exp_to_level.text = char.getExpToLevel();
+				char_level.text = char.getLevel();
+				char_career.text = char.getCareer();
+				
+				fit_curr.text = char.getCurrFitness();
+				fit_max.text = char.getMaxFitness();
+				ment_curr.text = char.getCurrMental();
+				ment_max.text = char.getMaxMental();
+				spir_curr.text = char.getCurrSpirit();
+				spir_max.text = char.getMaxSpirit();
+				elo_curr.text = char.getCurrEloquence();
+				elo_max.text = char.getMaxEloquence();
+				coor_curr.text = char.getCurrCoordination();
+				coor_max.text = char.getMaxCoordination();
+				
+				hit.text = char.getHit();
+				avoid.text = char.getAvoid();
+				
+				phys_dmg_min.text = char.getPhysDmgMin();
+				phys_dmg_max.text = char.getPhysDmgMax();
+				dmg_type.text = char.getDmgType();
+				mag_dmg_min.text = char.getMagicDmgMin();
+				mag_dmg_max.text = char.getMagicDmgMax();
+				
+				dmg_res.text = char.getDmgRes();
+				cold_res.text = char.getColdRes();
+				heat_res.text = char.getHeatRes();
+				mag_res.text = char.getMagicRes();
+			}
+			
+			
 		]]>
 	</fx:Script>
 	

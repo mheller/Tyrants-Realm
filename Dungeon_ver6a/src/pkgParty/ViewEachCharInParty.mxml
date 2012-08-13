@@ -85,11 +85,11 @@
 
 			public function updateStatusBar():void{
 				var tmpHealth:int;
-				tmpHealth = ((char.health_max.getValue() as int)*40)/(char.health_max.getValue());
+				tmpHealth = char.getCurrHealth() / char.getMaxHealth() * 40;
 				this.healthStatusBar.setProgress(tmpHealth,40);
 				
 				var tmpSpirae:int;
-				tmpSpirae = ((char.spirae_max.getValue() as int)*40)/(char.spirae_max.getValue());
+				tmpSpirae = char.getCurrSpirae() / char.getMaxSpirae() * 40;
 				this.spiraeStatusBar.setProgress(tmpSpirae,40);
 				
 			}

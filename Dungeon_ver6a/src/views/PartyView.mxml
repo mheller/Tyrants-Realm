@@ -51,6 +51,7 @@
 				
 				if (oldIndex == newIndex) return; // Don't do anything if you click on the same item again
 				aParty.setCurrCharIndex(newIndex);
+				(TyrantsRealm)(this.parentApplication).party1.setCurrCharIndex(newIndex);
 				var newSelectedElement:ViewEachCharInParty = this.getElementAt(newIndex*2) as ViewEachCharInParty;
 							
 				
@@ -105,7 +106,7 @@
 						character_view.hud_level_up.visible=false;
 					
 					// Update Skills/Spells Display
-					if (this.character_view.hud_skills_spells.ssp.visible == true) {
+					if ((this.character_view.hud_skills_spells.ssp != null) && this.character_view.hud_skills_spells.ssp.visible == true) {
 						this.character_view.hud_skills_spells.ssp.visible = false;
 						this.character_view.hud_skills_spells.ssp = null;
 						this.character_view.hud_skills_spells.displaySkills();

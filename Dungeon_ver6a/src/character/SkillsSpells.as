@@ -12,9 +12,14 @@ package character
 		private var id:int = 0;
 		private var name:String = "";
 		private var target_type:int = -1;
-		private var cost:int = 0;
 		private var availability:int = -1;
 		private var duration_type:int = -1;
+		private var duration_formula:String = "";
+		private var dmg_formula:String = "";
+		private var dmg_type:String = "";
+		private var cast_msg:String = "";
+		private var cost:int = 0;
+		private var desc:String = "";
 		
 		
 		public function SkillsSpells(id:int) 
@@ -733,7 +738,7 @@ package character
 					name = "Illumination";
 					target_type = 4;
 					cost = 3;
-					availability = 0;
+					availability = 1;
 					duration_type = 3;
 					return;
 				case 103 :
@@ -1078,6 +1083,8 @@ package character
 					cost = 2;
 					availability = 2;
 					duration_type = 0;
+					cast_msg = " feels a warmth washing away the pain and is healed.";
+					desc = "Getting hurt through the course of your quest is to be expected. This allows the caster to mend minor injuries and continue on.";
 					return;
 				case 152 :
 					name = "Off the Cuff";
@@ -1435,8 +1442,17 @@ package character
 		
 		public function getAvailability():int { return this.availability; }
 		
-		public function getDurationType(): int { return this.duration_type; }
+		public function getDurationType():int { return this.duration_type; }
 		
+		public function getDurationFormula():String { return this.duration_formula; }
+		
+		public function getDmgType():String { return this.dmg_type; }
+		
+		public function getDmgFormula():String { return this.dmg_formula; }
+		
+		public function getDesc():String { return this.desc; }
+		
+		public function getCastMsg():String { return this.cast_msg; }
 		
 		// TODO:
 		public function castDuration(src:Character):int {
@@ -1473,19 +1489,30 @@ package character
 		
 		
 		// TODO
-		public function castSelf(char:Character, id:int):void {
+		public function castSelf(caster:Character, id:int):void {
+			
+		}
+		
+		
+		
+		public function castFriendlyIndividual(caster:Character, target:Character, id:int):void {
+			var lvl:int = caster.skills_level[id];
+			switch(id) {
+				case 151:
+					var healing:int = (10+lvl) * .01 * target.health_max.getValue();
+					target.incCurrHealth(healing);
+					caster.decCurrSpirae(this.cost);
+					caster.skills_exp[id]++;
+					caster.skills_level[id] = Math.floor(caster.skills_exp[id] / 10) + 1;
+					break;
+			}
+			
 			
 		}
 		
 		
 		// TODO
-		public function castFriendlyIndividual(char:Character, id:int):void {
-			
-		}
-		
-		
-		// TODO
-		public function castSpecial(char:Character, id:int):void {
+		public function castSpecial(caster:Character, id:int):void {
 			
 		}
 	}
